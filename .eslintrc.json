@@ -1,0 +1,38 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "airbnb/hooks"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "unicorn"
+  ],
+  "rules": {
+    "no-return-assign": "off",
+    "semi": 2,
+    "no-plusplus": "off",
+    "react/prop-types": "off",
+    "no-param-reassign": "off",
+    "import/no-named-as-default": "off",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default-member": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "object-curly-newline": "off"
+  }
+}
