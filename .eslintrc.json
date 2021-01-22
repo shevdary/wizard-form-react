@@ -24,6 +24,8 @@
     "unicorn"
   ],
   "rules": {
+    "allowTernary": "off" ,
+    "jsx-a11y/label-has-associated-control": "off",
     "no-return-assign": "off",
     "semi": 2,
     "no-plusplus": "off",

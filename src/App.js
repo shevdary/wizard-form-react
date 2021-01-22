@@ -1,13 +1,13 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { store } from './redux/store';
+import AccountForm from './components/AccountForm/AccountForm';
 
 const App = () => (
   <BrowserRouter basename="/">
     <Switch>
-      <Route path="/" render={() => <div>First App</div>} />
+      <Route path="/" component={AccountForm} />
     </Switch>
   </BrowserRouter>
 );
+
 export default App;
