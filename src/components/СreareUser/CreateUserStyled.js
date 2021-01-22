@@ -11,5 +11,5 @@ export const TextCenter = styled.h1`
   text-align: center;
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
-  color: ${'#475666'};
+  color: #475666;
 `;

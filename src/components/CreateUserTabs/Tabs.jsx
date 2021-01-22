@@ -1,5 +1,6 @@
 import React from 'react';
 import { TabsItem, TabsList, TabsPanel, TabWrapper } from './TabsStyled';
+import AccountForm from '../AccountForm/AccountForm';
 
 export const Tabs = () => (
   <TabWrapper
@@ -12,7 +13,9 @@ export const Tabs = () => (
       <TabsItem>3. Contact</TabsItem>
       <TabsItem>4. Capabilities</TabsItem>
     </TabsList>
-    <TabsPanel>Content Account</TabsPanel>
+    <TabsPanel>
+      <AccountForm />
+    </TabsPanel>
     <TabsPanel>Content Profile</TabsPanel>
     <TabsPanel>Content Contact</TabsPanel>
     <TabsPanel>Content Capabilities</TabsPanel>
