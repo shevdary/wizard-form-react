@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import AccountForm from './components/AccountForm/AccountForm';
+import './App.css';
+import CreateUser from './components/СreareUser/CreateUser';
 
 const App = () => (
   <BrowserRouter basename="/">
     <Switch>
-      <Route path="/" component={AccountForm} />
+      <Route path="/" component={CreateUser} />
     </Switch>
   </BrowserRouter>
 );
