@@ -19,6 +19,7 @@ import {
   RequiredField,
   Label,
   Inputs,
+  SpanError,
 } from './AccountFormStyled';
 import { addUserData } from '../../redux/userData/reducers';
 import { validate } from '../../helpers/accountValidate';
@@ -30,13 +31,12 @@ const renderField = (props) => {
     type,
     meta: { touched, error },
   } = props;
-  console.log(props);
   return (
     <InputForm>
       <Label> {label}</Label>
       <div>
         <Inputs {...input} placeholder={label} type={type} />
-        {touched && error && <span>{error}</span>}
+        {touched && error && <SpanError>{error}</SpanError>}
       </div>
     </InputForm>
   );
@@ -44,13 +44,19 @@ const renderField = (props) => {
 
 const AccountForm = ({ handleSubmit }) => {
   const [visiblePassword, setVisiblePassword] = useState([true, true]);
+
   const [type, setType] = useState('password');
   const [repeatType, setRepeatType] = useState('password');
   const [data, setData] = useState(false);
   const [file, setFile] = useState(null);
-
   const selector = useSelector((state) => state.form.userData);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(addUserData(selector.values));
+    }
+  }, [data]);
 
   useEffect(() => {
     if (data) {

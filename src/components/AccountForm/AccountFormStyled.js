@@ -34,6 +34,7 @@ export const RightBlock = styled.div`
 `;
 
 export const InputForm = styled.div`
+  height: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,7 +61,7 @@ export const Button = styled.button`
   color: #ced9e5;
   border: none;
   position: absolute;
-  top: 50%;
+  top: 35%;
   right: 10px;
   cursor: pointer;
 `;
@@ -104,4 +105,21 @@ export const RequiredField = styled.p`
 export const Label = styled.label`
   display: inline-flex;
   position: relative;
+`;
+
+export const SpanError = styled.span`
+  color: red;
+`;
+
+export const BackButton = styled.button`
+  height: 40px;
+  width: 100px;
+  float: right;
+  text-align: center;
+  background: #c1cfe0;
+  border: none;
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
 `;
