@@ -41,6 +41,7 @@ export const addNewUser = ({
   });
 
 export const updateDataUser = (id, name) => db.user.update(id, { name });
-
+export const setValues = ({ username }) =>
+  db.user.add({ id: Date.now().toString(), name: username });
 export const deleteUser = (id) => db.user.delete(id);
 export default { db, getUsers, addNewUser, updateDataUser };
