@@ -4,7 +4,6 @@ import { reduxForm } from 'redux-form';
 import { useDispatch, useSelector } from 'react-redux';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-
 import { Avatar } from '../SvgIcon/icon';
 import {
   Form,
@@ -17,37 +16,53 @@ import {
   ForwardButton,
   AddAvatar,
   AvatarLabel,
+  RequiredField,
+  Label,
+  Inputs,
 } from './AccountFormStyled';
 import { addUserData } from '../../redux/userData/reducers';
+import { validate } from '../../helpers/accountValidate';
 
-// eslint-disable-next-line  import/no-mutable-exports
-const AccountForm = () => {
+const renderField = (props) => {
+  const {
+    input,
+    label,
+    type,
+    meta: { touched, error },
+  } = props;
+  console.log(props);
+  return (
+    <InputForm>
+      <Label> {label}</Label>
+      <div>
+        <Inputs {...input} placeholder={label} type={type} />
+        {touched && error && <span>{error}</span>}
+      </div>
+    </InputForm>
+  );
+};
+
+const AccountForm = ({ handleSubmit }) => {
   const [visiblePassword, setVisiblePassword] = useState([true, true]);
-  const selector = useSelector((state) => state.form.userData);
   const [type, setType] = useState('password');
   const [repeatType, setRepeatType] = useState('password');
   const [data, setData] = useState(false);
   const [file, setFile] = useState(null);
+
+  const selector = useSelector((state) => state.form.userData);
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setData(true);
-  };
 
   useEffect(() => {
     if (data) {
       dispatch(addUserData(selector.values));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const getFile = (e) => {
-    console.log('click');
     let reader = new FileReader();
-    console.log(e);
-    //reader.readAsDataURL(e[0]);
+    reader.readAsDataURL(e[0]);
     reader.onload = (e) => {
-      setFile(reader.result);
+      setFile({ file: reader.result, size: e.loaded });
     };
   };
 
@@ -79,12 +94,16 @@ const AccountForm = () => {
       <RightBlock>
         <form>
           <InputForm>
-            <label htmlFor="username">User name</label>
-            <Input name="username" component="input" type="text" />
+            <Label htmlFor="username">
+              User name <RequiredField>*</RequiredField>
+            </Label>
+            <Input name="username" type="text" component={renderField} />
           </InputForm>
           <InputForm>
-            <label htmlFor="password">Password</label>
-            <Input name="password" component="input" type={type} />
+            <Label htmlFor="password">
+              Password <RequiredField>*</RequiredField>
+            </Label>
+            <Input name="password" type={type} component={renderField} />
             <Button onClick={(e) => changeVisinlePassword(e)}>
               {visiblePassword[0] ? (
                 <VisibilityIcon fontSize="small" />
@@ -94,8 +113,14 @@ const AccountForm = () => {
             </Button>
           </InputForm>
           <InputForm className="password-wraper">
-            <label htmlFor="repeatPassword">Repeat password</label>
-            <Input name="repeatPassword" component="input" type={repeatType} />
+            <Label htmlFor="repeatPassword">
+              Repeat password <RequiredField>*</RequiredField>
+            </Label>
+            <Input
+              name="repeatPassword"
+              type={repeatType}
+              component={renderField}
+            />
             <Button onClick={(e) => changeVisibleRepeat(e)}>
               {visiblePassword[1] ? (
                 <VisibilityIcon fontSize="small" />
@@ -104,7 +129,7 @@ const AccountForm = () => {
               )}
             </Button>
           </InputForm>
-          <ForwardButton type="submit" onClick={(e) => handleSubmit(e)}>
+          <ForwardButton type="submit" onClick={handleSubmit(validate)}>
             Forward
           </ForwardButton>
         </form>

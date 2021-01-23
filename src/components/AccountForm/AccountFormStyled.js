@@ -47,6 +47,12 @@ export const Input = styled(Field)`
   border: 1px solid #c1cfe0;
   font-size: 14px;
 `;
+export const Inputs = styled.input`
+  height: 40px;
+  width: 100%;
+  border: 1px solid #c1cfe0;
+  font-size: 14px;
+`;
 
 export const Button = styled.button`
   background: transparent;
@@ -84,4 +90,18 @@ export const AvatarLabel = styled.label`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+`;
+
+export const RequiredField = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 35%;
+  right: 0px;
+`;
+
+export const Label = styled.label`
+  display: inline-flex;
+  position: relative;
 `;
