@@ -1,7 +1,6 @@
-/* eslint-disable */
-import React, { useEffect, useState } from 'react';
+/*eslint-disable*/
+import React, { useState } from 'react';
 import { reduxForm } from 'redux-form';
-import { useDispatch, useSelector } from 'react-redux';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { Avatar } from '../SvgIcon/icon';
@@ -21,8 +20,7 @@ import {
   Inputs,
   SpanError,
 } from './AccountFormStyled';
-import { addUserData } from '../../redux/userData/reducers';
-import { validate } from '../../helpers/accountValidate';
+import { accountDataValidate } from '../../helpers/accountValidate';
 
 const renderField = (props) => {
   const {
@@ -47,26 +45,11 @@ const AccountForm = ({ handleSubmit }) => {
 
   const [type, setType] = useState('password');
   const [repeatType, setRepeatType] = useState('password');
-  const [data, setData] = useState(false);
   const [file, setFile] = useState(null);
-  const selector = useSelector((state) => state.form.userData);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (data) {
-      dispatch(addUserData(selector.values));
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(addUserData(selector.values));
-    }
-  }, [data]);
-
-  const getFile = (e) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(e[0]);
+  const getFile = (event) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(event[0]);
     reader.onload = (e) => {
       setFile({ file: reader.result, size: e.loaded });
     };
@@ -94,20 +77,22 @@ const AccountForm = ({ handleSubmit }) => {
             onChange={(e) => getFile(e.target.files)}
             id="addAvatar"
           />
-          <i />+ addAvatar
+          <i>+ addAvatar</i>
         </AvatarLabel>
       </LeftBlock>
       <RightBlock>
         <form>
           <InputForm>
             <Label htmlFor="username">
-              User name <RequiredField>*</RequiredField>
+              User name
+              <RequiredField>*</RequiredField>
             </Label>
             <Input name="username" type="text" component={renderField} />
           </InputForm>
           <InputForm>
             <Label htmlFor="password">
-              Password <RequiredField>*</RequiredField>
+              Password
+              <RequiredField>*</RequiredField>
             </Label>
             <Input name="password" type={type} component={renderField} />
             <Button onClick={(e) => changeVisinlePassword(e)}>
@@ -120,7 +105,8 @@ const AccountForm = ({ handleSubmit }) => {
           </InputForm>
           <InputForm className="password-wraper">
             <Label htmlFor="repeatPassword">
-              Repeat password <RequiredField>*</RequiredField>
+              Repeat password
+              <RequiredField>*</RequiredField>
             </Label>
             <Input
               name="repeatPassword"
@@ -135,7 +121,10 @@ const AccountForm = ({ handleSubmit }) => {
               )}
             </Button>
           </InputForm>
-          <ForwardButton type="submit" onClick={handleSubmit(validate)}>
+          <ForwardButton
+            type="submit"
+            onClick={handleSubmit(accountDataValidate)}
+          >
             Forward
           </ForwardButton>
         </form>

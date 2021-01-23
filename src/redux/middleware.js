@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import {CREATE_POST, DELETE_USER} from './types'
 // import {addNewUser, deleteUser} from "../database";
 // import {requestFailed, requestSuccess, updateListSuccess} from "./actions";
