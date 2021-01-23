@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
+import { Link } from 'react-router-dom';
 
 export const TabWrapper = styled(Tabs)`
   font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -29,14 +30,12 @@ export const TabsItem = styled(Tab)`
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
   user-select: none;
-
   &.is-selected {
     color: #ffffff;
     background: #4e86e4;
     border-bottom: 1px solid transparent;
     opacity: 100%;
   }
-
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 0, 255, 0.5);
@@ -52,9 +51,17 @@ export const TabsPanel = styled(TabPanel)`
   background: rgba(231, 240, 255, 0.2);
   padding: 4px;
   margin-top: -1px;
-
   &.is-selected {
     display: block;
   }
 `;
 TabsPanel.tabsRole = 'TabPanel';
+
+export const TabLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:hover,
+  :active {
+    color: inherit;
+  }
+`;
