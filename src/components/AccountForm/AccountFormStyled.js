@@ -35,8 +35,9 @@ export const RightBlock = styled.div`
 
 export const InputForm = styled.div`
   height: 80px;
-  width: 100%;
   display: flex;
+  text-align: start;
+  width: 100%;
   flex-direction: column;
   position: relative;
   font-size: 14px;
