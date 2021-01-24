@@ -1,57 +1,57 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+/*eslint-disable*/
+import React, { useEffect, useState } from 'react';
+import { Route, useRouteMatch, Switch } from 'react-router-dom';
 // component
 import AccountForm from '../AccountForm/AccountForm';
 import ProfileForm from '../ProfileForm/ProfileForm';
 import ContactForm from '../ContuctForm/ContuctForm';
 // styled
-import {
-  TabLink,
-  TabsItem,
-  TabsList,
-  TabsPanel,
-  TabWrapper,
-} from './TabsStyled';
+import { TabsItem, TabsList, TabSwitch, TabWrapper } from './TabsStyled';
+import { useSelector } from 'react-redux';
+import { store } from '../../redux/store';
 
-export const Tabs = () => (
-  <BrowserRouter>
+export const Tabs = () => {
+  const match = useRouteMatch();
+  const { user } = useSelector((state) => state.user);
+  const isNextStep = Object.keys(user).length === 0 ? 'disable' : 'before';
+  const [isActiveTab, setIsActiveTab] = useState(false);
+
+  return (
     <TabWrapper
       selectedTabClassName="is-selected"
       selectedTabPanelClassName="is-selected"
     >
       <TabsList>
-        <TabsItem>
-          <TabLink to="/create-user/account">1. Account</TabLink>
+        <TabsItem
+          to={`${match.path}/account`}
+          className={`${isNextStep} ${isActiveTab}`}
+        >
+          1. Account
         </TabsItem>
-        <TabsItem>
-          <TabLink to="/create-user/profile">2. Profile</TabLink>
+        <TabsItem to={`${match.path}/profile`} className={isNextStep}>
+          2. Profile
         </TabsItem>
-        <TabsItem>
-          <TabLink to="/create-user/contact">3. Contact</TabLink>
+        <TabsItem to={`${match.path}/contact`} className={isNextStep}>
+          3. Contact
         </TabsItem>
-        <TabsItem>
-          <TabLink to="/create-user/capabilities">4. Capabilities</TabLink>
+        <TabsItem to={`${match.path}/capabilities`} className={isNextStep}>
+          4. Capabilities
         </TabsItem>
       </TabsList>
-
-      <TabsPanel>
-        <Route exact path="/create-user/account" component={AccountForm} />
-      </TabsPanel>
-      <TabsPanel>
-        <Route exact path="/create-user/profile" component={ProfileForm} />
-      </TabsPanel>
-      <TabsPanel>
-        <Route exact path="/create-user/contact" component={ContactForm} />
-      </TabsPanel>
-      <TabsPanel>
-        <Route
-          exact
-          path="/create-user/capabilities"
-          render={() => <div>Content Capabilities</div>}
-        />
-      </TabsPanel>
+      <TabSwitch>
+        <Switch>
+          <Route exact path={`${match.path}/account`} component={AccountForm} />
+          <Route exact path={`${match.path}/profile`} component={ProfileForm} />
+          <Route exact path={`${match.path}/contact`} component={ContactForm} />
+          <Route
+            exact
+            path={`${match.path}/capabilities`}
+            component={() => <div>Capabilitiees</div>}
+          />
+        </Switch>
+      </TabSwitch>
     </TabWrapper>
-  </BrowserRouter>
-);
+  );
+};
 
 export default Tabs;

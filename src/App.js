@@ -6,8 +6,8 @@ import CreateUser from './components/СreareUser/CreateUser';
 const App = () => (
   <BrowserRouter basename="/">
     <Switch>
-      <Route path="/create-user/:tabs?" component={CreateUser} />
-      <Redirect from="/" to="/create-user" />
+      <Route path="/create-user" component={CreateUser} />
+      <Redirect from="/" to="/create-user/account" />
     </Switch>
   </BrowserRouter>
 );
