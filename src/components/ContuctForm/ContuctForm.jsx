@@ -1,6 +1,9 @@
-/* eslint-disable */
+/* eslint-disable*/
 import React, { useState } from 'react';
+import { reduxForm } from 'redux-form';
 import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import {
   BackButton,
   Form,
@@ -10,7 +13,7 @@ import {
   RequiredField,
   SpanError,
 } from '../AccountForm/AccountFormStyled';
-import InputMask from 'react-input-mask';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import {
   FlexColumn,
@@ -18,7 +21,7 @@ import {
   RightSide,
   Inputs,
 } from '../ProfileForm/ProfileFormStyled';
-import { reduxForm } from 'redux-form';
+
 import { AddNumber } from './ContactFormStyled';
 
 const options = [
@@ -57,7 +60,7 @@ const renderField = (props) => {
   } = props;
   return (
     <InputForm>
-      <Label> {label}</Label>
+      <Label>{label}</Label>
       <div>
         <Inputs {...input} placeholder={label} type={type} />
         {touched && error && <SpanError>{error}</SpanError>}
@@ -66,10 +69,9 @@ const renderField = (props) => {
   );
 };
 
-const ContactForm = () => {
-  const [startDate, setStartDate] = useState();
+const ContactForm = ({ value }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [selectGender, setSelectGender] = useState('female');
+  const history = useHistory();
   return (
     <form>
       <Form className="account">
@@ -80,17 +82,20 @@ const ContactForm = () => {
           </InputForm>
           <InputForm>
             <Label htmlFor="githubLink">
-              Github link <RequiredField>*</RequiredField>
+              Github link
+              <RequiredField>*</RequiredField>
             </Label>
             <Inputs name="githubLink" type="text" component={renderField} />
           </InputForm>
           <InputForm>
             <Label htmlFor="githubLink">
-              Facebook link <RequiredField>*</RequiredField>
+              Facebook link
+              <RequiredField>*</RequiredField>
             </Label>
             <Inputs name="githubLink" type="text" component={renderField} />
           </InputForm>
           <InputForm>
+            <Label>Main language</Label>
             <Select
               defaultValue={selectedOption}
               onChange={setSelectedOption}
@@ -101,15 +106,16 @@ const ContactForm = () => {
         <RightSide>
           <InputForm>
             <Label htmlFor="fax">
-              Fax <RequiredField>*</RequiredField>
+              Fax
+              <RequiredField>*</RequiredField>
             </Label>
             <Inputs name="fax" type="text" component={renderField} />
           </InputForm>
           <InputForm>
             <InputMask
-              mask="+38 (999) 999-99-99"
-              placeholder="+38 (066) 999-99-99"
-              value={startDate}
+              mask="+38 (099) 999-99-99"
+              placeholder="+38 (099) 999-99-99"
+              value={value}
             />
             <AddNumber>add phone number</AddNumber>
           </InputForm>
@@ -121,7 +127,7 @@ const ContactForm = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                console.log(selectGender);
+                history.goBack();
               }}
             >
               Back

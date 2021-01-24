@@ -1,5 +1,9 @@
 /* eslint-disable */
 import React, { useState } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import DatePicker from 'react-datepicker';
+import { useHistory } from 'react-router-dom';
+import { profileDataValidate } from '../../helpers/accountValidate';
 import {
   BackButton,
   Form,
@@ -7,14 +11,10 @@ import {
   Input,
   InputForm,
   Label,
-  LeftBlock,
   RequiredField,
-  RightBlock,
   SpanError,
 } from '../AccountForm/AccountFormStyled';
-import { Field, reduxForm } from 'redux-form';
-import DatePicker from 'react-datepicker';
-import InputMask from 'react-input-mask';
+
 import {
   RadioSelect,
   FlexColumn,
@@ -33,18 +33,45 @@ const renderField = (props) => {
   } = props;
   return (
     <InputForm>
-      <Label> {label}</Label>
-      <div>
-        <Inputs {...input} placeholder={label} type={type} />
-        {touched && error && <SpanError>{error}</SpanError>}
-      </div>
+      <Label>{label}</Label>
+      <Inputs {...input} placeholder={label} type={type} />
+      {touched && error && <SpanError>{error}</SpanError>}
     </InputForm>
   );
 };
 
-const ProfileForm = ({ name, value }) => {
+const renderDatePicker = (props) => {
+  const {
+    input,
+    className,
+    inline,
+    open,
+    onChange,
+    meta: { touched, error },
+  } = props;
+
+  return (
+    <div>
+      <DatePicker
+        {...input}
+        open={open}
+        selected={input.value}
+        type="date"
+        inline={inline}
+        className={className}
+        name="birthday"
+        dateFormat="dd/MM/yyyy"
+        onChange={onChange}
+      />
+      {touched && error && <span>{error}</span>}
+    </div>
+  );
+};
+
+const ProfileForm = ({ handleSubmit }) => {
   const [startDate, setStartDate] = useState();
   const [selectGender, setSelectGender] = useState('female');
+  const history = useHistory();
   const onChange = (event) => {
     setSelectGender(event.target.value);
   };
@@ -54,39 +81,46 @@ const ProfileForm = ({ name, value }) => {
         <LeftSide>
           <InputForm>
             <Label htmlFor="firstName">
-              First name <RequiredField>*</RequiredField>
+              First name
+              <RequiredField>*</RequiredField>
             </Label>
             <Input name="firstName" type="text" component={renderField} />
           </InputForm>
           <InputForm>
             <Label htmlFor="lastName">
-              Last name <RequiredField>*</RequiredField>
+              Last name
+              <RequiredField>*</RequiredField>
             </Label>
             <Input name="lastName" type="text" component={renderField} />
           </InputForm>
-          <InputMask
-            mask="99/99/9999"
-            placeholder="Enter birthdate"
-            value={startDate}
-          />
-          <DatePicker
-            selected={startDate}
-            dateFormat="dd/mm/yyyy"
+          <Field
+            name="birthday"
+            open={false}
             onChange={(date) => setStartDate(date)}
+            placeholderText="DD/MM/YYYY"
+            dateFormat="dd/MM/yyyy"
+            component={renderDatePicker}
+          />
+          <Field
+            selected={startDate}
+            name="birthday"
+            dateFormat="dd/MM/yyyy"
+            onChange={(date) => setStartDate(date)}
+            component={renderDatePicker}
             inline
           />
         </LeftSide>
         <RightSide>
           <InputForm>
             <Label htmlFor="email">
-              Email <RequiredField>*</RequiredField>
+              Email
+              <RequiredField>*</RequiredField>
             </Label>
             <Input name="email" type="email" component={renderField} />
           </InputForm>
           <InputForm>
-            <Label htmlFor="address">
-              Address <RequiredField>*</RequiredField>
-            </Label>
+            <Label htmlFor="address">Address</Label>
+            {/* <GooglePlacesAutocomplete apiKey="" /> */}
             <Input name="address" type="text" component={renderField} />
           </InputForm>
           <InputForm>
@@ -94,7 +128,7 @@ const ProfileForm = ({ name, value }) => {
             <RadioSelect>
               <label>
                 <Field
-                  name="sex"
+                  name="gender"
                   component="input"
                   type="radio"
                   value="male"
@@ -105,7 +139,7 @@ const ProfileForm = ({ name, value }) => {
               </label>
               <Label>
                 <Field
-                  name="sex"
+                  name="gender"
                   component="input"
                   type="radio"
                   value="female"
@@ -117,14 +151,17 @@ const ProfileForm = ({ name, value }) => {
             </RadioSelect>
           </InputForm>
           <FlexColumn>
-            <ForwardButton type="submit" onClick={(e) => e.preventDefault()}>
+            <ForwardButton
+              type="submit"
+              onClick={handleSubmit(profileDataValidate)}
+            >
               Forward
             </ForwardButton>
             <BackButton
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
-                console.log(selectGender);
+                history.goBack();
               }}
             >
               Back

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
 import Tabs from '../CreateUserTabs/Tabs';
