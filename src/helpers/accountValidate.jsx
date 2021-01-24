@@ -2,7 +2,7 @@
 import { SubmissionError } from 'redux-form';
 import { getUsers } from '../indexeDB/database';
 import { store } from '../redux/store';
-import { addUserData, nextStep } from '../redux/userData/reducers';
+import { addUserData, redirectToNextStep } from '../redux/userData/reducers';
 
 export const accountDataValidate = (values, dispatch) => {
   if (Object.keys(values).length === 0) {
@@ -38,7 +38,7 @@ export const accountDataValidate = (values, dispatch) => {
       }
       if (store.getState().form.userData.submitting) {
         const { username, password } = values;
-        dispatch(nextStep());
+        dispatch(redirectToNextStep('account'));
         dispatch(addUserData({ username, password }));
       }
     });
@@ -46,7 +46,7 @@ export const accountDataValidate = (values, dispatch) => {
   return Promise.resolve();
 };
 
-export const profileDataValidate = (values) => {
+export const profileDataValidate = (values, dispatch) => {
   if (Object.keys(values).length === 0) {
     throw new SubmissionError({
       firstName: 'field is required',
@@ -70,6 +70,10 @@ export const profileDataValidate = (values) => {
         throw new SubmissionError({
           email: 'email already exist',
         });
+      }
+      if (store.getState().form.userProfile.submitting) {
+        dispatch(redirectToNextStep('profile'));
+        dispatch(addUserData(values));
       }
     });
     return Promise.resolve();

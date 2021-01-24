@@ -12,9 +12,12 @@ import { store } from '../../redux/store';
 
 export const Tabs = () => {
   const match = useRouteMatch();
-  const { user } = useSelector((state) => state.user);
+  const { user, previousStep } = useSelector((state) => state.user);
   const isNextStep = Object.keys(user).length === 0 ? 'disable' : 'before';
   const [isActiveTab, setIsActiveTab] = useState(false);
+
+  const isTypeTab = (type) =>
+    previousStep[0] && previousStep.includes(type) ? 'before' : 'disable';
 
   return (
     <TabWrapper
@@ -24,17 +27,26 @@ export const Tabs = () => {
       <TabsList>
         <TabsItem
           to={`${match.path}/account`}
-          className={`${isNextStep} ${isActiveTab}`}
+          className={`${isTypeTab('account')} ${isActiveTab}`}
         >
           1. Account
         </TabsItem>
-        <TabsItem to={`${match.path}/profile`} className={isNextStep}>
+        <TabsItem
+          to={`${match.path}/profile`}
+          className={`${isTypeTab('profile')} `}
+        >
           2. Profile
         </TabsItem>
-        <TabsItem to={`${match.path}/contact`} className={isNextStep}>
+        <TabsItem
+          to={`${match.path}/contact`}
+          className={`${isTypeTab('contact')} `}
+        >
           3. Contact
         </TabsItem>
-        <TabsItem to={`${match.path}/capabilities`} className={isNextStep}>
+        <TabsItem
+          to={`${match.path}/capabilities`}
+          className={`${isTypeTab('capabilities')} `}
+        >
           4. Capabilities
         </TabsItem>
       </TabsList>

@@ -11,13 +11,15 @@ export const getUsername = (data) => ({
   type: 'REQUEST_USERNAME',
   payload: data,
 });
-export const nextStep = () => ({
-  type: 'USERDATA_VALID',
+export const redirectToNextStep = (path) => ({
+  type: USERDATA_VALID,
+  payload: path,
 });
 // reducers
 const initialState = {
   user: {},
   isValid: false,
+  previousStep: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,10 +33,12 @@ export const reducer = (state = initialState, action) => {
       };
     }
     case USERDATA_VALID:
-      return { ...state, isValid: true };
+      return {
+        ...state,
+        previousStep: [...state.previousStep, action.payload],
+      };
     case 'REQUEST_USERNAME':
       return { ...state, userList: action.payload };
-
     default:
       return state;
   }
