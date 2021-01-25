@@ -23,6 +23,7 @@ import {
   LeftSide,
 } from './ProfileFormStyled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { renderDatePicker } from '../../helpers/reduxValidateField';
 
 const renderField = (props) => {
   const {
@@ -37,34 +38,6 @@ const renderField = (props) => {
       <Inputs {...input} placeholder={label} type={type} />
       {touched && error && <SpanError>{error}</SpanError>}
     </InputForm>
-  );
-};
-
-const renderDatePicker = (props) => {
-  const {
-    input,
-    className,
-    inline,
-    open,
-    onChange,
-    meta: { touched, error },
-  } = props;
-
-  return (
-    <div>
-      <DatePicker
-        {...input}
-        open={open}
-        selected={input.value}
-        type="date"
-        inline={inline}
-        className={className}
-        name="birthday"
-        dateFormat="dd/MM/yyyy"
-        onChange={onChange}
-      />
-      {touched && error && <span>{error}</span>}
-    </div>
   );
 };
 

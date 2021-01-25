@@ -2,13 +2,14 @@
 const CREATE_USER = 'USER/CREATE_USER';
 const ADD_PERSONAL_DATA = 'USERDATA/ADD_PERSONAL_DATA';
 const USERDATA_VALID = 'USERDATA/VALID_DATA';
+const UPLOAD_USERS = 'REQUEST/UPLOAD_USERS';
 // actions
 export const addUserData = (data) => ({
   type: ADD_PERSONAL_DATA,
   payload: data,
 });
-export const getUsername = (data) => ({
-  type: 'REQUEST_USERNAME',
+export const getUserList = (data) => ({
+  type: UPLOAD_USERS,
   payload: data,
 });
 export const redirectToNextStep = (path) => ({
@@ -37,7 +38,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         previousStep: [...state.previousStep, action.payload],
       };
-    case 'REQUEST_USERNAME':
+    case UPLOAD_USERS:
       return { ...state, userList: action.payload };
     default:
       return state;

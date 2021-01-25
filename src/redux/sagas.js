@@ -1,13 +1,13 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getUsers } from '../indexeDB/database';
-import { getUsername } from './userData/reducers';
+import { getUserList } from './userData/reducers';
 
 export function* sagaWorker() {
   try {
     const data = yield call(() => getUsers((user) => user));
-    yield put(getUsername(data));
+    yield put(getUserList(data));
   } catch (e) {
-    yield put({ type: 'requestFailed()' });
+    yield put({ type: 'REQUEST/UPLOAD_FAIL' });
   }
 }
 
