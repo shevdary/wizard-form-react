@@ -1,14 +1,10 @@
-/*eslint-disable*/
 import React from 'react';
-import { Route, useRouteMatch, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
 // component
-import AccountForm from '../AccountForm/AccountForm';
-import ProfileForm from '../ProfileForm/ProfileForm';
-import ContactForm from '../ContuctForm/ContuctForm';
-import CapabilitiesForm from '../CapabilitiesForm/CapabilitiesForm';
+import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './TabsStyled';
-import { useSelector } from 'react-redux';
 
 export const Tabs = () => {
   const match = useRouteMatch();
@@ -40,16 +36,7 @@ export const Tabs = () => {
         </TabsItem>
       </TabsList>
       <TabSwitch>
-        <Switch>
-          <Route exact path={`${match.path}/account`} component={AccountForm} />
-          <Route exact path={`${match.path}/profile`} component={ProfileForm} />
-          <Route exact path={`${match.path}/contact`} component={ContactForm} />
-          <Route
-            exact
-            path={`${match.path}/capabilities`}
-            component={CapabilitiesForm}
-          />
-        </Switch>
+        <RouteTab />
       </TabSwitch>
     </TabWrapper>
   );
