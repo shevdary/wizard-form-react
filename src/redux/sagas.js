@@ -1,5 +1,5 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { getUsers } from '../indexeDB/database';
+import { getUsers } from '../indexedDB/database';
 import { getUserList } from './userData/reducers';
 
 export function* sagaWorker() {

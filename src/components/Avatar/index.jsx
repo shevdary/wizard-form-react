@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Field } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import { addUserData } from '../../redux/userData/reducers';
+// styled
 import { AvatarLabel } from '../AccountForm/AccountFormStyled';
 
-const SimpleForm = () => {
+export const Avatar = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -45,5 +46,3 @@ const SimpleForm = () => {
     </AvatarLabel>
   );
 };
-
-export default SimpleForm;

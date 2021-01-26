@@ -2,45 +2,23 @@ import React, { useState } from 'react';
 import { reduxForm } from 'redux-form';
 import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
-import {
-  BackButton,
-  Form,
-  InputForm,
-  Label,
-} from '../AccountForm/AccountFormStyled';
-import 'react-datepicker/dist/react-datepicker.css';
+// styled
+import { Form, InputForm, Label } from '../AccountForm/AccountFormStyled';
 import {
   FlexColumn,
   LeftSide,
   RightSide,
 } from '../ProfileForm/ProfileFormStyled';
+import 'react-datepicker/dist/react-datepicker.css';
 import { SubmitButton, TextArea } from './CapabilitiesFormStyled';
+// utils
+import { optionsSkills } from '../../utils/optionsValue';
+import Button from '../CustomFields/Button';
 
-const options = [
-  { value: 'HTML', label: 'HTML' },
-  { value: 'CSS', label: 'CSS' },
-  { value: 'Javascript', label: 'Javascript' },
-  { value: 'React', label: 'React' },
-  { value: 'Angular', label: 'Angular' },
-  { value: 'jQuery', label: 'jQuery' },
-  { value: 'NodeJS', label: 'NodeJS' },
-  { value: 'Python', label: 'Python' },
-  { value: 'PHP', label: 'PHP' },
-  { value: 'ROR', label: 'Ruby On Rails' },
-  { value: 'SQL', label: 'SQL' },
-  { value: 'BackboneJS', label: 'BackboneJS' },
-  { value: 'Web Design', label: 'Web Design' },
-  { value: 'PM', label: ' Project management' },
-  { value: 'Git', label: 'Git' },
-  { value: 'Docker', label: 'Docker' },
-  { value: 'Lambda', label: 'AWS Lambda' },
-  { value: 'Firebase', label: 'Firebase' },
-];
-
-const CapabilitiesForm = () => {
-  const history = useHistory();
+const Index = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
+  const history = useHistory();
 
   const handleChange = (option) => {
     setSelectedOption(option);
@@ -50,7 +28,14 @@ const CapabilitiesForm = () => {
     const { value } = e.target;
     setCheckedItems([...checkedItems, value]);
   };
+
   const handleSubmit = () => {};
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.push('/create-user/contact');
+  };
+
   return (
     <>
       <form>
@@ -61,7 +46,7 @@ const CapabilitiesForm = () => {
               <Select
                 value={selectedOption}
                 onChange={handleChange}
-                options={options}
+                options={optionsSkills}
                 isMulti
               />
             </InputForm>
@@ -125,15 +110,7 @@ const CapabilitiesForm = () => {
         <SubmitButton type="submit" onClick={handleSubmit}>
           Finish
         </SubmitButton>
-        <BackButton
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            history.goBack();
-          }}
-        >
-          Back
-        </BackButton>
+        <Button label="Back" onClick={handleClick} />
       </FlexColumn>
     </>
   );
@@ -141,4 +118,4 @@ const CapabilitiesForm = () => {
 
 export default reduxForm({
   form: 'userCapabilities',
-})(CapabilitiesForm);
+})(Index);
