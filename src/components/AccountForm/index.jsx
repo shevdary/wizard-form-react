@@ -14,7 +14,7 @@ import {
   UserAvatar,
   ForwardButton,
   AvatarLabel,
-} from './AccountFormStyled';
+} from './styled';
 // utils
 import { accountDataValidate } from '../../utils/accountValidate';
 import { renderField } from '../../utils/reduxValidateField';
@@ -74,5 +74,5 @@ const Index = ({ handleSubmit }) => {
 };
 
 export default reduxForm({
-  form: 'userData',
+  form: 'user',
 })(Index);

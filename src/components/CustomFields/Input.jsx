@@ -1,11 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
-import {
-  Button,
-  InputForm,
-  Label,
-  RequiredField,
-} from '../AccountForm/AccountFormStyled';
+import { Button, InputForm, Label, RequiredField } from '../AccountForm/styled';
 
 import { InputField } from './InputStyled.js';
 import VisibilityIcon from '@material-ui/icons/Visibility';

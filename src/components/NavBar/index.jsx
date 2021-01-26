@@ -6,7 +6,7 @@ import {
   NavPanel,
   OpacityButton,
   TranslucentButton,
-} from './NavBarStyled';
+} from './styled';
 // image
 import addUser from '../../assets/icon/user.svg';
 import logo from '../../assets/icon/logotype.svg';

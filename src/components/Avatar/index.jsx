@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
 import { useDispatch } from 'react-redux';
-import { addUserData } from '../../redux/userData/reducers';
+import { addUserData } from '../../redux/user/reducers';
 // styled
-import { AvatarLabel } from '../AccountForm/AccountFormStyled';
+import { AvatarLabel } from '../AccountForm/styled';
 
 export const Avatar = () => {
   const dispatch = useDispatch();

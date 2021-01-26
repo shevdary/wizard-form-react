@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import {
-  InputForm,
-  Label,
-  RequiredField,
-} from '../AccountForm/AccountFormStyled';
+import { InputForm, Label, RequiredField } from '../AccountForm/styled';
 
 const SelectedFields = ({ name, label, options, isRequired, component }) => {
   const [selectedOption, setSelectedOption] = useState(null);

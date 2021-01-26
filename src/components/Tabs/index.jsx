@@ -4,9 +4,9 @@ import { useRouteMatch } from 'react-router-dom';
 // component
 import { RouteTab } from '../../pages/FormRoute';
 // styled
-import { TabsItem, TabsList, TabSwitch, TabWrapper } from './TabsStyled';
+import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
 
-export const Tabs = () => {
+export const Index = () => {
   const match = useRouteMatch();
   const { previousStep } = useSelector((state) => state.user);
 
@@ -42,4 +42,4 @@ export const Tabs = () => {
   );
 };
 
-export default Tabs;
+export default Index;

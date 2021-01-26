@@ -7,13 +7,9 @@ import { InputComponent } from '../CustomFields/Input';
 import SelectedFields from '../CustomFields/OptionsSelected';
 import Button from '../CustomFields/Button';
 // styled
-import { Form, InputForm } from '../AccountForm/AccountFormStyled';
-import {
-  FlexColumn,
-  LeftSide,
-  RightSide,
-} from '../ProfileForm/ProfileFormStyled';
-import { AddNumber } from './ContactFormStyled';
+import { Form, InputForm } from '../AccountForm/styled';
+import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
+import { AddNumber } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import InputMask from 'react-input-mask';

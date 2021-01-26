@@ -3,14 +3,10 @@ import { reduxForm } from 'redux-form';
 import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
 // styled
-import { Form, InputForm, Label } from '../AccountForm/AccountFormStyled';
-import {
-  FlexColumn,
-  LeftSide,
-  RightSide,
-} from '../ProfileForm/ProfileFormStyled';
+import { Form, InputForm, Label } from '../AccountForm/styled';
+import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { SubmitButton, TextArea } from './CapabilitiesFormStyled';
+import { SubmitButton, TextArea } from './styled';
 // utils
 import { optionsSkills } from '../../utils/optionsValue';
 import Button from '../CustomFields/Button';

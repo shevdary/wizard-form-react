@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
-import { Label } from '../AccountForm/AccountFormStyled';
+import { Label } from '../AccountForm/styled';
 
 export const RadioSelected = ({ component, name, options }) => {
   const [selectGender, setSelectGender] = useState('female');

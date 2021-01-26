@@ -4,7 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // custom fields
 import Button from '../CustomFields/Button';
-import { redirectStep } from '../../redux/userData/reducers';
+import { redirectStep } from '../../redux/user/reducers';
 import { InputComponent } from '../CustomFields/Input';
 import { DataPickerInput } from '../CustomFields/DataPickerField';
 import { RadioSelected } from '../CustomFields/RadioSelected';
@@ -15,14 +15,8 @@ import {
   InputForm,
   Label,
   SpanError,
-} from '../AccountForm/AccountFormStyled';
-import {
-  RadioSelect,
-  FlexColumn,
-  Inputs,
-  RightSide,
-  LeftSide,
-} from './ProfileFormStyled';
+} from '../AccountForm/styled';
+import { RadioSelect, FlexColumn, Inputs, RightSide, LeftSide } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import { profileDataValidate } from '../../utils/accountValidate';

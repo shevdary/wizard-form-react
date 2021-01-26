@@ -1,6 +1,6 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getUsers } from '../indexedDB/database';
-import { getUserList } from './userData/reducers';
+import { getUserList } from './user/reducers';
 
 export function* sagaWorker() {
   try {

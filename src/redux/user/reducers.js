@@ -1,11 +1,12 @@
 // const
-const CREATE_USER = 'USER/CREATE_USER';
-const ADD_PERSONAL_DATA = 'USERDATA/ADD_PERSONAL_DATA';
-const USERDATA_VALID = 'USERDATA/VALID_DATA';
+const CREATE = 'USER/CREATE_USER';
+const ADD_INFO = 'USER/ADD_INFO';
+const USERDATA_VALID = 'USER/VALID_DATA';
 const UPLOAD_USERS = 'REQUEST/UPLOAD_USERS';
+const NEXT_STEP = 'REDIRECT/NEXT_STEP';
 // actions
 export const addUserData = (data) => ({
-  type: ADD_PERSONAL_DATA,
+  type: ADD_INFO,
   payload: data,
 });
 export const getUserList = (data) => ({
@@ -16,18 +17,23 @@ export const redirectToNextStep = (path) => ({
   type: USERDATA_VALID,
   payload: path,
 });
+export const redirectStep = (pageCount) => ({
+  type: NEXT_STEP,
+  payload: pageCount,
+});
 // reducers
 const initialState = {
   user: {},
   isValid: false,
   previousStep: [],
+  nextStep: null,
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_USER:
+    case CREATE:
       return { ...state, posts: state.posts.concat([action.payload]) };
-    case ADD_PERSONAL_DATA: {
+    case ADD_INFO: {
       return {
         ...state,
         user: Object.assign(state.user, action.payload),
@@ -40,6 +46,8 @@ export const reducer = (state = initialState, action) => {
       };
     case UPLOAD_USERS:
       return { ...state, userList: action.payload };
+    case NEXT_STEP:
+      return { ...state, nextStep: action.payload };
     default:
       return state;
   }
