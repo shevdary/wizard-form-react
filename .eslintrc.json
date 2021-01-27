@@ -23,9 +23,20 @@
     "prettier",
     "unicorn"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
   "rules": {
+    "allowTernary": "off" ,
+    "jsx-a11y/label-has-associated-control": "off",
     "no-return-assign": "off",
     "semi": 2,
+    "react/jsx-props-no-spreading": "off",
     "no-plusplus": "off",
     "react/prop-types": "off",
     "no-param-reassign": "off",

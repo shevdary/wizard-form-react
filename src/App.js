@@ -1,13 +1,19 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import { store } from './redux/store';
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
+// components
+import User from './components/User';
+import { NavBar } from './components/NavBar';
+// styled
+import './App.css';
 
 const App = () => (
   <BrowserRouter basename="/">
+    <NavBar />
     <Switch>
-      <Route path="/" render={() => <div>First App</div>} />
+      <Route path="/create-user" component={User} />
+      <Redirect from="/" to="/create-user/account" />
     </Switch>
   </BrowserRouter>
 );
+
 export default App;
