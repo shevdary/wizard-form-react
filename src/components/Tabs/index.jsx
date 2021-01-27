@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -5,6 +6,9 @@ import { useRouteMatch } from 'react-router-dom';
 import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
+import { Header } from '../Header';
+// utils
+import { USER_INFO_STORAGE } from '../../utils/localStorage';
 
 export const Tabs = () => {
   const match = useRouteMatch();
@@ -17,8 +21,9 @@ export const Tabs = () => {
     <TabWrapper
       selectedTabClassName="is-selected"
       selectedTabPanelClassName="is-selected"
+      className="tab-wrapper"
     >
-      <TabsList>
+      <TabsList className="tab-list">
         <TabsItem to={`${match.path}/account`} className={isTypeTab('account')}>
           1. Account
         </TabsItem>
@@ -35,7 +40,8 @@ export const Tabs = () => {
           4. Capabilities
         </TabsItem>
       </TabsList>
-      <TabSwitch>
+      {USER_INFO_STORAGE && <Header />}
+      <TabSwitch className="tab-switch">
         <RouteTab />
       </TabSwitch>
     </TabWrapper>
