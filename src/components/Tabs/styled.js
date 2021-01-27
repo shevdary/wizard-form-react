@@ -3,9 +3,9 @@ import { Tabs } from 'react-tabs';
 import { NavTab, RoutedTabs } from 'react-router-tabs';
 
 export const TabWrapper = styled(Tabs)`
+  position: relative;
   font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
-  width: 50%;
 `;
 
 export const TabsList = styled(RoutedTabs)`
@@ -17,7 +17,7 @@ export const TabsList = styled(RoutedTabs)`
 `;
 
 export const TabsItem = styled(NavTab)`
-  width: 245px;
+  width: 100%;
   height: 62px;
   display: flex;
   align-items: center;
@@ -45,9 +45,8 @@ export const TabsItem = styled(NavTab)`
 export const TabSwitch = styled.div`
   min-height: 40vh;
   width: 970px;
-  height: 340px;
+  height: 540px;
   background: rgba(231, 240, 255, 0.2);
-  padding: 4px;
   margin-top: -1px;
   &.is-selected {
     display: block;

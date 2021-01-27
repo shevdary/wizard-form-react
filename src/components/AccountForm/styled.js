@@ -11,24 +11,24 @@ export const UserAvatar = styled.div`
   background: #ffffff;
   overflow: hidden;
 
-  svg {
+  img {
     transform: translate(0px, 20px);
   }
 `;
 
 export const Form = styled.div`
+  padding: 75px 100px;
   display: flex;
   justify-content: space-between;
 `;
 
 export const LeftBlock = styled.div`
-  margin: 40px 0 0 100px;
+  margin: 35px 0 0;
   text-align: center;
 `;
 
 export const RightBlock = styled.div`
-  margin-top: 20px;
-  margin-right: 100px;
+  margin: 20px 0 20px 0;
   width: 400px;
   position: relative;
 `;
@@ -49,6 +49,7 @@ export const Input = styled(Field)`
   border: 1px solid #c1cfe0;
   font-size: 14px;
 `;
+
 export const Inputs = styled.input`
   height: 40px;
   width: 100%;
