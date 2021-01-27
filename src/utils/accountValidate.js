@@ -4,17 +4,20 @@ import { getUsers } from '../indexedDB/database';
 
 export const validate = (values) => {
   const errors = {};
-
   if (!values.username) {
     errors.username = 'field is required';
   } else {
-    getUsers().then((res) => {
-      res.map((item) => {
-        if (values.username === item.name) {
-          errors.username = 'username already exist';
-        }
+    getUsers()
+      .then((res) => {
+        res.map((item) => {
+          if (values.username === item.name) {
+            errors.username = 'username already exist';
+          }
+        });
+      })
+      .catch((err) => {
+        errors.username = 'username already exist';
       });
-    });
   }
 
   if (!values.password) {
