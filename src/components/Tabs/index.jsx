@@ -6,7 +6,7 @@ import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
 
-export const Index = () => {
+export const Tabs = () => {
   const match = useRouteMatch();
   const { previousStep } = useSelector((state) => state.user);
 
@@ -42,4 +42,4 @@ export const Index = () => {
   );
 };
 
-export default Index;
+export default Tabs;
