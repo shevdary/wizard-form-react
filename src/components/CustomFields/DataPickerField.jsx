@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+/*eslint-disable*/
+import React from 'react';
 import DatePicker from 'react-datepicker';
-import { renderDatePicker } from '../../utils/reduxValidateField';
 
-export const DataPickerInput = ({ name, dateFormat }) => {
-  const [startDate, setStartDate] = useState(new Date());
+// utils
+// styled
+import { InputForm, Label, SpanError } from '../AccountForm/styled';
+
+export const DataPicker = ({ input, label, meta: { error } }) => {
   return (
-    <div>
+    <InputForm>
+      <Label>{label}</Label>
       <DatePicker
-        name={name}
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        dateFormat={dateFormat}
-        placeholderText="DD/MM/YYYY"
+        {...input}
+        type="date"
+        className="plus-icon"
+        dateFormat="dd/MM/yyyy"
+        selected={input.value || null}
+        onChange={input.onChange}
         showYearDropdown
-        component={renderDatePicker}
+        disabledKeyboardNavigation
+        placeholderText="DD/MM/YYYY"
       />
-    </div>
+      {error && <SpanError>{error}</SpanError>}
+    </InputForm>
   );
 };

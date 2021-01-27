@@ -1,21 +1,23 @@
 /* eslint-disable*/
 import React from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
+import Select from 'react-select';
 // custom fields
 import { InputComponent } from '../CustomFields/Input';
-import SelectedFields from '../CustomFields/OptionsSelected';
+import { SelectedFields } from '../CustomFields/OptionsSelected';
 import Button from '../CustomFields/Button';
 // styled
 import { Form, InputForm } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
-import { AddNumber } from './styled';
+
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
-import InputMask from 'react-input-mask';
+
 import { optionsLanguage } from '../../utils/optionsValue';
 import { renderField } from '../../utils/reduxValidateField';
-
+import { validate } from '../../utils/contactValidate';
+import PhoneFields from '../PhoneFields';
 const ContactForm = ({ value }) => {
   const history = useHistory();
 
@@ -49,12 +51,13 @@ const ContactForm = ({ value }) => {
             type="text"
             component={renderField}
           />
-          <SelectedFields
-            isRequired
-            name="language"
+          <Field
             label="Main language"
+            name="language"
+            type="options"
+            isRequired
             options={optionsLanguage}
-            component={renderField}
+            component={SelectedFields}
           />
         </LeftSide>
         <RightSide>
@@ -65,12 +68,7 @@ const ContactForm = ({ value }) => {
             component={renderField}
           />
           <InputForm>
-            <InputMask
-              mask="+38 (099) 999-99-99"
-              placeholder="+38 (099) 999-99-99"
-              value={value}
-            />
-            <AddNumber>add phone number</AddNumber>
+            <PhoneFields />
           </InputForm>
           <FlexColumn>
             <Button type="submit" onClick={handleSubmit} label="Forward" />
@@ -84,4 +82,5 @@ const ContactForm = ({ value }) => {
 
 export default reduxForm({
   form: 'userContact',
+  validate,
 })(ContactForm);

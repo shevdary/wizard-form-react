@@ -1,28 +1,37 @@
 /*eslint-disable*/
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Redirect } from 'react-router-dom';
 // custom components
+import Button from '../CustomFields/Button';
 import { Avatar } from '../Avatar';
 import { InputComponent } from '../CustomFields/Input';
 // styled
-import {
-  Form,
-  LeftBlock,
-  RightBlock,
-  UserAvatar,
-  ForwardButton,
-  AvatarLabel,
-} from './styled';
+import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
-import { accountDataValidate } from '../../utils/accountValidate';
 import { renderField } from '../../utils/reduxValidateField';
 import avatar from '../../assets/icon/avatar.svg';
+import { validate } from '../../utils/accountValidate';
 
-const Index = ({ handleSubmit }) => {
+import {
+  addUserData,
+  redirectStep,
+  redirectToNextStep,
+} from '../../redux/user/reducers';
+
+const AccountForm = () => {
   const { nextStep } = useSelector((state) => state.user);
+  const { values } = useSelector((state) => state.form.user);
+  const dispatch = useDispatch();
 
+  const handleSubmit = () => {
+    dispatch(redirectToNextStep('account'));
+    dispatch(redirectStep('1'));
+    dispatch(
+      addUserData({ username: values.username, password: values.password })
+    );
+  };
   if (nextStep && nextStep === '1')
     return <Redirect to="/create-user/profile" />;
 
@@ -61,12 +70,7 @@ const Index = ({ handleSubmit }) => {
             isRequired
             component={renderField}
           />
-          <ForwardButton
-            type="submit"
-            onClick={handleSubmit(accountDataValidate)}
-          >
-            Forward
-          </ForwardButton>
+          <Button type="submit" onClick={handleSubmit} label="Forward" />
         </RightBlock>
       </Form>
     </>
