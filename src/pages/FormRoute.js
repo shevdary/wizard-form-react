@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
+// components
 import AccountForm from 'components/AccountForm';
 import ProfileForm from 'components/ProfileForm';
 import CapabilitiesForm from 'components/CapabilitiesForm';

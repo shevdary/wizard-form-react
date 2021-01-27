@@ -3,10 +3,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { Redirect, useHistory } from 'react-router-dom';
+// redux
+import { addUserData, redirectToNextStep } from 'redux/user/reducers';
 // custom components
-import Button from '../CustomFields/Button';
+import Button from 'components/Custom/Button';
 import { Avatar } from '../Avatar';
-import { InputComponent } from '../CustomFields/Input';
+import { InputComponent } from 'components/Custom/Input';
 // styled
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
@@ -14,7 +16,6 @@ import { renderField } from 'utils/reduxValidateField';
 import avatar from 'assets/icon/avatar.svg';
 import { validate } from 'utils/accountValidate';
 
-import { addUserData, redirectToNextStep } from '../../redux/user/reducers';
 
 const AccountForm = () => {
   const { values } = useSelector((state) => state.form.steps);

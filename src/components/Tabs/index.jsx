@@ -6,9 +6,9 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
-import { Header } from '../Header';
+import { Header } from 'components/Header';
 // utils
-import { saveInfo, savePage } from '../../utils/localStorage';
+import { saveInfo, savePage } from 'utils/localStorage';
 
 export const Tabs = () => {
   const match = useRouteMatch();

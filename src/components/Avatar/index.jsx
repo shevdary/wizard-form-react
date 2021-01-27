@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field } from 'redux-form';
-import { addUserData } from '../../redux/user/reducers';
+import { addUserData } from 'redux/user/reducers';
 // styled
 import { AvatarLabel } from '../AccountForm/styled';
 import { HiddenField } from './styled';

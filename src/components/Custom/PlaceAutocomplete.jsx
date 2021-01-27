@@ -1,7 +1,7 @@
 import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // styled
-import { InputForm, Label, SpanError } from '../AccountForm/styled';
+import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
 
 export const PlaceAutocomplete = ({
   input,

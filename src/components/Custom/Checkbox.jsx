@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from 'react';
 // styled
-import { InputForm, Label } from '../AccountForm/styled';
+import { InputForm, Label } from 'components/AccountForm/styled';
 import { HiddenCheckbox, StyledCheckbox } from './CustomFiledsStyled';
 
 export const Checkbox = ({ input, values }) => {

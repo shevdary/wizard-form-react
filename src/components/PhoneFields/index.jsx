@@ -1,9 +1,9 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
-import { AddNumber } from '../ContactForm/styled';
+import { AddNumber } from 'components/ContactForm/styled';
 import { Field } from 'redux-form';
-import { Label } from '../AccountForm/styled';
-import { renderNumber } from '../CustomFields/PhoneNumber';
+import { Label } from 'components/AccountForm/styled';
+import { renderNumber } from 'components/Custom/PhoneNumber';
 
 const PhoneFields = () => {
   const [values, setValues] = useState([]);

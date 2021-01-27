@@ -1,5 +1,7 @@
 import React from 'react';
-import Tabs from '../Tabs';
+// components
+import Tabs from 'components/Tabs';
+// styled
 import { Main, TextCenter } from './CreateUserStyled';
 
 const User = () => (

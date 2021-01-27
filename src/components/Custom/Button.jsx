@@ -1,6 +1,6 @@
 import React from 'react';
 // styled
-import { BackButton, ForwardButton } from '../AccountForm/styled';
+import { BackButton, ForwardButton } from 'components/AccountForm/styled';
 
 const Button = ({ onClick, type, name, label }) => {
   if (type)

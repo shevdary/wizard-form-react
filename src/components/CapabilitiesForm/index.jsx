@@ -2,18 +2,17 @@
 import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import Select from 'react-select';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
 // custom components
-import Button from '../CustomFields/Button';
+import Button from 'components/Custom/Button';
 // styled
-import { Form, InputForm, Label } from '../AccountForm/styled';
-import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
+import { Form, InputForm, Label } from 'components/AccountForm/styled';
+import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import { SubmitButton, TextArea } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { SelectedFields } from '../CustomFields/Options';
-import { Checkbox } from '../CustomFields/Checkbox';
+import { SelectedFields } from 'components/Custom/Options';
+import { Checkbox } from 'components/Custom/Checkbox';
 
 const Capabilities = () => {
   const history = useHistory();

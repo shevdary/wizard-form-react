@@ -1,7 +1,7 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
 // styled
-import { SpanError } from '../AccountForm/styled';
+import { SpanError } from 'components/AccountForm/styled';
 
 export const renderNumber = ({
   input,

@@ -6,7 +6,7 @@ import {
   Label,
   RequiredField,
   SpanError,
-} from '../AccountForm/styled';
+} from 'components/AccountForm/styled';
 
 export const SelectedFields = ({
   input,

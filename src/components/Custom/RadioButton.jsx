@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
-import { Label } from '../AccountForm/styled';
+import { Label } from 'components/AccountForm/styled';
 
 export const RadioButton = ({ input, name, options, type, checked }) => {
   const [checkedRadio, setCheckedRadio] = useState(checked);

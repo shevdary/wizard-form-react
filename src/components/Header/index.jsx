@@ -1,9 +1,11 @@
 /*eslint-disable*/
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Alert, LinkAlert, Text } from './styled';
+// redux
 import { useDispatch } from 'react-redux';
-import { loadSavedInfo } from '../../redux/user/reducers';
+import { loadSavedInfo } from 'redux/user/reducers';
+// styled
+import { Alert, LinkAlert, Text } from './styled';
 
 export const Header = () => {
   const path = useHistory();

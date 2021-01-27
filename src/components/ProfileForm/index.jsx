@@ -3,20 +3,21 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+// redux
+import { addUserData, redirectToNextStep } from 'redux/user/reducers';
 // custom fields
-import Button from '../CustomFields/Button';
-import { InputComponent } from '../CustomFields/Input';
-import { DataPicker } from '../CustomFields/DataPicker';
-import { RadioButton } from '../CustomFields/RadioButton';
+import Button from 'components/Custom/Button';
+import { InputComponent } from 'components/Custom/Input';
+import { DataPicker } from 'components/Custom/DataPicker';
+import { RadioButton } from 'components/Custom/RadioButton';
 // styled
-import { Form, InputForm, Label } from '../AccountForm/styled';
+import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
+import { PlaceAutocomplete } from 'components/Custom/PlaceAutocomplete';
 import 'react-datepicker/dist/react-datepicker.css';
-import { PlaceAutocomplete } from '../CustomFields/PlaceAutocomplete';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { profileValidate } from 'utils/profileValidate';
-import { addUserData, redirectToNextStep } from '../../redux/user/reducers';
 
 const Index = () => {
   const { nextStep } = useSelector((state) => state.user);

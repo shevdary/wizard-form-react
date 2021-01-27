@@ -3,7 +3,9 @@
     "baseUrl": "src",
     "paths": {
       "utils": ["src/utils"],
-      "assets": ["src/assets"]
+      "assets": ["src/assets"],
+      "redux": ["src/redux"],
+      "components": ["src/components"]
     }
   },
   "include": ["src"]

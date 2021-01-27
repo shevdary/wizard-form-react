@@ -8,17 +8,15 @@ import { optionsLanguage } from 'utils/optionsValue';
 import { renderField } from 'utils/reduxValidateField';
 import { validate } from 'utils/contactValidate';
 // custom fields
-import { InputComponent } from '../CustomFields/Input';
-import { SelectedFields } from '../CustomFields/Options';
-import Button from '../CustomFields/Button';
+import { InputComponent } from 'components/Custom/Input';
+import { SelectedFields } from 'components/Custom/Options';
+import Button from 'components/Custom/Button';
 // styled
-import { Form, InputForm } from '../AccountForm/styled';
-import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
+import { Form, InputForm } from 'components/AccountForm/styled';
+import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-
 // utils
-import PhoneFields from '../PhoneFields';
-import { addUserData } from '../../redux/user/reducers';
+import PhoneFields from 'components/PhoneFields';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
