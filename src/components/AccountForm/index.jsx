@@ -79,4 +79,7 @@ const AccountForm = () => {
 
 export default reduxForm({
   form: 'user',
-})(Index);
+  validate,
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+})(AccountForm);
