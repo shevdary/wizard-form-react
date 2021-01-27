@@ -1,18 +1,27 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 // component
 import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
 import { Header } from '../Header';
 // utils
-import { USER_INFO_STORAGE } from '../../utils/localStorage';
+import { saveInfo, savePage } from '../../utils/localStorage';
 
 export const Tabs = () => {
   const match = useRouteMatch();
   const { previousStep } = useSelector((state) => state.user);
+  const path = useHistory();
+  const store = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', () => {
+      savePage(path.location.pathname);
+      saveInfo(store);
+    });
+  }, [store]);
 
   const isTypeTab = (type) =>
     previousStep[0] && previousStep.includes(type) ? 'before' : 'disable';
@@ -40,7 +49,7 @@ export const Tabs = () => {
           4. Capabilities
         </TabsItem>
       </TabsList>
-      {USER_INFO_STORAGE && <Header />}
+      {localStorage.getItem('filledFields') && <Header />}
       <TabSwitch className="tab-switch">
         <RouteTab />
       </TabSwitch>

@@ -1,6 +1,8 @@
+/*eslint-disable*/
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // validate fields
 import { optionsLanguage } from 'utils/optionsValue';
 import { renderField } from 'utils/reduxValidateField';
@@ -13,18 +15,25 @@ import Button from '../CustomFields/Button';
 import { Form, InputForm } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+
 // utils
 import PhoneFields from '../PhoneFields';
+import { addUserData } from '../../redux/user/reducers';
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const values = useSelector((state) => state.form.steps);
 
   const handleClick = (e) => {
     e.preventDefault();
+
     history.push('/create-user/profile');
   };
 
-  const handleSubmit = (e) => e.preventDefault();
+  const handleSubmit = () => {
+    history.push('/create-user/profile');
+  };
 
   return (
     <form className="contact">
@@ -79,6 +88,6 @@ const ContactForm = () => {
 };
 
 export default reduxForm({
-  form: 'userContact',
+  form: 'steps',
   validate,
 })(ContactForm);

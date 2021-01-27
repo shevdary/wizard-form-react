@@ -61,5 +61,5 @@ const Capabilities = () => {
 };
 
 export default reduxForm({
-  form: 'userCapabilities',
+  form: 'steps',
 })(Capabilities);

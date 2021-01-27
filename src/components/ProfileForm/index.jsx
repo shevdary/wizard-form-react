@@ -16,16 +16,20 @@ import { PlaceAutocomplete } from '../CustomFields/PlaceAutocomplete';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { profileValidate } from 'utils/profileValidate';
+import { addUserData } from '../../redux/user/reducers';
 
 const Index = () => {
   const { nextStep } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const values = useSelector((state) => state.form.profile);
+  const values = useSelector((state) => state.form.steps);
   const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
-    history.push('/create-user/account');
+    if (values) {
+      dispatch(addUserData(values.values));
+      history.push('/create-user/account');
+    }
   };
 
   const handleSubmit = () => {
@@ -99,8 +103,6 @@ const Index = () => {
 };
 
 export default reduxForm({
-  form: 'profile',
+  form: 'steps',
   validate: profileValidate,
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
 })(Index);

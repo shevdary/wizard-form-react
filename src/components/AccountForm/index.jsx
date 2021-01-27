@@ -1,8 +1,8 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 // custom components
 import Button from '../CustomFields/Button';
 import { Avatar } from '../Avatar';
@@ -14,26 +14,19 @@ import { renderField } from 'utils/reduxValidateField';
 import avatar from 'assets/icon/avatar.svg';
 import { validate } from 'utils/accountValidate';
 
-import {
-  addUserData,
-  redirectStep,
-  redirectToNextStep,
-} from '../../redux/user/reducers';
+import { addUserData } from '../../redux/user/reducers';
 
 const AccountForm = () => {
-  const { nextStep } = useSelector((state) => state.user);
-  const { values } = useSelector((state) => state.form.user);
+  const { values } = useSelector((state) => state.form.steps);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = () => {
-    dispatch(redirectToNextStep('account'));
-    dispatch(redirectStep('1'));
     dispatch(
       addUserData({ username: values.username, password: values.password })
     );
+    history.push('/create-user/profile');
   };
-  if (nextStep && nextStep === '1')
-    return <Redirect to="/create-user/profile" />;
 
   return (
     <>
@@ -78,8 +71,9 @@ const AccountForm = () => {
 };
 
 export default reduxForm({
-  form: 'user',
+  form: 'steps',
   validate,
-  destroyOnUnmount: false,
+  asyncBlurFields: true,
+  destroyOnUnmount: true,
   forceUnregisterOnUnmount: true,
 })(AccountForm);
