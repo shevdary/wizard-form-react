@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,13 +12,10 @@ import { RadioSelected } from '../CustomFields/RadioSelected';
 import { Form, InputForm, Label } from '../AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-// utils
-
-import { renderField } from '../../utils/reduxValidateField';
-import { profileValidate } from '../../utils/profileValidate';
-
-import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { PlaceAutocomplete } from '../CustomFields/PlaceAutocomplete';
+// utils
+import { renderField } from 'utils/reduxValidateField';
+import { profileValidate } from 'utils/profileValidate';
 
 const Index = () => {
   const { nextStep } = useSelector((state) => state.user);

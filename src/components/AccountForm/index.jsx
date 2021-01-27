@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reduxForm } from 'redux-form';
@@ -9,9 +10,9 @@ import { InputComponent } from '../CustomFields/Input';
 // styled
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
-import { renderField } from '../../utils/reduxValidateField';
-import avatar from '../../assets/icon/avatar.svg';
-import { validate } from '../../utils/accountValidate';
+import { renderField } from 'utils/reduxValidateField';
+import avatar from 'assets/icon/avatar.svg';
+import { validate } from 'utils/accountValidate';
 
 import {
   addUserData,

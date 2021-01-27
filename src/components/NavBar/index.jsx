@@ -1,4 +1,8 @@
 import React from 'react';
+// image
+import addUser from 'assets/icon/user.svg';
+import logo from 'assets/icon/logotype.svg';
+import userList from 'assets/icon/userList.svg';
 // styled
 import {
   Logo,
@@ -7,10 +11,6 @@ import {
   OpacityButton,
   TranslucentButton,
 } from './styled';
-// image
-import addUser from '../../assets/icon/user.svg';
-import logo from '../../assets/icon/logotype.svg';
-import userList from '../../assets/icon/userList.svg';
 
 export const NavBar = () => (
   <NavPanel className="nav-panel">

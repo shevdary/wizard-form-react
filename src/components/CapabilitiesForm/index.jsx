@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
+// utils
+import { optionsSkills } from 'utils/optionsValue';
 // custom components
 import Button from '../CustomFields/Button';
 // styled
@@ -9,8 +11,6 @@ import { Form, InputForm, Label } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
 import { SubmitButton, TextArea } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-// utils
-import { optionsSkills } from '../../utils/optionsValue';
 
 const Capabilities = () => {
   const [selectedOption, setSelectedOption] = useState(null);

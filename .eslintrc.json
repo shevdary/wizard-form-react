@@ -23,6 +23,14 @@
     "prettier",
     "unicorn"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
   "rules": {
     "allowTernary": "off" ,
     "jsx-a11y/label-has-associated-control": "off",
