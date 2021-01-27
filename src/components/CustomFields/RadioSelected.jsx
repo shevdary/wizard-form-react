@@ -10,8 +10,8 @@ export const RadioSelected = ({ component, name, options }) => {
   };
   return (
     <>
-      {options.map((nameItem) => (
-        <Label>
+      {options.map((nameItem, id) => (
+        <Label key={id}>
           <Field
             name={name}
             component={component}
