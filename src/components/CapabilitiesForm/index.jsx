@@ -4,10 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
 // utils
-import {
-  hobbies,
-  optionsSkills,
-} from 'utils/optionsValue';
+import { hobbies, optionsSkills } from 'utils/optionsValue';
 // custom components
 import Button from '../CustomFields/Button';
 // styled
@@ -28,7 +25,7 @@ const Capabilities = () => {
 
   return (
     <>
-      <form>
+      <form className="capabilities">
         <Form className="account">
           <LeftSide>
             <Field

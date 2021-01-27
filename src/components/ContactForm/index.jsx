@@ -27,8 +27,8 @@ const ContactForm = () => {
   const handleSubmit = (e) => e.preventDefault();
 
   return (
-    <form>
-      <Form className="account">
+    <form className="contact">
+      <Form>
         <LeftSide>
           <InputComponent
             label="Company"
