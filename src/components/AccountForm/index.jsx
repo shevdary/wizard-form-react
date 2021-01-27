@@ -14,7 +14,7 @@ import { renderField } from 'utils/reduxValidateField';
 import avatar from 'assets/icon/avatar.svg';
 import { validate } from 'utils/accountValidate';
 
-import { addUserData } from '../../redux/user/reducers';
+import { addUserData, redirectToNextStep } from '../../redux/user/reducers';
 
 const AccountForm = () => {
   const { values } = useSelector((state) => state.form.steps);
@@ -25,6 +25,7 @@ const AccountForm = () => {
     dispatch(
       addUserData({ username: values.username, password: values.password })
     );
+    dispatch(redirectToNextStep('account'));
     history.push('/create-user/profile');
   };
 
@@ -75,5 +76,5 @@ export default reduxForm({
   validate,
   asyncBlurFields: true,
   destroyOnUnmount: true,
-  forceUnregisterOnUnmount: true,
+  forceUnregisterOnUnmount: false,
 })(AccountForm);

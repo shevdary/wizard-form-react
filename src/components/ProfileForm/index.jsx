@@ -16,7 +16,7 @@ import { PlaceAutocomplete } from '../CustomFields/PlaceAutocomplete';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { profileValidate } from 'utils/profileValidate';
-import { addUserData } from '../../redux/user/reducers';
+import { addUserData, redirectToNextStep } from '../../redux/user/reducers';
 
 const Index = () => {
   const { nextStep } = useSelector((state) => state.user);
@@ -27,6 +27,8 @@ const Index = () => {
   const handleClick = (e) => {
     e.preventDefault();
     if (values) {
+      dispatch(redirectToNextStep('profile'));
+
       dispatch(addUserData(values.values));
       history.push('/create-user/account');
     }
