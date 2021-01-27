@@ -45,3 +45,28 @@ export const optionsSkills = [
   { value: 'Lambda', label: 'AWS Lambda' },
   { value: 'Firebase', label: 'Firebase' },
 ];
+
+export const hobbies = [
+  { value: 'art', label: 'Art', isChecked: false },
+  {
+    value: 'sport',
+    label: 'sport, fitness, aerobica and staff like that',
+    isChecked: false,
+  },
+  {
+    value: 'games',
+    label: 'I just want to play games, I’m not living in this life',
+    isChecked: false,
+  },
+  {
+    value: 'be_female',
+    label: 'I’m a female... I’m doing nothing. Every day.',
+    isChecked: false,
+  },
+  {
+    value: 'guitar',
+    label: 'Guitar, guitar and guitar again. I’m fall in love with it.',
+    isChecked: false,
+  },
+  { value: 'wtf', label: 'WTF is “hobbies”???', isChecked: false },
+];
