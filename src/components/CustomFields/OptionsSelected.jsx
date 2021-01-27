@@ -1,9 +1,8 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
+// styled
 import {
   InputForm,
-  Inputs,
   Label,
   RequiredField,
   SpanError,
@@ -18,24 +17,23 @@ export const SelectedFields = ({
   label,
   options,
   isRequired,
-}) => {
-  return (
-    <InputForm>
-      <Label>
-        {label} {isRequired && <RequiredField>*</RequiredField>}
-      </Label>
-      <div>
-        <Select
-          {...input}
-          type={type}
-          name={name}
-          value={value}
-          onChange={input.onChange}
-          placeholder={label}
-          options={options}
-        />
-        {touched && error && <SpanError>{error}</SpanError>}
-      </div>
-    </InputForm>
-  );
-};
+}) => (
+  <InputForm>
+    <Label>
+      {label}
+      {isRequired && <RequiredField>*</RequiredField>}
+    </Label>
+    <div>
+      <Select
+        {...input}
+        type={type}
+        name={name}
+        value={value}
+        onChange={input.onChange}
+        placeholder={label}
+        options={options}
+      />
+      {touched && error && <SpanError>{error}</SpanError>}
+    </div>
+  </InputForm>
+);

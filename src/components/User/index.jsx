@@ -1,16 +1,14 @@
-/*eslint-disable*/
 import React from 'react';
-import Index from '../Tabs';
+import Tabs from '../Tabs';
 import { Main, TextCenter } from './CreateUserStyled';
 
-const User = () => {
-  return (
-    <div className="main-account">
-      <Main>
-        <TextCenter>Adding new user</TextCenter>
-        <Index />
-      </Main>
-    </div>
-  );
-};
+const User = () => (
+  <div className="main-account">
+    <Main>
+      <TextCenter>Adding new user</TextCenter>
+      <Tabs />
+    </Main>
+  </div>
+);
+
 export default User;

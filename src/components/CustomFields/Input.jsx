@@ -1,10 +1,10 @@
-/*eslint-disable*/
 import React, { useState } from 'react';
-import { Button, InputForm, Label, RequiredField } from '../AccountForm/styled';
-
-import { InputField } from './InputStyled.js';
+// icons
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+// styled
+import { InputField } from './CustomFiledsStyled';
+import { Button, InputForm, Label, RequiredField } from '../AccountForm/styled';
 
 export const InputComponent = ({
   label,
@@ -21,6 +21,7 @@ export const InputComponent = ({
 
   const handleChange = () => {
     setIsVisibleField(!isVisibleField);
+
     if (typeField === 'password') {
       setTypeField('text');
     } else {

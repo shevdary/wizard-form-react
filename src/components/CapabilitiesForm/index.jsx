@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { reduxForm } from 'redux-form';
-import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
+import Select from 'react-select';
+// custom components
+import Button from '../CustomFields/Button';
 // styled
 import { Form, InputForm, Label } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
-import 'react-datepicker/dist/react-datepicker.css';
 import { SubmitButton, TextArea } from './styled';
+import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import { optionsSkills } from '../../utils/optionsValue';
-import Button from '../CustomFields/Button';
 
-const Index = () => {
+const Capabilities = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [checkedItems, setCheckedItems] = useState([]);
   const history = useHistory();
@@ -24,8 +25,6 @@ const Index = () => {
     const { value } = e.target;
     setCheckedItems([...checkedItems, value]);
   };
-
-  const handleSubmit = () => {};
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -103,9 +102,7 @@ const Index = () => {
         </Form>
       </form>
       <FlexColumn>
-        <SubmitButton type="submit" onClick={handleSubmit}>
-          Finish
-        </SubmitButton>
+        <SubmitButton type="submit">Finish</SubmitButton>
         <Button label="Back" onClick={handleClick} />
       </FlexColumn>
     </>
@@ -114,4 +111,4 @@ const Index = () => {
 
 export default reduxForm({
   form: 'userCapabilities',
-})(Index);
+})(Capabilities);

@@ -1,8 +1,6 @@
-/* eslint-disable*/
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import Select from 'react-select';
 // custom fields
 import { InputComponent } from '../CustomFields/Input';
 import { SelectedFields } from '../CustomFields/OptionsSelected';
@@ -10,15 +8,14 @@ import Button from '../CustomFields/Button';
 // styled
 import { Form, InputForm } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
-
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
-
 import { optionsLanguage } from '../../utils/optionsValue';
 import { renderField } from '../../utils/reduxValidateField';
 import { validate } from '../../utils/contactValidate';
 import PhoneFields from '../PhoneFields';
-const ContactForm = ({ value }) => {
+
+const ContactForm = () => {
   const history = useHistory();
 
   const handleClick = (e) => {

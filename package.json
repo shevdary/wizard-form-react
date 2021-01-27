@@ -61,7 +61,6 @@
   },
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^7.2.0",
-    "history": "^5.0.0"
+    "eslint-config-prettier": "^7.2.0"
   }
 }
