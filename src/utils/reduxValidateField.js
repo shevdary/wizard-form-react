@@ -1,8 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import {
-  Input,
   InputForm,
   Inputs,
   Label,
@@ -16,16 +14,36 @@ export const renderField = ({
   type,
   isRequired,
   onClick,
-  onBlur,
   meta: { touched, error },
 }) => {
+  const data = JSON.parse(localStorage.getItem('filledFields'));
+  let unsavedValues;
+
+  if (data) {
+    Object.entries(data).map((item) => {
+      if (item[0] === input.name) unsavedValues = item[1];
+    });
+  }
+  const [valueField, setValue] = useState(unsavedValues);
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <InputForm>
       <Label>
         {label} {isRequired && <RequiredField>*</RequiredField>}
       </Label>
       <div>
-        <Inputs {...input} placeholder={label} type={type} onClick={onClick} />
+        <Inputs
+          {...input}
+          value={valueField}
+          placeholder={label}
+          onChange={onChange}
+          type={type}
+          onClick={onClick}
+        />
         {touched && error && <SpanError>{error}</SpanError>}
       </div>
     </InputForm>
