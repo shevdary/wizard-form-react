@@ -1,23 +1,29 @@
-/*eslint-disable*/
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
 import { Label } from '../AccountForm/styled';
 
-export const RadioSelected = ({ component, name, options }) => {
-  const [selectGender, setSelectGender] = useState('female');
+export const RadioSelected = ({ input, name, options, type, checked }) => {
+  const [checkedRadio, setCheckedRadio] = useState(checked);
+
   const onChange = (event) => {
-    setSelectGender(event.target.value);
+    const {
+      target: { value },
+    } = event;
+    setCheckedRadio(value);
   };
+
   return (
     <>
-      {options.map((nameItem, id) => (
-        <Label key={id}>
+      {options.map((nameItem) => (
+        <Label>
           <Field
+            {...input}
+            type={type}
             name={name}
-            component={component}
-            type="radio"
+            component="input"
             value={nameItem}
             onChange={onChange}
+            checked={checkedRadio === nameItem}
           />
           {nameItem}
         </Label>

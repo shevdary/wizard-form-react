@@ -63,7 +63,6 @@ const Index = () => {
           dateFormat="dd/MM/yyyy"
           label="Birth date"
           type="date"
-          minAge={18}
           component={DataPicker}
         />
       </LeftSide>
@@ -73,7 +72,6 @@ const Index = () => {
           name="email"
           isRequired
           type="email"
-          minAge={18}
           component={renderField}
         />
         <Field
@@ -87,7 +85,9 @@ const Index = () => {
           <RadioSelect>
             <RadioSelected
               name="gender"
+              type="radio"
               options={['male', 'female']}
+              checked="male"
               component={renderField}
             />
           </RadioSelect>
