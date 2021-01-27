@@ -7,7 +7,7 @@ import { renderField } from 'utils/reduxValidateField';
 import { validate } from 'utils/contactValidate';
 // custom fields
 import { InputComponent } from '../CustomFields/Input';
-import { SelectedFields } from '../CustomFields/OptionsSelected';
+import { SelectedFields } from '../CustomFields/Options';
 import Button from '../CustomFields/Button';
 // styled
 import { Form, InputForm } from '../AccountForm/styled';

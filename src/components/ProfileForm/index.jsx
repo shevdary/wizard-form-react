@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // custom fields
 import Button from '../CustomFields/Button';
 import { InputComponent } from '../CustomFields/Input';
-import { DataPicker } from '../CustomFields/DataPickerField';
-import { RadioSelected } from '../CustomFields/RadioSelected';
+import { DataPicker } from '../CustomFields/DataPicker';
+import { RadioButton } from '../CustomFields/RadioButton';
 // styled
 import { Form, InputForm, Label } from '../AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
@@ -80,7 +80,7 @@ const Index = () => {
         <InputForm>
           <Label>Gender</Label>
           <RadioSelect>
-            <RadioSelected
+            <RadioButton
               name="gender"
               type="radio"
               options={['male', 'female']}

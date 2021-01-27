@@ -17,6 +17,7 @@ export const SelectedFields = ({
   label,
   options,
   isRequired,
+  isMulti,
 }) => (
   <InputForm>
     <Label>
@@ -32,6 +33,8 @@ export const SelectedFields = ({
         onChange={input.onChange}
         placeholder={label}
         options={options}
+        isRequired
+        isMulti={isMulti}
       />
       {touched && error && <SpanError>{error}</SpanError>}
     </div>

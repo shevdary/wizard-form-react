@@ -1,9 +1,10 @@
+/*eslint-disable*/
 import React, { useState } from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
 // utils
-import { optionsSkills } from 'utils/optionsValue';
+import { optionsLanguage, optionsSkills } from 'utils/optionsValue';
 // custom components
 import Button from '../CustomFields/Button';
 // styled
@@ -11,6 +12,7 @@ import { Form, InputForm, Label } from '../AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from '../ProfileForm/styled';
 import { SubmitButton, TextArea } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { SelectedFields } from '../CustomFields/Options';
 
 const Capabilities = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -36,15 +38,15 @@ const Capabilities = () => {
       <form>
         <Form className="account">
           <LeftSide>
-            <InputForm>
-              <Label htmlFor="company">Company</Label>
-              <Select
-                value={selectedOption}
-                onChange={handleChange}
-                options={optionsSkills}
-                isMulti
-              />
-            </InputForm>
+            <Field
+              label="Skills"
+              name="skill"
+              type="options"
+              options={optionsSkills}
+              component={SelectedFields}
+              isRequired
+              isMulti
+            />
             <InputForm>
               <Label htmlFor="info">Additional information</Label>
               <TextArea name="info" type="text" component="input" />

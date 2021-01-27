@@ -4,7 +4,7 @@ import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import AccountForm from 'components/AccountForm';
 import ProfileForm from 'components/ProfileForm';
 import CapabilitiesForm from 'components/CapabilitiesForm';
-import ContactForm from 'components/ContuctForm';
+import ContactForm from 'components/ContactForm';
 
 export const RouteTab = () => {
   const match = useRouteMatch();
