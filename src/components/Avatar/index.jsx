@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field } from 'redux-form';
-import { addUserData } from 'redux/user/reducers';
+import { update } from 'redux/user/reducers';
 // styled
 import { AvatarLabel } from '../AccountForm/styled';
 import { HiddenField } from './styled';
@@ -17,7 +17,7 @@ export const Avatar = () => {
     reader.readAsDataURL(image);
     if (image && image.size / 1024 < 100) {
       reader.onload = () => {
-        dispatch(addUserData({ avatar: reader.result }));
+        dispatch(update({ avatar: reader.result }));
       };
       setError('');
     }

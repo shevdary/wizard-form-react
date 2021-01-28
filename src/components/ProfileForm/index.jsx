@@ -1,10 +1,10 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // redux
-import { addUserData, redirectToNextStep } from 'redux/user/reducers';
+import { update } from 'redux/user/reducers';
 // custom fields
 import Button from 'components/Custom/Button';
 import { InputComponent } from 'components/Custom/Input';
@@ -18,32 +18,41 @@ import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { profileValidate } from 'utils/profileValidate';
+import { getUser } from '../../redux/user/selector';
+import {
+  addRouterTab,
+  redirectToNext,
+  redirectToPrevious,
+} from '../../redux/tab/reducers';
+import { getTab } from '../../redux/tab/selector';
 
 const Index = () => {
-  const { nextStep } = useSelector((state) => state.user);
+  const { values } = useSelector(getUser);
+  const [prevTab, setPrevTab] = useState(null);
+  const [nextTabs, setNextTab] = useState(null);
   const dispatch = useDispatch();
-  const values = useSelector((state) => state.form.steps);
   const history = useHistory();
+
+  useEffect(() => {
+    if (prevTab) {
+      history.push('/create-user/account');
+    }
+    if (nextTabs) {
+      history.push('/create-user/contact');
+    }
+  }, [prevTab, nextTabs]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (values) {
-      dispatch(redirectToNextStep('profile'));
-
-      dispatch(addUserData(values.values));
-      history.push('/create-user/account');
-    }
+    setPrevTab(true);
   };
 
   const handleSubmit = () => {
     const { firstName, lastName, birthday, address } = values;
-    /*dispatch(redirectToNextStep('profile'));
-    dispatch(redirectStep('2'));
-    dispatch(addUserData({ firstName, lastName, birthday, address }));*/
+    dispatch(update({ firstName, lastName, birthday, address }));
+    dispatch(addRouterTab('profile'));
+    setNextTab(true);
   };
-
-  if (nextStep && nextStep === '2')
-    return <Redirect to="/create-user/contact" />;
 
   return (
     <Form className="profile">

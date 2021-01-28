@@ -9,10 +9,11 @@ import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
 import { Header } from 'components/Header';
 // utils
 import { saveInfo, savePage } from 'utils/localStorage';
+import { getTab } from '../../redux/tab/selector';
 
 export const Tabs = () => {
   const match = useRouteMatch();
-  const { previousStep } = useSelector((state) => state.user);
+  const { tabs } = useSelector(getTab);
   const path = useHistory();
   const store = useSelector((state) => state.user.user);
 
@@ -24,7 +25,7 @@ export const Tabs = () => {
   }, [store]);
 
   const isTypeTab = (type) =>
-    previousStep[0] && previousStep.includes(type) ? 'before' : 'disable';
+    tabs[0] && tabs.includes(type) ? 'before' : 'disable';
 
   return (
     <TabWrapper

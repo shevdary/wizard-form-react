@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,20 +17,41 @@ import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import PhoneFields from 'components/PhoneFields';
+import {
+  addRouterTab,
+  redirectToNext,
+  redirectToPrevious,
+} from '../../redux/tab/reducers';
+import { update } from '../../redux/user/reducers';
+import { getUser } from '../../redux/user/selector';
+import { getTab } from '../../redux/tab/selector';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const values = useSelector((state) => state.form.steps);
+  const values = useSelector(getUser);
+  const [prevTab, setPrevTab] = useState(null);
+  const [nextTabs, setNextTab] = useState(null);
+
+  useEffect(() => {
+    if (prevTab) {
+      history.push('/create-user/profile');
+    }
+    if (nextTabs) {
+      history.push('/create-user/capabilities');
+    }
+  }, [prevTab, nextTabs]);
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    history.push('/create-user/profile');
+    setPrevTab(true);
   };
 
-  const handleSubmit = () => {
-    history.push('/create-user/profile');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setNextTab(true);
+    dispatch(update(values.values));
+    dispatch(addRouterTab('contact'));
   };
 
   return (
