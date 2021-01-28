@@ -24,10 +24,10 @@ export const renderField = ({
       if (item[0] === input.name) unsavedValues = item[1];
     });
   }
-  const [valueField, setValue] = useState(unsavedValues);
+  const [valueField, setValueField] = useState(unsavedValues);
 
   const onChange = (e) => {
-    setValue(e.target.value);
+    setValueField(e.target.value);
   };
 
   return (
