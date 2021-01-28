@@ -6,21 +6,13 @@ const UPLOAD_USERS = 'REQUEST/UPLOAD_USERS';
 const NEXT_STEP = 'REDIRECT/NEXT_STEP';
 const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
 // actions
-export const addUserData = (data) => ({
+export const update = (data) => ({
   type: ADD_INFO,
   payload: data,
 });
 export const getUserList = (data) => ({
   type: UPLOAD_USERS,
   payload: data,
-});
-export const redirectToNextStep = (path) => ({
-  type: USERDATA_VALID,
-  payload: path,
-});
-export const redirectStep = (pageCount) => ({
-  type: NEXT_STEP,
-  payload: pageCount,
 });
 export const loadSavedInfo = () => ({
   type: LOAD_SAVED_INFO,
