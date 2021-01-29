@@ -1,6 +1,6 @@
 // const
 const CREATE = 'USER/CREATE_USER';
-const ADD_INFO = 'USER/ADD_INFO';
+export const ADD_INFO = 'USER/ADD_INFO';
 const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
 // actions
 export const update = (data) => ({

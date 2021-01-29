@@ -25,7 +25,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setPathUnmount } from 'utils/localStorage';
 
 const ContactForm = () => {
-  const values = useSelector(getUser);
+  const { values } = useSelector(getUser);
   const { tabs } = useSelector(getTab);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -50,7 +50,7 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setNextTab(true);
-    dispatch(update(values.values));
+    dispatch(update(values));
     if (!tabs.includes('contact')) {
       dispatch(addRouterTab('contact'));
     }
