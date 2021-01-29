@@ -10,7 +10,7 @@ import { getUser } from 'redux/user/selector';
 import { getTab } from 'redux/tab/selector';
 // validate fields
 import { optionsLanguage } from 'utils/optionsValue';
-import { renderField } from 'utils/reduxValidateField';
+import { renderField } from 'components/Custom/renderField';
 import { validate } from 'utils/contactValidate';
 // components
 import { InputComponent } from 'components/Custom/Input';

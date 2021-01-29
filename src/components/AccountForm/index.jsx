@@ -15,8 +15,8 @@ import { InputComponent } from 'components/Custom/Input';
 // styled
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
-import { renderField } from 'utils/reduxValidateField';
-import { validate } from 'utils/accountValidate';
+import { renderField } from 'components/Custom/renderField';
+import { asyncValidate, validate } from 'utils/accountValidate';
 import { setPathUnmount } from 'utils/localStorage';
 // assets
 import avatar from 'assets/icon/avatar.svg';
@@ -88,7 +88,5 @@ const AccountForm = () => {
 export default reduxForm({
   form: 'steps',
   validate,
-  asyncBlurFields: true,
-  destroyOnUnmount: true,
-  forceUnregisterOnUnmount: false,
+  asyncValidate,
 })(AccountForm);

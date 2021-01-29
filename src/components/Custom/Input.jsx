@@ -3,7 +3,12 @@ import React, { useState } from 'react';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 // styled
-import { Button, InputForm, Label, RequiredField } from 'components/AccountForm/styled';
+import {
+  Button,
+  InputForm,
+  Label,
+  RequiredField,
+} from 'components/AccountForm/styled';
 import { InputField } from './CustomFiledsStyled';
 
 export const InputComponent = ({

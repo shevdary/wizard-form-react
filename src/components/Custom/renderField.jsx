@@ -6,7 +6,7 @@ import {
   Label,
   RequiredField,
   SpanError,
-} from '../components/AccountForm/styled';
+} from '../AccountForm/styled';
 
 export const renderField = ({
   label,
@@ -22,13 +22,7 @@ export const renderField = ({
         {label} {isRequired && <RequiredField>*</RequiredField>}
       </Label>
       <div>
-        <Inputs
-          {...input}
-          value={input.value}
-          placeholder={label}
-          type={type}
-          onClick={onClick}
-        />
+        <Inputs {...input} placeholder={label} type={type} onClick={onClick} />
         {touched && error && <SpanError>{error}</SpanError>}
       </div>
     </InputForm>

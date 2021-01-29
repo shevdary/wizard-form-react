@@ -20,3 +20,4 @@ export const DataPicker = ({ input, label, meta: { error } }) => (
     {error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+

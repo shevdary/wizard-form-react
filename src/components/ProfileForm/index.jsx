@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { update } from 'redux/user/reducers';
@@ -19,8 +19,8 @@ import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
 import { PlaceAutocomplete } from 'components/Custom/PlaceAutocomplete';
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
-import { renderField } from 'utils/reduxValidateField';
-import { profileValidate } from 'utils/profileValidate';
+import { renderField } from 'components/Custom/renderField';
+import { validate, asyncValidate } from 'utils/profileValidate';
 import { setPathUnmount } from 'utils/localStorage';
 
 const Index = () => {
@@ -58,7 +58,7 @@ const Index = () => {
 
   return (
     <Form className="profile">
-      <LeftSide>
+      <RightSide>
         <InputComponent
           name="firstName"
           type="text"
@@ -73,15 +73,15 @@ const Index = () => {
           isRequired
           component={renderField}
         />
-        <Field
+        <InputComponent
           name="birthday"
           dateFormat="dd/MM/yyyy"
           label="Birth date"
           type="date"
           component={DataPicker}
         />
-      </LeftSide>
-      <RightSide>
+      </RightSide>
+      <LeftSide>
         <InputComponent
           label="Email"
           name="email"
@@ -93,6 +93,7 @@ const Index = () => {
           label="Address"
           name="address"
           type="text"
+          values={'value'}
           component={PlaceAutocomplete}
         />
         <InputForm>
@@ -111,12 +112,13 @@ const Index = () => {
           <Button type="submit" onClick={handleSubmit} label="Forward" />
           <Button onClick={handleClick} label="Back" name="backForm" />
         </FlexColumn>
-      </RightSide>
+      </LeftSide>
     </Form>
   );
 };
 
 export default reduxForm({
   form: 'steps',
-  validate: profileValidate,
+  validate,
+  asyncValidate,
 })(Index);

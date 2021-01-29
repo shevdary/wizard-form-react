@@ -1,11 +1,12 @@
 /*eslint-disable*/
-import React, { useState } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // redux
 import { getUser } from 'redux/user/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { update } from 'redux/user/reducers';
+import { setValueToDB } from 'redux/db/reducers';
 // components
 import Button from 'components/Custom/Button';
 import { SelectedFields } from 'components/Custom/Options';
@@ -23,8 +24,9 @@ const Capabilities = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
-    dispatch({ type: 'FINISH_FIELD' });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setValueToDB());
     dispatch(update(values.values));
   };
 
