@@ -17,6 +17,7 @@ export const addRouterTab = (tabName) => ({
 const initialState = {
   nextTab: null,
   previousTab: null,
+  nextTabName: null,
   tabs: [],
 };
 
@@ -36,8 +37,6 @@ export const reducer = (state = initialState, action) => {
         nextTab: false,
         previousTab: true,
       };
-    case 'CURRENT':
-      return { ...state, nextTab: false };
     default:
       return state;
   }

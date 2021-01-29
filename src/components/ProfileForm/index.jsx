@@ -5,6 +5,9 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { update } from 'redux/user/reducers';
+import { getUser } from 'redux/user/selector';
+import { addRouterTab } from 'redux/tab/reducers';
+import { getTab } from 'redux/tab/selector';
 // custom fields
 import Button from 'components/Custom/Button';
 import { InputComponent } from 'components/Custom/Input';
@@ -18,18 +21,15 @@ import 'react-datepicker/dist/react-datepicker.css';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { profileValidate } from 'utils/profileValidate';
-import { getUser } from '../../redux/user/selector';
-import {
-  addRouterTab,
-  redirectToNext,
-  redirectToPrevious,
-} from '../../redux/tab/reducers';
-import { getTab } from '../../redux/tab/selector';
+import { setPathUnmount } from 'utils/localStorage';
 
 const Index = () => {
   const { values } = useSelector(getUser);
+  const { tabs } = useSelector(getTab);
+
   const [prevTab, setPrevTab] = useState(null);
   const [nextTabs, setNextTab] = useState(null);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -48,9 +48,11 @@ const Index = () => {
   };
 
   const handleSubmit = () => {
-    const { firstName, lastName, birthday, address } = values;
-    dispatch(update({ firstName, lastName, birthday, address }));
-    dispatch(addRouterTab('profile'));
+    dispatch(update(values));
+    if (!tabs.includes('profile')) {
+      dispatch(addRouterTab('profile'));
+    }
+    setPathUnmount('contact');
     setNextTab(true);
   };
 

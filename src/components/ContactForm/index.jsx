@@ -3,33 +3,33 @@ import React, { useEffect, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+// redux
+import { addRouterTab } from 'redux/tab/reducers';
+import { update } from 'redux/user/reducers';
+import { getUser } from 'redux/user/selector';
+import { getTab } from 'redux/tab/selector';
 // validate fields
 import { optionsLanguage } from 'utils/optionsValue';
 import { renderField } from 'utils/reduxValidateField';
 import { validate } from 'utils/contactValidate';
-// custom fields
+// components
 import { InputComponent } from 'components/Custom/Input';
 import { SelectedFields } from 'components/Custom/Options';
 import Button from 'components/Custom/Button';
+import PhoneFields from 'components/PhoneFields';
 // styled
 import { Form, InputForm } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 // utils
-import PhoneFields from 'components/PhoneFields';
-import {
-  addRouterTab,
-  redirectToNext,
-  redirectToPrevious,
-} from '../../redux/tab/reducers';
-import { update } from '../../redux/user/reducers';
-import { getUser } from '../../redux/user/selector';
-import { getTab } from '../../redux/tab/selector';
+import { setPathUnmount } from 'utils/localStorage';
 
 const ContactForm = () => {
+  const values = useSelector(getUser);
+  const { tabs } = useSelector(getTab);
   const dispatch = useDispatch();
   const history = useHistory();
-  const values = useSelector(getUser);
+
   const [prevTab, setPrevTab] = useState(null);
   const [nextTabs, setNextTab] = useState(null);
 
@@ -51,7 +51,10 @@ const ContactForm = () => {
     e.preventDefault();
     setNextTab(true);
     dispatch(update(values.values));
-    dispatch(addRouterTab('contact'));
+    if (!tabs.includes('contact')) {
+      dispatch(addRouterTab('contact'));
+    }
+    setPathUnmount('capabilities');
   };
 
   return (

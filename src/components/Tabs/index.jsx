@@ -2,27 +2,16 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+// redux
+import { getTab } from 'redux/tab/selector';
 // component
 import { RouteTab } from '../../pages/FormRoute';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
-import { Header } from 'components/Header';
-// utils
-import { saveInfo, savePage } from 'utils/localStorage';
-import { getTab } from '../../redux/tab/selector';
 
 export const Tabs = () => {
   const match = useRouteMatch();
   const { tabs } = useSelector(getTab);
-  const path = useHistory();
-  const store = useSelector((state) => state.user.user);
-
-  useEffect(() => {
-    window.addEventListener('beforeunload', () => {
-      savePage(path.location.pathname);
-      saveInfo(store);
-    });
-  }, [store]);
 
   const isTypeTab = (type) =>
     tabs[0] && tabs.includes(type) ? 'before' : 'disable';
@@ -50,7 +39,6 @@ export const Tabs = () => {
           4. Capabilities
         </TabsItem>
       </TabsList>
-      {localStorage.getItem('filledFields') && <Header />}
       <TabSwitch className="tab-switch">
         <RouteTab />
       </TabSwitch>

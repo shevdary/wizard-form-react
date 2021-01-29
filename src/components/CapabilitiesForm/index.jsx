@@ -4,15 +4,15 @@ import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
-// custom components
+// components
 import Button from 'components/Custom/Button';
+import { SelectedFields } from 'components/Custom/Options';
+import { Checkbox } from 'components/Custom/Checkbox';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import { SubmitButton, TextArea } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { SelectedFields } from 'components/Custom/Options';
-import { Checkbox } from 'components/Custom/Checkbox';
 
 const Capabilities = () => {
   const history = useHistory();

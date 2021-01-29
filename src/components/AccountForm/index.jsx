@@ -6,6 +6,8 @@ import { Redirect, useHistory } from 'react-router-dom';
 // redux
 import { getUser } from 'redux/user/selector';
 import { update } from 'redux/user/reducers';
+import { addRouterTab } from 'redux/tab/reducers';
+import { getTab } from 'redux/tab/selector';
 // components
 import Button from 'components/Custom/Button';
 import { Avatar } from 'components/Avatar';
@@ -15,29 +17,30 @@ import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
 import { renderField } from 'utils/reduxValidateField';
 import { validate } from 'utils/accountValidate';
+import { setPathUnmount } from 'utils/localStorage';
 // assets
 import avatar from 'assets/icon/avatar.svg';
-import { addRouterTab, redirectToNext } from '../../redux/tab/reducers';
-import { getTab } from '../../redux/tab/selector';
 
 const AccountForm = () => {
   const { values } = useSelector(getUser);
-  const { nextTab, previousTab, tabs } = useSelector(getTab);
+  const { tabs } = useSelector(getTab);
+  const [next, setNext] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [next, setNext] = useState();
 
   useEffect(() => {
     if (next) {
       history.push('/create-user/profile');
     }
-  });
+  }, [next]);
 
   const handleSubmit = () => {
     dispatch(update({ username: values.username, password: values.password }));
-    dispatch(redirectToNext());
     setNext(true);
-    dispatch(addRouterTab('account'));
+    if (!tabs.includes('account')) {
+      dispatch(addRouterTab('account'));
+    }
+    setPathUnmount('profile');
   };
 
   return (
