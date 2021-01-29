@@ -1,4 +1,5 @@
-import React from 'react';
+/*eslint-disable*/
+import React, { useState } from 'react';
 import Select from 'react-select';
 // styled
 import {
@@ -7,36 +8,45 @@ import {
   RequiredField,
   SpanError,
 } from 'components/AccountForm/styled';
+import { useDispatch } from 'react-redux';
+import { update } from '../../redux/user/reducers';
 
-export const SelectedFields = ({
-  input,
-  meta: { touched, error },
-  name,
-  type,
-  value,
-  label,
-  options,
-  isRequired,
-  isMulti,
-}) => (
-  <InputForm>
-    <Label>
-      {label}
-      {isRequired && <RequiredField>*</RequiredField>}
-    </Label>
-    <div>
-      <Select
-        {...input}
-        type={type}
-        name={name}
-        value={value}
-        onChange={input.onChange}
-        placeholder={label}
-        options={options}
-        isRequired
-        isMulti={isMulti}
-      />
-      {touched && error && <SpanError>{error}</SpanError>}
-    </div>
-  </InputForm>
-);
+export const SelectedFields = (props) => {
+  const {
+    input,
+    meta: { touched, error },
+    value,
+    label,
+    isRequired,
+  } = props;
+
+  const [newValue, setNewValue] = useState(value);
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setNewValue(e);
+  };
+
+  const onBlur = () => {
+    dispatch(update({ language: newValue }));
+  };
+
+  return (
+    <InputForm>
+      <Label>
+        {label}
+        {isRequired && <RequiredField>*</RequiredField>}
+      </Label>
+      <div>
+        <Select
+          {...input}
+          {...props}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+        {touched && error && <SpanError>{error}</SpanError>}
+      </div>
+    </InputForm>
+  );
+};
