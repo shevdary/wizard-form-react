@@ -1,23 +1,10 @@
 /*eslint-disable*/
-
 import { getUsers } from '../indexedDB/database';
 
 export const validate = (values) => {
   const errors = {};
   if (!values.username) {
     errors.username = 'field is required';
-  } else {
-    getUsers()
-      .then((res) => {
-        res.map((item) => {
-          if (values.username === item.name) {
-            errors.username = 'username already exist';
-          }
-        });
-      })
-      .catch((err) => {
-        errors.username = 'username already exist';
-      });
   }
 
   if (!values.password) {
@@ -29,6 +16,14 @@ export const validate = (values) => {
   } else if (values.password !== values.repeatPassword) {
     errors.repeatPassword = 'password don`t match';
   }
-
   return errors;
 };
+
+export const asyncValidate = (values) =>
+  getUsers().then((res) => {
+    res.map((item) => {
+      if (item.username === values.username) {
+        throw { username: 'That username is taken' };
+      }
+    });
+  });

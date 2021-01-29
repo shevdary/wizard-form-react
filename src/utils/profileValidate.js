@@ -1,7 +1,8 @@
 /* eslint-disable*/
 import { getUsers } from '../indexedDB/database';
 import moment from 'moment';
-export const profileValidate = (values) => {
+
+export const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
     errors.firstName = 'field is required';
@@ -17,16 +18,6 @@ export const profileValidate = (values) => {
 
   if (!values.email) {
     errors.email = 'field is required';
-  } else {
-    getUsers().then((user) => {
-      if (user.email === values.email) {
-        errors.email = 'email already exist';
-      }
-    });
-  }
-
-  if (!values.birthday) {
-    errors.birthday = 'field is required';
   }
 
   if (values.birthday) {
@@ -41,3 +32,12 @@ export const profileValidate = (values) => {
   }
   return errors;
 };
+
+export const asyncValidate = (values) =>
+  getUsers().then((res) => {
+    res.map((item) => {
+      if (item.email === values.email) {
+        throw { email: 'That email is taken' };
+      }
+    });
+  });
