@@ -16,20 +16,6 @@ export const renderField = ({
   onClick,
   meta: { touched, error },
 }) => {
-  const data = JSON.parse(localStorage.getItem('filledFields'));
-  let unsavedValues;
-
-  if (data) {
-    Object.entries(data).map((item) => {
-      if (item[0] === input.name) unsavedValues = item[1];
-    });
-  }
-  const [valueField, setValueField] = useState(unsavedValues);
-
-  const onChange = (e) => {
-    setValueField(e.target.value);
-  };
-
   return (
     <InputForm>
       <Label>
@@ -38,9 +24,8 @@ export const renderField = ({
       <div>
         <Inputs
           {...input}
-          value={valueField}
+          value={input.value}
           placeholder={label}
-          onChange={onChange}
           type={type}
           onClick={onClick}
         />

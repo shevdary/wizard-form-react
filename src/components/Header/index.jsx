@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
 import { useDispatch } from 'react-redux';
-import { loadFromStorage, loadSavedInfo, update } from 'redux/user/reducers';
+import { update } from 'redux/user/reducers';
 // styled
 import { Alert, ButtonTransparent, LinkAlert, Text } from './styled';
 // utils

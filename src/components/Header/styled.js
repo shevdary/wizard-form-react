@@ -5,10 +5,16 @@ export const Alert = styled.div`
   width: 970px;
   height: 42px;
   position: absolute;
-  display: flex;
   place-items: center;
+  display: flex;
   color: white;
   background: #5e97f3;
+  &.visible {
+    display: flex;
+  }
+  &.hidden {
+    display: none;
+  }
 `;
 
 export const LinkAlert = styled(Link)`
@@ -22,4 +28,13 @@ export const Text = styled.p`
   margin-left: 25px;
   font-size: 16px;
   color: white;
+`;
+
+export const ButtonTransparent = styled.button`
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  right: 15px;
 `;
