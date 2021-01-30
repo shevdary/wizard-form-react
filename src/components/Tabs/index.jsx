@@ -5,7 +5,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 // redux
 import { getTab } from 'redux/tab/selector';
 // component
-import { RouteTab } from '../../pages/FormRoute';
+import { RouteTab } from 'pages/RouteTab';
 // styled
 import { TabsItem, TabsList, TabSwitch, TabWrapper } from './styled';
 
