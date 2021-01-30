@@ -7,7 +7,7 @@ import { SET_DB, setValueFailed, setValueSuccess } from 'redux/db/reducers';
 import { addNewUser } from 'indexedDB/database';
 // tabs
 import { tabsSelector } from 'redux/tabs/selector';
-import { addRouterTab } from 'redux/tabs/reducers';
+import { addRouterTab, CURRENT_TAB } from 'redux/tabs/reducers';
 // utils
 import { setItem, setPath } from 'utils/localStorage';
 
@@ -17,13 +17,13 @@ export function* uploadToRedux() {
     const { values } = yield select(userFormSelector);
     const { tabs, currentTab } = yield select(tabsSelector);
 
-    if (!tabs.includes(currentTab)) {
-      yield put(addRouterTab(currentTab));
-    }
-
     yield put(update(values));
     setPath(currentTab);
     setItem(value);
+
+    if (!tabs.includes(currentTab)) {
+      yield put(addRouterTab(currentTab));
+    }
   } catch (e) {
     yield put({ type: 'REQUEST/UPLOAD_FAIL' });
   }
@@ -41,6 +41,6 @@ export function* addValueToDB() {
 }
 
 export function* sagaWatcher() {
-  yield takeEvery('TAB/CURRENT_TAB', uploadToRedux);
+  yield takeEvery(CURRENT_TAB, uploadToRedux);
   yield takeEvery(SET_DB, addValueToDB);
 }

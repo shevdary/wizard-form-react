@@ -1,8 +1,9 @@
+/*eslint-disable*/
 // const
 const CREATE = 'USER/CREATE_USER';
 export const ADD_INFO = 'USER/ADD_INFO';
-const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
-const USER_RESET = 'USER/USER_RESET';
+export const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
+export const USER_RESET = 'USER/USER_RESET';
 // actions
 export const update = (data) => ({
   type: ADD_INFO,
@@ -17,7 +18,6 @@ export const resetUserValue = () => ({
 // reducers
 const initialState = {
   user: {},
-  isValid: false,
   isLoad: false,
 };
 

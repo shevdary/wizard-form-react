@@ -2,7 +2,7 @@
 const NEXT_TAB = 'TAB/NEXT_TAB';
 const PREVIOUS_TAB = 'TAB/PREVIOUS_TAB';
 const TAB_LIST = 'TAB/TAB_LIST';
-const CURRENT_TAB = 'TAB/CURRENT_TAB';
+export const CURRENT_TAB = 'TAB/CURRENT_TAB';
 // actions
 export const redirectToNext = () => ({
   type: NEXT_TAB,
