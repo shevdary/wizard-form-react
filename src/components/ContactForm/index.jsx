@@ -10,12 +10,12 @@ import { getUser } from 'redux/user/selector';
 import { getTab } from 'redux/tab/selector';
 // validate fields
 import { optionsLanguage } from 'utils/optionsValue';
-import { renderField } from 'components/Custom/renderField';
+import { renderField } from 'components/CustomFields/renderField';
 import { validate } from 'utils/contactValidate';
 // components
-import { InputComponent } from 'components/Custom/Input';
-import { SelectedFields } from 'components/Custom/Options';
-import Button from 'components/Custom/Button';
+import { InputComponent } from 'components/CustomFields/Input';
+import { SelectedFields } from 'components/CustomFields/Options';
+import Button from 'components/CustomFields/Button';
 import PhoneFields from 'components/PhoneFields';
 // styled
 import { Form, InputForm } from 'components/AccountForm/styled';

@@ -9,13 +9,13 @@ import { update } from 'redux/user/reducers';
 import { addRouterTab } from 'redux/tab/reducers';
 import { getTab } from 'redux/tab/selector';
 // components
-import Button from 'components/Custom/Button';
+import Button from 'components/CustomFields/Button';
 import { Avatar } from 'components/Avatar';
-import { InputComponent } from 'components/Custom/Input';
+import { InputComponent } from 'components/CustomFields/Input';
 // styled
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 // utils
-import { renderField } from 'components/Custom/renderField';
+import { renderField } from 'components/CustomFields/renderField';
 import { asyncValidate, validate } from 'utils/accountValidate';
 import { setPathUnmount } from 'utils/localStorage';
 // assets

@@ -28,7 +28,7 @@ export const SelectedFields = (props) => {
   };
 
   const onBlur = () => {
-    dispatch(update({ language: newValue }));
+    dispatch(update({ language: newValue.value }));
   };
 
   return (

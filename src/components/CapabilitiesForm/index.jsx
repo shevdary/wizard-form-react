@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { update } from 'redux/user/reducers';
 import { setValueToDB } from 'redux/db/reducers';
 // components
-import Button from 'components/Custom/Button';
-import { SelectedFields } from 'components/Custom/Options';
-import { Checkbox } from 'components/Custom/Checkbox';
+import Button from 'components/CustomFields/Button';
+import { SelectedFields } from 'components/CustomFields/Options';
+import { Checkbox } from 'components/CustomFields/Checkbox';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
