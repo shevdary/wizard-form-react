@@ -5,7 +5,9 @@
       "utils": ["src/utils"],
       "assets": ["src/assets"],
       "redux": ["src/redux"],
-      "components": ["src/components"]
+      "components": ["src/components"],
+      "indexedDB": ["src/indexedDB"],
+      "pages": ["src/pages"]
     }
   },
   "include": ["src"]

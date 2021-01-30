@@ -23,6 +23,7 @@ const initialState = {
   nextTab: null,
   previousTab: null,
   nextTabName: null,
+  currentTab: null,
   tabs: [],
 };
 
