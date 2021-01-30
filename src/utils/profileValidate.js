@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import { getUsers } from '../indexedDB/database';
+import { userFormSelectors } from 'indexedDB/database';
 import moment from 'moment';
 
 export const validate = (values) => {
@@ -34,7 +34,7 @@ export const validate = (values) => {
 };
 
 export const asyncValidate = (values) =>
-  getUsers().then((res) => {
+  userFormSelectors().then((res) => {
     res.map((item) => {
       if (item.email === values.email) {
         throw { email: 'That email is taken' };

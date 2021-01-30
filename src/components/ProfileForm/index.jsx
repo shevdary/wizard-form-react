@@ -1,59 +1,35 @@
-/*eslint-disable*/
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // redux
-import { update } from 'redux/user/reducers';
-import { getUser } from 'redux/user/selector';
-import { addRouterTab } from 'redux/tab/reducers';
-import { getTab } from 'redux/tab/selector';
+import { setCurrentTab } from 'redux/tabs/reducers';
 // custom fields
-import Button from 'components/Custom/Button';
-import { InputComponent } from 'components/Custom/Input';
-import { DataPicker } from 'components/Custom/DataPicker';
-import { RadioButton } from 'components/Custom/RadioButton';
+import Button from 'components/CustomFields/Button';
+import { InputComponent } from 'components/CustomFields/Input';
+import { DataPicker } from 'components/CustomFields/DataPicker';
+import { RadioButton } from 'components/CustomFields/RadioButton';
+import { PlaceAutocomplete } from 'components/CustomFields/PlaceAutocomplete';
+import { RenderField } from 'components/CustomFields/RenderField';
+// utils
+import { validate, asyncValidate } from 'utils/profileValidate';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
-import { PlaceAutocomplete } from 'components/Custom/PlaceAutocomplete';
 import 'react-datepicker/dist/react-datepicker.css';
-// utils
-import { renderField } from 'components/Custom/renderField';
-import { validate, asyncValidate } from 'utils/profileValidate';
-import { setPathUnmount } from 'utils/localStorage';
 
-const Index = () => {
-  const { values } = useSelector(getUser);
-  const { tabs } = useSelector(getTab);
-
-  const [prevTab, setPrevTab] = useState(null);
-  const [nextTabs, setNextTab] = useState(null);
-
+const Profile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (prevTab) {
-      history.push('/create-user/account');
-    }
-    if (nextTabs) {
-      history.push('/create-user/contact');
-    }
-  }, [prevTab, nextTabs]);
-
   const handleClick = (e) => {
     e.preventDefault();
-    setPrevTab(true);
+    history.push('/create-user/account');
   };
 
   const handleSubmit = () => {
-    dispatch(update(values));
-    if (!tabs.includes('profile')) {
-      dispatch(addRouterTab('profile'));
-    }
-    setPathUnmount('contact');
-    setNextTab(true);
+    dispatch(setCurrentTab('profile'));
+    history.push('/create-user/contact');
   };
 
   return (
@@ -64,14 +40,14 @@ const Index = () => {
           type="text"
           isRequired
           label="First name"
-          component={renderField}
+          component={RenderField}
         />
         <InputComponent
           label="Last name"
           name="lastName"
           type="text"
           isRequired
-          component={renderField}
+          component={RenderField}
         />
         <InputComponent
           name="birthday"
@@ -87,13 +63,13 @@ const Index = () => {
           name="email"
           isRequired
           type="email"
-          component={renderField}
+          component={RenderField}
         />
         <Field
           label="Address"
           name="address"
           type="text"
-          values={'value'}
+          values="value"
           component={PlaceAutocomplete}
         />
         <InputForm>
@@ -104,7 +80,7 @@ const Index = () => {
               type="radio"
               options={['male', 'female']}
               checked="male"
-              component={renderField}
+              component={RenderField}
             />
           </RadioSelect>
         </InputForm>
@@ -121,4 +97,4 @@ export default reduxForm({
   form: 'steps',
   validate,
   asyncValidate,
-})(Index);
+})(Profile);

@@ -1,46 +1,28 @@
-/*eslint-disable*/
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // redux
-import { getUser } from 'redux/user/selector';
-import { update } from 'redux/user/reducers';
-import { addRouterTab } from 'redux/tab/reducers';
-import { getTab } from 'redux/tab/selector';
+import { setCurrentTab } from 'redux/tabs/reducers';
 // components
 import Button from 'components/CustomFields/Button';
 import { Avatar } from 'components/Avatar';
 import { InputComponent } from 'components/CustomFields/Input';
-// styled
-import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
+import { RenderField } from 'components/CustomFields/RenderField';
 // utils
-import { renderField } from 'components/CustomFields/renderField';
 import { asyncValidate, validate } from 'utils/accountValidate';
-import { setPathUnmount } from 'utils/localStorage';
 // assets
 import avatar from 'assets/icon/avatar.svg';
+// styled
+import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 
 const AccountForm = () => {
-  const { values } = useSelector(getUser);
-  const { tabs } = useSelector(getTab);
-  const [next, setNext] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (next) {
-      history.push('/create-user/profile');
-    }
-  }, [next]);
-
   const handleSubmit = () => {
-    dispatch(update({ username: values.username, password: values.password }));
-    setNext(true);
-    if (!tabs.includes('account')) {
-      dispatch(addRouterTab('account'));
-    }
-    setPathUnmount('profile');
+    dispatch(setCurrentTab('account'));
+    history.push('/create-user/profile');
   };
 
   return (
@@ -60,7 +42,7 @@ const AccountForm = () => {
             name="username"
             type="text"
             isRequired
-            component={renderField}
+            component={RenderField}
           />
           <InputComponent
             label="Password"
@@ -68,7 +50,7 @@ const AccountForm = () => {
             type="password"
             isVisible
             isRequired
-            component={renderField}
+            component={RenderField}
           />
           <InputComponent
             label="Repeat password"
@@ -76,7 +58,7 @@ const AccountForm = () => {
             type="password"
             isVisible
             isRequired
-            component={renderField}
+            component={RenderField}
           />
           <Button type="submit" onClick={handleSubmit} label="Forward" />
         </RightBlock>

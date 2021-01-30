@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Field } from 'redux-form';
+// components
 import { Label } from 'components/AccountForm/styled';
 
 export const RadioButton = ({ input, name, options, type, checked }) => {

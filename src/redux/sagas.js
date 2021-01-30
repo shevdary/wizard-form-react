@@ -1,12 +1,15 @@
-/*eslint-disable*/
 import { takeEvery, put, select } from 'redux-saga/effects';
-import { userFormSelector, userSelector } from './user/selector';
-import { setItem, setPath } from 'utils/localStorage';
+// user reducer
+import { userFormSelector, userSelector } from 'redux/user/selector';
+import { resetUserValue, update } from 'redux/user/reducers';
+// indexedDB
+import { SET_DB, setValueFailed, setValueSuccess } from 'redux/db/reducers';
 import { addNewUser } from 'indexedDB/database';
-import { SET_DB, setValueFailed, setValueSuccess } from './db/reducers';
-import { tabsSelector } from './tabs/selector';
-import { addRouterTab } from './tabs/reducers';
-import { resetUserValue, update } from './user/reducers';
+// tabs
+import { tabsSelector } from 'redux/tabs/selector';
+import { addRouterTab } from 'redux/tabs/reducers';
+// utils
+import { setItem, setPath } from 'utils/localStorage';
 
 export function* uploadToRedux() {
   try {

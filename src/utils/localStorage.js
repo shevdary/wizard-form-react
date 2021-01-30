@@ -7,6 +7,6 @@ export const removeItem = () => localStorage.clear();
 
 export const getItem = () => localStorage.getItem('unmount');
 
-export const setPathUnmount = (path) => localStorage.setItem('pageLeave', path);
+export const setPath = (path) => localStorage.setItem('pageLeave', path);
 
-export const getPathUnmount = () => localStorage.getItem('pageLeave');
+export const getPath = () => localStorage.getItem('pageLeave');

@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,10 +7,10 @@ import { userSelector } from 'redux/user/selector';
 // components
 import Tabs from 'components/Tabs';
 import { Popup } from 'components/Header';
-// styled
-import { Main, TextCenter } from './CreateUserStyled';
 // utils
 import { getItem, getPath, removeItem } from 'utils/localStorage';
+// styled
+import { Main, TextCenter } from './CreateUserStyled';
 
 const CreateUser = ({ title }) => {
   const user = useSelector(userSelector);
@@ -24,7 +23,13 @@ const CreateUser = ({ title }) => {
     if (Object.keys(user).length === 0 && getItem()) {
       setIsShowAlert(true);
     }
-  });
+  }, [isShowAlert, user]);
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    setIsShowAlert(false);
+    removeItem();
+  };
 
   const handleContinue = (e) => {
     e.preventDefault();
@@ -32,12 +37,6 @@ const CreateUser = ({ title }) => {
     dispatch(update(JSON.parse(getItem())));
     history.push(`/create-user/${tabsList[redirectTabIndex + 1]}`);
     handleClose(e);
-  };
-
-  const handleClose = (e) => {
-    e.preventDefault();
-    setIsShowAlert(false);
-    removeItem();
   };
 
   return (

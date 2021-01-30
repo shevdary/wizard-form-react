@@ -10,7 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import { userSelector } from 'redux/user/selector';
 
-export const renderField = ({
+export const RenderField = ({
   label,
   input,
   type,
@@ -35,7 +35,8 @@ export const renderField = ({
   return (
     <InputForm>
       <Label>
-        {label} {isRequired && <RequiredField>*</RequiredField>}
+        {label}
+        {isRequired && <RequiredField>*</RequiredField>}
       </Label>
       <div>
         <Inputs

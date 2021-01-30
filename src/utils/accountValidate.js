@@ -1,5 +1,4 @@
-/*eslint-disable*/
-import { getUsers } from '../indexedDB/database';
+import { userFormSelectors } from 'indexedDB/database';
 
 export const validate = (values) => {
   const errors = {};
@@ -20,7 +19,7 @@ export const validate = (values) => {
 };
 
 export const asyncValidate = (values) =>
-  getUsers().then((res) => {
+  userFormSelectors().then((res) => {
     res.map((item) => {
       if (item.username === values.username) {
         throw { username: 'That username is taken' };
