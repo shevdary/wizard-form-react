@@ -1,3 +1,3 @@
-export const getUser = (state) => state.form.steps;
+export const userFormSelector = (state) => state.form.steps;
 
-export const userValue = (state) => state.user.user;
+export const userSelector = (state) => state.user.user;
