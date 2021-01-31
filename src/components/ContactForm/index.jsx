@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { setCurrentTab } from 'redux/tabs/reducers';
+import { userFormSelector } from 'redux/user/selector';
 // components
 import { InputComponent } from 'components/CustomFields/Input';
 import { SelectedFields } from 'components/CustomFields/Options';
-import Button from 'components/CustomFields/Button';
+import { Button } from 'components/CustomFields/Button';
 import PhoneFields from 'components/PhoneFields';
 import { RenderField } from 'components/CustomFields/RenderField';
+import { FlexColumn } from 'components/ProfileForm/styled';
 // validate fields
 import { optionsLanguage } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
@@ -20,9 +22,7 @@ import {
   LeftBlock,
   RightBlock,
 } from 'components/AccountForm/styled';
-import { FlexColumn } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { userFormSelector } from 'redux/user/selector';
 
 const ContactForm = () => {
   const values = useSelector(userFormSelector);
@@ -84,7 +84,7 @@ const ContactForm = () => {
           <PhoneFields />
         </InputForm>
         <FlexColumn>
-          <Button type="submit" onClick={handleSubmit} label="Forward" />
+          <Button type="forward" onClick={handleSubmit} label="Forward" />
           <Button name="backForm" label="Back" onClick={handleClick} />
         </FlexColumn>
       </RightBlock>

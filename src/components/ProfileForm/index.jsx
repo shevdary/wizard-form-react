@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTab } from 'redux/tabs/reducers';
 import { userFormSelector } from 'redux/user/selector';
 // custom fields
-import Button from 'components/CustomFields/Button';
+import { Button } from 'components/CustomFields/Button';
 import { InputComponent } from 'components/CustomFields/Input';
 import { DataPicker } from 'components/CustomFields/DataPicker';
 import { RadioButton } from 'components/CustomFields/RadioButton';
@@ -82,9 +82,9 @@ const Profile = () => {
         />
         <Field name="gender" component={RadioButton} options={gender} />
         <FlexColumn>
-          <Button type="submit" onClick={handleSubmit} label="Forward" />
-          <Button onClick={handleClick} label="Back" name="backForm" />
+          <Button onClick={handleSubmit} label="Forward" type="forward" />
         </FlexColumn>
+        <Button type="back" onClick={handleClick} label="Back" />
       </LeftSide>
     </Form>
   );

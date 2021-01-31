@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import styled from 'styled-components';
 import { Field } from 'redux-form';
 
@@ -68,12 +69,21 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const ForwardButton = styled.button`
+export const CustomButton = styled.button`
+  background: ${(props) => {
+    if (props.type === 'forward') {
+      return '#5e97f3';
+    } else if (props.type === 'back') {
+      return '#c1cfe0';
+    } else if (props.type === 'finish') {
+      return '#4ee4a5';
+    }
+  }};
+
+  text-align: center;
   height: 40px;
   width: 100px;
   float: right;
-  text-align: center;
-  background: #5e97f3;
   border: none;
   color: #ffffff;
   position: absolute;

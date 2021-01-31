@@ -7,18 +7,17 @@ import { setValueToDB } from 'redux/db/reducers';
 import { setCurrentTab } from 'redux/tabs/reducers';
 import { userFormSelector } from 'redux/user/selector';
 // components
-import Button from 'components/CustomFields/Button';
+import { Button } from 'components/CustomFields/Button';
 import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
+import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
-import { SubmitButton } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { RenderField } from '../CustomFields/RenderField';
 
 const Capabilities = () => {
   const values = useSelector(userFormSelector);
@@ -68,9 +67,9 @@ const Capabilities = () => {
         </Form>
       </form>
       <FlexColumn>
-        <SubmitButton onClick={handleSubmit}>Finish</SubmitButton>
-        <Button label="Back" onClick={handleClick} />
+        <Button onClick={handleSubmit} type="finish" label=" Finish" />
       </FlexColumn>
+      <Button label="Back" onClick={handleClick} type="back" />
     </>
   );
 };

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { userFormSelector } from 'redux/user/selector';
 import { setCurrentTab } from 'redux/tabs/reducers';
 // components
-import Button from 'components/CustomFields/Button';
+import { Button } from 'components/CustomFields/Button';
 import { Avatar } from 'components/Avatar';
 import { InputComponent } from 'components/CustomFields/Input';
 import { RenderField } from 'components/CustomFields/RenderField';
@@ -67,7 +67,7 @@ const AccountForm = () => {
             isRequired
             component={RenderField}
           />
-          <Button type="submit" onClick={handleSubmit} label="Forward" />
+          <Button type="forward" onClick={handleSubmit} label="Forward" />
         </RightBlock>
       </Form>
     </>

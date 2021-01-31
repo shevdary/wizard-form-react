@@ -1,20 +1,10 @@
 import React from 'react';
 // styled
-import { BackButton, ForwardButton } from 'components/AccountForm/styled';
+import { CustomButton } from 'components/AccountForm/styled';
 
-const Button = ({ onClick, type, name, label }) => {
-  if (type)
-    return (
-      <ForwardButton type={type} onClick={onClick} name={name}>
-        {label}
-      </ForwardButton>
-    );
+export  const Button = ({ onClick, type, label, name }) => (
+  <CustomButton type={type} onClick={onClick} name={name}>
+    {label}
+  </CustomButton>
+);
 
-  return (
-    <BackButton type={type} onClick={onClick} name={name}>
-      {label}
-    </BackButton>
-  );
-};
-
-export default Button;
