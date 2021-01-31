@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import { userFormSelectors } from 'indexedDB/database';
 import moment from 'moment';
+import { SubmissionError } from 'redux-form';
 
 export const validate = (values) => {
   const errors = {};
@@ -18,6 +19,8 @@ export const validate = (values) => {
 
   if (!values.email) {
     errors.email = 'field is required';
+  } else if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(values.email)) {
+    errors.email = 'field isn`t correct';
   }
 
   if (values.birthday) {
@@ -35,9 +38,13 @@ export const validate = (values) => {
 
 export const asyncValidate = (values) =>
   userFormSelectors().then((res) => {
-    res.map((item) => {
-      if (item.email === values.email) {
-        throw { email: 'That email is taken' };
-      }
-    });
+    if (values.email) {
+      res.map((item) => {
+        if (item.email === values.email) {
+          throw new SubmissionError({
+            email: 'That username is already exist',
+          });
+        }
+      });
+    }
   });

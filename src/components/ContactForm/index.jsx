@@ -1,10 +1,9 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { setCurrentTab } from 'redux/tabs/reducers';
-
 // components
 import { InputComponent } from 'components/CustomFields/Input';
 import { SelectedFields } from 'components/CustomFields/Options';
@@ -15,78 +14,86 @@ import { RenderField } from 'components/CustomFields/RenderField';
 import { optionsLanguage } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
-import { Form, InputForm } from 'components/AccountForm/styled';
-import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
+import {
+  Form,
+  InputForm,
+  LeftBlock,
+  RightBlock,
+} from 'components/AccountForm/styled';
+import { FlexColumn } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { userFormSelector } from 'redux/user/selector';
 
 const ContactForm = () => {
+  const values = useSelector(userFormSelector);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const handleSubmit = () => {
+    dispatch(submit('steps'));
+    if (!values.syncErrors) {
+      dispatch(setCurrentTab('contact'));
+      history.push('/create-user/capabilities');
+    }
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
     history.push('/create-user/profile');
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(setCurrentTab('contact'));
-    history.push('/create-user/capabilities');
-  };
-
   return (
-    <form className="contact">
-      <Form>
-        <LeftSide>
-          <InputComponent
-            label="Company"
-            isRequired
-            name="company"
-            type="text"
-            component={RenderField}
-          />
-          <InputComponent
-            label="Github link"
-            name="githubLink"
-            type="text"
-            component={RenderField}
-          />
-          <InputComponent
-            label="Facebook link"
-            name="facebook"
-            type="text"
-            component={RenderField}
-          />
-          <Field
-            label="Main language"
-            name="language"
-            type="options"
-            isRequired
-            options={optionsLanguage}
-            component={SelectedFields}
-          />
-        </LeftSide>
-        <RightSide>
-          <InputComponent
-            label="Fax"
-            name="fax"
-            type="text"
-            component={RenderField}
-          />
-          <InputForm>
-            <PhoneFields />
-          </InputForm>
-          <FlexColumn>
-            <Button type="submit" onClick={handleSubmit} label="Forward" />
-            <Button name="backForm" label="Back" onClick={handleClick} />
-          </FlexColumn>
-        </RightSide>
-      </Form>
-    </form>
+    <Form className="contact">
+      <LeftBlock>
+        <InputComponent
+          label="Company"
+          isRequired
+          name="company"
+          type="text"
+          component={RenderField}
+        />
+        <InputComponent
+          label="Github link"
+          name="githubLink"
+          type="text"
+          component={RenderField}
+        />
+        <InputComponent
+          label="Facebook link"
+          name="facebook"
+          type="text"
+          component={RenderField}
+        />
+        <Field
+          label="Main language"
+          name="language"
+          type="options"
+          isRequired
+          options={optionsLanguage}
+          component={SelectedFields}
+        />
+      </LeftBlock>
+      <RightBlock>
+        <InputComponent
+          label="Fax"
+          name="fax"
+          type="text"
+          component={RenderField}
+        />
+        <InputForm>
+          <PhoneFields />
+        </InputForm>
+        <FlexColumn>
+          <Button type="submit" onClick={handleSubmit} label="Forward" />
+          <Button name="backForm" label="Back" onClick={handleClick} />
+        </FlexColumn>
+      </RightBlock>
+    </Form>
   );
 };
 
 export default reduxForm({
   form: 'steps',
   validate,
+  onSubmit: validate,
 })(ContactForm);

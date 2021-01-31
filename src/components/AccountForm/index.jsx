@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // redux
+import { userFormSelector } from 'redux/user/selector';
 import { setCurrentTab } from 'redux/tabs/reducers';
 // components
 import Button from 'components/CustomFields/Button';
@@ -17,12 +18,18 @@ import avatar from 'assets/icon/avatar.svg';
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 
 const AccountForm = () => {
+  const { values } = useSelector(userFormSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSubmit = () => {
-    dispatch(setCurrentTab('account'));
-    history.push('/create-user/profile');
+    dispatch(submit('steps'));
+    asyncValidate(values)
+      .then(() => {
+        dispatch(setCurrentTab('account'));
+        history.push('/create-user/profile');
+      })
+      .catch((error) => console.log(error, 'er'));
   };
 
   return (
@@ -70,5 +77,5 @@ const AccountForm = () => {
 export default reduxForm({
   form: 'steps',
   validate,
-  asyncValidate,
+  onSubmit: asyncValidate,
 })(AccountForm);

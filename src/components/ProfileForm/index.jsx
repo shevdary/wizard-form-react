@@ -1,7 +1,7 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { setCurrentTab } from 'redux/tabs/reducers';
 // custom fields
@@ -17,8 +17,10 @@ import { validate, asyncValidate } from 'utils/profileValidate';
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { userFormSelector } from '../../redux/user/selector';
 
 const Profile = () => {
+  const { values } = useSelector(userFormSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -28,8 +30,13 @@ const Profile = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(setCurrentTab('profile'));
-    history.push('/create-user/contact');
+    dispatch(submit('steps'));
+    asyncValidate(values)
+      .then(() => {
+        dispatch(setCurrentTab('profile'));
+        history.push('/create-user/contact');
+      })
+      .catch((error) => console.log(error, 'er'));
   };
 
   return (
@@ -96,5 +103,5 @@ const Profile = () => {
 export default reduxForm({
   form: 'steps',
   validate,
-  asyncValidate,
+  onSubmit: asyncValidate,
 })(Profile);

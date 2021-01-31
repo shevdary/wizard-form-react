@@ -1,4 +1,5 @@
 import { userFormSelectors } from 'indexedDB/database';
+import { SubmissionError } from 'redux-form';
 
 export const validate = (values) => {
   const errors = {};
@@ -20,9 +21,13 @@ export const validate = (values) => {
 
 export const asyncValidate = (values) =>
   userFormSelectors().then((res) => {
-    res.map((item) => {
-      if (item.username === values.username) {
-        throw { username: 'That username is taken' };
-      }
-    });
+    if (values.username) {
+      res.map((item) => {
+        if (item.username === values.username) {
+          throw new SubmissionError({
+            username: 'That username is already exist',
+          });
+        }
+      });
+    }
   });
