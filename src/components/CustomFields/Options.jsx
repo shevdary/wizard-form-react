@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 // styled
 import {
@@ -7,28 +7,14 @@ import {
   RequiredField,
   SpanError,
 } from 'components/AccountForm/styled';
-import { useDispatch } from 'react-redux';
-import { update } from '../../redux/user/reducers';
 
 export const SelectedFields = (props) => {
   const {
     input,
     meta: { touched, error },
-    value,
     label,
     isRequired,
   } = props;
-
-  const [newValue, setNewValue] = useState(value);
-  const dispatch = useDispatch();
-
-  const onChange = (e) => {
-    setNewValue(e);
-  };
-
-  const onBlur = () => {
-    dispatch(update({ language: newValue.value }));
-  };
 
   return (
     <InputForm>
@@ -40,9 +26,9 @@ export const SelectedFields = (props) => {
         <Select
           {...input}
           {...props}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
+          value={input.value}
+          onChange={input.onChange}
+          onBlur={() => input.onBlur(input.value)}
         />
         {touched && error && <SpanError>{error}</SpanError>}
       </div>

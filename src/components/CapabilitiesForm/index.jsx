@@ -12,12 +12,13 @@ import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
-import { validate } from 'utils/contactValidate';
+import { validate } from 'utils/capabilitiesValidate';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
-import { SubmitButton, TextArea } from './styled';
+import { SubmitButton } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { RenderField } from '../CustomFields/RenderField';
 
 const Capabilities = () => {
   const values = useSelector(userFormSelector);
@@ -44,7 +45,7 @@ const Capabilities = () => {
           <LeftSide>
             <Field
               label="Skills"
-              name="skill"
+              name="skills"
               type="options"
               options={optionsSkills}
               component={SelectedFields}
@@ -53,14 +54,14 @@ const Capabilities = () => {
             />
             <InputForm>
               <Label htmlFor="info">Additional information</Label>
-              <TextArea name="info" type="text" component="input" />
+              <Field name="info" type="text" component={RenderField} />
             </InputForm>
           </LeftSide>
           <RightSide>
             <InputForm>
               <Label htmlFor="hobbies">My hobbies</Label>
               <div className="checked">
-                <Checkbox values={hobbies} />
+                <Field values={hobbies} name="hobbies" component={Checkbox} />
               </div>
             </InputForm>
           </RightSide>

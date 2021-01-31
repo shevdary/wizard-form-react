@@ -70,3 +70,8 @@ export const hobbies = [
   },
   { value: 'wtf', label: 'WTF is “hobbies”???', isChecked: false },
 ];
+
+export const gender = [
+  { value: 'male', label: 'male' },
+  { value: 'female', label: 'female' },
+];

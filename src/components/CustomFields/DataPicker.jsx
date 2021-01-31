@@ -7,9 +7,6 @@ export const DataPicker = ({ input, label, meta: { error } }) => (
   <InputForm>
     <Label>{label}</Label>
     <DatePicker
-      {...input}
-      type="date"
-      className="plus-icon"
       dateFormat="dd/MM/yyyy"
       selected={input.value || null}
       onChange={input.onChange}
@@ -20,4 +17,3 @@ export const DataPicker = ({ input, label, meta: { error } }) => (
     {error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
-

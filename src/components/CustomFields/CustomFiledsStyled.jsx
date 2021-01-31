@@ -45,3 +45,9 @@ export const StyledCheckbox = styled.div`
     visibility: ${(props) => (props.checked ? 'visible' : 'hidden')}
   }
 `;
+
+export const RadioLabel = styled.label`
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+`;

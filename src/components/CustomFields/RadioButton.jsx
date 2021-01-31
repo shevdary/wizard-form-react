@@ -1,33 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field } from 'redux-form';
 // components
-import { Label } from 'components/AccountForm/styled';
+import { RadioLabel } from './CustomFiledsStyled';
+import {
+  InputForm,
+  Label,
+  RequiredField,
+  SpanError,
+} from '../AccountForm/styled';
 
-export const RadioButton = ({ input, name, options, type, checked }) => {
-  const [checkedRadio, setCheckedRadio] = useState(checked);
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setCheckedRadio(value);
-  };
+export const RadioButton = ({ input, options, meta: { touched, error } }) => (
+  <InputForm>
+    <Label>
+      {input.name}
+      <RequiredField>*</RequiredField>
+    </Label>
+    {options.map(({ value, label }) => (
+      <RadioLabel>
+        <Field
+          {...input}
+          type="radio"
+          name={input.name}
+          component="input"
+          value={value}
+        />
+        {label}
+      </RadioLabel>
+    ))}
 
-  return (
-    <>
-      {options.map((nameItem) => (
-        <Label>
-          <Field
-            {...input}
-            type={type}
-            name={name}
-            component="input"
-            value={nameItem}
-            onChange={onChange}
-            checked={checkedRadio === nameItem}
-          />
-          {nameItem}
-        </Label>
-      ))}
-    </>
-  );
-};
+    {touched && error && <SpanError>{error}</SpanError>}
+  </InputForm>
+);

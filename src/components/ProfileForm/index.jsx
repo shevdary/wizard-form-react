@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // redux
 import { setCurrentTab } from 'redux/tabs/reducers';
+import { userFormSelector } from 'redux/user/selector';
 // custom fields
 import Button from 'components/CustomFields/Button';
 import { InputComponent } from 'components/CustomFields/Input';
@@ -13,19 +14,14 @@ import { PlaceAutocomplete } from 'components/CustomFields/PlaceAutocomplete';
 import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { validate, asyncValidate } from 'utils/profileValidate';
+import { gender } from 'utils/optionsValue';
 // styled
-import {
-  Form,
-  InputForm,
-  Label,
-  RequiredField,
-} from 'components/AccountForm/styled';
-import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
+import { Form } from 'components/AccountForm/styled';
+import { FlexColumn, RightSide, LeftSide } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { userFormSelector } from '../../redux/user/selector';
 
 const Profile = () => {
-  const { values } = useSelector(userFormSelector);
+  const values = useSelector(userFormSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -36,10 +32,12 @@ const Profile = () => {
 
   const handleSubmit = () => {
     dispatch(submit('steps'));
-    asyncValidate(values)
+    asyncValidate(values.values)
       .then(() => {
-        dispatch(setCurrentTab('profile'));
-        history.push('/create-user/contact');
+        if (!values.syncErrors) {
+          dispatch(setCurrentTab('profile'));
+          history.push('/create-user/contact');
+        }
       })
       .catch((error) => console.log(error, 'er'));
   };
@@ -63,9 +61,7 @@ const Profile = () => {
         />
         <InputComponent
           name="birthday"
-          dateFormat="dd/MM/yyyy"
           label="Birth date"
-          type="date"
           component={DataPicker}
         />
       </RightSide>
@@ -84,20 +80,7 @@ const Profile = () => {
           values="value"
           component={PlaceAutocomplete}
         />
-        <InputForm>
-          <Label>
-            Gender
-            <RequiredField>*</RequiredField>
-          </Label>
-          <RadioSelect>
-            <RadioButton
-              name="gender"
-              type="radio"
-              value="male"
-              options={['male', 'female']}
-            />
-          </RadioSelect>
-        </InputForm>
+        <Field name="gender" component={RadioButton} options={gender} />
         <FlexColumn>
           <Button type="submit" onClick={handleSubmit} label="Forward" />
           <Button onClick={handleClick} label="Back" name="backForm" />
