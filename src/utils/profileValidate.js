@@ -22,6 +22,9 @@ export const validate = (values) => {
   } else if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(values.email)) {
     errors.email = 'field isn`t correct';
   }
+  if (!values.gender) {
+    errors.gender = 'field is required';
+  }
 
   if (values.birthday) {
     const eighteenYearsAgo = moment().subtract(18, 'years');
@@ -40,6 +43,15 @@ export const asyncValidate = (values) =>
   userFormSelectors().then((res) => {
     if (values.email) {
       res.map((item) => {
+        if (!values.email) {
+          throw new SubmissionError({
+            email: 'field is required',
+          });
+        } else if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(values.email)) {
+          throw new SubmissionError({
+            email: 'field isn`t correct',
+          });
+        }
         if (item.email === values.email) {
           throw new SubmissionError({
             email: 'That username is already exist',

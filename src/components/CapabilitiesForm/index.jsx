@@ -1,16 +1,18 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setValueToDB } from 'redux/db/reducers';
 import { setCurrentTab } from 'redux/tabs/reducers';
+import { userFormSelector } from 'redux/user/selector';
 // components
 import Button from 'components/CustomFields/Button';
 import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
+import { validate } from 'utils/contactValidate';
 // styled
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
@@ -18,13 +20,16 @@ import { SubmitButton, TextArea } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Capabilities = () => {
+  const values = useSelector(userFormSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(setCurrentTab('capabilities'));
-    dispatch(setValueToDB());
+  const handleSubmit = () => {
+    dispatch(submit('steps'));
+    if (!values.syncErrors) {
+      dispatch(setCurrentTab('capabilities'));
+      dispatch(setValueToDB());
+    }
   };
 
   const handleClick = (e) => {
@@ -71,4 +76,6 @@ const Capabilities = () => {
 
 export default reduxForm({
   form: 'steps',
+  validate,
+  onSubmit: validate,
 })(Capabilities);

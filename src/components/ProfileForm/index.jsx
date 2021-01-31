@@ -14,7 +14,12 @@ import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { validate, asyncValidate } from 'utils/profileValidate';
 // styled
-import { Form, InputForm, Label } from 'components/AccountForm/styled';
+import {
+  Form,
+  InputForm,
+  Label,
+  RequiredField,
+} from 'components/AccountForm/styled';
 import { RadioSelect, FlexColumn, RightSide, LeftSide } from './styled';
 import 'react-datepicker/dist/react-datepicker.css';
 import { userFormSelector } from '../../redux/user/selector';
@@ -80,14 +85,16 @@ const Profile = () => {
           component={PlaceAutocomplete}
         />
         <InputForm>
-          <Label>Gender</Label>
+          <Label>
+            Gender
+            <RequiredField>*</RequiredField>
+          </Label>
           <RadioSelect>
             <RadioButton
               name="gender"
               type="radio"
+              value="male"
               options={['male', 'female']}
-              checked="male"
-              component={RenderField}
             />
           </RadioSelect>
         </InputForm>

@@ -5,6 +5,7 @@ import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
 
 export const PlaceAutocomplete = (props) => {
   const { input, label, meta } = props;
+
   return (
     <InputForm>
       <Label>{label}</Label>
@@ -12,6 +13,10 @@ export const PlaceAutocomplete = (props) => {
         {...input}
         name="address"
         type="text"
+        selectProps={{
+          value: input.value,
+          onChange: input.onChange,
+        }}
         onChange={input.onChange}
       />
       {meta.touched && meta.error && <SpanError>{meta.error}</SpanError>}
