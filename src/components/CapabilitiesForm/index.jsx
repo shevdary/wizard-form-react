@@ -29,6 +29,7 @@ const Capabilities = () => {
     if (!values.syncErrors) {
       dispatch(setCurrentTab('capabilities'));
       dispatch(setValueToDB());
+      history.push('/user-list');
     }
   };
 
