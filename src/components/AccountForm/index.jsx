@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { reduxForm, submit } from 'redux-form';
+import { reduxForm, submit, Field } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // redux
-import { userFormSelector } from 'redux/user/selector';
+import { userFormSelector, userSelector } from 'redux/user/selector';
 import { setCurrentTab } from 'redux/tabs/reducers';
 // components
 import { Button } from 'components/CustomFields/Button';
@@ -13,14 +13,22 @@ import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
-import avatar from 'assets/icon/avatar.svg';
+import avatarIcon from 'assets/icon/avatar.svg';
 // styled
 import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
 
 const AccountForm = () => {
   const { values } = useSelector(userFormSelector);
+  const { avatar } = useSelector(userSelector);
+  const [isLoadAvatar, setIsLoadAvatar] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    if (avatar) {
+      setIsLoadAvatar(true);
+    }
+  }, [isLoadAvatar, avatar]);
 
   const handleSubmit = () => {
     dispatch(submit('steps'));
@@ -36,11 +44,21 @@ const AccountForm = () => {
     <>
       <Form className="account">
         <LeftBlock className="left-side">
-          <UserAvatar className="avatar">
-            <img src={avatar} alt="" />
+          <UserAvatar
+            className="avatar"
+            size="170px"
+            border="true"
+            crop={!isLoadAvatar}
+          >
+            <img src={avatar || avatarIcon} alt="avatar" />
           </UserAvatar>
           <AvatarLabel htmlFor="addAvatar">
-            <Avatar id="addAvatar" />
+            <Field
+              id="addAvatar"
+              component={Avatar}
+              name="avatar"
+              type="file"
+            />
           </AvatarLabel>
         </LeftBlock>
         <RightBlock>

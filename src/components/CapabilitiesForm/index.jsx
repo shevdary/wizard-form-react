@@ -18,6 +18,7 @@ import { validate } from 'utils/capabilitiesValidate';
 import { Form, InputForm, Label } from 'components/AccountForm/styled';
 import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { removeItem } from '../../utils/localStorage';
 
 const Capabilities = () => {
   const values = useSelector(userFormSelector);
@@ -29,6 +30,7 @@ const Capabilities = () => {
     if (!values.syncErrors) {
       dispatch(setCurrentTab('capabilities'));
       dispatch(setValueToDB());
+      removeItem();
       history.push('/user-list');
     }
   };

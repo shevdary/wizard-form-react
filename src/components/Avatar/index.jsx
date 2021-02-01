@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Field } from 'redux-form';
+
+// redux
 import { update } from 'redux/user/reducers';
 // styled
 import { AvatarLabel } from '../AccountForm/styled';
 import { HiddenField } from './styled';
 
-export const Avatar = () => {
+export const Avatar = ({ input, type }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -27,7 +28,7 @@ export const Avatar = () => {
     }
   };
 
-  const renderFileInput = ({ input, type }) => (
+  return (
     <AvatarLabel htmlFor="addAvatar">
       <HiddenField
         name={input.name}
@@ -40,6 +41,4 @@ export const Avatar = () => {
       <i>+ addAvatar</i>
     </AvatarLabel>
   );
-
-  return <Field name="image" type="file" component={renderFileInput} />;
 };

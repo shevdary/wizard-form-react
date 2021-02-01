@@ -5,15 +5,16 @@ import { Field } from 'redux-form';
 export const UserAvatar = styled.div`
   display: flex;
   justify-content: center;
-  width: 171px;
-  height: 171px;
-  border: 3px solid #5e97f3;
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
+  border: ${(props) => (props.border ? '3px solid #5e97f3' : 'none')};
   border-radius: 50%;
   background: #ffffff;
   overflow: hidden;
 
   img {
-    transform: translate(0px, 20px);
+    transform: ${(props) =>
+      props.crop ? 'translate(0px, 20px)' : 'translate(0px, 0px)'};
   }
 `;
 
@@ -79,7 +80,6 @@ export const CustomButton = styled.button`
       return '#4ee4a5';
     }
   }};
-
   text-align: center;
   height: 40px;
   width: 100px;
@@ -90,12 +90,6 @@ export const CustomButton = styled.button`
   top: 100%;
   right: 0;
   cursor: pointer;
-`;
-
-export const AddAvatar = styled.input.attrs((props) => ({
-  type: props.type,
-}))`
-  display: none;
 `;
 
 export const AvatarLabel = styled.label`
