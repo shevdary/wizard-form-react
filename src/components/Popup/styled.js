@@ -35,6 +35,5 @@ export const ButtonTransparent = styled.button`
   border: none;
   color: white;
   font-weight: bold;
-  position: absolute;
   right: 15px;
 `;
