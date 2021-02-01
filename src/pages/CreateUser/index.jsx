@@ -6,7 +6,7 @@ import { update } from 'redux/user/reducers';
 import { userSelector } from 'redux/user/selector';
 // components
 import Tabs from 'components/Tabs';
-import { Popup } from 'components/Header';
+import { Popup } from 'components/Popup';
 // utils
 import { getItem, getPath, removeItem } from 'utils/localStorage';
 // styled

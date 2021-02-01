@@ -14,22 +14,13 @@ export const NavItem = styled.div`
   height: inherit;
 `;
 
-export const OpacityButton = styled.button`
+export const HeaderButton = styled.button`
   background: transparent;
   height: fit-content;
   border: 0px none;
   color: white;
   font-size: 14px;
-  cursor: pointer;
-`;
-
-export const TranslucentButton = styled.button`
-  background: transparent;
-  height: fit-content;
-  border: 0px none;
-  color: white;
-  font-size: 14px;
-  opacity: 50%;
+  opacity: ${(props) => (props.active ? '100%' : '50%')};
   cursor: pointer;
 `;
 
