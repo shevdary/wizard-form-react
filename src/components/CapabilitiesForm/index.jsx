@@ -14,11 +14,16 @@ import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
+import { removeItem } from 'utils/localStorage';
 // styled
-import { Form, InputForm, Label } from 'components/AccountForm/styled';
-import { FlexColumn, LeftSide, RightSide } from 'components/ProfileForm/styled';
+import {
+  Form,
+  FormFields,
+  InputForm,
+  Label,
+} from 'components/AccountForm/styled';
+import { FlexColumn } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { removeItem } from '../../utils/localStorage';
 
 const Capabilities = () => {
   const values = useSelector(userFormSelector);
@@ -44,7 +49,7 @@ const Capabilities = () => {
     <>
       <form className="capabilities">
         <Form className="account">
-          <LeftSide>
+          <FormFields>
             <Field
               label="Skills"
               name="skills"
@@ -58,15 +63,15 @@ const Capabilities = () => {
               <Label htmlFor="info">Additional information</Label>
               <Field name="info" type="text" component={RenderField} />
             </InputForm>
-          </LeftSide>
-          <RightSide>
+          </FormFields>
+          <FormFields>
             <InputForm>
               <Label htmlFor="hobbies">My hobbies</Label>
               <div className="checked">
                 <Field values={hobbies} name="hobbies" component={Checkbox} />
               </div>
             </InputForm>
-          </RightSide>
+          </FormFields>
         </Form>
       </form>
       <FlexColumn>

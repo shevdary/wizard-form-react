@@ -117,15 +117,6 @@ export const SpanError = styled.span`
   color: red;
 `;
 
-export const BackButton = styled.button`
-  height: 40px;
-  width: 100px;
-  float: right;
-  text-align: center;
-  background: #c1cfe0;
-  border: none;
-  color: #ffffff;
-  position: absolute;
-  top: 50%;
-  cursor: pointer;
+export const FormFields = styled.div`
+  width: ${(props) => (props.big ? '400px' : '300px')};
 `;

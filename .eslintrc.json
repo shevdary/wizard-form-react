@@ -46,6 +46,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "object-curly-newline": "off",
     "no-throw-literal": "off",
-    "array-callback-return": "off"
+    "array-callback-return": "off",
+   "no-unused-expressions": "off"
   }
 }

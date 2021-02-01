@@ -16,12 +16,7 @@ import { FlexColumn } from 'components/ProfileForm/styled';
 import { optionsLanguage } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
-import {
-  Form,
-  InputForm,
-  LeftBlock,
-  RightBlock,
-} from 'components/AccountForm/styled';
+import { Form, FormFields, InputForm } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ContactForm = () => {
@@ -44,24 +39,21 @@ const ContactForm = () => {
 
   return (
     <Form className="contact">
-      <LeftBlock>
+      <FormFields>
         <InputComponent
           label="Company"
           isRequired
           name="company"
-          type="text"
           component={RenderField}
         />
         <InputComponent
           label="Github link"
           name="githubLink"
-          type="text"
           component={RenderField}
         />
         <InputComponent
           label="Facebook link"
           name="facebook"
-          type="text"
           component={RenderField}
         />
         <Field
@@ -72,14 +64,9 @@ const ContactForm = () => {
           options={optionsLanguage}
           component={SelectedFields}
         />
-      </LeftBlock>
-      <RightBlock>
-        <InputComponent
-          label="Fax"
-          name="fax"
-          type="text"
-          component={RenderField}
-        />
+      </FormFields>
+      <FormFields>
+        <InputComponent label="Fax" name="fax" component={RenderField} />
         <InputForm>
           <PhoneFields />
         </InputForm>
@@ -87,7 +74,7 @@ const ContactForm = () => {
           <Button type="forward" onClick={handleSubmit} label="Forward" />
           <Button name="backForm" label="Back" onClick={handleClick} />
         </FlexColumn>
-      </RightBlock>
+      </FormFields>
     </Form>
   );
 };

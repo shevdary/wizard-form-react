@@ -1,18 +1,11 @@
-/*eslint-disable*/
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';
 import userList from 'assets/icon/userList.svg';
 // styled
-import {
-  HeaderButton,
-  Logo,
-  NavItem,
-  NavPanel,
-  TranslucentButton,
-} from './styled';
-import { useHistory, useLocation } from 'react-router-dom';
+import { HeaderButton, Logo, NavItem, NavPanel } from './styled';
 
 export const NavBar = () => {
   const location = useLocation().pathname;

@@ -15,7 +15,7 @@ import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
 // styled
-import { Form, LeftBlock, RightBlock, UserAvatar, AvatarLabel } from './styled';
+import { Form, LeftBlock, UserAvatar, AvatarLabel, FormFields } from './styled';
 
 const AccountForm = () => {
   const { values } = useSelector(userFormSelector);
@@ -61,11 +61,10 @@ const AccountForm = () => {
             />
           </AvatarLabel>
         </LeftBlock>
-        <RightBlock>
+        <FormFields big>
           <InputComponent
             label="User name"
             name="username"
-            type="text"
             isRequired
             component={RenderField}
           />
@@ -86,7 +85,7 @@ const AccountForm = () => {
             component={RenderField}
           />
           <Button type="forward" onClick={handleSubmit} label="Forward" />
-        </RightBlock>
+        </FormFields>
       </Form>
     </>
   );

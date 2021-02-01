@@ -16,8 +16,7 @@ import { RenderField } from 'components/CustomFields/RenderField';
 import { validate, asyncValidate } from 'utils/profileValidate';
 import { gender } from 'utils/optionsValue';
 // styled
-import { Form } from 'components/AccountForm/styled';
-import { FlexColumn, RightSide, LeftSide } from './styled';
+import { Form, FormFields } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Profile = () => {
@@ -44,10 +43,9 @@ const Profile = () => {
 
   return (
     <Form className="profile">
-      <RightSide>
+      <FormFields>
         <InputComponent
           name="firstName"
-          type="text"
           isRequired
           label="First name"
           component={RenderField}
@@ -55,7 +53,6 @@ const Profile = () => {
         <InputComponent
           label="Last name"
           name="lastName"
-          type="text"
           isRequired
           component={RenderField}
         />
@@ -64,8 +61,8 @@ const Profile = () => {
           label="Birth date"
           component={DataPicker}
         />
-      </RightSide>
-      <LeftSide>
+      </FormFields>
+      <FormFields>
         <InputComponent
           label="Email"
           name="email"
@@ -76,16 +73,13 @@ const Profile = () => {
         <Field
           label="Address"
           name="address"
-          type="text"
           values="value"
           component={PlaceAutocomplete}
         />
         <Field name="gender" component={RadioButton} options={gender} />
-        <FlexColumn>
-          <Button onClick={handleSubmit} label="Forward" type="forward" />
-        </FlexColumn>
-        <Button type="back" onClick={handleClick} label="Back" />
-      </LeftSide>
+      </FormFields>
+      <Button onClick={handleSubmit} label="Forward" type="forward" />
+      <Button type="back" onClick={handleClick} label="Back" />
     </Form>
   );
 };

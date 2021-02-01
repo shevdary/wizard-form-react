@@ -36,7 +36,7 @@ export const InputComponent = ({
 
   return (
     <InputForm>
-      <Label htmlFor="password">
+      <Label>
         {label}
         {isRequired && <RequiredField>*</RequiredField>}
       </Label>

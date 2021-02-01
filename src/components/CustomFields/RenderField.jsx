@@ -43,7 +43,7 @@ export const RenderField = ({
           {...input}
           value={valueFields}
           placeholder={label}
-          type={type}
+          type={type ? type : 'text'}
           onChange={onChange}
           onClick={onClick}
         />
