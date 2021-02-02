@@ -4,14 +4,14 @@ import { Field } from 'redux-form';
 
 export const UserAvatar = styled.div`
   display: flex;
-  justify-content: center;
+  margin-top: 10px;
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   border: ${(props) => (props.border ? '3px solid #5e97f3' : 'none')};
   border-radius: 50%;
   background: #ffffff;
   overflow: hidden;
-
+  justify-content: center;
   img {
     transform: ${(props) =>
       props.crop ? 'translate(0px, 20px)' : 'translate(0px, 0px)'};
@@ -19,20 +19,10 @@ export const UserAvatar = styled.div`
 `;
 
 export const Form = styled.div`
-  padding: 75px 100px;
+  padding: 75px 100px 0 100px;
+  height: 350px;
   display: flex;
   justify-content: space-between;
-`;
-
-export const LeftBlock = styled.div`
-  margin: 35px 0 0;
-  text-align: center;
-`;
-
-export const RightBlock = styled.div`
-  margin: 20px 0 20px 0;
-  width: 400px;
-  position: relative;
 `;
 
 export const InputForm = styled.div`
@@ -86,9 +76,7 @@ export const CustomButton = styled.button`
   float: right;
   border: none;
   color: #ffffff;
-  position: absolute;
-  top: 100%;
-  right: 0;
+  margin-right: 100px;
   cursor: pointer;
 `;
 
@@ -97,6 +85,9 @@ export const AvatarLabel = styled.label`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  & i {
+    margin-left: 40px;
+  }
 `;
 
 export const RequiredField = styled.p`

@@ -22,7 +22,6 @@ import {
   InputForm,
   Label,
 } from 'components/AccountForm/styled';
-import { FlexColumn } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Capabilities = () => {
@@ -74,9 +73,7 @@ const Capabilities = () => {
           </FormFields>
         </Form>
       </form>
-      <FlexColumn>
-        <Button onClick={handleSubmit} type="finish" label=" Finish" />
-      </FlexColumn>
+      <Button onClick={handleSubmit} type="finish" label=" Finish" />
       <Button label="Back" onClick={handleClick} type="back" />
     </>
   );

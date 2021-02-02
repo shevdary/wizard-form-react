@@ -1,7 +1,7 @@
 import React from 'react';
-import InputMask from 'react-input-mask';
 // styled
-import { SpanError } from 'components/AccountForm/styled';
+import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
+import { InputMaskStyled } from '../ContactForm/styled';
 
 export const renderNumber = ({
   input,
@@ -9,8 +9,9 @@ export const renderNumber = ({
   name,
   meta: { touched, error },
 }) => (
-  <>
-    <InputMask
+  <InputForm>
+    <Label>{`Phone #${input.name[input.name.length - 1]}`}</Label>
+    <InputMaskStyled
       {...input}
       name={name}
       mask="+38 (099) 999-99-99"
@@ -18,5 +19,5 @@ export const renderNumber = ({
       type={type}
     />
     {touched && error && <SpanError>{error}</SpanError>}
-  </>
+  </InputForm>
 );

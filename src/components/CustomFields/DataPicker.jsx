@@ -1,7 +1,7 @@
 import React from 'react';
-import DatePicker from 'react-datepicker';
 // styled
 import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
+import DatePicker from 'react-datepicker';
 
 export const DataPicker = ({ input, label, meta: { error } }) => (
   <InputForm>
