@@ -1,7 +1,8 @@
 import React from 'react';
-import { Field, reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
 // redux
+import { update } from 'redux/user/reducers';
+import { Field, reduxForm, submit } from 'redux-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { setValueToDB } from 'redux/db/reducers';
 import { setCurrentTab } from 'redux/tabs/reducers';
@@ -14,7 +15,6 @@ import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { hobbies, optionsSkills } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
-import { removeItem } from 'utils/localStorage';
 // styled
 import {
   Form,
@@ -26,17 +26,17 @@ import { FlexColumn } from 'components/ProfileForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Capabilities = () => {
-  const values = useSelector(userFormSelector);
+  const valuesFromUserStore = useSelector(userFormSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
+    const { values } = valuesFromUserStore;
     dispatch(submit('steps'));
-    if (!values.syncErrors) {
+    if (!valuesFromUserStore.syncErrors) {
+      dispatch(update({ values, history }));
       dispatch(setCurrentTab('capabilities'));
       dispatch(setValueToDB());
-      removeItem();
-      history.push('/user-list');
     }
   };
 

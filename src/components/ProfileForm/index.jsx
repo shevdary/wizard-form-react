@@ -1,10 +1,10 @@
-import React from 'react';
-import { Field, reduxForm, submit } from 'redux-form';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 // redux
-import { setCurrentTab } from 'redux/tabs/reducers';
-import { userFormSelector } from 'redux/user/selector';
+import { Field, reduxForm, submit } from 'redux-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { userFormSelector, userSelector } from 'redux/user/selector';
+import { update } from 'redux/user/reducers';
 // custom fields
 import { Button } from 'components/CustomFields/Button';
 import { InputComponent } from 'components/CustomFields/Input';
@@ -19,10 +19,15 @@ import { gender } from 'utils/optionsValue';
 import { Form, FormFields } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const Profile = () => {
-  const values = useSelector(userFormSelector);
+const Profile = ({ initialize }) => {
+  const userStore = useSelector(userFormSelector);
+  const value = useSelector(userSelector);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    initialize(value);
+  }, [value, initialize]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -30,15 +35,15 @@ const Profile = () => {
   };
 
   const handleSubmit = () => {
+    const { values } = userStore;
     dispatch(submit('steps'));
-    asyncValidate(values.values)
+    asyncValidate(values)
       .then(() => {
-        if (!values.syncErrors) {
-          dispatch(setCurrentTab('profile'));
-          history.push('/create-user/contact');
+        if (!userStore.syncErrors) {
+          dispatch(update({ values, history }));
         }
       })
-      .catch((error) => console.log(error, 'er'));
+      .catch(() => {});
   };
 
   return (

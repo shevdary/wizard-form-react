@@ -1,9 +1,10 @@
 import React from 'react';
-import { Field, reduxForm, submit } from 'redux-form';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 // redux
-import { setCurrentTab } from 'redux/tabs/reducers';
+import { Field, reduxForm, submit } from 'redux-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { update } from 'redux/user/reducers';
+
 import { userFormSelector } from 'redux/user/selector';
 // components
 import { InputComponent } from 'components/CustomFields/Input';
@@ -20,15 +21,15 @@ import { Form, FormFields, InputForm } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ContactForm = () => {
-  const values = useSelector(userFormSelector);
+  const valuesFromUserStore = useSelector(userFormSelector);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSubmit = () => {
+    const { values } = valuesFromUserStore;
     dispatch(submit('steps'));
-    if (!values.syncErrors) {
-      dispatch(setCurrentTab('contact'));
-      history.push('/create-user/capabilities');
+    if (!valuesFromUserStore.syncErrors) {
+      dispatch(update({ values, history }));
     }
   };
 

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
 // redux
+import { useDispatch } from 'react-redux';
 import { update } from 'redux/user/reducers';
 // styled
-import { AvatarLabel } from '../AccountForm/styled';
+import { AvatarLabel } from 'components/AccountForm/styled';
 import { HiddenField } from './styled';
 
 export const Avatar = ({ input, type }) => {

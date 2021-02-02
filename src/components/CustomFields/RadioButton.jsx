@@ -1,13 +1,13 @@
 import React from 'react';
 import { Field } from 'redux-form';
-// components
-import { RadioLabel } from './CustomFiledsStyled';
+// styled
 import {
   InputForm,
   Label,
   RequiredField,
   SpanError,
-} from '../AccountForm/styled';
+} from 'components/AccountForm/styled';
+import { RadioLabel } from './CustomFiledsStyled';
 
 export const RadioButton = ({ input, options, meta: { touched, error } }) => (
   <InputForm>

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+// redux
 import { useDispatch, useSelector } from 'react-redux';
 import { reduxForm, submit, Field } from 'redux-form';
-import { useHistory } from 'react-router-dom';
-// redux
 import { userFormSelector, userSelector } from 'redux/user/selector';
-import { setCurrentTab } from 'redux/tabs/reducers';
+import { update } from 'redux/user/reducers';
 // components
 import { Button } from 'components/CustomFields/Button';
 import { Avatar } from 'components/Avatar';
 import { InputComponent } from 'components/CustomFields/Input';
 import { RenderField } from 'components/CustomFields/RenderField';
+import { useHistory } from 'react-router-dom';
 // utils
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
@@ -17,27 +17,31 @@ import avatarIcon from 'assets/icon/avatar.svg';
 // styled
 import { Form, LeftBlock, UserAvatar, AvatarLabel, FormFields } from './styled';
 
-const AccountForm = () => {
-  const { values } = useSelector(userFormSelector);
-  const { avatar } = useSelector(userSelector);
-  const [isLoadAvatar, setIsLoadAvatar] = useState(false);
+const AccountForm = ({ initialize }) => {
+  const valuesFromUserStore = useSelector(userFormSelector);
+  const { avatar, username, password, repeatPassword } = useSelector(
+    userSelector
+  );
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
-    if (avatar) {
-      setIsLoadAvatar(true);
-    }
-  }, [isLoadAvatar, avatar]);
+    initialize({ username, password, repeatPassword });
+  }, [username, password, repeatPassword, initialize]);
 
   const handleSubmit = () => {
+    const { values } = valuesFromUserStore;
     dispatch(submit('steps'));
     asyncValidate(values)
       .then(() => {
-        dispatch(setCurrentTab('account'));
-        history.push('/create-user/profile');
+        if (
+          !valuesFromUserStore.syncErrors &&
+          !valuesFromUserStore.asyncErrors
+        ) {
+          dispatch(update({ values, history }));
+        }
       })
-      .catch((error) => console.log(error, 'er'));
+      .catch(() => {});
   };
 
   return (
@@ -48,7 +52,7 @@ const AccountForm = () => {
             className="avatar"
             size="170px"
             border="true"
-            crop={!isLoadAvatar}
+            crop={false}
           >
             <img src={avatar || avatarIcon} alt="avatar" />
           </UserAvatar>
