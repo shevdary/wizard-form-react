@@ -2,8 +2,7 @@ import Dexie from 'dexie';
 
 const db = new Dexie('user');
 db.version(1).stores({
-  user:
-    'username,password,image,firstName,lastName,birthdate,email,address,gender,company,github,facebook,language,fax,phone,skills,info,hobbies',
+  user: '++id',
 });
 
 export const userFormSelectors = async () => db.user.toArray();

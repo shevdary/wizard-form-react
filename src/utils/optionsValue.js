@@ -75,3 +75,11 @@ export const gender = [
   { value: 'male', label: 'male' },
   { value: 'female', label: 'female' },
 ];
+export const tableHeadValue = [
+  '',
+  'name',
+  'company',
+  'contacts',
+  'last update',
+];
+export const TabsName = ['account', 'profile', 'contact', 'capabilities'];

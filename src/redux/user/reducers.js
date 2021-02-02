@@ -1,12 +1,10 @@
-/*eslint-disable*/
 // const
-const CREATE = 'USER/CREATE_USER';
-export const ADD_INFO = 'USER/ADD_INFO';
+export const SET_USER_INFO = 'USER/SET_USER_INFO';
 export const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
 export const USER_RESET = 'USER/USER_RESET';
 // actions
 export const update = (data) => ({
-  type: ADD_INFO,
+  type: SET_USER_INFO,
   payload: data,
 });
 export const loadFromStorage = () => ({
@@ -16,31 +14,15 @@ export const resetUserValue = () => ({
   type: USER_RESET,
 });
 // reducers
-const initialState = {
-  user: {},
-  isLoad: false,
-};
+const initialState = {};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE:
-      return { ...state, posts: state.posts.concat([action.payload]) };
-    case ADD_INFO: {
-      return {
-        ...state,
-        user: Object.assign(state.user, action.payload),
-      };
+    case SET_USER_INFO: {
+      return Object.assign(state, action.payload.values);
     }
-    case LOAD_SAVED_INFO:
-      return {
-        ...state,
-        isLoad: true,
-      };
     case USER_RESET:
-      return {
-        ...state,
-        user: {},
-      };
+      return {};
     default:
       return state;
   }

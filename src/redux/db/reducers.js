@@ -1,7 +1,7 @@
 // const
-export const SET_DB = 'USER/SET_BD';
-const SET_SUCCESS = 'USER/SET_BD_SUCCESS';
-const SET_FAILED = 'USER/SET_BD_FAILED';
+export const SET_DB = 'DB/SET_BD';
+const SET_SUCCESS = 'DB/SET_BD_SUCCESS';
+const SET_FAILED = 'DB/SET_BD_FAILED';
 // actions
 export const setValueToDB = () => ({
   type: SET_DB,

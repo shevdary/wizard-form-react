@@ -1,12 +1,11 @@
-export const savePage = (path) => localStorage.setItem('currentPath', path);
-
-export const setItem = (data) =>
-  localStorage.setItem('unmount', JSON.stringify(data));
-
-export const removeItem = () => localStorage.clear();
-
-export const getItem = () => localStorage.getItem('unmount');
-
-export const setPath = (path) => localStorage.setItem('pageLeave', path);
-
-export const getPath = () => localStorage.getItem('pageLeave');
+export const setItem = (key, data) =>
+  localStorage.setItem(key, JSON.stringify(data));
+export const getItem = (key) => JSON.parse(localStorage.getItem(key));
+// user
+export const getUserFromLocalStorage = () => getItem('user');
+export const setUserToLocalStorage = (data) => setItem('user', data);
+// tab
+export const setTabToLocalStorage = (data) => setItem('tab', data);
+export const getTabFromLocalStorage = () => getItem('tab');
+// clear all from localStorage
+export const removeAllFromLocalStorage = () => localStorage.clear();

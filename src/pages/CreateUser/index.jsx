@@ -8,48 +8,52 @@ import { userSelector } from 'redux/user/selector';
 import Tabs from 'components/Tabs';
 import { Popup } from 'components/Popup';
 // utils
-import { getItem, getPath, removeItem } from 'utils/localStorage';
+import {
+  getTabFromLocalStorage,
+  getUserFromLocalStorage,
+  removeAllFromLocalStorage,
+} from 'utils/localStorage';
+import { TabsName } from 'utils/optionsValue';
 // styled
 import { Main, TextCenter } from './CreateUserStyled';
 
-const CreateUser = ({ title }) => {
+const CreateUser = () => {
   const user = useSelector(userSelector);
-  const [isShowAlert, setIsShowAlert] = useState(false);
+  const [isShowPopup, setIsShowPopup] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const tabsList = ['account', 'profile', 'contact', 'capabilities'];
 
   useEffect(() => {
-    if (Object.keys(user).length === 0 && getItem()) {
-      setIsShowAlert(true);
+    if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
+      setIsShowPopup(true);
     }
-  }, [isShowAlert, user]);
+  }, [user]);
 
   const handleClose = (e) => {
     e.preventDefault();
-    setIsShowAlert(false);
-    removeItem();
+    setIsShowPopup(false);
+    removeAllFromLocalStorage();
   };
 
   const handleContinue = (e) => {
     e.preventDefault();
-    const redirectTabIndex = tabsList.indexOf(getPath());
-    dispatch(update(JSON.parse(getItem())));
-    history.push(`/create-user/${tabsList[redirectTabIndex + 1]}`);
+    const redirectTabIndex = TabsName.indexOf(getTabFromLocalStorage());
+    dispatch(update(getUserFromLocalStorage()));
+    history.push(`/create-user/${TabsName[redirectTabIndex + 1]}`);
     handleClose(e);
   };
 
   return (
     <div className="main-account">
       <Main>
-        <TextCenter>{title || 'Adding new user'}</TextCenter>
+        <TextCenter>Adding new user</TextCenter>
         <Popup
           text="You have an unsaved user data. Do you want to complete it?"
-          isShowAlert={isShowAlert}
+          isShowPopup={isShowPopup}
           handleClose={handleClose}
           handleContinue={handleContinue}
         />
-        <Tabs tabValue={tabsList} />
+        <Tabs />
       </Main>
     </div>
   );
