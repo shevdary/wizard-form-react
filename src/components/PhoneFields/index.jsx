@@ -1,47 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 // redux
 import { Field } from 'redux-form';
 // components
-import { AddNumber } from 'components/ContactForm/styled';
-import { Label } from 'components/AccountForm/styled';
+import { ButtonForPhone, FieldWrapper } from 'components/ContactForm/styled';
 import { renderNumber } from 'components/CustomFields/PhoneNumber';
+// assets
+import addNumberIcon from 'assets/icon/addButton.svg';
+import removeNumberIcon from 'assets/icon/removeButton.svg';
 
-const PhoneFields = () => {
-  const [values, setValues] = useState([]);
-
-  const addClick = (e) => {
-    e.preventDefault();
-    const generateId = new Date().getTime().toString();
-    setValues([...values, { id: generateId, values: null }]);
+const PhoneFields = ({ fields, maxCountFiled }) => {
+  const handleCreatePhone = () => {
+    fields.push({});
   };
-
-  const removeClick = (id) => {
-    const val = values.filter((item) => item.id !== id);
-    setValues(val);
+  const handleRemovePhone = (index) => {
+    fields.remove(index);
   };
 
   return (
-    <div>
-      {values.map((element, index, array) => (
-        <div key={element.id}>
-          <Label htmlFor={`${index}-number`}>{`number #${index} `}</Label>
-          <Field
-            name={`number${index}`}
-            id={`${index}-number`}
-            component={renderNumber}
-          />
-
-          {array.length > 1 ? (
-            <AddNumber type="button" onClick={() => removeClick(element.id)}>
-              -
-            </AddNumber>
-          ) : null}
-        </div>
+    <div className="phoneFields">
+      {fields.map((phone, index) => (
+        <FieldWrapper key={`phone${index}`}>
+          <Field name={`phone.${index}`} id={index} component={renderNumber} />
+          <ButtonForPhone
+            type="remove"
+            onClick={() => handleRemovePhone(index)}
+            count={fields.length}
+          >
+            <img src={removeNumberIcon} alt="remove" />
+          </ButtonForPhone>
+        </FieldWrapper>
       ))}
-      {values.length < 3 && (
-        <AddNumber onClick={addClick} component="button">
-          + add phone number
-        </AddNumber>
+      {fields.length < maxCountFiled && (
+        <ButtonForPhone
+          type="add"
+          component="button"
+          onClick={handleCreatePhone}
+        >
+          <img src={addNumberIcon} alt="add" />
+          add phone number
+        </ButtonForPhone>
       )}
     </div>
   );
