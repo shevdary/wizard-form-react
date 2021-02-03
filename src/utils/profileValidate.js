@@ -1,4 +1,4 @@
-import { userFormSelectors } from 'indexedDB/database';
+import { getUserListFromDB } from 'indexedDB/database';
 import moment from 'moment';
 
 export const validate = (values) => {
@@ -46,7 +46,7 @@ export const validate = (values) => {
 };
 
 export const asyncValidate = (values) =>
-  userFormSelectors().then((res) => {
+  getUserListFromDB().then((res) => {
     if (values.email) {
       res.map((item) => {
         if (item.email === values.email) {

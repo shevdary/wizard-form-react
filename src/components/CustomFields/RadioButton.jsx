@@ -7,27 +7,35 @@ import {
   RequiredField,
   SpanError,
 } from 'components/AccountForm/styled';
-import { RadioLabel } from './CustomFiledsStyled';
+import { Ckeckmark, RadioLabel } from './CustomFiledsStyled';
+import { InlineBlock } from './styled';
 
-export const RadioButton = ({ input, options, meta: { touched, error } }) => (
+export const RadioButton = ({
+  input,
+  label,
+  options,
+  meta: { touched, error },
+}) => (
   <InputForm>
-    <Label>
-      {input.name}
+    <Label classname="label-small">
+      {label}
       <RequiredField>*</RequiredField>
     </Label>
-    {options.map(({ value, label }) => (
-      <RadioLabel>
-        <Field
-          {...input}
-          type="radio"
-          name={input.name}
-          component="input"
-          value={value}
-        />
-        {label}
-      </RadioLabel>
-    ))}
-
+    <InlineBlock>
+      {options.map((option) => (
+        <RadioLabel ckecked={input.value === option.value}>
+          <Field
+            {...input}
+            type="radio"
+            name={input.name}
+            component="input"
+            value={option.value}
+          />
+          <Ckeckmark />
+          {option.label}
+        </RadioLabel>
+      ))}
+    </InlineBlock>
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );

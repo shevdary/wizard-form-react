@@ -1,6 +1,4 @@
-/*eslint-disable*/
 import React from 'react';
-
 // styled
 import {
   InputForm,
@@ -8,8 +6,8 @@ import {
   RequiredField,
   SpanError,
 } from 'components/AccountForm/styled';
-import { Selects } from '../ContactForm/styled';
-import { customStylesReactSelect } from './styled';
+import { Selects } from 'components/ContactForm/styled';
+import { ReactSelect } from './styled';
 
 export const SelectedFields = (props) => {
   const {
@@ -27,7 +25,7 @@ export const SelectedFields = (props) => {
       </Label>
       <div>
         <Selects
-          styles={customStylesReactSelect}
+          styles={ReactSelect}
           id="style-1"
           {...input}
           {...props}

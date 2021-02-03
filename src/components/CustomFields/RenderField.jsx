@@ -1,5 +1,5 @@
-/*eslint-disable*/
 import React from 'react';
+// components
 import {
   InputForm,
   Inputs,
@@ -14,10 +14,11 @@ export const RenderField = ({
   type,
   isRequired,
   onClick,
+  name,
   meta: { touched, error },
 }) => (
   <InputForm>
-    <Label>
+    <Label htmlFor={name}>
       {label}
       {isRequired && <RequiredField>*</RequiredField>}
     </Label>
@@ -26,7 +27,7 @@ export const RenderField = ({
         {...input}
         value={input.value}
         placeholder={label}
-        type={type ? type : 'text'}
+        type={type || 'text'}
         onClick={onClick}
       />
       {touched && error && <SpanError>{error}</SpanError>}

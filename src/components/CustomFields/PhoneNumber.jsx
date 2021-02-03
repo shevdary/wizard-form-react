@@ -1,7 +1,7 @@
 import React from 'react';
 // styled
 import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
-import { InputMaskStyled } from '../ContactForm/styled';
+import { InputMaskStyled } from 'components/ContactForm/styled';
 
 export const renderNumber = ({
   input,

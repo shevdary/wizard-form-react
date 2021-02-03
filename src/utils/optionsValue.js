@@ -1,4 +1,4 @@
-export const optionsLanguage = [
+export const LANGUAGE = [
   { value: 'en', label: 'English' },
   { value: 'fr', label: 'French' },
   { value: 'es', label: 'Spanish' },
@@ -25,7 +25,7 @@ export const optionsLanguage = [
   { value: 'ko', label: 'Korean' },
 ];
 
-export const optionsSkills = [
+export const SKILLS = [
   { value: 'HTML', label: 'HTML' },
   { value: 'CSS', label: 'CSS' },
   { value: 'Javascript', label: 'Javascript' },
@@ -46,7 +46,7 @@ export const optionsSkills = [
   { value: 'Firebase', label: 'Firebase' },
 ];
 
-export const hobbies = [
+export const HOBBIES = [
   { value: 'art', label: 'Art', isChecked: false },
   {
     value: 'sport',
@@ -71,15 +71,9 @@ export const hobbies = [
   { value: 'wtf', label: 'WTF is “hobbies”???', isChecked: false },
 ];
 
-export const gender = [
-  { value: 'male', label: 'male' },
-  { value: 'female', label: 'female' },
+export const GENDER = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
 ];
-export const tableHeadValue = [
-  '',
-  'name',
-  'company',
-  'contacts',
-  'last update',
-];
+export const TABLEHEAD = ['', 'name', 'company', 'contacts', 'last update'];
 export const TABS_NAME = ['account', 'profile', 'contact', 'capabilities'];

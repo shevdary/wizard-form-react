@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
-import { update } from 'redux/user/reducers';
 import { Field, reduxForm } from 'redux-form';
 import { useDispatch } from 'react-redux';
 // components

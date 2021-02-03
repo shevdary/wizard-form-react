@@ -1,4 +1,4 @@
-import { userFormSelectors } from 'indexedDB/database';
+import { getUserListFromDB } from 'indexedDB/database';
 
 export const validate = (values) => {
   const errors = {};
@@ -20,7 +20,7 @@ export const validate = (values) => {
 };
 
 export const asyncValidate = (values) =>
-  userFormSelectors().then((res) => {
+  getUserListFromDB().then((res) => {
     if (values.username) {
       res.map((item) => {
         if (item.username === values.username) {

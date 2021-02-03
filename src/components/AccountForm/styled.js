@@ -101,6 +101,9 @@ export const RequiredField = styled.p`
 export const Label = styled.label`
   display: inline-flex;
   position: relative;
+  &.label-small {
+    width: 50%;
+  }
 `;
 
 export const SpanError = styled.span`

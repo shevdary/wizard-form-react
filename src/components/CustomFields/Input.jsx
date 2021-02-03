@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// icons
+// assets
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 // styled
@@ -36,11 +36,12 @@ export const InputComponent = ({
 
   return (
     <InputForm>
-      <Label>
+      <Label htmlFor={name}>
         {label}
         {isRequired && <RequiredField>*</RequiredField>}
       </Label>
       <InputField
+        id={name}
         name={name}
         type={typeField}
         component={component}

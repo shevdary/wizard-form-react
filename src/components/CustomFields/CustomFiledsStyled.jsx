@@ -9,45 +9,33 @@ export const InputField = styled(Field).attrs((props) => ({
   font-size: 14px;
 `;
 
-export const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-  border: 0;
-  clip: rect(0 0 0 0);
-  clippath: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`;
-const Icon = styled.svg`
-  fill: none;
-  stroke: white;
-  stroke-width: 2px;
-`;
-export const StyledCheckbox = styled.div`
-  display: inline-block;
-  width: 13px;
-  height: 13px;
-  background: ${(props) => (props.checked ? 'salmon' : 'papayawhip')}
-  border-radius: 3px;
-
-  ${HiddenCheckbox}:focus + & {
-    background: #4E86E4;
-    width: 10px;
-    height: 10px;
-    border: 5px solid #C1CFE0;
-    
-  }
-
-  ${Icon} {
-    visibility: ${(props) => (props.checked ? 'visible' : 'hidden')}
-  }
-`;
-
 export const RadioLabel = styled.label`
   display: inline-flex;
   position: relative;
   align-items: center;
+  margin-top: 10px;
+  margin-right: ${(props) => (props.type === 'ckeckbox' ? '0' : '75px')};
+  font-weight: ${(props) => (props.ckecked ? 'bold' : 'normal')};
+  color: ${(props) => (props.ckecked ? '#242121' : '')};
+  cursor: pointer;
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  input:checked ~ div {
+    background: #4e86e4;
+    border: 3px solid #c1cfe0;
+  }
+`;
+
+export const Ckeckmark = styled.div`
+  width: ${(props) => (props.checkbox ? '13px' : ' 17px')};
+  height: ${(props) => (props.checkbox ? '13px' : ' 17px')};
+  margin-right: 5px;
+  border-radius: ${(props) => (props.checkbox ? '0' : '50%')};
+  background: #ffffff;
+  border: 1px solid #c1cfe0;
+  box-sizing: border-box;
 `;

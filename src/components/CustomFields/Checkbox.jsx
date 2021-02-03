@@ -1,23 +1,26 @@
 import React from 'react';
+import { Field } from 'redux-form';
 // styled
 import { InputForm, Label } from 'components/AccountForm/styled';
-import { HiddenCheckbox, StyledCheckbox } from './CustomFiledsStyled';
+import { Ckeckmark, RadioLabel } from './CustomFiledsStyled';
 
-export const Checkbox = ({ input, name, values }) => (
+export const Checkbox = ({ input, values }) => (
   <InputForm>
-    {values.map(({ value, label, isChecked }) => (
+    {values.map(({ value, label }) => (
       <Label key={value}>
-        <HiddenCheckbox
-          {...input}
-          type="checkbox"
-          name={name}
-          value={input.value}
-          onChange={input.onChange}
-          onBlur={() => input.onBlur(input.value)}
-        />
-        <StyledCheckbox checked={isChecked} />
-        {value}
-        {label}
+        <RadioLabel type="ckeckbox">
+          <Field
+            {...input}
+            type="checkbox"
+            name={value}
+            component="input"
+            value={input.value}
+            onChange={input.onChange}
+            onBlur={() => input.onBlur(input.value)}
+          />
+          <Ckeckmark checkbox />
+          {label}
+        </RadioLabel>
       </Label>
     ))}
   </InputForm>
