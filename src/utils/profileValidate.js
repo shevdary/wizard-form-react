@@ -1,12 +1,12 @@
 import { userFormSelectors } from 'indexedDB/database';
 import moment from 'moment';
-import { SubmissionError } from 'redux-form';
 
 export const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
     errors.firstName = 'field is required';
   }
+
   if (/[^A-Za-z]+/g.test(values.firstName)) {
     errors.firstName = 'field isn`t correct';
   }
@@ -14,6 +14,7 @@ export const validate = (values) => {
   if (!values.lastName) {
     errors.lastName = 'field is required';
   }
+
   if (/[^A-Za-z]+/g.test(values.lastName)) {
     errors.lastName = 'field isn`t correct';
   }
@@ -21,9 +22,11 @@ export const validate = (values) => {
   if (!values.email) {
     errors.email = 'field is required';
   }
+
   if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(values.email)) {
     errors.email = 'field isn`t correct';
   }
+
   if (!values.gender) {
     errors.gender = 'field is required';
   }
@@ -35,9 +38,10 @@ export const validate = (values) => {
     if (!birthday.isValid()) {
       errors.birthday = 'invalid date';
     } else if (!eighteenYearsAgo.isAfter(birthday)) {
-      errors.birthday = `you have to be at least 18 years old.`;
+      errors.birthday = `You have to be at least 18 years old.`;
     }
   }
+
   return errors;
 };
 
@@ -46,9 +50,9 @@ export const asyncValidate = (values) =>
     if (values.email) {
       res.map((item) => {
         if (item.email === values.email) {
-          throw new SubmissionError({
-            email: 'That email is already exist',
-          });
+          throw {
+            email: 'Email is already exist',
+          };
         }
       });
     }

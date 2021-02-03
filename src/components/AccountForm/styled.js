@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import styled from 'styled-components';
 import { Field } from 'redux-form';
 
@@ -18,9 +17,13 @@ export const UserAvatar = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   padding: 75px 100px 0 100px;
   height: 350px;
+`;
+
+export const FormChild = styled.div`
+  height: 320px;
   display: flex;
   justify-content: space-between;
 `;
@@ -62,13 +65,9 @@ export const Button = styled.button`
 
 export const CustomButton = styled.button`
   background: ${(props) => {
-    if (props.type === 'forward') {
-      return '#5e97f3';
-    } else if (props.type === 'back') {
-      return '#c1cfe0';
-    } else if (props.type === 'finish') {
-      return '#4ee4a5';
-    }
+    if (props.name === 'forward') return '#5e97f3';
+    if (props.name === 'finish') return '#4ee4a5';
+    if (props.name === 'back') return '#c1cfe0';
   }};
   text-align: center;
   height: 40px;
@@ -76,7 +75,7 @@ export const CustomButton = styled.button`
   float: right;
   border: none;
   color: #ffffff;
-  margin-right: 100px;
+  margin-left: 100px;
   cursor: pointer;
 `;
 

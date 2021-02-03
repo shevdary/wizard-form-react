@@ -49,6 +49,7 @@
     "array-callback-return": "off",
    "no-unused-expressions": "off",
     "react/no-array-index-key":"off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "consistent-return": "off"
   }
 }

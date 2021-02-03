@@ -82,4 +82,4 @@ export const tableHeadValue = [
   'contacts',
   'last update',
 ];
-export const TabsName = ['account', 'profile', 'contact', 'capabilities'];
+export const TABS_NAME = ['account', 'profile', 'contact', 'capabilities'];

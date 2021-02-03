@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
-import { Field, reduxForm, submit, FieldArray } from 'redux-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { Field, reduxForm, FieldArray } from 'redux-form';
+import { connect, useDispatch } from 'react-redux';
 import { update } from 'redux/user/reducers';
-
-import { userFormSelector, userSelector } from 'redux/user/selector';
 // components
 import { InputComponent } from 'components/CustomFields/Input';
 import { SelectedFields } from 'components/CustomFields/Options';
@@ -16,25 +14,16 @@ import { RenderField } from 'components/CustomFields/RenderField';
 import { optionsLanguage } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
-import { Form, FormFields } from 'components/AccountForm/styled';
+import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const ContactForm = ({ initialize }) => {
-  const valuesFromUserStore = useSelector(userFormSelector);
-  const initialValue = useSelector(userSelector);
+const ContactForm = ({ handleSubmit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    initialize(initialValue);
-  }, [initialValue, initialize]);
-
-  const handleSubmit = () => {
-    const { values } = valuesFromUserStore;
-    dispatch(submit('steps'));
-    if (!valuesFromUserStore.syncErrors) {
-      dispatch(update({ values, history }));
-    }
+  const onSubmit = (values) => {
+    dispatch(update(values));
+    history.push('/create-user/capabilities');
   };
 
   const handleClick = (e) => {
@@ -43,8 +32,8 @@ const ContactForm = ({ initialize }) => {
   };
 
   return (
-    <>
-      <Form className="contact">
+    <Form className="contact" onSubmit={handleSubmit(onSubmit)}>
+      <FormChild>
         <FormFields>
           <InputComponent
             label="Company"
@@ -54,7 +43,7 @@ const ContactForm = ({ initialize }) => {
           />
           <InputComponent
             label="Github link"
-            name="githubLink"
+            name="github"
             component={RenderField}
           />
           <InputComponent
@@ -75,15 +64,16 @@ const ContactForm = ({ initialize }) => {
           <InputComponent label="Fax" name="fax" component={RenderField} />
           <FieldArray name="phone" maxCountFiled={3} component={PhoneFields} />
         </FormFields>
-      </Form>
-      <Button type="forward" onClick={handleSubmit} label="Forward" />
-      <Button type="back" label="Back" onClick={handleClick} />
-    </>
+      </FormChild>
+      <Button type="submit" label="Forward" name="forward" />
+      <Button type="button" label="Back" onClick={handleClick} name="back" />
+    </Form>
   );
 };
 
-export default reduxForm({
-  form: 'steps',
-  validate,
-  onSubmit: validate,
-})(ContactForm);
+export default connect((state) => ({ initialValues: state.user }))(
+  reduxForm({
+    form: 'contactForm',
+    validate,
+  })(ContactForm)
+);

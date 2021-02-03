@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-import { reduxForm, submit, Field } from 'redux-form';
-import { userFormSelector, userSelector } from 'redux/user/selector';
+import { useDispatch, useSelector, connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
+import { userSelector } from 'redux/user/selector';
 import { update } from 'redux/user/reducers';
 // components
 import { Button } from 'components/CustomFields/Button';
@@ -15,38 +15,22 @@ import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
 // styled
-import { Form, UserAvatar, AvatarLabel, FormFields } from './styled';
+import { Form, UserAvatar, AvatarLabel, FormFields, FormChild } from './styled';
 
-const AccountForm = ({ initialize }) => {
-  const valuesFromUserStore = useSelector(userFormSelector);
-  const { avatar, username, password, repeatPassword } = useSelector(
-    userSelector
-  );
+const AccountForm = ({ handleSubmit }) => {
+  const { avatar } = useSelector(userSelector);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    initialize({ username, password, repeatPassword });
-  }, [username, password, repeatPassword, initialize]);
-
-  const handleSubmit = () => {
-    const { values } = valuesFromUserStore;
-    dispatch(submit('steps'));
-    asyncValidate(values)
-      .then(() => {
-        if (
-          !valuesFromUserStore.syncErrors &&
-          !valuesFromUserStore.asyncErrors
-        ) {
-          dispatch(update({ values, history }));
-        }
-      })
-      .catch(() => {});
+  const onSubmit = (values) => {
+    dispatch(update(values));
+    history.push('/create-user/profile');
   };
 
   return (
-    <>
-      <Form className="account">
+    <Form className="account" onSubmit={handleSubmit(onSubmit)}>
+      <FormChild>
         <FormFields className="left-side">
           <UserAvatar
             className="avatar"
@@ -89,14 +73,16 @@ const AccountForm = ({ initialize }) => {
             component={RenderField}
           />
         </FormFields>
-      </Form>
-      <Button type="forward" onClick={handleSubmit} label="Forward" />
-    </>
+      </FormChild>
+      <Button type="submit" label="Forward" name="forward" />
+    </Form>
   );
 };
 
-export default reduxForm({
-  form: 'steps',
-  validate,
-  onSubmit: asyncValidate,
-})(AccountForm);
+export default connect((state) => ({ initialValues: state.user }))(
+  reduxForm({
+    form: 'accountForm',
+    validate,
+    asyncValidate,
+  })(AccountForm)
+);
