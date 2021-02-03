@@ -14,21 +14,23 @@ export const SelectedFields = (props) => {
     input,
     meta: { touched, error },
     label,
+    className,
     isRequired,
   } = props;
 
   return (
-    <InputForm>
+    <InputForm className={className}>
       <Label>
         {label}
         {isRequired && <RequiredField>*</RequiredField>}
       </Label>
-      <div>
+      <div className="div">
         <Selects
           styles={ReactSelect}
-          id="style-1"
+          className="border"
           {...input}
           {...props}
+          error={touched && error}
           value={input.value}
           onChange={input.onChange}
           onBlur={() => input.onBlur(input.value)}

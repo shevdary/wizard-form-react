@@ -17,13 +17,26 @@ export const ButtonForPhone = styled.button`
 `;
 
 export const Selects = styled(Select)`
-  background: red;
-  #style-1::-webkit-scrollbar {
+  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
+  .border::-webkit-scrollbar {
     width: 12px;
     background-color: #f5f5f5;
   }
 
-  #style-1::-webkit-scrollbar-thumb {
+  .border::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+  }
+`;
+
+export const GoogleAutocomplete = styled.div`
+  .border::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+  }
+
+  .border::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #555;

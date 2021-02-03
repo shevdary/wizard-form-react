@@ -37,6 +37,10 @@ export const InputForm = styled.div`
   position: relative;
   font-size: 14px;
   color: #657c9a;
+  &.fit-content {
+    min-height: 80px;
+    height: fit-content;
+  }
 `;
 
 export const Input = styled(Field)`
