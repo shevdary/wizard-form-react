@@ -4,10 +4,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { update } from 'redux/user/actions';
 // styled
-import { AvatarLabel } from 'components/AccountForm/styled';
+import { AvatarLabel, SpanError } from 'components/AccountForm/styled';
 import { HiddenField } from './styled';
 
-export const Avatar = ({ input, type }) => {
+export const Avatar = ({
+  input: { value: omitValue, ...inputProps },
+  type,
+}) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -30,16 +33,14 @@ export const Avatar = ({ input, type }) => {
   return (
     <AvatarLabel htmlFor="addAvatar">
       <HiddenField
-        {...input}
-        name={input.name}
+        {...inputProps}
         type={type}
-        value={input.value}
         onChange={onFileChange}
         accept="image/*"
         id="addAvatar"
         multiple
       />
-      <p>{error}</p>
+      <SpanError>{error}</SpanError>
       <i>+ addAvatar</i>
     </AvatarLabel>
   );
