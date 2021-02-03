@@ -3,12 +3,11 @@ import { useHistory } from 'react-router-dom';
 // redux
 import { Field, reduxForm } from 'redux-form';
 import { update } from 'redux/user/actions';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 // components
 import { Button } from 'components/CustomFields/Button';
 import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
-import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { HOBBIES, SKILLS } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
@@ -21,6 +20,8 @@ import {
   FormChild,
 } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { setValueToDB } from '../../redux/db/reducers';
+import { TextArea } from '../CustomFields/Textarea';
 
 const Capabilities = ({ handleSubmit }) => {
   const history = useHistory();
@@ -28,6 +29,7 @@ const Capabilities = ({ handleSubmit }) => {
 
   const onSubmit = (values) => {
     dispatch(update(values));
+    dispatch(setValueToDB());
     history.push('/user-list');
   };
 
@@ -45,13 +47,14 @@ const Capabilities = ({ handleSubmit }) => {
             name="skills"
             type="options"
             options={SKILLS}
+            className="fit-content"
             component={SelectedFields}
             isRequired
             isMulti
           />
           <InputForm>
             <Label htmlFor="info">Additional information</Label>
-            <Field name="info" type="text" component={RenderField} />
+            <Field name="info" component={TextArea} />
           </InputForm>
         </FormFields>
         <FormFields>
@@ -68,9 +71,9 @@ const Capabilities = ({ handleSubmit }) => {
     </Form>
   );
 };
-
-export default reduxForm({
-  form: 'steps',
-  validate,
-  onSubmit: validate,
-})(Capabilities);
+export default connect((state) => ({ initialValues: state.user }))(
+  reduxForm({
+    form: 'capabilitiesForm',
+    validate,
+  })(Capabilities)
+);

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { takeEvery, put, select } from 'redux-saga/effects';
 // user reducer
 import { userSelector } from 'redux/user/selector';
@@ -33,7 +34,6 @@ export function* setUserDataToLocalStorage(action) {
     yield put(setCurrentTab(getActiveTabFromPath));
     yield put(addRouterTab(getActiveTabFromPath));
   } catch (e) {
-    console.log(e);
     yield put({ type: 'REQUEST/UPLOAD_FAIL' });
   }
 }
@@ -49,7 +49,6 @@ export function* addValueToDB() {
     yield put(resetUserValue());
     yield put(resetTabsValue());
   } catch (e) {
-    console.log(e, 'e');
     yield put(setValueFailed());
   }
 }
