@@ -5,17 +5,8 @@ db.version(1).stores({
   user: '++id',
 });
 
-export const userFormSelectors = async () => db.user.toArray();
-
-export const addNewUser = (values) => {
+export const getUserListFromDB = () => db.user.toArray();
+export const addNewUserToDB = (values) => {
   db.user.add(values);
 };
-
-export const updateDataUser = (id, name) => db.user.update(id, { name });
-
-export const setValues = ({ username }) =>
-  db.user.add({ id: Date.now().toString(), name: username });
-
-export const deleteUser = (pk) => db.user.delete(pk);
-
-export default { db, userFormSelectors, addNewUser, updateDataUser };
+export const deleteUserFromDB = (id) => db.user.delete(id);

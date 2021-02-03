@@ -9,7 +9,7 @@ import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
 import { RenderField } from 'components/CustomFields/RenderField';
 // utils
-import { hobbies, optionsSkills } from 'utils/optionsValue';
+import { HOBBIES, SKILLS } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
 // styled
 import {
@@ -43,7 +43,7 @@ const Capabilities = ({ handleSubmit }) => {
             label="Skills"
             name="skills"
             type="options"
-            options={optionsSkills}
+            options={SKILLS}
             component={SelectedFields}
             isRequired
             isMulti
@@ -57,7 +57,7 @@ const Capabilities = ({ handleSubmit }) => {
           <InputForm>
             <Label htmlFor="hobbies">My hobbies</Label>
             <div className="checked">
-              <Field values={hobbies} name="hobbies" component={Checkbox} />
+              <Field values={HOBBIES} name="hobbies" component={Checkbox} />
             </div>
           </InputForm>
         </FormFields>

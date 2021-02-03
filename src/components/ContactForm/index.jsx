@@ -10,8 +10,8 @@ import { SelectedFields } from 'components/CustomFields/Options';
 import { Button } from 'components/CustomFields/Button';
 import PhoneFields from 'components/PhoneFields';
 import { RenderField } from 'components/CustomFields/RenderField';
-// validate fields
-import { optionsLanguage } from 'utils/optionsValue';
+// utils
+import { LANGUAGE } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
 import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
@@ -56,7 +56,7 @@ const ContactForm = ({ handleSubmit }) => {
             name="language"
             type="options"
             isRequired
-            options={optionsLanguage}
+            options={LANGUAGE}
             component={SelectedFields}
           />
         </FormFields>

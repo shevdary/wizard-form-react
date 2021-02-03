@@ -13,7 +13,7 @@ import { PlaceAutocomplete } from 'components/CustomFields/PlaceAutocomplete';
 import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { validate, asyncValidate } from 'utils/profileValidate';
-import { gender } from 'utils/optionsValue';
+import { GENDER } from 'utils/optionsValue';
 // styled
 import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -48,6 +48,7 @@ const Profile = ({ handleSubmit }) => {
             isRequired
             component={RenderField}
           />
+
           <InputComponent
             name="birthday"
             label="Birth date"
@@ -67,7 +68,7 @@ const Profile = ({ handleSubmit }) => {
             name="gender"
             label="Gender"
             component={RadioButton}
-            options={gender}
+            options={GENDER}
           />
         </FormFields>
       </FormChild>

@@ -4,7 +4,7 @@ import { userSelector } from 'redux/user/selector';
 import { resetUserValue, SET_USER_INFO } from 'redux/user/reducers';
 // indexedDB
 import { SET_DB, setValueFailed, setValueSuccess } from 'redux/db/reducers';
-import { addNewUser } from 'indexedDB/database';
+import { addNewUserToDB } from 'indexedDB/database';
 // tabs
 import { addRouterTab, setCurrentTab } from 'redux/tabs/reducers';
 // utils
@@ -40,11 +40,12 @@ export function* addValueToDB() {
   try {
     const values = yield select(userSelector);
 
-    addNewUser(values);
+    addNewUserToDB(values);
     removeAllFromLocalStorage();
 
     yield put(setValueSuccess());
     yield put(resetUserValue());
+    yield put(resetTabsValue());
   } catch (e) {
     yield put(setValueFailed());
   }
