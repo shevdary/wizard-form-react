@@ -184,3 +184,9 @@ export const Textarea = styled.textarea`
   font-weight: bold;
   border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
 `;
+
+export const HeaderButtonWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  align-self: center;
+`;

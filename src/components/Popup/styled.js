@@ -11,6 +11,8 @@ export const Alert = styled.div`
   background: #5e97f3;
   &.visible {
     display: flex;
+    top: 248px;
+    z-index: 1;
   }
   &.hidden {
     display: none;

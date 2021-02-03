@@ -5,6 +5,7 @@ import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';
 import userList from 'assets/icon/userList.svg';
 // styled
+import { HeaderButtonWrapper } from 'components/CustomFields/styled';
 import { HeaderButton, Logo, NavItem, NavPanel } from './styled';
 
 export const NavBar = () => {
@@ -25,20 +26,22 @@ export const NavBar = () => {
         <Logo>
           <img src={logo} alt="logo" />
         </Logo>
-        <HeaderButton
-          active={location.includes('/create-user')}
-          onClick={redirectToCreateUser}
-        >
-          <img src={addUser} alt="create user" />
-          Add new user
-        </HeaderButton>
-        <HeaderButton
-          active={location.includes('/user-list')}
-          onClick={redirectToUsers}
-        >
-          <img src={userList} alt="user list" />
-          List of user
-        </HeaderButton>
+        <HeaderButtonWrapper>
+          <HeaderButton
+            active={location.includes('/create-user')}
+            onClick={redirectToCreateUser}
+          >
+            <img src={addUser} alt="create user" />
+            Add new user
+          </HeaderButton>
+          <HeaderButton
+            active={location.includes('/user-list')}
+            onClick={redirectToUsers}
+          >
+            <img src={userList} alt="user list" />
+            List of user
+          </HeaderButton>
+        </HeaderButtonWrapper>
       </NavItem>
     </NavPanel>
   );
