@@ -23,15 +23,19 @@ export const RadioButton = ({
     </Label>
     <InlineBlock>
       {options.map((option) => (
-        <RadioLabel ckecked={input.value === option.value}>
+        <RadioLabel
+          ckecked={input.value === option.value}
+          key={new Date().getTime() + Math.random()}
+        >
           <Field
             {...input}
+            key={new Date().getTime() + Math.random()}
             type="radio"
             name={input.name}
             component="input"
             value={option.value}
           />
-          <Ckeckmark />
+          <Ckeckmark key={new Date().getTime() + Math.random()} />
           {option.label}
         </RadioLabel>
       ))}

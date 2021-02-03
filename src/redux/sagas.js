@@ -19,7 +19,7 @@ import {
   setUserToLocalStorage,
 } from 'utils/localStorage';
 
-export function* setUserDataToLocalStorage({ payload: { values } }) {
+export function* setUserDataToLocalStorage(action) {
   try {
     const history = createBrowserHistory();
     const location = history.location.pathname;
@@ -27,12 +27,13 @@ export function* setUserDataToLocalStorage({ payload: { values } }) {
       location.lastIndexOf('/') + 1
     );
 
-    setUserToLocalStorage(values);
+    setUserToLocalStorage(action.payload);
     setTabToLocalStorage(getActiveTabFromPath);
 
     yield put(setCurrentTab(getActiveTabFromPath));
     yield put(addRouterTab(getActiveTabFromPath));
   } catch (e) {
+    console.log(e);
     yield put({ type: 'REQUEST/UPLOAD_FAIL' });
   }
 }
@@ -48,6 +49,7 @@ export function* addValueToDB() {
     yield put(resetUserValue());
     yield put(resetTabsValue());
   } catch (e) {
+    console.log(e, 'e');
     yield put(setValueFailed());
   }
 }

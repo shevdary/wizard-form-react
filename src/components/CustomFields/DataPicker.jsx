@@ -10,7 +10,7 @@ import { CalendarImg, DatePickerStyled, DatePickerWrapper } from './styled';
 
 registerLocale('en', { ...en, options: { ...en.options, weekStartsOn: 1 } });
 
-export const DataPicker = ({ input, label, meta: { error } }) => (
+export const DataPicker = ({ input, label, meta: { touched, error } }) => (
   <>
     <DatePickerWrapper>
       <CalendarImg src={calendar} alt="calendar" />
@@ -28,6 +28,6 @@ export const DataPicker = ({ input, label, meta: { error } }) => (
         locale="en"
       />
     </DatePickerWrapper>
-    {error && <SpanError>{error}</SpanError>}
+    {touched && error && <SpanError>{error}</SpanError>}
   </>
 );

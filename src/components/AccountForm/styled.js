@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Field } from 'redux-form';
 
-export const UserAvatar = styled.div`
+export const UserAvatarImage = styled.div`
   display: flex;
   margin-top: 10px;
   width: ${(props) => props.size};
@@ -48,7 +48,7 @@ export const Input = styled(Field)`
 export const Inputs = styled.input`
   height: 40px;
   width: 100%;
-  border: 1px solid #c1cfe0;
+  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
 `;
 

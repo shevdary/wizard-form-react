@@ -25,6 +25,7 @@ export const RenderField = ({
     <div>
       <Inputs
         {...input}
+        error={touched && error}
         value={input.value}
         placeholder={label}
         type={type || 'text'}

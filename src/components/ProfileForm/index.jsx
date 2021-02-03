@@ -17,6 +17,7 @@ import { GENDER } from 'utils/optionsValue';
 // styled
 import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 const Profile = ({ handleSubmit }) => {
   const dispatch = useDispatch();
@@ -78,7 +79,12 @@ const Profile = ({ handleSubmit }) => {
   );
 };
 
-export default connect((state) => ({ initialValues: state.user }))(
+export default connect((state) => ({
+  initialValues: {
+    ...state.user,
+    birthday: moment(state.user.birthday).toDate(),
+  },
+}))(
   reduxForm({
     form: 'profileForm',
     validate,

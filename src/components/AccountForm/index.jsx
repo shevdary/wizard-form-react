@@ -15,7 +15,13 @@ import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
 // styled
-import { Form, UserAvatar, AvatarLabel, FormFields, FormChild } from './styled';
+import {
+  Form,
+  UserAvatarImage,
+  AvatarLabel,
+  FormFields,
+  FormChild,
+} from './styled';
 
 const AccountForm = ({ handleSubmit }) => {
   const { avatar } = useSelector(userSelector);
@@ -32,14 +38,14 @@ const AccountForm = ({ handleSubmit }) => {
     <Form className="account" onSubmit={handleSubmit(onSubmit)}>
       <FormChild>
         <FormFields className="left-side">
-          <UserAvatar
+          <UserAvatarImage
             className="avatar"
             size="170px"
             border="true"
             crop={false}
           >
             <img src={avatar || avatarIcon} alt="avatar" />
-          </UserAvatar>
+          </UserAvatarImage>
           <AvatarLabel htmlFor="addAvatar">
             <Field
               id="addAvatar"
