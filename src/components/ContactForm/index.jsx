@@ -62,7 +62,7 @@ const ContactForm = ({ handleSubmit }) => {
         </FormFields>
         <FormFields>
           <InputComponent label="Fax" name="fax" component={RenderField} />
-          <FieldArray name="phone" maxCountFiled={3} component={PhoneFields} />
+          <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
         </FormFields>
       </FormChild>
       <Button type="submit" label="Forward" name="forward" />
@@ -71,7 +71,9 @@ const ContactForm = ({ handleSubmit }) => {
   );
 };
 
-export default connect((state) => ({ initialValues: state.user }))(
+export default connect((state) => ({
+  initialValues: { ...state.user, phones: state.user.phones || [{}] },
+}))(
   reduxForm({
     form: 'contactForm',
     validate,
