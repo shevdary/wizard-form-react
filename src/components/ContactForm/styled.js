@@ -17,7 +17,6 @@ export const ButtonForPhone = styled.button`
 `;
 
 export const Selects = styled(Select)`
-  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
   .border::-webkit-scrollbar {
     width: 12px;
     background-color: #f5f5f5;
@@ -46,7 +45,7 @@ export const GoogleAutocomplete = styled.div`
 export const InputMaskStyled = styled(InputMask)`
   height: 40px;
   width: 100%;
-  border: 1px solid #c1cfe0;
+  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
 `;
 

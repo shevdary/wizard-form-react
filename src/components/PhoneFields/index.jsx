@@ -13,7 +13,8 @@ export const PhoneFields = ({ fields, maxCountFiled }) => {
     e.preventDefault();
     fields.push({});
   };
-  const handleRemovePhone = (index) => {
+  const handleRemovePhone = (e, index) => {
+    e.preventDefault();
     fields.remove(index);
   };
 

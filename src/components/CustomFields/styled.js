@@ -4,9 +4,9 @@ import DatePicker from 'react-datepicker';
 export const ReactSelect = {
   control: (styles) => ({
     ...styles,
+    border: ' 1px solid #c1cfe0',
     borderRadius: 0,
     height: 'fit-content',
-    border: '0',
     '.error': {
       border: '1px solid red',
     },

@@ -14,6 +14,7 @@ export const renderNumber = ({
     <InputMaskStyled
       {...input}
       name={name}
+      error={touched && error}
       mask="+38 (099) 999-99-99"
       placeholder="+38 (099) 999-99-99"
       type={type}

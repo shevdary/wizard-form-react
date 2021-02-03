@@ -7,14 +7,18 @@ export const validate = (values) => {
   }
   if (values) {
     if (values.phones) {
-      values.phones.map((item) => {
+      const phonesArrayErrors = [];
+      values.phones.forEach((item, itemIndex) => {
         if (
           Object.keys(item).length !== 0 &&
           item.replace(/[\s\-\+\(\)\_]/g, '').length < 12
         ) {
-          errors.phones = 'Phone number isn`t correct';
+          phonesArrayErrors[itemIndex] = 'Phone isn`t correct';
         }
       });
+      if (phonesArrayErrors.length) {
+        errors.phones = phonesArrayErrors;
+      }
     }
     if (!values.company) {
       errors.company = 'field is required';

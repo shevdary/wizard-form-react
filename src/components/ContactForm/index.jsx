@@ -76,6 +76,7 @@ export default connect((state) => ({
 }))(
   reduxForm({
     form: 'contactForm',
+    onBlur: ['phones'],
     validate,
   })(ContactForm)
 );
