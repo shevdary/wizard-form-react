@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // redux
-import { update } from 'redux/user/reducers';
+import { update } from 'redux/user/actions';
 import { userSelector } from 'redux/user/selector';
 // components
 import Tabs from 'components/Tabs';
@@ -13,7 +13,7 @@ import {
   getUserFromLocalStorage,
   removeAllFromLocalStorage,
 } from 'utils/localStorage';
-import { TabsName } from 'utils/optionsValue';
+import { TABS_NAME } from 'utils/optionsValue';
 // styled
 import { Main, TextCenter } from './CreateUserStyled';
 
@@ -37,9 +37,9 @@ const CreateUser = () => {
 
   const handleContinue = (e) => {
     e.preventDefault();
-    const redirectTabIndex = TabsName.indexOf(getTabFromLocalStorage());
+    const redirectTabIndex = TABS_NAME.indexOf(getTabFromLocalStorage());
     dispatch(update(getUserFromLocalStorage()));
-    history.push(`/create-user/${TabsName[redirectTabIndex + 1]}`);
+    history.push(`/create-user/${TABS_NAME[redirectTabIndex + 1]}`);
     handleClose(e);
   };
 

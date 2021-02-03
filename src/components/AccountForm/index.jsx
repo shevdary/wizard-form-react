@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'redux/user/selector';
-import { update } from 'redux/user/reducers';
+import { update } from 'redux/user/actions';
 // components
 import { Button } from 'components/CustomFields/Button';
 import { Avatar } from 'components/Avatar';

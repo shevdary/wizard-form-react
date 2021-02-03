@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 // components
 import AccountForm from 'components/AccountForm';
 import ProfileForm from 'components/ProfileForm';
@@ -11,14 +11,11 @@ export const RouteTab = () => {
 
   return (
     <Switch>
-      <Route exact path={`${match.path}/account`} component={AccountForm} />
-      <Route exact path={`${match.path}/profile`} component={ProfileForm} />
-      <Route exact path={`${match.path}/contact`} component={ContactForm} />
-      <Route
-        exact
-        path={`${match.path}/capabilities`}
-        component={CapabilitiesForm}
-      />
+      <Route path={`${match.path}/account`} component={AccountForm} />
+      <Route path={`${match.path}/profile`} component={ProfileForm} />
+      <Route path={`${match.path}/contact`} component={ContactForm} />
+      <Route path={`${match.path}/capabilities`} component={CapabilitiesForm} />
+      <Redirect from="/" to={`${match.path}/account`} />
     </Switch>
   );
 };

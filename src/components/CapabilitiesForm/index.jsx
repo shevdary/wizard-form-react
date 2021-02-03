@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
 import { Field, reduxForm } from 'redux-form';
+import { update } from 'redux/user/actions';
 import { useDispatch } from 'react-redux';
 // components
 import { Button } from 'components/CustomFields/Button';

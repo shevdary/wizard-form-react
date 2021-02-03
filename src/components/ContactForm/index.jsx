@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 // redux
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import { connect, useDispatch } from 'react-redux';
-import { update } from 'redux/user/reducers';
+import { update } from 'redux/user/actions';
 // components
 import { InputComponent } from 'components/CustomFields/Input';
 import { SelectedFields } from 'components/CustomFields/Options';
