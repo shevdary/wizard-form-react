@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 // redux
 import { Field } from 'redux-form';
@@ -8,8 +9,9 @@ import { renderNumber } from 'components/CustomFields/PhoneNumber';
 import addNumberIcon from 'assets/icon/addButton.svg';
 import removeNumberIcon from 'assets/icon/removeButton.svg';
 
-const PhoneFields = ({ fields, maxCountFiled }) => {
-  const handleCreatePhone = () => {
+export const PhoneFields = ({ fields, maxCountFiled }) => {
+  const handleCreatePhone = (e) => {
+    e.preventDefault();
     fields.push({});
   };
   const handleRemovePhone = (index) => {
@@ -19,8 +21,8 @@ const PhoneFields = ({ fields, maxCountFiled }) => {
   return (
     <div className="phoneFields">
       {fields.map((phone, index) => (
-        <FieldWrapper key={`phone${index}`}>
-          <Field name={`phone.${index}`} id={index} component={renderNumber} />
+        <FieldWrapper key={`phones${index}`}>
+          <Field name={`phones.${index}`} id={index} component={renderNumber} />
           <ButtonForPhone
             type="remove"
             onClick={() => handleRemovePhone(index)}
@@ -32,7 +34,7 @@ const PhoneFields = ({ fields, maxCountFiled }) => {
       ))}
       {fields.length < maxCountFiled && (
         <ButtonForPhone
-          type="add"
+          type="button"
           component="button"
           onClick={handleCreatePhone}
         >
@@ -43,5 +45,3 @@ const PhoneFields = ({ fields, maxCountFiled }) => {
     </div>
   );
 };
-
-export default PhoneFields;

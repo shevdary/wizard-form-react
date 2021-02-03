@@ -8,7 +8,7 @@ import { update } from 'redux/user/actions';
 import { InputComponent } from 'components/CustomFields/Input';
 import { SelectedFields } from 'components/CustomFields/Options';
 import { Button } from 'components/CustomFields/Button';
-import PhoneFields from 'components/PhoneFields';
+import { PhoneFields } from 'components/PhoneFields';
 import { RenderField } from 'components/CustomFields/RenderField';
 // utils
 import { LANGUAGE } from 'utils/optionsValue';
