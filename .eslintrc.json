@@ -50,6 +50,7 @@
    "no-unused-expressions": "off",
     "react/no-array-index-key":"off",
     "no-nested-ternary": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-useless-escape": "off"
   }
 }

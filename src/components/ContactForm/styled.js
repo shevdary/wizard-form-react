@@ -8,12 +8,12 @@ export const ButtonForPhone = styled.button`
   border: none;
   color: #657c9a;
   font-size: 14px;
-  ${(props) =>
-    props.type === 'remove' && {
-      position: 'absolute',
-      top: '30px',
-      left: '105%',
-    }}
+`;
+
+export const ButtonWrapper = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 105%;
 `;
 
 export const Selects = styled(Select)`

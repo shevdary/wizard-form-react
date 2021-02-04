@@ -2,12 +2,14 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
 import { Field, reduxForm } from 'redux-form';
+import { setValueToDB } from 'redux/db/reducers';
 import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
 // components
 import { Button } from 'components/CustomFields/Button';
 import { SelectedFields } from 'components/CustomFields/Options';
 import { Checkbox } from 'components/CustomFields/Checkbox';
+import { TextArea } from 'components/CustomFields/Textarea';
 // utils
 import { HOBBIES, SKILLS } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
@@ -20,8 +22,6 @@ import {
   FormChild,
 } from 'components/AccountForm/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { setValueToDB } from '../../redux/db/reducers';
-import { TextArea } from '../CustomFields/Textarea';
 
 const Capabilities = ({ handleSubmit }) => {
   const history = useHistory();

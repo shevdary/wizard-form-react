@@ -2,19 +2,21 @@ import React from 'react';
 // redux
 import { Field } from 'redux-form';
 // components
-import { ButtonForPhone, FieldWrapper } from 'components/ContactForm/styled';
+import {
+  ButtonForPhone,
+  ButtonWrapper,
+  FieldWrapper,
+} from 'components/ContactForm/styled';
 import { renderNumber } from 'components/CustomFields/PhoneNumber';
 // assets
 import addNumberIcon from 'assets/icon/addButton.svg';
 import removeNumberIcon from 'assets/icon/removeButton.svg';
 
 export const PhoneFields = ({ fields, maxCountFiled }) => {
-  const handleCreatePhone = (e) => {
-    e.preventDefault();
+  const handleCreatePhone = () => {
     fields.push({});
   };
-  const handleRemovePhone = (e, index) => {
-    e.preventDefault();
+  const handleRemovePhone = (index) => {
     fields.remove(index);
   };
 
@@ -23,13 +25,15 @@ export const PhoneFields = ({ fields, maxCountFiled }) => {
       {fields.map((phone, index) => (
         <FieldWrapper key={`phones${index}`}>
           <Field name={`phones.${index}`} id={index} component={renderNumber} />
-          <ButtonForPhone
-            type="remove"
-            onClick={() => handleRemovePhone(index)}
-            count={fields.length}
-          >
-            <img src={removeNumberIcon} alt="remove" />
-          </ButtonForPhone>
+          <ButtonWrapper>
+            <ButtonForPhone
+              type="button"
+              onClick={() => handleRemovePhone(index)}
+              count={fields.length}
+            >
+              <img src={removeNumberIcon} alt="remove" />
+            </ButtonForPhone>
+          </ButtonWrapper>
         </FieldWrapper>
       ))}
       {fields.length < maxCountFiled && (
