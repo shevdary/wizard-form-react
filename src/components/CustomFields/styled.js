@@ -2,14 +2,11 @@ import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 
 export const ReactSelect = {
-  control: (styles) => ({
+  control: (styles, state) => ({
     ...styles,
-    border: ' 1px solid #c1cfe0',
+    border: state.selectProps.isError ? ' 1px solid red' : ' 1px solid #c1cfe0',
     borderRadius: 0,
     height: 'fit-content',
-    '.error': {
-      border: '1px solid red',
-    },
   }),
   indicatorSeparator: () => ({
     display: 'none',
