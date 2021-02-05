@@ -1,13 +1,13 @@
-import { SET_USER_INFO, USER_RESET } from './actions';
+import { UPDATE_USER, REMOVE_USER } from './actions';
 
 const initialState = {};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_USER_INFO: {
+    case UPDATE_USER: {
       return { ...state, ...action.payload };
     }
-    case USER_RESET:
+    case REMOVE_USER:
       return {};
     default:
       return state;

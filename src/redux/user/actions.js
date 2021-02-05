@@ -1,15 +1,25 @@
 // const
-export const SET_USER_INFO = 'USER/SET_USER_INFO';
-export const LOAD_SAVED_INFO = 'USER/LOAD_SAVED_INFO';
-export const USER_RESET = 'USER/USER_RESET';
+export const UPDATE_USER = 'USER/UPDATE_USER';
+export const LOAD_SAVED_USER = 'USER/LOAD_SAVED_USER';
+export const REMOVE_USER = 'USER/REMOVE_USER';
+export const GET_USER = 'USER/GET_USER';
+export const USER_FAILED = 'USER/USER_FAILED';
 // actions
 export const update = (data) => ({
-  type: SET_USER_INFO,
+  type: UPDATE_USER,
   payload: data,
 });
 export const loadFromStorage = () => ({
-  type: LOAD_SAVED_INFO,
+  type: LOAD_SAVED_USER,
 });
 export const resetUserValue = () => ({
-  type: USER_RESET,
+  type: REMOVE_USER,
+});
+
+export const loadUserFromLocalStorage = () => ({
+  type: GET_USER,
+});
+
+export const getUserFailed = () => ({
+  type: USER_FAILED,
 });
