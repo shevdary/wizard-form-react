@@ -201,7 +201,7 @@ export const RadioLabel = styled.label`
   position: relative;
   align-items: center;
   margin-top: 10px;
-  margin-right: ${(props) => (props.type === 'ckeckbox' ? '0' : '75px')};
+  margin-right: ${(props) => (props.type === 'checkbox' ? '0' : '75px')};
   font-weight: ${(props) => (props.ckecked ? 'bold' : 'normal')};
   color: ${(props) => (props.ckecked ? '#242121' : '')};
   cursor: pointer;
@@ -217,7 +217,7 @@ export const RadioLabel = styled.label`
   }
 `;
 export const Ckeckmark = styled.div`
-  width: ${(props) => (props.checkbox ? '13px' : ' 17px')};
+  min-width: ${(props) => (props.checkbox ? '13px' : ' 17px')};
   height: ${(props) => (props.checkbox ? '13px' : ' 17px')};
   margin-right: 5px;
   border-radius: ${(props) => (props.checkbox ? '0' : '50%')};
