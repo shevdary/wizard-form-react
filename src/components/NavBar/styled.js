@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const NavPanel = styled.div`
   background: #2f68c8;
-  width: 100vw;
   height: 60px;
   color: #2f68c8;
   text-align: center;
