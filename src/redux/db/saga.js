@@ -3,7 +3,7 @@ import { put, select, takeEvery } from 'redux-saga/effects';
 import { userSelector } from 'redux/user/selector';
 // db
 import { setNewUserToDB } from 'indexedDB/database';
-import { SET_DB, setValueFailed } from './reducers';
+import { SET_DB, setValueFailed } from './actions';
 
 export function* setValuesToDB() {
   try {

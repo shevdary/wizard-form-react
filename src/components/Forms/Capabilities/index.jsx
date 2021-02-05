@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import { setValueToDB } from 'redux/db/reducers';
+import { setValueToDB } from 'redux/db/actions';
 import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
 // components

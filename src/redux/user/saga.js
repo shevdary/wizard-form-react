@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects';
 // db
-import { SET_DB, setValueSuccess } from 'redux/db/reducers';
+import { SET_DB, setValueSuccess } from 'redux/db/actions';
 // utils
 import {
   getUserFromLocalStorage,

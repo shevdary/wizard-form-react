@@ -1,19 +1,5 @@
-// const
-export const SET_DB = 'DB/SET_BD';
-const SET_SUCCESS = 'DB/SET_BD_SUCCESS';
-const SET_FAILED = 'DB/SET_BD_FAILED';
-// actions
-export const setValueToDB = () => ({
-  type: SET_DB,
-});
+import { SET_DB, SET_FAILED, SET_SUCCESS } from './actions';
 
-export const setValueFailed = () => ({
-  type: SET_FAILED,
-});
-
-export const setValueSuccess = () => ({
-  type: SET_SUCCESS,
-});
 // reducers
 const initialState = {
   isError: null,
