@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
-import { Field, FieldArray, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { setValueToDB } from 'redux/db/actions';
 import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
@@ -22,6 +22,7 @@ import {
   FormChild,
 } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import { setPassedTab } from '../../../redux/tabs/actions';
 
 const Capabilities = ({ handleSubmit }) => {
   const history = useHistory();
@@ -29,6 +30,7 @@ const Capabilities = ({ handleSubmit }) => {
 
   const onSubmit = (values) => {
     dispatch(update(values));
+    dispatch(setPassedTab('capabilities'));
     dispatch(setValueToDB());
     history.push('/user-list');
   };
@@ -61,11 +63,7 @@ const Capabilities = ({ handleSubmit }) => {
           <InputForm>
             <Label htmlFor="hobbies">My hobbies</Label>
             <div className="checked">
-              <FieldArray
-                options={HOBBIES}
-                name="hobbies"
-                component={Checkbox}
-              />
+              <Field options={HOBBIES} name="hobbies" component={Checkbox} />
             </div>
           </InputForm>
         </FormFields>

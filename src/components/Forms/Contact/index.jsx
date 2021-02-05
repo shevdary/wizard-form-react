@@ -29,9 +29,7 @@ const ContactForm = ({ handleSubmit }) => {
     history.push('/create-user/capabilities');
   };
 
-  const handleClick = () => {
-    history.push('/create-user/profile');
-  };
+  const handleClick = () => history.push('/create-user/profile');
 
   return (
     <Form className="contact" onSubmit={handleSubmit(onSubmit)}>

@@ -51,6 +51,7 @@
     "react/no-array-index-key":"off",
     "no-nested-ternary": "off",
     "consistent-return": "off",
-    "no-useless-escape": "off"
-  }
+    "no-useless-escape": "off",
+    "react/forbid-prop-types": "off"
+    }
 }
