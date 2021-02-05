@@ -19,10 +19,11 @@ const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
       reader.onload = () => {
         dispatch(update({ avatar: reader.result }));
       };
+      setError(null);
     }
 
     if (image && image.size / 1024 > 1000) {
-      setError('File must be less than 1Mb');
+      setError('Image must be less than 1Mb');
     }
   };
 
