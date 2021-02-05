@@ -6,10 +6,10 @@ import { setValueToDB } from 'redux/db/reducers';
 import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
 // components
-import { Button } from 'components/CustomFields/Button';
-import { SelectedFields } from 'components/CustomFields/Options';
-import { Checkbox } from 'components/CustomFields/Checkbox';
-import { TextArea } from 'components/CustomFields/Textarea';
+import Button from 'components/CustomFields/Button';
+import SelectedFields from 'components/CustomFields/Option';
+import Checkbox from 'components/CustomFields/Inputs/Checkbox';
+import TextArea from 'components/CustomFields/Inputs/Text';
 // utils
 import { HOBBIES, SKILLS } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
@@ -20,7 +20,7 @@ import {
   InputForm,
   Label,
   FormChild,
-} from 'components/AccountForm/styled';
+} from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Capabilities = ({ handleSubmit }) => {

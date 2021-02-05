@@ -8,10 +8,10 @@ import {
   InputForm,
   Label,
   RequiredField,
-} from 'components/AccountForm/styled';
-import { InputField } from './CustomFiledsStyled';
+} from 'components/Forms/Account/styled';
+import { InputField } from '../styled';
 
-export const InputComponent = ({
+const InputComponent = ({
   label,
   type,
   name,
@@ -60,3 +60,4 @@ export const InputComponent = ({
     </InputForm>
   );
 };
+export default InputComponent;

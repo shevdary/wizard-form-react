@@ -1,10 +1,10 @@
 import React from 'react';
 import { Field } from 'redux-form';
 // styled
-import { InputForm, Label } from 'components/AccountForm/styled';
-import { Ckeckmark, RadioLabel } from './CustomFiledsStyled';
+import { InputForm, Label } from 'components/Forms/Account/styled';
+import { Ckeckmark, RadioLabel } from 'components/CustomFields/styled';
 
-export const Checkbox = ({ input, values }) => (
+const Checkbox = ({ input, values }) => (
   <InputForm>
     {values.map(({ value, label }) => (
       <Label key={value}>
@@ -25,3 +25,5 @@ export const Checkbox = ({ input, values }) => (
     ))}
   </InputForm>
 );
+
+export default Checkbox;

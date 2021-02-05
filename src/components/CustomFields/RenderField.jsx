@@ -2,13 +2,13 @@ import React from 'react';
 // components
 import {
   InputForm,
-  Inputs,
+  Input,
   Label,
   RequiredField,
   SpanError,
-} from 'components/AccountForm/styled';
+} from 'components/Forms/Account/styled';
 
-export const RenderField = ({
+const RenderField = ({
   label,
   input,
   type,
@@ -23,7 +23,7 @@ export const RenderField = ({
       {isRequired && <RequiredField>*</RequiredField>}
     </Label>
     <div>
-      <Inputs
+      <Input
         {...input}
         error={touched && error}
         value={input.value}
@@ -35,3 +35,4 @@ export const RenderField = ({
     </div>
   </InputForm>
 );
+export default RenderField;

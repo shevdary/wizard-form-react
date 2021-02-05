@@ -6,16 +6,14 @@ import {
   Label,
   RequiredField,
   SpanError,
-} from 'components/AccountForm/styled';
-import { Ckeckmark, RadioLabel } from './CustomFiledsStyled';
-import { InlineBlock } from './styled';
+} from 'components/Forms/Account/styled';
+import {
+  Ckeckmark,
+  RadioLabel,
+  InlineBlock,
+} from 'components/CustomFields/styled';
 
-export const RadioButton = ({
-  input,
-  label,
-  options,
-  meta: { touched, error },
-}) => (
+const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
   <InputForm>
     <Label classname="label-small">
       {label}
@@ -43,3 +41,5 @@ export const RadioButton = ({
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+
+export default RadioButton;

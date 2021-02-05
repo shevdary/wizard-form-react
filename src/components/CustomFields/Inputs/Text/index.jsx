@@ -5,11 +5,11 @@ import {
   Label,
   RequiredField,
   SpanError,
-} from 'components/AccountForm/styled';
+} from 'components/Forms/Account/styled';
 
-import { Textarea } from './styled';
+import { Textarea } from '../../styled';
 
-export const TextArea = ({
+const TextArea = ({
   label,
   input,
   type,
@@ -37,3 +37,4 @@ export const TextArea = ({
     </div>
   </InputForm>
 );
+export default TextArea;

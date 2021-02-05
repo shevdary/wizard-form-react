@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 // components
-import AccountForm from 'components/AccountForm';
-import ProfileForm from 'components/ProfileForm';
-import CapabilitiesForm from 'components/CapabilitiesForm';
-import ContactForm from 'components/ContactForm';
+import AccountForm from 'components/Forms/Account';
+import ProfileForm from 'components/Forms/Profile';
+import CapabilitiesForm from 'components/Forms/Capabilities';
+import ContactForm from 'components/Forms/Contact';
 
-export const RouteTab = () => {
+const RouteTab = () => {
   const match = useRouteMatch();
 
   return (
@@ -19,3 +19,4 @@ export const RouteTab = () => {
     </Switch>
   );
 };
+export default RouteTab;

@@ -5,11 +5,11 @@ import {
   Label,
   RequiredField,
   SpanError,
-} from 'components/AccountForm/styled';
-import { Selects } from 'components/ContactForm/styled';
-import { ReactSelect } from './styled';
+} from 'components/Forms/Account/styled';
+import { Selects } from 'components/Forms/Contact/styled';
+import { ReactSelect } from '../styled';
 
-export const SelectedFields = (props) => {
+const SelectedFields = (props) => {
   const {
     input,
     meta: { touched, error },
@@ -40,3 +40,5 @@ export const SelectedFields = (props) => {
     </InputForm>
   );
 };
+
+export default SelectedFields;

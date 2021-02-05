@@ -4,17 +4,19 @@ import { useHistory } from 'react-router-dom';
 import { Field, reduxForm, FieldArray } from 'redux-form';
 import { connect, useDispatch } from 'react-redux';
 import { update } from 'redux/user/actions';
+import { setPassedTab } from 'redux/tabs/actions';
 // components
-import { InputComponent } from 'components/CustomFields/Input';
-import { SelectedFields } from 'components/CustomFields/Options';
-import { Button } from 'components/CustomFields/Button';
-import { PhoneFields } from 'components/PhoneFields';
-import { RenderField } from 'components/CustomFields/RenderField';
+import Button from 'components/CustomFields/Button';
+import PhoneFields from 'components/PhoneFields';
+import RenderField from 'components/CustomFields/RenderField';
+import InputComponent from 'components/CustomFields/Inputs';
+import SelectedFields from 'components/CustomFields/Option';
+import RenderNumber from 'components/CustomFields/Inputs/Number';
 // utils
 import { LANGUAGE } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
-import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
+import { FormFields, Form, FormChild } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ContactForm = ({ handleSubmit }) => {
@@ -23,6 +25,7 @@ const ContactForm = ({ handleSubmit }) => {
 
   const onSubmit = (values) => {
     dispatch(update(values));
+    dispatch(setPassedTab('contact'));
     history.push('/create-user/capabilities');
   };
 
@@ -61,7 +64,7 @@ const ContactForm = ({ handleSubmit }) => {
           />
         </FormFields>
         <FormFields>
-          <InputComponent label="Fax" name="fax" component={RenderField} />
+          <InputComponent label="Fax" name="fax" component={RenderNumber} />
           <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
         </FormFields>
       </FormChild>

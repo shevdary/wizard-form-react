@@ -1,15 +1,11 @@
 import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // styled
-import { GoogleAutocomplete } from 'components/ContactForm/styled';
-import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
+import { GoogleAutocomplete } from 'components/Forms/Contact/styled';
+import { InputForm, Label, SpanError } from 'components/Forms/Account/styled';
 import { ReactSelect } from './styled';
 
-export const PlaceAutocomplete = ({
-  input,
-  label,
-  meta: { error, touched },
-}) => (
+const PlaceAutocomplete = ({ input, label, meta: { error, touched } }) => (
   <InputForm>
     <Label>{label}</Label>
     <GoogleAutocomplete>
@@ -28,3 +24,5 @@ export const PlaceAutocomplete = ({
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+
+export default PlaceAutocomplete;

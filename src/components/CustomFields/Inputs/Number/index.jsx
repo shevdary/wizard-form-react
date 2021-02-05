@@ -1,16 +1,17 @@
 import React from 'react';
 // styled
-import { InputForm, Label, SpanError } from 'components/AccountForm/styled';
-import { InputMaskStyled } from 'components/ContactForm/styled';
+import { InputForm, Label, SpanError } from 'components/Forms/Account/styled';
+import { InputMaskStyled } from 'components/Forms/Contact/styled';
 
-export const renderNumber = ({
+const RenderNumber = ({
   input,
+  label,
   type,
   name,
   meta: { touched, error },
 }) => (
   <InputForm>
-    <Label>{`Phone #${input.name[input.name.length - 1]}`}</Label>
+    <Label>{label}</Label>
     <InputMaskStyled
       {...input}
       name={name}
@@ -22,3 +23,5 @@ export const renderNumber = ({
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+
+export default RenderNumber;

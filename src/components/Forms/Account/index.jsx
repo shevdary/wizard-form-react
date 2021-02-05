@@ -4,11 +4,12 @@ import { useDispatch, useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'redux/user/selector';
 import { update } from 'redux/user/actions';
+import { setPassedTab } from 'redux/tabs/actions';
 // components
-import { Button } from 'components/CustomFields/Button';
-import { Avatar } from 'components/Avatar';
-import { InputComponent } from 'components/CustomFields/Input';
-import { RenderField } from 'components/CustomFields/RenderField';
+import Avatar from 'components/Avatar';
+import Button from 'components/CustomFields/Button';
+import InputComponent from 'components/CustomFields/Inputs';
+import RenderField from 'components/CustomFields/RenderField';
 import { useHistory } from 'react-router-dom';
 // utils
 import { asyncValidate, validate } from 'utils/accountValidate';
@@ -31,6 +32,7 @@ const AccountForm = ({ handleSubmit }) => {
 
   const onSubmit = (values) => {
     dispatch(update(values));
+    dispatch(setPassedTab('account'));
     history.push('/create-user/profile');
   };
 

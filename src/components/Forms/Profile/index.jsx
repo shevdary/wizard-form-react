@@ -4,20 +4,21 @@ import { useHistory } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { connect, useDispatch } from 'react-redux';
 import { update } from 'redux/user/actions';
+import { setPassedTab } from 'redux/tabs/actions';
 // custom fields
-import { Button } from 'components/CustomFields/Button';
-import { InputComponent } from 'components/CustomFields/Input';
-import { DataPicker } from 'components/CustomFields/DataPicker';
-import { RadioButton } from 'components/CustomFields/RadioButton';
-import { PlaceAutocomplete } from 'components/CustomFields/PlaceAutocomplete';
-import { RenderField } from 'components/CustomFields/RenderField';
+import Button from 'components/CustomFields/Button';
+import InputComponent from 'components/CustomFields/Inputs';
+import DataPicker from 'components/CustomFields/Inputs/Date';
+import RadioButton from 'components/CustomFields/Inputs/Radio';
+import PlaceAutocomplete from 'components/CustomFields/PlaceAutocomplete';
+import RenderField from 'components/CustomFields/RenderField';
 // utils
 import { validate, asyncValidate } from 'utils/profileValidate';
 import { GENDER } from 'utils/optionsValue';
-// styled
-import { FormFields, Form, FormChild } from 'components/AccountForm/styled';
-import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
+// styled
+import { FormFields, Form, FormChild } from 'components/Forms/Account/styled';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Profile = ({ handleSubmit }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Profile = ({ handleSubmit }) => {
 
   const onSubmit = (values) => {
     dispatch(update(values));
+    dispatch(setPassedTab('profile'));
     history.push('/create-user/contact');
   };
 

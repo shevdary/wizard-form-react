@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Field } from 'redux-form';
 
 export const UserAvatarImage = styled.div`
   display: flex;
@@ -43,13 +42,7 @@ export const InputForm = styled.div`
   }
 `;
 
-export const Input = styled(Field)`
-  height: 40px;
-  border: 1px solid #c1cfe0;
-  font-size: 14px;
-`;
-
-export const Inputs = styled.input`
+export const Input = styled.input`
   height: 40px;
   width: 100%;
   border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
@@ -64,22 +57,6 @@ export const Button = styled.button`
   position: absolute;
   top: 35%;
   right: 10px;
-  cursor: pointer;
-`;
-
-export const CustomButton = styled.button`
-  background: ${(props) => {
-    if (props.name === 'forward') return '#5e97f3';
-    if (props.name === 'finish') return '#4ee4a5';
-    if (props.name === 'back') return '#c1cfe0';
-  }};
-  text-align: center;
-  height: 40px;
-  width: 100px;
-  float: right;
-  border: none;
-  color: #ffffff;
-  margin-left: 100px;
   cursor: pointer;
 `;
 
