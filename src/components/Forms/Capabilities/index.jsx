@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 import { setValueToDB } from 'redux/db/reducers';
 import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
@@ -61,7 +61,11 @@ const Capabilities = ({ handleSubmit }) => {
           <InputForm>
             <Label htmlFor="hobbies">My hobbies</Label>
             <div className="checked">
-              <Field values={HOBBIES} name="hobbies" component={Checkbox} />
+              <FieldArray
+                options={HOBBIES}
+                name="hobbies"
+                component={Checkbox}
+              />
             </div>
           </InputForm>
         </FormFields>
