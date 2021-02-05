@@ -6,13 +6,13 @@ import {
   ButtonForPhone,
   ButtonWrapper,
   FieldWrapper,
-} from 'components/ContactForm/styled';
-import { renderNumber } from 'components/CustomFields/PhoneNumber';
+} from 'components/Forms/Contact/styled';
+import RenderNumber from 'components/CustomFields/Inputs/Number';
 // assets
 import addNumberIcon from 'assets/icon/addButton.svg';
 import removeNumberIcon from 'assets/icon/removeButton.svg';
 
-export const PhoneFields = ({ fields, maxCountFiled }) => {
+const PhoneFields = ({ fields, maxCountFiled }) => {
   const handleCreatePhone = () => {
     fields.push({});
   };
@@ -24,7 +24,12 @@ export const PhoneFields = ({ fields, maxCountFiled }) => {
     <div className="phoneFields">
       {fields.map((phone, index) => (
         <FieldWrapper key={`phones${index}`}>
-          <Field name={`phones.${index}`} id={index} component={renderNumber} />
+          <Field
+            name={`phones.${index}`}
+            id={index}
+            component={RenderNumber}
+            label={`Phone #${index}`}
+          />
           <ButtonWrapper>
             <ButtonForPhone
               type="button"
@@ -49,3 +54,4 @@ export const PhoneFields = ({ fields, maxCountFiled }) => {
     </div>
   );
 };
+export default PhoneFields;

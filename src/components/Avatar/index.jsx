@@ -1,16 +1,12 @@
-/*eslint-disable*/
 import React, { useState } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 import { update } from 'redux/user/actions';
 // styled
-import { AvatarLabel, SpanError } from 'components/AccountForm/styled';
+import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';
 
-export const Avatar = ({
-  input: { value: omitValue, ...inputProps },
-  type,
-}) => {
+const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -45,3 +41,4 @@ export const Avatar = ({
     </AvatarLabel>
   );
 };
+export default Avatar;

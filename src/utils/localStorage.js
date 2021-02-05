@@ -3,7 +3,7 @@ export const setItems = (key, data) =>
 export const getItem = (key) => JSON.parse(localStorage.getItem(key));
 // user
 export const getUserFromLocalStorage = () => getItem('user');
-export const setUserToLocalStorage = (data) => setItems('user', ...data);
+export const setUserToLocalStorage = (data) => setItems('user', data);
 // tab
 export const setTabToLocalStorage = (data) => setItems('tab', data);
 export const getTabFromLocalStorage = () => getItem('tab');

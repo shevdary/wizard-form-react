@@ -4,6 +4,7 @@ export const validate = (values) => {
     errors.company = 'field is required';
     errors.language = 'field is required';
   }
+
   if (values) {
     if (values.phones) {
       const phonesArrayErrors = [];
@@ -24,20 +25,28 @@ export const validate = (values) => {
         errors.phones = phonesArrayErrors;
       }
     }
+
     if (!values.company) {
       errors.company = 'field is required';
     }
+
     if (!values.language) {
       errors.language = 'field is required';
     }
+
     if (values.github && !/\b(https:\/\/github.com)\//.test(values.github)) {
       errors.github = 'Github link is`t correct';
     }
+
     if (
       values.facebook &&
       !/\b(https|http):\/\/www.facebook.com\//g.test(values.facebook)
     ) {
       errors.facebook = 'Facebook link is`t correct';
+    }
+
+    if (values.fax && values.fax.replace(/[\s\-\+\(\)\_]/g, '').length < 12) {
+      errors.fax = 'Fax  is`t correct';
     }
   }
 

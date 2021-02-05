@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // redux
-import { update } from 'redux/user/actions';
 import { userSelector } from 'redux/user/selector';
+import { loadUserFromLocalStorage } from 'redux/user/actions';
 // components
-import Tabs from 'components/Tabs';
-import { Popup } from 'components/Popup';
+import Tabs from 'pages/Tabs';
+import Popup from 'components/Popup';
 // utils
 import {
   getTabFromLocalStorage,
@@ -14,8 +14,11 @@ import {
   removeAllFromLocalStorage,
 } from 'utils/localStorage';
 import { TABS_NAME } from 'utils/optionsValue';
+// navigation
+import RouteTab from 'pages/navigation/Tab';
+import { TabSwitch } from 'pages/Tabs/styled';
 // styled
-import { Main, TextCenter } from './CreateUserStyled';
+import { Main, TextCenter } from './styled';
 
 const CreateUser = () => {
   const user = useSelector(userSelector);
@@ -29,18 +32,16 @@ const CreateUser = () => {
     }
   }, [user]);
 
-  const handleClose = (e) => {
-    e.preventDefault();
+  const handleClose = () => {
     setIsShowPopup(false);
     removeAllFromLocalStorage();
   };
 
-  const handleContinue = (e) => {
-    e.preventDefault();
+  const handleContinue = () => {
     const redirectTabIndex = TABS_NAME.indexOf(getTabFromLocalStorage());
-    dispatch(update(getUserFromLocalStorage()));
+    dispatch(loadUserFromLocalStorage());
     history.push(`/create-user/${TABS_NAME[redirectTabIndex + 1]}`);
-    handleClose(e);
+    handleClose();
   };
 
   return (
@@ -54,6 +55,9 @@ const CreateUser = () => {
           handleContinue={handleContinue}
         />
         <Tabs />
+        <TabSwitch className="tab-switch">
+          <RouteTab />
+        </TabSwitch>
       </Main>
     </div>
   );

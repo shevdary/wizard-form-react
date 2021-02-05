@@ -6,7 +6,7 @@ db.version(1).stores({
 });
 
 export const getUserListFromDB = () => db.user.toArray();
-export const addNewUserToDB = (values) => {
+export const setNewUserToDB = (values) => {
   db.user.add(values);
 };
 export const deleteUserFromDB = (id) => db.user.delete(id);
