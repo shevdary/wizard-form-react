@@ -1,4 +1,4 @@
-import { PASSED_TAB, TAB_LIST, TAB_RESET } from './actions';
+import { PASSED_TAB, SET_PASSED_TABS, TAB_LIST, TAB_RESET } from './actions';
 // reducer
 const initialState = {
   currentTab: null,
@@ -13,6 +13,9 @@ export const reducer = (state = initialState, action) => {
       return { ...state, currentTab: action.payload };
     case TAB_RESET:
       return initialState;
+    case SET_PASSED_TABS:
+      return { ...state, passedTabs: action.payload };
+
     default:
       return state;
   }

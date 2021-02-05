@@ -1,4 +1,5 @@
-import { takeEvery, put } from 'redux-saga/effects';
+/*eslint-disable*/
+import { takeEvery, put, select } from 'redux-saga/effects';
 import { GET_USER, update } from 'redux/user/actions';
 import { SET_DB } from 'redux/db/reducers';
 // utils
@@ -11,11 +12,12 @@ import { createBrowserHistory } from 'history';
 import {
   PASSED_TAB,
   removeTabsValue,
+  setPassedTabs,
   setPassedTabToList,
   setTabFailed,
 } from './actions';
 
-export function* setTabToStorage() {
+export function* setTabToStorage(action) {
   try {
     const history = createBrowserHistory();
     const location = history.location.pathname;
@@ -23,7 +25,7 @@ export function* setTabToStorage() {
       location.lastIndexOf('/') + 1
     );
 
-    setTabToLocalStorage(getActiveTabFromPath);
+    setTabToLocalStorage(action.payload);
 
     yield put(setPassedTabToList(getActiveTabFromPath));
   } catch (e) {
@@ -37,8 +39,16 @@ export function* getTabFromStorage() {
     if (
       valuesFromLocalStore &&
       Object.keys(valuesFromLocalStore).includes('username' && 'password')
-    )
+    ) {
       yield put(update(valuesFromLocalStore));
+      yield put(setPassedTabs(['account']));
+      if (Object.keys(valuesFromLocalStore).includes('firstName')) {
+        yield put(setPassedTabs(['account', 'profile']));
+      }
+      if (Object.keys(valuesFromLocalStore).includes('company')) {
+        yield put(setPassedTabs(['account', 'profile', 'contact']));
+      }
+    }
   } catch (e) {
     yield put(setTabFailed());
   }
