@@ -1,21 +1,14 @@
 import { takeEvery, put } from 'redux-saga/effects';
+import { createBrowserHistory } from 'history';
 // redux
-import { GET_USER, update } from 'redux/user/actions';
-import { SET_DB } from 'redux/db/actions';
+import * as User from 'redux/user/actions';
+import * as Tab from 'redux/tabs/index';
+import * as DB from 'redux/db/actions';
 // utils
 import {
   getUserFromLocalStorage,
   setTabToLocalStorage,
 } from 'utils/localStorage';
-import { createBrowserHistory } from 'history';
-// action
-import {
-  PASSED_TAB,
-  removeTabsValue,
-  setPassedTabs,
-  setPassedTabToList,
-  setTabFailed,
-} from './actions';
 
 export function* setTabToStorage(action) {
   try {
@@ -27,9 +20,9 @@ export function* setTabToStorage(action) {
 
     setTabToLocalStorage(action.payload);
 
-    yield put(setPassedTabToList(getActiveTabFromPath));
+    yield put(Tab.setPassedTabToList(getActiveTabFromPath));
   } catch (e) {
-    yield put(setTabFailed());
+    yield put(Tab.setTabFailed());
   }
 }
 export function* getTabFromStorage() {
@@ -40,29 +33,29 @@ export function* getTabFromStorage() {
       valuesFromLocalStore &&
       Object.keys(valuesFromLocalStore).includes('username' && 'password')
     ) {
-      yield put(update(valuesFromLocalStore));
-      yield put(setPassedTabs(['account']));
-      if (Object.keys(valuesFromLocalStore).includes('firstName')) {
-        yield put(setPassedTabs(['account', 'profile']));
-      }
-      if (Object.keys(valuesFromLocalStore).includes('company')) {
-        yield put(setPassedTabs(['account', 'profile', 'contact']));
-      }
+      yield put(User.update(valuesFromLocalStore));
+      yield put(Tab.setPassedTabs(['account']));
+
+      if (Object.keys(valuesFromLocalStore).includes('firstName'))
+        yield put(Tab.setPassedTabs(['account', 'profile']));
+
+      if (Object.keys(valuesFromLocalStore).includes('company'))
+        yield put(Tab.setPassedTabs(['account', 'profile', 'contact']));
     }
   } catch (e) {
-    yield put(setTabFailed());
+    yield put(Tab.setTabFailed());
   }
 }
 export function* removeTabFromLocalStorage() {
   try {
-    yield put(removeTabsValue());
+    yield put(Tab.removeTabsValue());
   } catch (e) {
-    yield put(setTabFailed());
+    yield put(Tab.setTabFailed());
   }
 }
 
 export function* sagaWatcherTab() {
-  yield takeEvery(PASSED_TAB, setTabToStorage);
-  yield takeEvery(GET_USER, getTabFromStorage);
-  yield takeEvery(SET_DB, removeTabFromLocalStorage);
+  yield takeEvery(Tab.PASSED_TAB, setTabToStorage);
+  yield takeEvery(User.GET_USER, getTabFromStorage);
+  yield takeEvery(DB.SET_DB, removeTabFromLocalStorage);
 }

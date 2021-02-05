@@ -8,7 +8,7 @@ export const reducer = (state = initialState, action) => {
       return { ...state, ...action.payload };
     }
     case REMOVE_USER:
-      return {};
+      return initialState;
     default:
       return state;
   }

@@ -1,19 +1,19 @@
 import { put, select, takeEvery } from 'redux-saga/effects';
 // user
-import { userSelector } from 'redux/user/selector';
+import * as User from 'redux/user/selector';
 // db
+import * as DB from 'redux/db/actions';
 import { setNewUserToDB } from 'indexedDB/database';
-import { SET_DB, setValueFailed } from './actions';
 
 export function* setValuesToDB() {
   try {
-    const values = yield select(userSelector);
+    const values = yield select(User.userSelector);
 
     setNewUserToDB(values);
   } catch (e) {
-    yield put(setValueFailed());
+    yield put(DB.setValueFailed());
   }
 }
 export function* sagaWatcherDB() {
-  yield takeEvery(SET_DB, setValuesToDB);
+  yield takeEvery(DB.SET_DB, setValuesToDB);
 }
