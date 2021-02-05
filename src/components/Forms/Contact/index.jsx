@@ -29,8 +29,7 @@ const ContactForm = ({ handleSubmit }) => {
     history.push('/create-user/capabilities');
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     history.push('/create-user/profile');
   };
 
