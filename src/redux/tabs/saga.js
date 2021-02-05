@@ -1,5 +1,4 @@
-/*eslint-disable*/
-import { takeEvery, put, select } from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import { GET_USER, update } from 'redux/user/actions';
 import { SET_DB } from 'redux/db/reducers';
 // utils
