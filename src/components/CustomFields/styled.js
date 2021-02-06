@@ -11,6 +11,7 @@ export const ReactSelect = {
     borderRadius: 0,
     height: 'fit-content',
   }),
+
   indicatorSeparator: () => ({
     display: 'none',
   }),

@@ -7,19 +7,17 @@ import {
   RequiredField,
   SpanError,
 } from 'components/Forms/Account/styled';
+import PropsTypes from 'prop-types';
 
 const RenderField = ({
-  label,
   input,
-  type,
+  type = 'text',
   isRequired,
-  onClick,
   name,
   meta: { touched, error },
 }) => (
   <InputForm>
     <Label htmlFor={name}>
-      {label}
       {isRequired && <RequiredField>*</RequiredField>}
     </Label>
     <div>
@@ -27,12 +25,21 @@ const RenderField = ({
         {...input}
         border={touched && error}
         value={input.value}
-        placeholder={label}
-        type={type || 'text'}
-        onClick={onClick}
+        type={type}
       />
       {touched && error && <SpanError>{error}</SpanError>}
     </div>
   </InputForm>
 );
+
+RenderField.propTypes = {
+  input: PropsTypes.object.isRequired,
+  isRequired: PropsTypes.bool,
+  name: PropsTypes.string,
+  meta: PropsTypes.shape({
+    touched: PropsTypes.bool,
+    error: PropsTypes.string,
+  }).isRequired,
+};
+
 export default RenderField;

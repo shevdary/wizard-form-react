@@ -12,6 +12,7 @@ import {
   RadioLabel,
   InlineBlock,
 } from 'components/CustomFields/styled';
+import PropsTypes from 'prop-types';
 
 const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
   <InputForm>
@@ -21,19 +22,15 @@ const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
     </Label>
     <InlineBlock>
       {options.map((option) => (
-        <RadioLabel
-          ckecked={input.value === option.value}
-          key={new Date().getTime() + Math.random()}
-        >
+        <RadioLabel ckecked={input.value === option.value} key={option.value}>
           <Field
             {...input}
-            key={new Date().getTime() + Math.random()}
             type="radio"
             name={input.name}
             component="input"
             value={option.value}
           />
-          <Ckeckmark key={new Date().getTime() + Math.random()} />
+          <Ckeckmark />
           {option.label}
         </RadioLabel>
       ))}
@@ -41,5 +38,16 @@ const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+
+RadioButton.propTypes = {
+  options: PropsTypes.arrayOf(
+    PropsTypes.shape({
+      value: PropsTypes.string.isRequired,
+      label: PropsTypes.string.isRequired,
+    })
+  ).isRequired,
+  label: PropsTypes.string.isRequired,
+  input: PropsTypes.object.isRequired,
+};
 
 export default RadioButton;

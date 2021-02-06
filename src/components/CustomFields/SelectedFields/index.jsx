@@ -1,4 +1,5 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // styled
 import {
   InputForm,
@@ -26,19 +27,31 @@ const SelectedFields = (props) => {
       </Label>
       <div className="div">
         <Selects
-          styles={ReactSelect}
           className="border"
           {...input}
           {...props}
-          borderError={touched && error}
+          styles={ReactSelect}
+          borderError={touched && error ? 'true' : null}
           value={input.value}
-          onChange={input.onChange}
           onBlur={() => input.onBlur(input.value)}
         />
         {touched && error && <SpanError>{error}</SpanError>}
       </div>
     </InputForm>
   );
+};
+
+SelectedFields.propTypes = {
+  component: PropsTypes.func,
+  input: PropsTypes.object.isRequired,
+  isRequired: PropsTypes.bool,
+  name: PropsTypes.string,
+  className: PropsTypes.string,
+  meta: PropsTypes.shape({
+    touched: PropsTypes.bool,
+    error: PropsTypes.string,
+  }).isRequired,
+  label: PropsTypes.string.isRequired,
 };
 
 export default SelectedFields;

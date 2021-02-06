@@ -1,4 +1,4 @@
-import { PASSED_TAB, SET_PASSED_TABS, TAB_LIST, TAB_RESET } from './actions';
+import { CURRENT_TAB, SET_PASSED_TABS, TAB_LIST, TAB_REMOVE } from './actions';
 // reducer
 const initialState = {
   currentTab: null,
@@ -8,10 +8,15 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case TAB_LIST:
-      return { ...state, passedTabs: [...state.passedTabs, action.payload] };
-    case PASSED_TAB:
+      return {
+        ...state,
+        passedTabs: state.passedTabs.includes(action.payload)
+          ? state.passedTabs
+          : [...state.passedTabs, action.payload],
+      };
+    case CURRENT_TAB:
       return { ...state, currentTab: action.payload };
-    case TAB_RESET:
+    case TAB_REMOVE:
       return initialState;
     case SET_PASSED_TABS:
       return { ...state, passedTabs: action.payload };

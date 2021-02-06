@@ -5,20 +5,21 @@ import en from 'date-fns/locale/en-US';
 import calendar from 'assets/icon/calendar.svg';
 // styled
 import { registerLocale } from 'react-datepicker';
-import { Label, SpanError } from 'components/Forms/Account/styled';
+import { SpanError } from 'components/Forms/Account/styled';
 import {
   CalendarImg,
   DatePickerStyled,
   DatePickerWrapper,
 } from 'components/CustomFields/styled';
+import PropsTypes from 'prop-types';
 
 registerLocale('en', { ...en, options: { ...en.options, weekStartsOn: 1 } });
 
-const DataPicker = ({ input, label, meta: { touched, error } }) => (
+const DataPicker = ({ input, meta: { touched, error } }) => (
   <>
     <DatePickerWrapper>
       <CalendarImg src={calendar} alt="calendar" />
-      <Label>{label}</Label>
+
       <DatePickerStyled
         isError={touched && error}
         dateFormat="dd/MM/yyyy"
@@ -36,5 +37,13 @@ const DataPicker = ({ input, label, meta: { touched, error } }) => (
     {touched && error && <SpanError>{error}</SpanError>}
   </>
 );
+
+DataPicker.propTypes = {
+  input: PropsTypes.object.isRequired,
+  meta: PropsTypes.shape({
+    touched: PropsTypes.bool,
+    error: PropsTypes.string,
+  }).isRequired,
+};
 
 export default DataPicker;

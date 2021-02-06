@@ -1,10 +1,11 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // redux
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'redux/user/selector';
-import { update } from 'redux/user/actions';
-import { setPassedTab } from 'redux/tabs/actions';
+import { setCurrentTab } from 'redux/tabs/actions';
+import { updateUser } from 'redux/user/actions';
 // components
 import Avatar from 'components/Avatar';
 import Button from 'components/CustomFields/Button';
@@ -31,8 +32,8 @@ const AccountForm = ({ handleSubmit }) => {
   const history = useHistory();
 
   const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('account'));
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab('account'));
     history.push('/create-user/profile');
   };
 
@@ -49,12 +50,7 @@ const AccountForm = ({ handleSubmit }) => {
             <img src={avatar || avatarIcon} alt="avatar" />
           </UserAvatarImage>
           <AvatarLabel htmlFor="addAvatar">
-            <Field
-              id="addAvatar"
-              component={Avatar}
-              name="avatar"
-              type="file"
-            />
+            <Field id="addAvatar" component={Avatar} name="avatar" />
           </AvatarLabel>
         </FormFields>
         <FormFields big>
@@ -85,6 +81,10 @@ const AccountForm = ({ handleSubmit }) => {
       <Button type="submit" label="Forward" name="forward" />
     </Form>
   );
+};
+
+AccountForm.propTypes = {
+  handleSubmit: PropsTypes.func.isRequired,
 };
 
 export default connect((state) => ({ initialValues: state.user }))(

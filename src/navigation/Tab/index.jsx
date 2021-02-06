@@ -11,7 +11,7 @@ const RouteTab = () => {
 
   return (
     <Switch>
-      <Route path={`${match.path}/account`} component={AccountForm} />
+      <Route exact path={`${match.path}/account`} component={AccountForm} />
       <Route path={`${match.path}/profile`} component={ProfileForm} />
       <Route path={`${match.path}/contact`} component={ContactForm} />
       <Route path={`${match.path}/capabilities`} component={CapabilitiesForm} />

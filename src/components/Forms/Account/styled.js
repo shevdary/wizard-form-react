@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UserAvatarImage = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-left: ${(props) => props.left};
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   border: ${(props) => (props.border ? '3px solid #5e97f3' : 'none')};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // styled
 import { GoogleAutocomplete } from 'components/Forms/Contact/styled';
@@ -24,5 +25,14 @@ const PlaceAutocomplete = ({ input, label, meta: { error, touched } }) => (
     {touched && error && <SpanError>{error}</SpanError>}
   </InputForm>
 );
+
+PlaceAutocomplete.propTypes = {
+  input: PropsTypes.object.isRequired,
+  label: PropsTypes.string.isRequired,
+  meta: PropsTypes.shape({
+    touched: PropsTypes.bool,
+    error: PropsTypes.string,
+  }).isRequired,
+};
 
 export default PlaceAutocomplete;

@@ -1,18 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 // redux
+import { updateUser } from 'redux/user/actions';
+import { addValueToDB } from 'redux/db/actions';
+import { setCurrentTab } from 'redux/tabs/actions';
 import { Field, reduxForm } from 'redux-form';
-import { setValueToDB } from 'redux/db/actions';
-import { update } from 'redux/user/actions';
 import { connect, useDispatch } from 'react-redux';
 // components
 import Button from 'components/CustomFields/Button';
-import SelectedFields from 'components/CustomFields/Option';
 import Checkbox from 'components/CustomFields/Inputs/Checkbox';
 import TextArea from 'components/CustomFields/Inputs/Text';
+import SelectedFields from 'components/CustomFields/SelectedFields';
 // utils
-import { HOBBIES, SKILLS } from 'utils/optionsValue';
 import { validate } from 'utils/capabilitiesValidate';
+import { HOBBIES, SKILLS } from 'utils/optionsValue';
 // styled
 import {
   FormFields,
@@ -22,21 +23,19 @@ import {
   FormChild,
 } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
-import { setPassedTab } from '../../../redux/tabs/actions';
 
 const Capabilities = ({ handleSubmit }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('capabilities'));
-    dispatch(setValueToDB());
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab('capabilities'));
+    dispatch(addValueToDB());
     history.push('/user-list');
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     history.push('/create-user/contact');
   };
 

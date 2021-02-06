@@ -15,7 +15,7 @@ import {
 } from 'utils/localStorage';
 import { TABS_NAME } from 'utils/optionsValue';
 // navigation
-import RouteTab from 'pages/navigation/Tab';
+import RouteTab from 'navigation/Tab';
 import { TabSwitch } from 'pages/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';

@@ -1,6 +1,8 @@
-import { takeEvery, put } from 'redux-saga/effects';
+/*eslint-disable*/
+import { takeEvery, put, call } from 'redux-saga/effects';
+import { getUserByID } from 'indexedDB/database';
 // db
-import * as DB from 'redux/db/actions';
+import { ADD_TO_DB } from 'redux/db/actions';
 // user
 import * as User from 'redux/user/index';
 // utils
@@ -9,8 +11,9 @@ import {
   removeAllFromLocalStorage,
   setUserToLocalStorage,
 } from 'utils/localStorage';
+import { startLoad, stopLoad } from 'redux/loader';
 
-export function* setUserToStorage(action) {
+export function* ensureSetToLocalStorage(action) {
   try {
     setUserToLocalStorage(action.payload);
   } catch (e) {
@@ -18,31 +21,43 @@ export function* setUserToStorage(action) {
   }
 }
 
-export function* getUserFromStorage() {
+export function* ensureGetFromLocalStorage() {
   try {
-    const valuesFromLocalStore = getUserFromLocalStorage();
+    const userValues = getUserFromLocalStorage();
     if (
-      valuesFromLocalStore &&
-      Object.keys(valuesFromLocalStore).includes('username' && 'password')
+      userValues &&
+      Object.keys(userValues).includes('username' && 'password')
     )
-      yield put(User.update(valuesFromLocalStore));
+      yield put(User.updateUser(userValues));
   } catch (e) {
     yield put(User.getUserFailed());
   }
 }
 
-export function* removeUserFromLocalStorage() {
+export function* ensureRemoveLocalStorage() {
   try {
     removeAllFromLocalStorage();
-    yield put(DB.setValueSuccess());
-    yield put(User.resetUserValue());
+    yield put(User.removeUserValue());
   } catch (e) {
     yield put(User.getUserFailed());
+  }
+}
+
+export function* ensureGetUserById(action) {
+  yield put(startLoad());
+  try {
+    const values = yield call(() => getUserByID(action.payload));
+    yield put(User.updateUser(values));
+  } catch (e) {
+    yield put(User.getUserFailed());
+  } finally {
+    yield put(stopLoad());
   }
 }
 
 export function* sagaWatcherUser() {
-  yield takeEvery(User.UPDATE_USER, setUserToStorage);
-  yield takeEvery(User.GET_USER, getUserFromStorage);
-  yield takeEvery(DB.SET_DB, removeUserFromLocalStorage);
+  yield takeEvery(User.UPDATE_USER, ensureSetToLocalStorage);
+  yield takeEvery(User.GET_USER, ensureGetFromLocalStorage);
+  yield takeEvery(ADD_TO_DB, ensureRemoveLocalStorage);
+  yield takeEvery(User.GET_USER_BY_ID, ensureGetUserById);
 }

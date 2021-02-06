@@ -1,16 +1,17 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 // redux
-import { Field, reduxForm, FieldArray } from 'redux-form';
+import { updateUser } from 'redux/user/actions';
+import { setCurrentTab } from 'redux/tabs/actions';
 import { connect, useDispatch } from 'react-redux';
-import { update } from 'redux/user/actions';
-import { setPassedTab } from 'redux/tabs/actions';
+import { Field, reduxForm, FieldArray } from 'redux-form';
 // components
 import Button from 'components/CustomFields/Button';
 import PhoneFields from 'components/PhoneFields';
 import RenderField from 'components/CustomFields/RenderField';
 import InputComponent from 'components/CustomFields/Inputs';
-import SelectedFields from 'components/CustomFields/Option';
+import SelectedFields from 'components/CustomFields/SelectedFields';
 import RenderNumber from 'components/CustomFields/Inputs/Number';
 // utils
 import { LANGUAGE } from 'utils/optionsValue';
@@ -24,8 +25,8 @@ const ContactForm = ({ handleSubmit }) => {
   const history = useHistory();
 
   const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('contact'));
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab('contact'));
     history.push('/create-user/capabilities');
   };
 
@@ -69,6 +70,10 @@ const ContactForm = ({ handleSubmit }) => {
       <Button type="button" label="Back" onClick={handleClick} name="back" />
     </Form>
   );
+};
+
+ContactForm.propTypes = {
+  handleSubmit: PropsTypes.func.isRequired,
 };
 
 export default connect((state) => ({

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // styled
 import { Alert, ButtonTransparent, Text } from './styled';
 
@@ -9,4 +10,12 @@ const Popup = ({ isShowPopup, handleClose, handleContinue, text }) => (
     <ButtonTransparent onClick={handleClose}>X</ButtonTransparent>
   </Alert>
 );
+
+Popup.propTypes = {
+  isShowPopup: PropsTypes.bool.isRequired,
+  handleClose: PropsTypes.func.isRequired,
+  handleContinue: PropsTypes.func.isRequired,
+  text: PropsTypes.string.isRequired,
+};
+
 export default Popup;

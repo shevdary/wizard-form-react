@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useLocation, useRouteMatch } from 'react-router-dom';
 // redux
 import { useSelector } from 'react-redux';
 import { tabsSelector } from 'redux/tabs/selector';
@@ -10,10 +10,13 @@ import { TabsItem, TabsList, TabWrapper } from './styled';
 
 export const Tabs = () => {
   const match = useRouteMatch();
+  const activeTab = useLocation().pathname;
   const { passedTabs } = useSelector(tabsSelector);
 
   const isTypeTab = (type) =>
     passedTabs[0] && passedTabs.includes(type) ? 'before' : 'disable';
+
+  const isActiveTab = (tab) => activeTab.includes(tab) && 'active';
 
   return (
     <TabWrapper
@@ -22,18 +25,29 @@ export const Tabs = () => {
       className="tab-wrapper"
     >
       <TabsList className="tab-list">
-        <TabsItem to={`${match.path}/account`} className={isTypeTab('account')}>
+        <TabsItem
+          to={`${match.path}/account`}
+          className={`${isActiveTab('account')}  ${isTypeTab('account')}`}
+        >
           1. Account
         </TabsItem>
-        <TabsItem to={`${match.path}/profile`} className={isTypeTab('profile')}>
+        <TabsItem
+          to={`${match.path}/profile`}
+          className={`${isActiveTab('profile')}  ${isTypeTab('profile')}`}
+        >
           2. Profile
         </TabsItem>
-        <TabsItem to={`${match.path}/contact`} className={isTypeTab('contact')}>
+        <TabsItem
+          to={`${match.path}/contact`}
+          className={`${isActiveTab('contact')}  ${isTypeTab('contact')}`}
+        >
           3. Contact
         </TabsItem>
         <TabsItem
           to={`${match.path}/capabilities`}
-          className={isTypeTab('capabilities')}
+          className={`${isActiveTab('capabilities')}  ${isTypeTab(
+            'capabilities'
+          )}`}
         >
           4. Capabilities
         </TabsItem>

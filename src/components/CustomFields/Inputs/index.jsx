@@ -10,16 +10,15 @@ import {
   Label,
   RequiredField,
 } from 'components/Forms/Account/styled';
+import PropsTypes from 'prop-types';
 import { InputField } from '../styled';
 
 const InputComponent = ({
   label,
-  type,
+  type = 'text',
   name,
   isRequired,
   component,
-  placeholder,
-  onClick,
   isVisible,
 }) => {
   const [isVisibleField, setIsVisibleField] = useState(false);
@@ -46,8 +45,6 @@ const InputComponent = ({
         name={name}
         type={typeField}
         component={component}
-        placeholder={placeholder}
-        onClick={onClick}
       />
       {isVisible && (
         <Button type="button" onClick={handleChange}>
@@ -61,4 +58,14 @@ const InputComponent = ({
     </InputForm>
   );
 };
+
+InputComponent.propTypes = {
+  component: PropsTypes.func.isRequired,
+  isVisible: PropsTypes.bool,
+  isRequired: PropsTypes.bool,
+  name: PropsTypes.string.isRequired,
+  label: PropsTypes.string.isRequired,
+  type: PropsTypes.oneOf(['email', 'text', 'password']),
+};
+
 export default InputComponent;

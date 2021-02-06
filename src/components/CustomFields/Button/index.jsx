@@ -8,9 +8,12 @@ const Button = ({ onClick, type, label, name }) => (
     {label}
   </CustomButton>
 );
-export default Button;
 
 Button.propTypes = {
-  type: PropsTypes.string.isRequired,
+  type: PropsTypes.oneOf(['submit', 'button', 'reset']).isRequired,
   label: PropsTypes.string.isRequired,
+  name: PropsTypes.string.isRequired,
+  onClick: PropsTypes.func,
 };
+
+export default Button;

@@ -11,6 +11,7 @@ import RenderNumber from 'components/CustomFields/Inputs/Number';
 // assets
 import addNumberIcon from 'assets/icon/addButton.svg';
 import removeNumberIcon from 'assets/icon/removeButton.svg';
+import PropsTypes from 'prop-types';
 
 const PhoneFields = ({ fields, maxCountFiled }) => {
   const handleCreatePhone = () => {
@@ -53,5 +54,10 @@ const PhoneFields = ({ fields, maxCountFiled }) => {
       )}
     </div>
   );
+};
+
+PhoneFields.propTypes = {
+  fields: PropsTypes.object.isRequired,
+  maxCountFiled: PropsTypes.number,
 };
 export default PhoneFields;

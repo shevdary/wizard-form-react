@@ -1,21 +1,22 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 // redux
+import { updateUser } from 'redux/user/actions';
+import { setCurrentTab } from 'redux/tabs/actions';
 import { Field, reduxForm } from 'redux-form';
 import { connect, useDispatch } from 'react-redux';
-import { update } from 'redux/user/actions';
-import { setPassedTab } from 'redux/tabs/actions';
 // custom fields
 import Button from 'components/CustomFields/Button';
-import InputComponent from 'components/CustomFields/Inputs';
 import DataPicker from 'components/CustomFields/Inputs/Date';
-import RadioButton from 'components/CustomFields/Inputs/Radio';
-import PlaceAutocomplete from 'components/CustomFields/PlaceAutocomplete';
 import RenderField from 'components/CustomFields/RenderField';
+import RadioButton from 'components/CustomFields/Inputs/Radio';
+import InputComponent from 'components/CustomFields/Inputs';
+import PlaceAutocomplete from 'components/CustomFields/PlaceAutocomplete';
 // utils
-import { validate, asyncValidate } from 'utils/profileValidate';
-import { GENDER } from 'utils/optionsValue';
 import moment from 'moment';
+import { GENDER } from 'utils/optionsValue';
+import { validate, asyncValidate } from 'utils/profileValidate';
 // styled
 import { FormFields, Form, FormChild } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -24,14 +25,13 @@ const Profile = ({ handleSubmit }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     history.push('/create-user/account');
   };
 
   const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('profile'));
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab('profile'));
     history.push('/create-user/contact');
   };
 
@@ -79,6 +79,10 @@ const Profile = ({ handleSubmit }) => {
       <Button type="button" onClick={handleClick} label="Back" name="back" />
     </Form>
   );
+};
+
+Profile.propTypes = {
+  handleSubmit: PropsTypes.func.isRequired,
 };
 
 export default connect((state) => ({

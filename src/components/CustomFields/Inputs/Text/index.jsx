@@ -1,4 +1,5 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // components
 import {
   InputForm,
@@ -9,18 +10,9 @@ import {
 
 import { Textarea } from '../../styled';
 
-const TextArea = ({
-  label,
-  input,
-  type,
-  isRequired,
-  onClick,
-  name,
-  meta: { touched, error },
-}) => (
+const TextArea = ({ input, isRequired, meta: { touched, error } }) => (
   <InputForm>
-    <Label htmlFor={name}>
-      {label}
+    <Label htmlFor="textarea">
       {isRequired && <RequiredField>*</RequiredField>}
     </Label>
     <div>
@@ -29,12 +21,18 @@ const TextArea = ({
         component="textarea"
         isError={touched && error}
         value={input.value}
-        placeholder={label}
-        type={type || 'text'}
-        onClick={onClick}
       />
       {touched && error && <SpanError>{error}</SpanError>}
     </div>
   </InputForm>
 );
+
+TextArea.propTypes = {
+  input: PropsTypes.object.isRequired,
+  meta: PropsTypes.shape({
+    touched: PropsTypes.bool,
+    error: PropsTypes.string,
+  }).isRequired,
+};
+
 export default TextArea;

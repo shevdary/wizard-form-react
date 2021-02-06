@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Tabs } from 'react-tabs';
-import { NavTab, RoutedTabs } from 'react-router-tabs';
+import { RoutedTabs } from 'react-router-tabs';
+import { Link } from 'react-router-dom';
 
-export const TabWrapper = styled(Tabs)`
+export const TabWrapper = styled.div`
   position: relative;
   font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
@@ -16,7 +16,7 @@ export const TabsList = styled(RoutedTabs)`
   list-style-type: none;
 `;
 
-export const TabsItem = styled(NavTab)`
+export const TabsItem = styled(Link)`
   width: 100%;
   height: 62px;
   display: flex;
@@ -26,6 +26,7 @@ export const TabsItem = styled(NavTab)`
   font-size: 24px;
   font-weight: 700;
   font-family: 'Roboto', sans-serif;
+
   &.disable {
     background: rgba(151, 186, 244, 0.3);
     color: #9bb0cb;

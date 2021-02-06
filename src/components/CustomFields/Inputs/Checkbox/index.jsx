@@ -2,6 +2,7 @@ import React from 'react';
 // styled
 import { Label } from 'components/Forms/Account/styled';
 import { Ckeckmark, RadioLabel } from 'components/CustomFields/styled';
+import PropsTypes from 'prop-types';
 
 const Checkbox = ({ options, input }) => {
   const onChange = (e, option) => {
@@ -37,4 +38,15 @@ const Checkbox = ({ options, input }) => {
     </Label>
   ));
 };
+
+Checkbox.propTypes = {
+  options: PropsTypes.arrayOf(
+    PropsTypes.shape({
+      value: PropsTypes.string.isRequired,
+      label: PropsTypes.string.isRequired,
+    })
+  ).isRequired,
+  input: PropsTypes.object.isRequired,
+};
+
 export default Checkbox;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // redux
 import { useDispatch } from 'react-redux';
-import { resetUserValue } from 'redux/user/actions';
+import { removeUserValue } from 'redux/user/actions';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';
@@ -21,7 +21,7 @@ export const NavBar = () => {
   };
 
   const redirectToCreateUser = () => {
-    dispatch(resetUserValue());
+    dispatch(removeUserValue());
     history.push('/create-user');
   };
 
@@ -40,7 +40,9 @@ export const NavBar = () => {
             Add new user
           </HeaderButton>
           <HeaderButton
-            active={location.includes('/user-list')}
+            active={
+              location.includes('/user-list') || location.includes('/edit-user')
+            }
             onClick={redirectToUsers}
           >
             <img src={userList} alt="user list" />
