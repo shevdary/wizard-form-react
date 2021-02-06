@@ -27,7 +27,7 @@ const TextArea = ({
       <Textarea
         {...input}
         component="textarea"
-        error={touched && error}
+        isError={touched && error}
         value={input.value}
         placeholder={label}
         type={type || 'text'}

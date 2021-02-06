@@ -25,7 +25,7 @@ const RenderField = ({
     <div>
       <Input
         {...input}
-        error={touched && error}
+        border={touched && error}
         value={input.value}
         placeholder={label}
         type={type || 'text'}

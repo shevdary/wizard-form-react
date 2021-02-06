@@ -20,7 +20,7 @@ const DataPicker = ({ input, label, meta: { touched, error } }) => (
       <CalendarImg src={calendar} alt="calendar" />
       <Label>{label}</Label>
       <DatePickerStyled
-        error={touched && error}
+        isError={touched && error}
         dateFormat="dd/MM/yyyy"
         selected={input.value || null}
         onChange={input.onChange}

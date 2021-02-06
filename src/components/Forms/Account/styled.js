@@ -65,6 +65,7 @@ export const AvatarLabel = styled.label`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  display: grid;
   & i {
     margin-left: 40px;
   }

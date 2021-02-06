@@ -69,7 +69,7 @@ export const ReactSelect = {
 export const DatePickerStyled = styled(DatePicker)`
   height: 40px;
   width: 195px;
-  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
+  border: ${(props) => (props.isError ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
 `;
 
@@ -180,7 +180,7 @@ export const Textarea = styled.textarea`
   resize: none;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
+  border: ${(props) => (props.isError ? '1px solid red' : '1px solid #c1cfe0')};
 `;
 
 export const HeaderButtonWrapper = styled.div`

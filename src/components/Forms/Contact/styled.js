@@ -45,7 +45,7 @@ export const GoogleAutocomplete = styled.div`
 export const InputMaskStyled = styled(InputMask)`
   height: 40px;
   width: 100%;
-  border: ${(props) => (props.error ? '1px solid red' : '1px solid #c1cfe0')};
+  border: ${(props) => (props.border ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
 `;
 
