@@ -55,9 +55,12 @@ export const Button = styled.button`
   color: #ced9e5;
   border: none;
   position: absolute;
-  top: 35%;
+  top: 30%;
   right: 10px;
   cursor: pointer;
+  img {
+    width: 25px;
+  }
 `;
 
 export const AvatarLabel = styled.label`

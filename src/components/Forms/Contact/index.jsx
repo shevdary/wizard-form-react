@@ -72,7 +72,7 @@ const ContactForm = ({ handleSubmit }) => {
 };
 
 export default connect((state) => ({
-  initialValues: { ...state.user, phones: state.user.phones || [{}] },
+  initialValues: { ...state.user, phones: state.user.phones || [''] },
 }))(
   reduxForm({
     form: 'contactForm',

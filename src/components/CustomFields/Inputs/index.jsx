@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 // assets
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import hide from 'assets/icon/hiddenPassword.svg';
+import visible from 'assets/icon/visiblePassword.svg';
+
 // styled
 import {
   Button,
@@ -49,11 +50,11 @@ const InputComponent = ({
         onClick={onClick}
       />
       {isVisible && (
-        <Button onClick={handleChange}>
+        <Button type="button" onClick={handleChange}>
           {isVisibleField ? (
-            <VisibilityOffIcon fontSize="small" />
+            <img src={hide} alt="hidepass" />
           ) : (
-            <VisibilityIcon fontSize="small" />
+            <img src={visible} alt="showPass" />
           )}
         </Button>
       )}

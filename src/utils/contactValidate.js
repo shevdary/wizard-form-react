@@ -19,6 +19,9 @@ export const validate = (values) => {
           if (array.indexOf(value) !== index) {
             phonesArrayErrors[index] = 'Phone numbers must not match';
           }
+          if (!array[index] && index > 0) {
+            phonesArrayErrors[index] = 'Fields is empty';
+          }
         });
       });
       if (phonesArrayErrors.length) {

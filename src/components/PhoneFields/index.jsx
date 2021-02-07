@@ -14,7 +14,7 @@ import removeNumberIcon from 'assets/icon/removeButton.svg';
 
 const PhoneFields = ({ fields, maxCountFiled }) => {
   const handleCreatePhone = () => {
-    fields.push({});
+    fields.push('');
   };
   const handleRemovePhone = (index) => {
     fields.remove(index);
@@ -28,7 +28,7 @@ const PhoneFields = ({ fields, maxCountFiled }) => {
             name={`phones.${index}`}
             id={index}
             component={RenderNumber}
-            label={`Phone #${index}`}
+            label={`Phone #${index + 1}`}
           />
           <ButtonWrapper>
             <ButtonForPhone

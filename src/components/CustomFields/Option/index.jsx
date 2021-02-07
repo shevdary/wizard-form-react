@@ -30,7 +30,7 @@ const SelectedFields = (props) => {
           className="border"
           {...input}
           {...props}
-          isError={touched && error}
+          borderError={touched && error}
           value={input.value}
           onChange={input.onChange}
           onBlur={() => input.onBlur(input.value)}

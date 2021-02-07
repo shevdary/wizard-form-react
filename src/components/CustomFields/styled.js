@@ -5,7 +5,9 @@ import { Field } from 'redux-form';
 export const ReactSelect = {
   control: (styles, state) => ({
     ...styles,
-    border: state.selectProps.isError ? ' 1px solid red' : ' 1px solid #c1cfe0',
+    border: state.selectProps.borderError
+      ? ' 1px solid red'
+      : ' 1px solid #c1cfe0',
     borderRadius: 0,
     height: 'fit-content',
   }),
