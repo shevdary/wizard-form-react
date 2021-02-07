@@ -7,9 +7,12 @@ const Checkbox = ({ options, input }) => {
   const onChange = (e, option) => {
     const newValue = [...input.value];
     if (e.target.checked) {
-      newValue.push(option.label);
+      newValue.push(option);
     } else {
-      newValue.splice(newValue.indexOf(option.label), 1);
+      newValue.splice(
+        newValue.filter((item) => item.value === option.value),
+        1
+      );
     }
 
     return input.onChange(newValue);
@@ -21,8 +24,11 @@ const Checkbox = ({ options, input }) => {
         <input
           type="checkbox"
           name={`${input.value}[${index}]`}
-          value={option.value}
-          checked={input.value.indexOf(option.label) !== -1}
+          value={input.value.value}
+          checked={
+            input.value.value &&
+            input.value.filter((item) => item.value === option.value)
+          }
           onChange={(e) => onChange(e, option)}
         />
         <Ckeckmark checkbox />
