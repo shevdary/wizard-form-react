@@ -1,4 +1,4 @@
-export const optionsLanguage = [
+export const LANGUAGE = [
   { value: 'en', label: 'English' },
   { value: 'fr', label: 'French' },
   { value: 'es', label: 'Spanish' },
@@ -25,7 +25,7 @@ export const optionsLanguage = [
   { value: 'ko', label: 'Korean' },
 ];
 
-export const optionsSkills = [
+export const SKILLS = [
   { value: 'HTML', label: 'HTML' },
   { value: 'CSS', label: 'CSS' },
   { value: 'Javascript', label: 'Javascript' },
@@ -46,27 +46,30 @@ export const optionsSkills = [
   { value: 'Firebase', label: 'Firebase' },
 ];
 
-export const hobbies = [
-  { value: 'art', label: 'Art', isChecked: false },
+export const HOBBIES = [
+  { value: 'art', label: 'Art' },
   {
     value: 'sport',
     label: 'sport, fitness, aerobica and staff like that',
-    isChecked: false,
   },
   {
     value: 'games',
     label: 'I just want to play games, I’m not living in this life',
-    isChecked: false,
   },
   {
     value: 'be_female',
     label: 'I’m a female... I’m doing nothing. Every day.',
-    isChecked: false,
   },
   {
     value: 'guitar',
     label: 'Guitar, guitar and guitar again. I’m fall in love with it.',
-    isChecked: false,
   },
-  { value: 'wtf', label: 'WTF is “hobbies”???', isChecked: false },
+  { value: 'wtf', label: 'WTF is “hobbies”???' },
 ];
+
+export const GENDER = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
+];
+
+export const TABS_NAME = ['account', 'profile', 'contact', 'capabilities'];

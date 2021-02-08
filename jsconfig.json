@@ -2,9 +2,13 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "utils": ["src/utils"],
-      "assets": ["src/assets"]
+      "utils": ["./src/utils"],
+      "assets": ["./src/assets"],
+      "redux": ["./src/redux"],
+      "components": ["./src/components"],
+      "indexedDB": ["./src/indexedDB"],
+      "pages": ["./src/pages"]
     }
   },
-  "include": ["src"]
+  "include": ["./src"]
 }

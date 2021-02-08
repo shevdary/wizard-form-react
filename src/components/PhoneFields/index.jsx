@@ -1,52 +1,57 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
-import { AddNumber } from '../ContactForm/styled';
+import React from 'react';
+// redux
 import { Field } from 'redux-form';
-import { Label } from '../AccountForm/styled';
-import { renderNumber } from '../CustomFields/PhoneNumber';
+// components
+import {
+  ButtonForPhone,
+  ButtonWrapper,
+  FieldWrapper,
+} from 'components/Forms/Contact/styled';
+import RenderNumber from 'components/CustomFields/Inputs/Number';
+// assets
+import addNumberIcon from 'assets/icon/addButton.svg';
+import removeNumberIcon from 'assets/icon/removeButton.svg';
 
-const PhoneFields = () => {
-  const [values, setValues] = useState([]);
-  const addClick = (e) => {
-    e.preventDefault();
-    const generateId = new Date().getTime().toString();
-    setValues([...values, { id: generateId, values: null }]);
+const PhoneFields = ({ fields, maxCountFiled }) => {
+  const handleCreatePhone = () => {
+    fields.push('');
   };
-
-  const removeClick = (id) => {
-    const val = values.filter((item) => item.id !== id);
-    setValues(val);
+  const handleRemovePhone = (index) => {
+    fields.remove(index);
   };
 
   return (
-    <div>
-      {values.map((element, index, array) => {
-        const removeButton =
-          array.length > 1 ? (
-            <AddNumber type="button" onClick={() => removeClick(element.id)}>
-              -
-            </AddNumber>
-          ) : null;
-        return (
-          <div key={element.id}>
-            <Label htmlFor={`${index}-number`}>{`number #${index} `} </Label>
-            <Field
-              name={`number${index}`}
-              id={`${index}-number`}
-              component={renderNumber}
-            />
-
-            {removeButton}
-          </div>
-        );
-      })}
-      {values.length < 3 && (
-        <AddNumber onClick={addClick} component="button">
-          + add phone number
-        </AddNumber>
+    <div className="phoneFields">
+      {fields.map((phone, index) => (
+        <FieldWrapper key={`phones${index}`}>
+          <Field
+            name={`phones.${index}`}
+            id={index}
+            component={RenderNumber}
+            label={`Phone #${index + 1}`}
+          />
+          <ButtonWrapper>
+            <ButtonForPhone
+              type="button"
+              onClick={() => handleRemovePhone(index)}
+              count={fields.length}
+            >
+              <img src={removeNumberIcon} alt="remove" />
+            </ButtonForPhone>
+          </ButtonWrapper>
+        </FieldWrapper>
+      ))}
+      {fields.length < maxCountFiled && (
+        <ButtonForPhone
+          type="button"
+          component="button"
+          onClick={handleCreatePhone}
+        >
+          <img src={addNumberIcon} alt="add" />
+          add phone number
+        </ButtonForPhone>
       )}
     </div>
   );
 };
-
 export default PhoneFields;

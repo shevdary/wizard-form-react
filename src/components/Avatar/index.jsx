@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+// redux
 import { useDispatch } from 'react-redux';
-import { Field } from 'redux-form';
-import { addUserData } from '../../redux/user/reducers';
+import { update } from 'redux/user/actions';
 // styled
-import { AvatarLabel } from '../AccountForm/styled';
+import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';
 
-export const Avatar = () => {
+const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -15,31 +15,31 @@ export const Avatar = () => {
     const reader = new FileReader();
 
     reader.readAsDataURL(image);
-    if (image && image.size / 1024 < 100) {
+    if (image && image.size / 1024 < 1000) {
       reader.onload = () => {
-        dispatch(addUserData({ avatar: reader.result }));
+        dispatch(update({ avatar: reader.result }));
       };
-      setError('');
+      setError(null);
     }
 
-    if (image && image.size / 1024 > 100) {
-      setError('File must be less than 1Mb');
+    if (image && image.size / 1024 > 1000) {
+      setError('Image must be less than 1Mb');
     }
   };
 
-  const renderFileInput = ({ input, type }) => (
+  return (
     <AvatarLabel htmlFor="addAvatar">
       <HiddenField
-        name={input.name}
+        {...inputProps}
         type={type}
         onChange={onFileChange}
+        accept="image/*"
         id="addAvatar"
         multiple
       />
-      <p>{error}</p>
+      <SpanError>{error}</SpanError>
       <i>+ addAvatar</i>
     </AvatarLabel>
   );
-
-  return <Field name="image" type="file" component={renderFileInput} />;
 };
+export default Avatar;
