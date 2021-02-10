@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import user from 'redux/user/reducers';
-import tab from 'redux/tabs/reducers';
+import user from 'redux/user/reducer';
+import tab from 'redux/tabs/reducer';
 import db from 'redux/db/reducers';
-import users from 'redux/userList/reducers';
+import users from 'redux/userList/reducer';
 import loader from 'redux/loader/reducers';
 
 export const rootReducer = combineReducers({

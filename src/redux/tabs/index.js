@@ -1,4 +1,3 @@
 export * from './selector';
-export * from './reducers';
+export * from './reducer';
 export * from './actions';
-export * from './saga';
