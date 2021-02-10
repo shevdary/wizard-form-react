@@ -49,9 +49,9 @@ const InputComponent = ({
       {isVisible && (
         <Button type="button" onClick={handleChange}>
           {isVisibleField ? (
-            <img src={hide} alt="hidepass" />
-          ) : (
             <img src={visible} alt="showPass" />
+          ) : (
+            <img src={hide} alt="hidepass" />
           )}
         </Button>
       )}

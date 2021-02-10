@@ -180,6 +180,7 @@ export const Textarea = styled.textarea`
   width: 300px;
   max-width: 300px;
   min-height: 100px;
+  padding: 0 10px;
   resize: none;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;

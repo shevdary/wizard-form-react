@@ -47,6 +47,7 @@ export const Input = styled.input`
   width: 100%;
   border: ${(props) => (props.border ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
+  padding-left: 10px;
 `;
 
 export const Button = styled.button`
