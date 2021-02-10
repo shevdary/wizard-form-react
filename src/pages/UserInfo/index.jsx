@@ -89,7 +89,7 @@ const UserInfo = ({ user }) => {
             )}
             {user.phones[0] &&
               user.phones.map((item, index) => (
-                <Field label={`Phone #${index + 1} : `} value={item} />
+                <Field label={`Phone #${index + 1} `} value={item} />
               ))}
           </Col>
         </EditContainer>
@@ -105,6 +105,7 @@ const UserInfo = ({ user }) => {
             {user.hobbies && (
               <Field label="Hobbies" value={arrayOfValues(user.hobbies)} />
             )}
+            {user.info && <Field label="Descriptions" value={user.info} />}
           </Col>
         </EditContainer>
       </EditContainerWrapper>

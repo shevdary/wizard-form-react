@@ -18,7 +18,7 @@ const App = () => (
       <Redirect exact from="/" to="/create-user" />
       <Route path="/create-user" component={CreateUser} />
       <Route exact path="/user-list" component={ListOfUser} />
-      <Route path="/user-list/:id" component={UserView} />
+      <Route path="/user/:id" component={UserView} />
       <Route path="/edit-user" component={EditUser} />
       <Route component={NotFound} />
     </Switch>

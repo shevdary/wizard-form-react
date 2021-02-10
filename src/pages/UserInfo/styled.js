@@ -58,8 +58,9 @@ export const Col = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 95px);
+  grid-template-columns: 100px 300px;
   grid-column-gap: 75px;
+  overflow-wrap: break-word;
   p:nth-of-type(2n) {
     font-weight: 400;
   }

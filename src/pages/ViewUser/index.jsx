@@ -15,6 +15,7 @@ import {
   UserListContainer,
 } from 'pages/UserInfo/styled';
 import { TextCenter } from 'pages/CreateUser/styled';
+import NotFound from '../NotFoundPage';
 
 const UserView = () => {
   const user = useSelector(userSelector);
@@ -31,6 +32,10 @@ const UserView = () => {
     dispatch(removeUserValue());
     history.push('/user-list');
   };
+
+  if (!user.id) {
+    return <NotFound title="User is not found" />;
+  }
 
   return (
     <UserListContainer>
