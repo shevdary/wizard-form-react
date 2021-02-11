@@ -5,11 +5,11 @@ import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import CreateUser from 'pages/CreateUser';
 import { NavBar } from 'components/NavBar';
 import ListOfUser from 'pages/ListOfUser';
-import NotFound from 'pages/NotFoundPage';
+import EditUser from 'pages/EditUser';
+import UserView from 'pages/ViewUser';
+import NotFound from 'pages/notFoundPage';
 // styled
 import './style.css';
-import EditUser from '../pages/EditUser';
-import UserView from '../pages/ViewUser';
 
 const App = () => (
   <BrowserRouter basename="/">

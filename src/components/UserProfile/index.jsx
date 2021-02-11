@@ -26,7 +26,7 @@ import {
   replacePassword,
 } from './utils';
 
-const UserInfo = ({ user }) => {
+const UserProfile = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -116,7 +116,7 @@ const UserInfo = ({ user }) => {
   );
 };
 
-UserInfo.propTypes = {
+UserProfile.propTypes = {
   user: PropsTypes.object.isRequired,
 };
-export default UserInfo;
+export default UserProfile;

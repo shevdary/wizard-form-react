@@ -10,7 +10,7 @@ import Button from 'components/CustomFields/Button';
 import PhoneFields from 'components/PhoneFields';
 import RenderField from 'components/CustomFields/RenderField';
 import InputComponent from 'components/CustomFields/Inputs';
-import SelectedFields from 'components/CustomFields/SelectedFields';
+import SelectedFields from 'components/CustomFields/Selected';
 import RenderNumber from 'components/CustomFields/Inputs/Number';
 // utils
 import { LANGUAGE } from 'utils/optionsValue';

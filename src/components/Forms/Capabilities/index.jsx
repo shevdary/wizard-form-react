@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Button from 'components/CustomFields/Button';
 import Checkbox from 'components/CustomFields/Inputs/Checkbox';
 import TextArea from 'components/CustomFields/Inputs/Text';
-import SelectedFields from 'components/CustomFields/SelectedFields';
+import SelectedFields from 'components/CustomFields/Selected';
 // utils
 import { validate } from 'utils/capabilitiesValidate';
 import { HOBBIES, SKILLS } from 'utils/optionsValue';

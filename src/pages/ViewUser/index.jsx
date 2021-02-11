@@ -6,8 +6,8 @@ import { getUserById, removeUserValue, userSelector } from 'redux/user';
 // assets
 import previous from 'assets/icon/previous.svg';
 // Field
-import UserContainer from 'components/UserProfile';
 import Loader from 'components/Loader';
+import UserProfile from 'components/UserProfile';
 // styled
 import {
   PageTitle,
@@ -15,7 +15,7 @@ import {
   UserListContainer,
 } from 'components/UserProfile/styled';
 import { TextCenter } from 'pages/CreateUser/styled';
-import NotFound from '../NotFoundPage';
+import NotFound from '../notFoundPage';
 
 const UserView = () => {
   const user = useSelector(userSelector);
@@ -47,7 +47,7 @@ const UserView = () => {
         <TextCenter>User Name</TextCenter>
       </PageTitle>
       <Loader>
-        {Object.keys(user).length !== 0 && <UserContainer user={user} />}
+        {Object.keys(user).length !== 0 && <UserProfile user={user} />}
       </Loader>
     </UserListContainer>
   );
