@@ -5,7 +5,7 @@ const initialState = {
   isError: null,
 };
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_DB:
       return {

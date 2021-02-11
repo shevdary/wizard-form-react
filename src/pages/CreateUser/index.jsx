@@ -22,7 +22,6 @@ import { TabSwitch } from 'components/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
 
-
 const CreateUser = () => {
   const user = useSelector(userSelector);
   const [isShowPopup, setIsShowPopup] = useState(false);
