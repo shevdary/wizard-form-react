@@ -24,6 +24,7 @@ import {
 
 const AccountForm = ({ handleSubmit, onSubmit }) => {
   const { avatar } = useSelector(userSelector);
+
   return (
     <Form
       className="account"
@@ -84,6 +85,7 @@ export default connect((state) => ({ initialValues: state.user }))(
   reduxForm({
     form: 'accountForm',
     validate,
+    enableReinitialize: true,
     asyncValidate,
   })(AccountForm)
 );

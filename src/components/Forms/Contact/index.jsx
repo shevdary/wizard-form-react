@@ -80,6 +80,7 @@ export default connect((state) => ({
   reduxForm({
     form: 'contactForm',
     onBlur: ['phones'],
+    enableReinitialize: true,
     validate,
   })(ContactForm)
 );

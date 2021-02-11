@@ -85,6 +85,7 @@ export default connect((state) => ({
 }))(
   reduxForm({
     form: 'profileForm',
+    enableReinitialize: true,
     validate,
     asyncValidate,
   })(Profile)

@@ -64,6 +64,7 @@ const Capabilities = ({ handleSubmit, onSubmit, goBack }) => (
 export default connect((state) => ({ initialValues: state.user }))(
   reduxForm({
     form: 'capabilitiesForm',
+    enableReinitialize: true,
     validate,
   })(Capabilities)
 );
