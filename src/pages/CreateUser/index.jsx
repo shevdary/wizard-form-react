@@ -36,6 +36,7 @@ const CreateUser = () => {
 
   const handleClose = () => {
     setIsShowPopup(false);
+    history.push('/create-user/');
     removeAllFromLocalStorage();
   };
 
