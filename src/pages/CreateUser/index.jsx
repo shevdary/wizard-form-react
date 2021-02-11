@@ -4,8 +4,10 @@ import { useHistory } from 'react-router-dom';
 // redux
 import { userSelector } from 'redux/user/selector';
 import { loadUserFromLocalStorage, updateUser } from 'redux/user/actions';
+import { setCurrentTab } from 'redux/tabs';
+import { addValueToDB } from 'redux/db';
 // components
-import Tabs from 'pages/Tabs';
+import Tabs from 'components/Tabs';
 import Popup from 'components/Popup';
 // utils
 import {
@@ -16,11 +18,10 @@ import {
 import { TABS_NAME } from 'utils/optionsValue';
 // navigation
 import RouteTab from 'navigation/Tab';
-import { TabSwitch } from 'pages/Tabs/styled';
+import { TabSwitch } from 'components/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
-import { setCurrentTab } from '../../redux/tabs';
-import { addValueToDB } from '../../redux/db';
+
 
 const CreateUser = () => {
   const user = useSelector(userSelector);

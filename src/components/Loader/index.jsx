@@ -8,7 +8,6 @@ import { LoaderWrapper } from './styled';
 
 const Loader = ({ children }) => {
   const { isLoading } = useSelector(loaderSelector);
-
   return (
     <>
       {isLoading && (

@@ -6,6 +6,7 @@ import AccountForm from 'components/Forms/Account';
 import ProfileForm from 'components/Forms/Profile';
 import CapabilitiesForm from 'components/Forms/Capabilities';
 import ContactForm from 'components/Forms/Contact';
+import NotFound from '../../pages/NotFoundPage';
 
 const RouteTab = ({ onSubmit, goBack, addValuesToDB }) => {
   const match = useRouteMatch();
@@ -13,7 +14,6 @@ const RouteTab = ({ onSubmit, goBack, addValuesToDB }) => {
   return (
     <Switch>
       <Route
-        exact
         path={`${match.path}/account`}
         render={() => <AccountForm onSubmit={onSubmit} />}
       />
@@ -31,7 +31,7 @@ const RouteTab = ({ onSubmit, goBack, addValuesToDB }) => {
           <CapabilitiesForm onSubmit={addValuesToDB} goBack={goBack} />
         )}
       />
-      <Redirect from="/" to={`${match.path}/account`} />
+      <Route component={NotFound} />
     </Switch>
   );
 };

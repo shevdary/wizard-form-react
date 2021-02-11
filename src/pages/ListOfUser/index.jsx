@@ -9,15 +9,15 @@ import UserTable from 'components/UsersTable';
 import EmptyUserList from 'components/UsersTable/EmptyTable';
 import TableHeader from 'components/UsersTable/TableHeader';
 import Loader from 'components/Loader';
+import { UserListWrapper } from 'components/UsersTable/styled';
 // pages
 import { Main, TextCenter } from 'pages/CreateUser/styled';
-import { UserListWrapper } from '../../components/UsersTable/styled';
 
 const ListOfUser = () => {
   const userList = useSelector(List.userListSelector);
-
   const history = useHistory();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(List.getUserListFromDB());
   }, [dispatch]);
