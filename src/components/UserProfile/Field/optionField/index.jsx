@@ -4,9 +4,9 @@ import { Row } from '../../styled';
 const OptionField = ({ label, value }) => {
   return (
     <Row>
-      <p>Skills</p>
+      <p>{label}</p>
       <p>
-        {user.skills
+        {value
           .map((item) => item)
           .map((item) => item.label)
           .join(', ')}
