@@ -1,4 +1,4 @@
-import * as List from './actions';
+import { LOAD_STOP, LOAD_START } from './actions';
 
 const initialState = {
   isLoading: false,
@@ -6,12 +6,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case List.LOAD_START:
+    case LOAD_START:
       return { isLoading: true };
-    case List.LOAD_STOP:
+    case LOAD_STOP:
       return { isLoading: false };
     default:
       return state;
   }
 };
+
 export default reducer;
