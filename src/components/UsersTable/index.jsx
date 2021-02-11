@@ -29,7 +29,7 @@ const UserTable = () => {
   };
 
   const handleEdit = (i) => {
-    history.push(`/user-list/:${i}`);
+    history.push(`/user/${i}`);
   };
 
   return (

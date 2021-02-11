@@ -6,14 +6,14 @@ import { getUserById, removeUserValue, userSelector } from 'redux/user';
 // assets
 import previous from 'assets/icon/previous.svg';
 // Field
-import UserContainer from 'pages/UserInfo';
+import UserContainer from 'components/UserProfile';
 import Loader from 'components/Loader';
 // styled
 import {
   PageTitle,
   PreviousPage,
   UserListContainer,
-} from 'pages/UserInfo/styled';
+} from 'components/UserProfile/styled';
 import { TextCenter } from 'pages/CreateUser/styled';
 import NotFound from '../NotFoundPage';
 
