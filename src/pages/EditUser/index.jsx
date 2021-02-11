@@ -1,27 +1,33 @@
-import React from 'react';
+/*eslint-disable*/
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 // redux
 import { userSelector } from 'redux/user/selector';
-import { removeUserValue } from 'redux/user/actions';
+import { getUserById, removeUserValue } from 'redux/user/actions';
 import { updateUserToDB } from 'redux/db';
 // components
-import Tabs from 'pages/Tabs';
+import Tabs from 'components/Tabs';
 // pages
-import { TabSwitch } from 'pages/Tabs/styled';
-
+import { TabSwitch } from 'components/Tabs/styled';
 import RouteTab from 'navigation/Tab';
 // assets
 import previous from 'assets/icon/previous.svg';
 // styled
 import { PageTitle, PreviousPage } from 'components/UserProfile/styled';
 import { Main, TextCenter } from './styled';
+import NotFound from '../NotFoundPage';
 
 const EditUser = () => {
   const user = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
   const match = useRouteMatch().url;
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getUserById(id));
+  }, [id, dispatch]);
 
   const returnToUserProfile = () => {
     dispatch(removeUserValue());
@@ -36,6 +42,10 @@ const EditUser = () => {
   const goBack = (previousTab) => {
     history.push(`${match}/${previousTab}`);
   };
+
+  if (!user.id) {
+    return <NotFound title="User is not found" />;
+  }
 
   return (
     <div className="edit-page">

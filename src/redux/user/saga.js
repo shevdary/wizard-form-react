@@ -15,7 +15,7 @@ import {
 
 export function* ensureSetToLocalStorage(action) {
   try {
-    setUserToLocalStorage(action.payload);
+    if (!action.payload.id) setUserToLocalStorage(action.payload);
   } catch (e) {
     yield put(User.getUserFailed());
   }
@@ -47,7 +47,7 @@ export function* ensureGetUserById(action) {
   yield put(startLoad());
   try {
     const values = yield call(() => getUserByID(action.payload));
-    yield put(User.updateUser(values));
+    if (values) yield put(User.updateUser(values));
   } catch (e) {
     yield put(User.getUserFailed());
   } finally {

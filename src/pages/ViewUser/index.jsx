@@ -27,7 +27,7 @@ const UserView = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserById(id.replace(/\:/g, '')));
+    dispatch(getUserById(id));
     /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 

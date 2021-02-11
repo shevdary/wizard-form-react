@@ -64,9 +64,20 @@ export function* ensureRemoveLocalStorage() {
     yield put(Tab.setTabFailed());
   }
 }
+
+export function* ensureSetActiveTabs() {
+  try {
+    yield put(
+      Tab.setPassedTabs(['account', 'profile', 'contact', 'capabilities'])
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}
 export function* sagaWatcherTab() {
   yield takeEvery(Tab.CURRENT_TAB, ensureSetTabToStorage);
   yield takeEvery(User.GET_USER, getTabFromStorage);
   yield takeEvery(ADD_TO_DB, ensureRemoveFromStore);
   yield takeEvery(User.REMOVE_USER, ensureRemoveLocalStorage);
+  yield takeEvery(User.GET_USER_BY_ID, ensureSetActiveTabs);
 }
