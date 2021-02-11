@@ -11,6 +11,7 @@ import TableHeader from 'components/UsersTable/TableHeader';
 import Loader from 'components/Loader';
 // pages
 import { Main, TextCenter } from 'pages/CreateUser/styled';
+import { UserListWrapper } from '../../components/UsersTable/styled';
 
 const ListOfUser = () => {
   const userList = useSelector(List.userListSelector);
@@ -35,15 +36,18 @@ const ListOfUser = () => {
         <Main>
           <TextCenter>List of user</TextCenter>
           <TableHeader />
-          {userList[0] ? (
-            <UserTable
-              userList={userList}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <EmptyUserList />
-          )}
+          <UserListWrapper className="user-wrapper">
+            {userList[0] ? (
+              <UserTable
+                className="children"
+                userList={userList}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <EmptyUserList />
+            )}
+          </UserListWrapper>
         </Main>
       </Loader>
     </div>

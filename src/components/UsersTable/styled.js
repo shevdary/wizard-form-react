@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const UserListWrapper = styled.div`
   width: 970px;
 `;
+
+export const RowTable = styled.div`
+  position: relative;
+`;
+
 export const FlexTable = styled.div`
   background: ${(props) => props.color};
   width: 970px;
@@ -26,7 +31,7 @@ export const FlexTable = styled.div`
     .slide td {
       opacity: 40%;
     }
-    &:nth-of-type(2n + 1) {
+    &:nth-of-type(2n) {
       background: white;
     }
     & div:first-of-type {
@@ -42,7 +47,6 @@ export const FlexTable = styled.div`
 `;
 
 export const FlexBody = styled.div`
-  background: ${(props) => props.color} #e7f0ff;
   position: relative;
   height: 95px;
   transition: 0.5s;
@@ -85,7 +89,7 @@ export const TrBody = styled.div`
   display: flex;
   border-top: 15px solid white;
 
-  &:nth-of-type(2n) {
+  &:nth-of-type(1) {
     background: white;
   }
   &.slide {
@@ -101,12 +105,12 @@ export const ConfirmButton = styled.button`
   background: transparent;
   position: absolute;
   width: 70px;
-  left: 100%;
   top: 35px;
-  border:none;
+  border: none;
   font-weight: bold;
+  left: 92%;
+  z-index: -1;
   color: ${(props) => (props.delete ? '#FF8989' : '#4E86E4')}}
- 
 `;
 
 export const EmptyListContainer = styled.div`

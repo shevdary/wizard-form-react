@@ -11,7 +11,7 @@ import moment from 'moment';
 // styled
 import { ButtonTransparent } from 'components/Popup/styled';
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import { ConfirmButton, FlexCol, FlexTable } from './styled';
+import { ConfirmButton, FlexBody, FlexCol, FlexTable } from './styled';
 
 const TableRow = ({ user, handleDelete, handleEdit }) => {
   const [itemSlide, setItemSlide] = useState(false);
@@ -21,44 +21,44 @@ const TableRow = ({ user, handleDelete, handleEdit }) => {
   };
 
   return (
-    <FlexTable
-      className={`body  ${itemSlide ? 'slide' : 'hide'}`}
-      color="#e7f0ff"
-      height="95px"
-    >
-      <FlexCol className="avatar">
-        <UserAvatarImage className="avatar" size="40px" left="15px">
-          <img src={user.avatar || avatar} alt="avatarUser" />
-        </UserAvatarImage>
-        <div className="flex-right">
-          <p>{`${user.firstName}  ${user.lastName}`}</p>
-          <sub>{user.username}</sub>
-        </div>
-      </FlexCol>
-      <FlexCol>{user.company}</FlexCol>
-      <FlexCol minWidth="275px">{user.phones[0] || user.email}</FlexCol>
-      <FlexCol className="childDisplay">
-        <p>
-          {user.updatedAt
-            ? lastUserUpdate(user.updatedAt, moment.now())
-            : 'non changes'}
-        </p>
-        <div className="flex-button">
-          <ButtonTransparent onClick={() => handleEdit(user.id)}>
-            <img src={editIcon} alt="editIcon" />
-          </ButtonTransparent>
-          <ButtonTransparent onClick={handleConfirm}>
-            <img src={deleteIcon} alt="deleteIcon" />
-          </ButtonTransparent>
-        </div>
-      </FlexCol>
-      {itemSlide && (
-        <ConfirmButton onClick={() => handleDelete(user.id)} delete>
-          <img src={confirmDel} alt="confirm" />
-          delete
-        </ConfirmButton>
-      )}
-    </FlexTable>
+    <FlexBody>
+      <FlexTable
+        className={`body  ${itemSlide ? 'slide' : 'hide'}`}
+        color="#e7f0ff"
+        height="95px"
+      >
+        <FlexCol className="avatar">
+          <UserAvatarImage className="avatar" size="40px" left="15px">
+            <img src={user.avatar || avatar} alt="avatarUser" />
+          </UserAvatarImage>
+          <div className="flex-right">
+            <p>{`${user.firstName}  ${user.lastName}`}</p>
+            <sub>{user.username}</sub>
+          </div>
+        </FlexCol>
+        <FlexCol>{user.company}</FlexCol>
+        <FlexCol minWidth="275px">{user.phones[0] || user.email}</FlexCol>
+        <FlexCol className="childDisplay">
+          <p>
+            {user.updatedAt
+              ? lastUserUpdate(user.updatedAt, moment.now())
+              : 'non changes'}
+          </p>
+          <div className="flex-button">
+            <ButtonTransparent onClick={() => handleEdit(user.id)}>
+              <img src={editIcon} alt="editIcon" />
+            </ButtonTransparent>
+            <ButtonTransparent onClick={handleConfirm}>
+              <img src={deleteIcon} alt="deleteIcon" />
+            </ButtonTransparent>
+          </div>
+        </FlexCol>
+      </FlexTable>
+      <ConfirmButton onClick={() => handleDelete(user.id)} delete>
+        <img src={confirmDel} alt="confirm" />
+        delete
+      </ConfirmButton>
+    </FlexBody>
   );
 };
 
