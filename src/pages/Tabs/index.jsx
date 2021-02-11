@@ -28,6 +28,7 @@ export const Tabs = () => {
         <TabsItem
           to={`${match.path}/account`}
           className={`${isActiveTab('account')}  ${isTypeTab('account')}`}
+          disable
         >
           1. Account
         </TabsItem>

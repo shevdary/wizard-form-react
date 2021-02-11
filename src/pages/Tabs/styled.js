@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { RoutedTabs } from 'react-router-tabs';
+
 import { Link } from 'react-router-dom';
 
 export const TabWrapper = styled.div`
@@ -8,7 +8,7 @@ export const TabWrapper = styled.div`
   font-size: 12px;
 `;
 
-export const TabsList = styled(RoutedTabs)`
+export const TabsList = styled.div`
   display: flex;
   width: 970px;
   margin: 0;
@@ -30,6 +30,7 @@ export const TabsItem = styled(Link)`
   &.disable {
     background: rgba(151, 186, 244, 0.3);
     color: #9bb0cb;
+    pointer-events: none;
   }
   &.active {
     color: #ffffff !important;
