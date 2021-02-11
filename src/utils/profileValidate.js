@@ -36,10 +36,12 @@ export const asyncValidate = (values) =>
   getUserListFromDB().then((res) => {
     if (values.email) {
       res.map((item) => {
-        if (item.email === values.email) {
-          throw {
-            email: 'Email is already exist',
-          };
+        if (!!item.id && item.id !== values.id) {
+          if (item.email === values.email) {
+            throw {
+              email: 'Email is already exist',
+            };
+          }
         }
       });
     }
