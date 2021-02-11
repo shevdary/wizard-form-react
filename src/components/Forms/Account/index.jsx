@@ -1,17 +1,14 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
 // redux
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'redux/user/selector';
-import { setCurrentTab } from 'redux/tabs/actions';
-import { updateUser } from 'redux/user/actions';
 // components
 import Avatar from 'components/Avatar';
 import Button from 'components/CustomFields/Button';
 import InputComponent from 'components/CustomFields/Inputs';
 import RenderField from 'components/CustomFields/RenderField';
-import { useHistory } from 'react-router-dom';
 // utils
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
@@ -25,20 +22,15 @@ import {
   FormChild,
 } from './styled';
 
-const AccountForm = ({ handleSubmit }) => {
+const AccountForm = ({ handleSubmit, onSubmit }) => {
   const { avatar } = useSelector(userSelector);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const onSubmit = (values) => {
-    dispatch(updateUser(values));
-    dispatch(setCurrentTab('account'));
-    history.push('/create-user/profile');
-  };
-
   return (
-    <Form className="account" onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      className="account"
+      onSubmit={handleSubmit((values) =>
+        onSubmit(values, 'account', 'profile')
+      )}
+    >
       <FormChild>
         <FormFields className="left-side">
           <UserAvatarImage
@@ -85,6 +77,7 @@ const AccountForm = ({ handleSubmit }) => {
 
 AccountForm.propTypes = {
   handleSubmit: PropsTypes.func.isRequired,
+  onSubmit: PropsTypes.func.isRequired,
 };
 
 export default connect((state) => ({ initialValues: state.user }))(

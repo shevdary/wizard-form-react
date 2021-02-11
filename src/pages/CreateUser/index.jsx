@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // redux
 import { userSelector } from 'redux/user/selector';
-import { loadUserFromLocalStorage } from 'redux/user/actions';
+import { loadUserFromLocalStorage, updateUser } from 'redux/user/actions';
 // components
 import Tabs from 'pages/Tabs';
 import Popup from 'components/Popup';
@@ -19,6 +19,8 @@ import RouteTab from 'navigation/Tab';
 import { TabSwitch } from 'pages/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
+import { setCurrentTab } from '../../redux/tabs';
+import { addValueToDB } from '../../redux/db';
 
 const CreateUser = () => {
   const user = useSelector(userSelector);
@@ -44,6 +46,22 @@ const CreateUser = () => {
     handleClose();
   };
 
+  const onSubmit = (values, currentTab, nextTab) => {
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab(currentTab));
+    history.push(`/create-user/${nextTab}`);
+  };
+
+  const addUserToDB = (values, path) => {
+    dispatch(updateUser(values));
+    dispatch(addValueToDB());
+    history.push(path);
+  };
+
+  const goBack = (previousTab) => {
+    history.push(`/create-user/${previousTab}`);
+  };
+
   return (
     <div className="main-account">
       <Main>
@@ -56,7 +74,11 @@ const CreateUser = () => {
         />
         <Tabs />
         <TabSwitch className="tab-switch">
-          <RouteTab />
+          <RouteTab
+            onSubmit={onSubmit}
+            goBack={goBack}
+            addValuesToDB={addUserToDB}
+          />
         </TabSwitch>
       </Main>
     </div>
