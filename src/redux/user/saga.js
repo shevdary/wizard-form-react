@@ -1,6 +1,7 @@
-/*eslint-disable*/
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getUserByID } from 'indexedDB/database';
+// loader
+import { startLoad, stopLoad } from 'redux/loader';
 // db
 import { ADD_TO_DB } from 'redux/db/actions';
 // user
@@ -11,7 +12,6 @@ import {
   removeAllFromLocalStorage,
   setUserToLocalStorage,
 } from 'utils/localStorage';
-import { startLoad, stopLoad } from 'redux/loader';
 
 export function* ensureSetToLocalStorage(action) {
   try {
