@@ -5,7 +5,7 @@ export const UserListWrapper = styled.div`
 `;
 export const FlexTable = styled.div`
   background: ${(props) => props.color};
-  width: 100%;
+  width: 970px;
   display: flex;
   flex-flow: row;
 

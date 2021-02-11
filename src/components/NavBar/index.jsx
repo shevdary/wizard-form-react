@@ -41,7 +41,7 @@ export const NavBar = () => {
           </HeaderButton>
           <HeaderButton
             active={
-              location.includes('/user-list') || location.includes('/edit-user')
+              location.includes('/user') || location.includes('/edit-user')
             }
             onClick={redirectToUsers}
           >
