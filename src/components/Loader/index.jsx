@@ -1,5 +1,6 @@
 import React from 'react';
 import { BeatLoader } from 'react-spinners';
+import PropsTypes from 'prop-types';
 // redux
 import { useSelector } from 'react-redux';
 import { loaderSelector } from 'redux/loader/selectors';
@@ -18,5 +19,9 @@ const Loader = ({ children }) => {
       {!isLoading && children}
     </>
   );
+};
+
+Loader.propTypes = {
+  children: PropsTypes.object,
 };
 export default Loader;

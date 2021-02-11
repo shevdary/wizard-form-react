@@ -117,6 +117,24 @@ const UserProfile = ({ user }) => {
 };
 
 UserProfile.propTypes = {
-  user: PropsTypes.object.isRequired,
+  user: {
+    id: PropsTypes.number.isRequired,
+    username: PropsTypes.string.isRequired,
+    password: PropsTypes.string.isRequired,
+    firstName: PropsTypes.string.isRequired,
+    lastName: PropsTypes.string.isRequired,
+    email: PropsTypes.string.isRequired,
+    facebook: PropsTypes.string,
+    birthday: PropsTypes.string.isRequired,
+    fax: PropsTypes.string,
+    github: PropsTypes.string,
+    info: PropsTypes.string,
+    phones: PropsTypes.array,
+    avatar: PropsTypes.string,
+    hobbies: PropsTypes.array,
+    address: PropsTypes.string,
+    skills: PropsTypes.array,
+  }.isRequired,
 };
+
 export default UserProfile;

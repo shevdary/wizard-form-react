@@ -22,7 +22,7 @@ export const NavBar = () => {
 
   const redirectToCreateUser = () => {
     dispatch(removeUserValue());
-    history.push('/create-user');
+    history.push('/create-user/account');
   };
 
   return (

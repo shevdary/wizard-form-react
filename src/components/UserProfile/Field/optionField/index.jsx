@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Row } from '../../styled';
+import PropsTypes from 'prop-types';
+import ColTypeInfo from '../ColTypeInfo';
 
 const OptionField = ({ label, value }) => {
   return (
@@ -13,6 +15,11 @@ const OptionField = ({ label, value }) => {
       </p>
     </Row>
   );
+};
+
+ColTypeInfo.propTypes = {
+  label: PropsTypes.string.isRequired,
+  value: PropsTypes.array.isRequired,
 };
 
 export default OptionField;

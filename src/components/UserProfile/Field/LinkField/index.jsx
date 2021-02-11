@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row } from '../../styled';
+import PropsTypes from 'prop-types';
+import { Row } from 'components/UserProfile/styled';
 
 const LinkField = ({ label, value, textLink }) => (
   <Row>
@@ -7,4 +8,10 @@ const LinkField = ({ label, value, textLink }) => (
     <a href={value}>{textLink}</a>
   </Row>
 );
+
+LinkField.propTypes = {
+  label: PropsTypes.string.isRequired,
+  value: PropsTypes.string.isRequired,
+  textLink: PropsTypes.string.isRequired,
+};
 export default LinkField;
