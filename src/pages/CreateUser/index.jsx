@@ -35,7 +35,10 @@ const CreateUser = () => {
     if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
       setIsShowPopup(true);
     }
-  }, [user]);
+    if (Object.keys(user).length === 0) {
+      history.push('/create-user/account');
+    }
+  }, [user, history]);
 
   const handleClose = () => {
     setIsShowPopup(false);
