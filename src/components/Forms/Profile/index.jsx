@@ -11,7 +11,6 @@ import RadioButton from 'components/CustomFields/Inputs/Radio';
 import InputComponent from 'components/CustomFields/Inputs';
 import PlaceAutocomplete from 'components/CustomFields/PlaceAutocomplete';
 // utils
-import moment from 'moment';
 import { GENDER } from 'utils/optionsValue';
 import { validate, asyncValidate } from 'utils/profileValidate';
 // styled
@@ -78,14 +77,10 @@ Profile.propTypes = {
 };
 
 export default connect((state) => ({
-  initialValues: {
-    ...state.user,
-    birthday: moment(state.user.birthday).toDate(),
-  },
+  initialValues: state.user,
 }))(
   reduxForm({
     form: 'profileForm',
-    enableReinitialize: true,
     validate,
     asyncValidate,
   })(Profile)

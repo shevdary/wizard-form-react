@@ -12,7 +12,7 @@ const EmptyUserList = () => {
   const history = useHistory();
 
   const onClick = () => {
-    history.push('/create-user');
+    history.push('/create-user/account');
   };
 
   return (
