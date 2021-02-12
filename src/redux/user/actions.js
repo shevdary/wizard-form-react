@@ -5,6 +5,7 @@ export const REMOVE_USER = 'USER/REMOVE_USER';
 export const GET_USER = 'USER/GET_USER';
 export const USER_FAILED = 'USER/USER_FAILED';
 export const GET_USER_BY_ID = 'USER/GET_USER_BY_ID';
+export const CLEAR_VALUES = 'USER/CLEAR_VALUES';
 // actions
 export const updateUser = (data) => ({
   type: UPDATE_USER,
@@ -28,4 +29,7 @@ export const getUserFailed = () => ({
 export const getUserById = (id) => ({
   type: GET_USER_BY_ID,
   payload: id,
+});
+export const clearUser = () => ({
+  type: CLEAR_VALUES,
 });

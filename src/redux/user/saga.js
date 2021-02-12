@@ -8,8 +8,8 @@ import { ADD_TO_DB } from 'redux/db/actions';
 import * as User from 'redux/user/index';
 // utils
 import {
+  clearLocalStorage,
   getUserFromLocalStorage,
-  removeAllFromLocalStorage,
   setUserToLocalStorage,
 } from 'utils/localStorage';
 
@@ -34,9 +34,9 @@ export function* ensureGetFromLocalStorage() {
   }
 }
 
-export function* ensureRemoveLocalStorage() {
+export function* ensureAddUserToDb() {
   try {
-    removeAllFromLocalStorage();
+    clearLocalStorage();
     yield put(User.removeUserValue());
   } catch (e) {
     yield put(User.getUserFailed());
@@ -55,9 +55,17 @@ export function* ensureGetUserById(action) {
   }
 }
 
+export function* ensureClearLocalStorage() {
+  try {
+    yield call(clearLocalStorage);
+  } catch (e) {
+    console.log(e);
+  }
+}
 export function* sagaWatcherUser() {
   yield takeEvery(User.UPDATE_USER, ensureSetToLocalStorage);
   yield takeEvery(User.GET_USER, ensureGetFromLocalStorage);
-  yield takeEvery(ADD_TO_DB, ensureRemoveLocalStorage);
+  yield takeEvery(ADD_TO_DB, ensureAddUserToDb);
   yield takeEvery(User.GET_USER_BY_ID, ensureGetUserById);
+  yield takeEvery(User.CLEAR_VALUES, ensureClearLocalStorage);
 }

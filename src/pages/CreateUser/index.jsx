@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // redux
 import { userSelector } from 'redux/user/selector';
-import { loadUserFromLocalStorage, updateUser } from 'redux/user/actions';
+import {
+  clearUser,
+  loadUserFromLocalStorage,
+  updateUser,
+} from 'redux/user/actions';
 import { setCurrentTab } from 'redux/tabs';
 import { addValueToDB } from 'redux/db';
 // components
@@ -13,7 +17,6 @@ import Popup from 'components/Popup';
 import {
   getTabFromLocalStorage,
   getUserFromLocalStorage,
-  removeAllFromLocalStorage,
 } from 'utils/localStorage';
 import { TABS_NAME } from 'utils/optionsValue';
 // navigation
@@ -36,15 +39,16 @@ const CreateUser = () => {
 
   const handleClose = () => {
     setIsShowPopup(false);
-    history.push('/create-user/');
-    removeAllFromLocalStorage();
+    history.push('/create-user/account');
+    dispatch(clearUser());
   };
 
   const handleContinue = () => {
     const redirectTabIndex = TABS_NAME.indexOf(getTabFromLocalStorage());
     dispatch(loadUserFromLocalStorage());
     history.push(`/create-user/${TABS_NAME[redirectTabIndex + 1]}`);
-    handleClose();
+    dispatch(clearUser());
+    setIsShowPopup(false);
   };
 
   const onSubmit = (values, currentTab, nextTab) => {

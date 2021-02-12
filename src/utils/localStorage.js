@@ -8,4 +8,4 @@ export const setUserToLocalStorage = (data) => setItems('user', data);
 export const setTabToLocalStorage = (data) => setItems('tab', data);
 export const getTabFromLocalStorage = () => getItem('tab');
 // clear all from localStorage
-export const removeAllFromLocalStorage = () => localStorage.clear();
+export const clearLocalStorage = () => localStorage.clear();

@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import { takeEvery, put } from 'redux-saga/effects';
 import { createBrowserHistory } from 'history';
 // redux
@@ -8,8 +6,8 @@ import * as Tab from 'redux/tabs/index';
 import { ADD_TO_DB } from 'redux/db/actions';
 // utils
 import {
+  clearLocalStorage,
   getUserFromLocalStorage,
-  removeAllFromLocalStorage,
   setTabToLocalStorage,
 } from 'utils/localStorage';
 
@@ -58,7 +56,7 @@ export function* ensureRemoveFromStore() {
 
 export function* ensureRemoveLocalStorage() {
   try {
-    removeAllFromLocalStorage();
+    clearLocalStorage();
     yield put(Tab.removeTabsValue());
   } catch (e) {
     yield put(Tab.setTabFailed());
