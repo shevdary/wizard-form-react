@@ -9,9 +9,8 @@ import UserTable from 'components/UsersTable';
 import EmptyUserList from 'components/UsersTable/EmptyTable';
 import TableHeader from 'components/UsersTable/TableHeader';
 import Loader from 'components/Loader';
-import { UserListWrapper } from 'components/UsersTable/styled';
-// pages
-import { Main, TextCenter } from 'pages/CreateUser/styled';
+// styled
+import { Body, SectionTable, Title } from './styled';
 
 const ListOfUser = () => {
   const userList = useSelector(List.userListSelector);
@@ -31,26 +30,24 @@ const ListOfUser = () => {
   };
 
   return (
-    <div>
+    <Body>
       <Loader>
-        <Main>
-          <TextCenter>List of user</TextCenter>
+        <Title>List of user</Title>
+        <SectionTable>
           <TableHeader />
-          <UserListWrapper className="user-wrapper">
-            {userList[0] ? (
-              <UserTable
-                className="children"
-                userList={userList}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            ) : (
-              <EmptyUserList />
-            )}
-          </UserListWrapper>
-        </Main>
+          {userList[0] ? (
+            <UserTable
+              className="children"
+              userList={userList}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            />
+          ) : (
+            <EmptyUserList />
+          )}
+        </SectionTable>
       </Loader>
-    </div>
+    </Body>
   );
 };
 

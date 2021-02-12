@@ -17,17 +17,25 @@ export const PreviousPage = styled.button`
   top: ${(props) => props.positionTop};
 `;
 
-export const PageTitle = styled.div`
+export const TitleWrapper = styled.div`
   width: 970px;
   position: relative;
 `;
 
-export const UserListContainer = styled.div`
+export const Title = styled.h1`
+  margin: 45px 0px;
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  color: #475666;
+`;
+
+export const Body = styled.body`
   width: 970px;
   margin: auto;
 `;
 
-export const UserContentWrapper = styled.div`
+export const UserContentWrapper = styled.article`
   background: #e7f0ff;
   display: flex;
   .avatar {

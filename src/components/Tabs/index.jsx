@@ -9,7 +9,7 @@ import { tabsSelector } from 'redux/tabs/selector';
 import { TabsItem, TabsList, TabWrapper } from './styled';
 
 export const Tabs = () => {
-  const match = useRouteMatch();
+  const { url } = useRouteMatch();
   const activeTab = useLocation().pathname;
   const { passedTabs } = useSelector(tabsSelector);
 
@@ -26,26 +26,26 @@ export const Tabs = () => {
     >
       <TabsList className="tab-list">
         <TabsItem
-          to={`${match.path}/account`}
+          to={`${url}/account`}
           className={`${isActiveTab('account')}  ${isTypeTab('account')}`}
           disable
         >
           1. Account
         </TabsItem>
         <TabsItem
-          to={`${match.path}/profile`}
+          to={`${url}/profile`}
           className={`${isActiveTab('profile')}  ${isTypeTab('profile')}`}
         >
           2. Profile
         </TabsItem>
         <TabsItem
-          to={`${match.path}/contact`}
+          to={`${url}/contact`}
           className={`${isActiveTab('contact')}  ${isTypeTab('contact')}`}
         >
           3. Contact
         </TabsItem>
         <TabsItem
-          to={`${match.path}/capabilities`}
+          to={`${url}/capabilities`}
           className={`${isActiveTab('capabilities')}  ${isTypeTab(
             'capabilities'
           )}`}

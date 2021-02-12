@@ -26,53 +26,55 @@ const AccountForm = ({ handleSubmit, onSubmit }) => {
   const { avatar } = useSelector(userSelector);
 
   return (
-    <Form
-      className="account"
-      onSubmit={handleSubmit((values) =>
-        onSubmit(values, 'account', 'profile')
-      )}
-    >
-      <FormChild>
-        <FormFields className="left-side">
-          <UserAvatarImage
-            className="avatar"
-            size="170px"
-            border="true"
-            crop={false}
-          >
-            <img src={avatar || avatarIcon} alt="avatar" />
-          </UserAvatarImage>
-          <AvatarLabel htmlFor="addAvatar">
-            <Field id="addAvatar" component={Avatar} name="avatar" />
-          </AvatarLabel>
-        </FormFields>
-        <FormFields big>
-          <InputComponent
-            label="User name"
-            name="username"
-            isRequired
-            component={RenderField}
-          />
-          <InputComponent
-            label="Password"
-            name="password"
-            type="password"
-            isVisible
-            isRequired
-            component={RenderField}
-          />
-          <InputComponent
-            label="Repeat password"
-            name="repeatPassword"
-            type="password"
-            isVisible
-            isRequired
-            component={RenderField}
-          />
-        </FormFields>
-      </FormChild>
-      <Button type="submit" label="Forward" name="forward" />
-    </Form>
+    <section>
+      <Form
+        className="account"
+        onSubmit={handleSubmit((values) =>
+          onSubmit(values, 'account', 'profile')
+        )}
+      >
+        <FormChild>
+          <FormFields className="left-side">
+            <UserAvatarImage
+              className="avatar"
+              size="170px"
+              border="true"
+              crop={false}
+            >
+              <img src={avatar || avatarIcon} alt="avatar" />
+            </UserAvatarImage>
+            <AvatarLabel htmlFor="addAvatar">
+              <Field id="addAvatar" component={Avatar} name="avatar" />
+            </AvatarLabel>
+          </FormFields>
+          <FormFields big>
+            <InputComponent
+              label="User name"
+              name="username"
+              isRequired
+              component={RenderField}
+            />
+            <InputComponent
+              label="Password"
+              name="password"
+              type="password"
+              isVisible
+              isRequired
+              component={RenderField}
+            />
+            <InputComponent
+              label="Repeat password"
+              name="repeatPassword"
+              type="password"
+              isVisible
+              isRequired
+              component={RenderField}
+            />
+          </FormFields>
+        </FormChild>
+        <Button type="submit" label="Forward" name="forward" />
+      </Form>
+    </section>
   );
 };
 

@@ -4,9 +4,10 @@ import PropsTypes from 'prop-types';
 import TableRow from './TableRow';
 
 const UserTable = ({ userList, handleDelete, handleEdit }) =>
-  userList.map((user) => (
+  userList.map((user, index) => (
     <TableRow
       user={user}
+      count={index}
       key={user.username}
       handleDelete={() => handleDelete(user.id)}
       handleEdit={() => handleEdit(user.id)}

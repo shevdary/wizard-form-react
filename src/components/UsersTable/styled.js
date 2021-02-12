@@ -8,7 +8,7 @@ export const RowTable = styled.div`
   position: relative;
 `;
 
-export const FlexTable = styled.div`
+export const FlexTable = styled.article`
   background: ${(props) => props.color};
   width: 970px;
   display: flex;
@@ -45,11 +45,11 @@ export const FlexTable = styled.div`
     margin-left: 15px;
   }
 `;
-
-export const FlexBody = styled.div`
+export const Section = styled.section`
   position: relative;
-  height: 95px;
-  transition: 0.5s;
+  & article {
+    background: ${(props) => (props.count % 2 ? 'white' : '#e7f0ff')};
+  }
 `;
 export const FlexCol = styled.div`
   width: calc(970px / 4);
@@ -82,7 +82,6 @@ export const TableWrapper = styled.div`
   position: relative;
 `;
 export const TrBody = styled.div`
-  background: #e7f0ff;
   position: relative;
   height: 95px;
   transition: 0.5s;

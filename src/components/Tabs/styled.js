@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
-export const TabWrapper = styled.div`
+export const TabWrapper = styled.header`
   position: relative;
   font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
 `;
 
-export const TabsList = styled.div`
+export const TabsList = styled.ul`
   display: flex;
   width: 970px;
   margin: 0;

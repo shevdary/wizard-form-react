@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NavPanel = styled.div`
+export const Header = styled.header`
   background: #2f68c8;
   height: 60px;
   color: #2f68c8;
@@ -8,17 +8,24 @@ export const NavPanel = styled.div`
   border: none;
 `;
 
-export const NavItem = styled.div`
+export const ContentCenter = styled.div`
   display: inline-flex;
   position: relative;
   width: 970px;
   height: inherit;
 `;
+export const HeaderUl = styled.ul`
+  position: absolute;
+  display: flex;
+  right: 0;
+  align-self: center;
+`;
 
-export const HeaderButton = styled.button`
+export const HeaderLi = styled.li`
   background: transparent;
   height: fit-content;
   margin-left: 60px;
+  list-style: none;
   border: 0px none;
   color: white;
   font-size: 14px;

@@ -11,9 +11,9 @@ import moment from 'moment';
 // styled
 import { ButtonTransparent } from 'components/Popup/styled';
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import { ConfirmButton, FlexBody, FlexCol, FlexTable } from './styled';
+import { ConfirmButton, FlexCol, FlexTable, Section } from './styled';
 
-const TableRow = ({ user, handleDelete, handleEdit }) => {
+const TableRow = ({ user, handleDelete, handleEdit, count }) => {
   const [itemSlide, setItemSlide] = useState(false);
 
   const handleConfirm = () => {
@@ -21,7 +21,7 @@ const TableRow = ({ user, handleDelete, handleEdit }) => {
   };
 
   return (
-    <FlexBody>
+    <Section count={count}>
       <FlexTable
         className={`body  ${itemSlide ? 'slide' : 'hide'}`}
         color="#e7f0ff"
@@ -58,7 +58,7 @@ const TableRow = ({ user, handleDelete, handleEdit }) => {
         <img src={confirmDel} alt="confirm" />
         delete
       </ConfirmButton>
-    </FlexBody>
+    </Section>
   );
 };
 

@@ -14,15 +14,16 @@ import RouteTab from 'navigation/Tab';
 // assets
 import previous from 'assets/icon/previous.svg';
 // styled
-import { PageTitle, PreviousPage } from 'components/UserProfile/styled';
-import { Main, TextCenter } from './styled';
+import { TitleWrapper, PreviousPage } from 'components/UserProfile/styled';
+import { Main, Title } from './styled';
 import NotFound from '../NotFoundPage';
+import Loader from '../../components/Loader';
 
 const EditUser = () => {
   const user = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
-  const match = useRouteMatch().url;
+  const { url } = useRouteMatch();
   const { id } = useParams();
 
   useEffect(() => {
@@ -40,33 +41,27 @@ const EditUser = () => {
   };
 
   const goBack = (previousTab) => {
-    history.push(`${match}/${previousTab}`);
+    history.push(`${url}/${previousTab}`);
   };
 
-  if (!user.id) {
-    return <NotFound title="User is not found" />;
-  }
-
   return (
-    <div className="edit-page">
+    <section className="edit-page">
       <Main>
-        <PageTitle>
+        <TitleWrapper>
           <PreviousPage onClick={returnToUserProfile} positionTop="45%">
             <img src={previous} alt="previous" />
             User Profile
           </PreviousPage>
-          <TextCenter>Editing</TextCenter>
-        </PageTitle>
+          <Title>Editing</Title>
+        </TitleWrapper>
         <Tabs />
-        <TabSwitch className="tab-switch">
-          <RouteTab
-            onSubmit={updateUserInDb}
-            goBack={goBack}
-            addValuesToDB={updateUserInDb}
-          />
-        </TabSwitch>
+        <RouteTab
+          onSubmit={updateUserInDb}
+          goBack={goBack}
+          addValuesToDB={updateUserInDb}
+        />
       </Main>
-    </div>
+    </section>
   );
 };
 

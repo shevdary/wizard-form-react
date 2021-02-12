@@ -187,11 +187,6 @@ export const Textarea = styled.textarea`
   border: ${(props) => (props.isError ? '1px solid red' : '1px solid #c1cfe0')};
 `;
 
-export const HeaderButtonWrapper = styled.div`
-  position: absolute;
-  right: 0;
-  align-self: center;
-`;
 export const InputField = styled(Field).attrs((props) => ({
   fonts: props.color,
 }))`
