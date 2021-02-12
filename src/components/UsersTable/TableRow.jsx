@@ -21,12 +21,8 @@ const TableRow = ({ user, handleDelete, handleEdit, count }) => {
   };
 
   return (
-    <Section count={count}>
-      <FlexTable
-        className={`body  ${itemSlide ? 'slide' : 'hide'}`}
-        color="#e7f0ff"
-        height="95px"
-      >
+    <Section count={count} className={`body  ${itemSlide ? 'slide' : 'hide'}`}>
+      <FlexTable color="#e7f0ff" height="95px">
         <FlexCol className="avatar">
           <UserAvatarImage className="avatar" size="40px" left="15px">
             <img src={user.avatar || avatar} alt="avatarUser" />

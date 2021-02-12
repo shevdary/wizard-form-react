@@ -4,10 +4,6 @@ export const UserListWrapper = styled.div`
   width: 970px;
 `;
 
-export const RowTable = styled.div`
-  position: relative;
-`;
-
 export const FlexTable = styled.article`
   background: ${(props) => props.color};
   width: 970px;
@@ -25,12 +21,7 @@ export const FlexTable = styled.article`
   &.body {
     color: black;
     transition: 0.5s;
-    &.slide {
-      transform: translate(-80px, 0px);
-    }
-    .slide td {
-      opacity: 40%;
-    }
+
     &:nth-of-type(2n) {
       background: white;
     }
@@ -45,12 +36,36 @@ export const FlexTable = styled.article`
     margin-left: 15px;
   }
 `;
+
 export const Section = styled.section`
   position: relative;
   & article {
     background: ${(props) => (props.count % 2 ? 'white' : '#e7f0ff')};
+    transition: 0.5s;
+  }
+  &.body {
+    color: black;
+    transition: 0.5s;
+    &.slide {
+      transform: translate(-80px, 0px);
+      transition: 0.5s;
+    }
+    &.slide button {
+      transition: 0.5s;
+      left: 100%;
+    }
+    .slide td {
+      opacity: 40%;
+    }
+    &:nth-of-type(2n) {
+      background: white;
+    }
+    & div:first-of-type {
+      display: flex;
+    }
   }
 `;
+
 export const FlexCol = styled.div`
   width: calc(970px / 4);
   place-self: center;
@@ -81,6 +96,7 @@ export const TableWrapper = styled.div`
   width: 970px;
   position: relative;
 `;
+
 export const TrBody = styled.div`
   position: relative;
   height: 95px;
