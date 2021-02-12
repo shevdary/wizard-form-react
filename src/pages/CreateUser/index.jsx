@@ -31,15 +31,6 @@ const CreateUser = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
-      setIsShowPopup(true);
-    }
-    if (Object.keys(user).length === 0) {
-      history.push('/create-user/account');
-    }
-  }, [user, history]);
-
   const handleClose = () => {
     setIsShowPopup(false);
     history.push('/create-user/account');
@@ -69,6 +60,15 @@ const CreateUser = () => {
   const goBack = (previousTab) => {
     history.push(`/create-user/${previousTab}`);
   };
+
+  useEffect(() => {
+    if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
+      setIsShowPopup(true);
+    }
+    if (Object.keys(user).length === 0) {
+      history.push('/create-user/account');
+    }
+  }, [user, history]);
 
   return (
     <div className="main-account">

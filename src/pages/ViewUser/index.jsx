@@ -22,15 +22,15 @@ const UserView = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserById(id));
-    /* eslint-disable react-hooks/exhaustive-deps */
-  }, [id]);
-
   const returnToUserList = () => {
     dispatch(removeUserValue());
     history.push('/user-list');
   };
+
+  useEffect(() => {
+    dispatch(getUserById(id));
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [id]);
 
   return (
     <Body>

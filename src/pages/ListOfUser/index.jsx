@@ -1,8 +1,9 @@
+/*eslint-disable*/
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // redux
-import * as List from 'redux/userList';
+import * as List from 'redux/users';
 import { deleteUserFromDB } from 'redux/db';
 // components
 import UserTable from 'components/UsersTable';
@@ -17,10 +18,6 @@ const ListOfUser = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(List.getUserListFromDB());
-  }, [dispatch]);
-
   const handleDelete = (key) => {
     dispatch(deleteUserFromDB(key));
   };
@@ -29,22 +26,27 @@ const ListOfUser = () => {
     history.push(`/user/${i}`);
   };
 
+  useEffect(() => {
+    dispatch(List.getUserListFromDB());
+  }, [dispatch]);
+
   return (
     <Body>
       <Loader>
         <Title>List of user</Title>
         <SectionTable>
           <TableHeader />
-          {userList[0] ? (
-            <UserTable
-              className="children"
-              userList={userList}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ) : (
-            <EmptyUserList />
-          )}
+          {userList &&
+            (!!userList[0] ? (
+              <UserTable
+                className="children"
+                userList={userList}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            ) : (
+              <EmptyUserList />
+            ))}
         </SectionTable>
       </Loader>
     </Body>

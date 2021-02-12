@@ -26,10 +26,6 @@ const EditUser = () => {
   const { url } = useRouteMatch();
   const { id } = useParams();
 
-  useEffect(() => {
-    dispatch(getUserById(id));
-  }, [id, dispatch]);
-
   const returnToUserProfile = () => {
     dispatch(removeUserValue());
     history.push(`/user/${user.id}`);
@@ -43,6 +39,10 @@ const EditUser = () => {
   const goBack = (previousTab) => {
     history.push(`${url}/${previousTab}`);
   };
+
+  useEffect(() => {
+    dispatch(getUserById(id));
+  }, [id, dispatch]);
 
   return (
     <section className="edit-page">
