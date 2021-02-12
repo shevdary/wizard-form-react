@@ -19,9 +19,9 @@ export function* ensureSetTabToStorage(action) {
       location.lastIndexOf('/') + 1
     );
 
-    setTabToLocalStorage(action.payload);
-
+    setTabToLocalStorage(getActiveTabFromPath);
     yield put(Tab.setTabsToList(getActiveTabFromPath));
+    yield put(Tab.setTabsToList(action.payload));
   } catch (e) {
     yield put(Tab.setTabFailed());
   }
@@ -34,13 +34,15 @@ export function* getTabFromStorage() {
       valuesFromLocalStore &&
       Object.keys(valuesFromLocalStore).includes('username' && 'password')
     ) {
-      yield put(Tab.setPassedTabs(['account']));
+      yield put(Tab.setPassedTabs(['account', 'profile']));
 
       if (Object.keys(valuesFromLocalStore).includes('firstName'))
-        yield put(Tab.setPassedTabs(['account', 'profile']));
+        yield put(Tab.setPassedTabs(['account', 'profile', 'contact']));
 
       if (Object.keys(valuesFromLocalStore).includes('company'))
-        yield put(Tab.setPassedTabs(['account', 'profile', 'contact']));
+        yield put(
+          Tab.setPassedTabs(['account', 'profile', 'contact', 'capabilities'])
+        );
     }
   } catch (e) {
     yield put(Tab.setTabFailed());

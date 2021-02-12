@@ -29,9 +29,7 @@ const AccountForm = ({ handleSubmit, onSubmit }) => {
     <section>
       <Form
         className="account"
-        onSubmit={handleSubmit((values) =>
-          onSubmit(values, 'account', 'profile')
-        )}
+        onSubmit={handleSubmit((values) => onSubmit(values, 'profile'))}
       >
         <FormChild>
           <FormFields className="left-side">

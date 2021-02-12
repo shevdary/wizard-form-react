@@ -10,13 +10,13 @@ import { TabsItem, TabsList, TabWrapper } from './styled';
 
 export const Tabs = () => {
   const { url } = useRouteMatch();
-  const activeTab = useLocation().pathname;
+  const { pathname } = useLocation();
   const { passedTabs } = useSelector(tabsSelector);
 
   const isTypeTab = (type) =>
     passedTabs[0] && passedTabs.includes(type) ? 'before' : 'disable';
 
-  const isActiveTab = (tab) => activeTab.includes(tab) && 'active';
+  const isActiveTab = (tab) => pathname.includes(tab) && 'active';
 
   return (
     <TabWrapper

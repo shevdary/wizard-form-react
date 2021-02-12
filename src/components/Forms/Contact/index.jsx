@@ -22,9 +22,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
   <Form
     className="contact"
-    onSubmit={handleSubmit((values) =>
-      onSubmit(values, 'contact', 'capabilities')
-    )}
+    onSubmit={handleSubmit((values) => onSubmit(values, 'capabilities'))}
   >
     <FormChild>
       <FormFields>

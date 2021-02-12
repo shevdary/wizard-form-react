@@ -20,7 +20,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const Profile = ({ handleSubmit, onSubmit, goBack }) => (
   <Form
     className="profile"
-    onSubmit={handleSubmit((values) => onSubmit(values, 'profile', 'contact'))}
+    onSubmit={handleSubmit((values) => onSubmit(values, 'contact'))}
   >
     <FormChild>
       <FormFields>
@@ -82,6 +82,7 @@ export default connect((state) => ({
   reduxForm({
     form: 'profileForm',
     validate,
+    enableReinitialize: true,
     asyncValidate,
   })(Profile)
 );
