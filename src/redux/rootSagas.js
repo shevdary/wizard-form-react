@@ -3,7 +3,7 @@ import { all, fork } from 'redux-saga/effects';
 import { sagaWatcherUser } from 'redux/user/saga';
 import { sagaWatcherTab } from 'redux/tabs/saga';
 import { sagaWatcherDB } from 'redux/db/saga';
-import { sagaWatcherUserList } from 'redux/userList/saga';
+import { sagaWatcherUserList } from 'redux/users/saga';
 
 export function* sagaWatcher() {
   yield all([

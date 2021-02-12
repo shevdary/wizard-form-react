@@ -1,7 +1,7 @@
 import { SET_USERLIST, DELETE_USER_FROM_LIST } from './actions';
 
 const initialState = {
-  userList: [],
+  userList: null,
 };
 
 const reducer = (state = initialState, action) => {
