@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -18,12 +19,18 @@ import {
   getTabFromLocalStorage,
   getUserFromLocalStorage,
 } from 'utils/localStorage';
-import { TABS_NAME } from 'utils/optionsValue';
 // navigation
 import RouteTab from 'navigation/Tab';
 import { TabSwitch } from 'components/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
+
+const TABS_NAME = [
+  { value: 'account' },
+  { value: 'profile' },
+  { value: 'contact' },
+  { value: 'capabilities' },
+];
 
 const CreateUser = () => {
   const user = useSelector(userSelector);
@@ -39,9 +46,10 @@ const CreateUser = () => {
   };
 
   const handleContinue = () => {
-    const redirectTabIndex = TABS_NAME.indexOf(getTabFromLocalStorage());
+    const redirectTabIndex =
+      TABS_NAME.findIndex((tab) => tab.value === getTabFromLocalStorage()) + 1;
     dispatch(loadUserFromLocalStorage());
-    history.push(`/create-user/${TABS_NAME[redirectTabIndex + 1]}`);
+    history.push(`/create-user/${TABS_NAME[redirectTabIndex].value}`);
     dispatch(clearUser());
     setIsShowPopup(false);
   };
@@ -52,10 +60,10 @@ const CreateUser = () => {
     history.push(`/create-user/${nextTab}`);
   };
 
-  const addUserToDB = (values, path) => {
+  const addUserToDB = (values) => {
     dispatch(updateUser(values));
     dispatch(addValueToDB());
-    history.push(path);
+    history.push('/user-list');
   };
 
   const goBack = (previousTab) => {

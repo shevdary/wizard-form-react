@@ -23,7 +23,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const Capabilities = ({ handleSubmit, onSubmit, goBack }) => (
   <Form
     className="capabilities"
-    onSubmit={handleSubmit((values) => onSubmit(values, '/user-list'))}
+    onSubmit={handleSubmit((values) => onSubmit(values))}
   >
     <FormChild>
       <FormFields>
