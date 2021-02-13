@@ -45,9 +45,9 @@ const CreateUser = () => {
     setIsShowPopup(false);
   };
 
-  const onSubmit = (values, currentTab, nextTab) => {
+  const onSubmit = (values, nextTab) => {
     dispatch(updateUser(values));
-    dispatch(setCurrentTab(currentTab));
+    dispatch(setCurrentTab(nextTab));
     history.push(`/create-user/${nextTab}`);
   };
 

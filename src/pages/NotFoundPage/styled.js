@@ -13,5 +13,6 @@ export const ErrorTitle = styled.h2`
   text-align: center;
   position: absolute;
   top: 50%;
-  left: 35%;
+  transform: translate(-50%, 100%);
+  left: 50%;
 `;

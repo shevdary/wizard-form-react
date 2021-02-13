@@ -1,16 +1,12 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+
 // styled
 import { ErrorTitle, ErrorWrapper } from './styled';
 
-const NotFound = ({ title }) => (
+const NotFound = () => (
   <ErrorWrapper>
-    <ErrorTitle>{`404 ${title || 'Page not found'}`}</ErrorTitle>
+    <ErrorTitle> 404 Page not found </ErrorTitle>
   </ErrorWrapper>
 );
-
-NotFound.propTypes = {
-  title: PropsTypes.string,
-};
 
 export default NotFound;

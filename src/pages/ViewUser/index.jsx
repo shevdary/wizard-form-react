@@ -3,18 +3,15 @@ import { useHistory, useParams } from 'react-router-dom';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserById, removeUserValue, userSelector } from 'redux/user';
-// assets
-import previous from 'assets/icon/previous.svg';
+
 // components
 import Loader from 'components/Loader';
 import UserProfile from 'components/UserProfile';
+import BackButton from 'components/Button/BackButton';
 // styled
-import {
-  TitleWrapper,
-  PreviousPage,
-  Body,
-  Title,
-} from 'components/UserProfile/styled';
+import { TitleWrapper, Body, Title } from 'components/UserProfile/styled';
+
+import UserNotFound from '../UserNotFound';
 
 const UserView = () => {
   const user = useSelector(userSelector);
@@ -29,19 +26,17 @@ const UserView = () => {
 
   useEffect(() => {
     dispatch(getUserById(id));
-    /* eslint-disable react-hooks/exhaustive-deps */
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <Body>
       <TitleWrapper>
-        <PreviousPage onClick={returnToUserList}>
-          <img src={previous} alt="previous" />
-          Users List
-        </PreviousPage>
+        <BackButton onClick={returnToUserList} text="Users List" />
         <Title>User Name</Title>
       </TitleWrapper>
-      <Loader>{!!user.id && <UserProfile user={user} />}</Loader>
+      <Loader>
+        {user.id ? <UserProfile user={user} /> : <UserNotFound />}
+      </Loader>
     </Body>
   );
 };

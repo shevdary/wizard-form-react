@@ -30,7 +30,6 @@ export const TabsItem = styled(Link)`
   &.disable {
     background: rgba(151, 186, 244, 0.3);
     color: #9bb0cb;
-    pointer-events: none;
   }
   &.active {
     color: #ffffff !important;

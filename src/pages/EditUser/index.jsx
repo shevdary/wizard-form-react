@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
@@ -8,16 +7,14 @@ import { getUserById, removeUserValue } from 'redux/user/actions';
 import { updateUserToDB } from 'redux/db';
 // components
 import Tabs from 'components/Tabs';
+import BackButton from 'components/Button/BackButton';
 // pages
-import { TabSwitch } from 'components/Tabs/styled';
+
 import RouteTab from 'navigation/Tab';
 // assets
-import previous from 'assets/icon/previous.svg';
 // styled
-import { TitleWrapper, PreviousPage } from 'components/UserProfile/styled';
+import { TitleWrapper } from 'components/UserProfile/styled';
 import { Main, Title } from './styled';
-import NotFound from '../NotFoundPage';
-import Loader from '../../components/Loader';
 
 const EditUser = () => {
   const user = useSelector(userSelector);
@@ -48,10 +45,12 @@ const EditUser = () => {
     <section className="edit-page">
       <Main>
         <TitleWrapper>
-          <PreviousPage onClick={returnToUserProfile} positionTop="45%">
-            <img src={previous} alt="previous" />
-            User Profile
-          </PreviousPage>
+          <BackButton
+            onClick={returnToUserProfile}
+            text="User Profile"
+            positionTop="45%"
+          />
+
           <Title>Editing</Title>
         </TitleWrapper>
         <Tabs />

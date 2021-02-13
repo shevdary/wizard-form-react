@@ -17,6 +17,7 @@ const App = () => (
       <Route exact path="/user-list" component={ListOfUser} />
       <Route exact path="/user/:id" component={UserView} />
       <Route path="/edit-user/:id" component={EditUser} />
+      <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>

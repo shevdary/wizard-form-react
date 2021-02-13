@@ -16,7 +16,10 @@ export const Tabs = () => {
   const isTypeTab = (type) =>
     passedTabs[0] && passedTabs.includes(type) ? 'before' : 'disable';
 
-  const isActiveTab = (tab) => pathname.includes(tab) && 'active';
+  const isActiveTab = (tabName) => pathname.includes(tabName) && 'active';
+
+  const isDisableTab = (tabName) =>
+    isTypeTab(tabName) === 'before' ? `${url}/${tabName}` : '#';
 
   return (
     <TabWrapper
@@ -26,26 +29,25 @@ export const Tabs = () => {
     >
       <TabsList className="tab-list">
         <TabsItem
-          to={`${url}/account`}
+          to={() => isDisableTab('account')}
           className={`${isActiveTab('account')}  ${isTypeTab('account')}`}
-          disable
         >
           1. Account
         </TabsItem>
         <TabsItem
-          to={`${url}/profile`}
+          to={() => isDisableTab('profile')}
           className={`${isActiveTab('profile')}  ${isTypeTab('profile')}`}
         >
           2. Profile
         </TabsItem>
         <TabsItem
-          to={`${url}/contact`}
+          to={() => isDisableTab('contact')}
           className={`${isActiveTab('contact')}  ${isTypeTab('contact')}`}
         >
           3. Contact
         </TabsItem>
         <TabsItem
-          to={`${url}/capabilities`}
+          to={() => isDisableTab('capabilities')}
           className={`${isActiveTab('capabilities')}  ${isTypeTab(
             'capabilities'
           )}`}

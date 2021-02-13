@@ -1,22 +1,27 @@
 import React from 'react';
-import { BeatLoader } from 'react-spinners';
 import PropsTypes from 'prop-types';
 // redux
 import { useSelector } from 'react-redux';
 import { loaderSelector } from 'redux/loader/selectors';
 // styled
-import { LoaderWrapper } from './styled';
+import { LoaderChild, LoaderWrapper } from './styled';
 
 const Loader = ({ children }) => {
   const { isLoading } = useSelector(loaderSelector);
   return (
     <>
-      {isLoading && (
+      {isLoading ? (
         <LoaderWrapper>
-          <BeatLoader color="#4E86E4" size={15} margin={2} loading="true" />
+          <LoaderChild className="lds-ellipsis">
+            <div />
+            <div />
+            <div />
+            <div />
+          </LoaderChild>
         </LoaderWrapper>
+      ) : (
+        children
       )}
-      {!isLoading && children}
     </>
   );
 };
