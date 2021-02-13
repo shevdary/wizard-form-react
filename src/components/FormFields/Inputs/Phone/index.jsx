@@ -1,10 +1,10 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // styled
 import { InputForm, Label, SpanError } from 'components/Forms/Account/styled';
 import { InputMaskStyled } from 'components/Forms/Contact/styled';
-import PropsTypes from 'prop-types';
 
-const RenderNumber = ({ input, label, meta: { touched, error } }) => (
+const Phone = ({ input, label, meta: { touched, error } }) => (
   <InputForm>
     <Label>{label}</Label>
     <InputMaskStyled
@@ -17,7 +17,7 @@ const RenderNumber = ({ input, label, meta: { touched, error } }) => (
   </InputForm>
 );
 
-RenderNumber.propTypes = {
+Phone.propTypes = {
   input: PropsTypes.object.isRequired,
   label: PropsTypes.string,
   meta: PropsTypes.shape({
@@ -26,4 +26,4 @@ RenderNumber.propTypes = {
   }).isRequired,
 };
 
-export default RenderNumber;
+export default Phone;

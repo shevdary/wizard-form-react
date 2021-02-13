@@ -1,7 +1,7 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
 // styled
-import TableRow from './TableRow';
+import TableRow from './components/TableRow';
 
 const UserTable = ({ userList, handleDelete, handleEdit }) =>
   userList.map((user, index) => (

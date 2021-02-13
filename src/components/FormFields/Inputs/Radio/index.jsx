@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
+import PropsTypes from 'prop-types';
 // styled
 import {
   InputForm,
@@ -11,8 +12,7 @@ import {
   Ckeckmark,
   RadioLabel,
   InlineBlock,
-} from 'components/CustomFields/styled';
-import PropsTypes from 'prop-types';
+} from 'components/FormFields/styled';
 
 const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
   <InputForm>

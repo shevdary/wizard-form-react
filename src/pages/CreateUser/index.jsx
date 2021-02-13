@@ -30,6 +30,7 @@ const CreateUser = () => {
   const [isShowPopup, setIsShowPopup] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { pathname } = history.location;
 
   const handleClose = () => {
     setIsShowPopup(false);
@@ -68,7 +69,7 @@ const CreateUser = () => {
     if (Object.keys(user).length === 0) {
       history.push('/create-user/account');
     }
-  }, [user, history]);
+  }, [user, history, pathname]);
 
   return (
     <div className="main-account">

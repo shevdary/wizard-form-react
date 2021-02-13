@@ -1,7 +1,7 @@
 import React from 'react';
 // styled
 import { Label } from 'components/Forms/Account/styled';
-import { Ckeckmark, RadioLabel } from 'components/CustomFields/styled';
+import { Ckeckmark, RadioLabel } from 'components/FormFields/styled';
 import PropsTypes from 'prop-types';
 
 const Checkbox = ({ options, input }) => {

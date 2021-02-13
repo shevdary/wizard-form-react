@@ -2,7 +2,7 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 // redux
 import { connect } from 'react-redux';
-import { FieldArray, Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 // components
 import Button from 'components/Button';
 

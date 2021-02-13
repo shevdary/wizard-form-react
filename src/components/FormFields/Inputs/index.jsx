@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import PropsTypes from 'prop-types';
 // assets
 import hide from 'assets/icon/hiddenPassword.svg';
 import visible from 'assets/icon/visiblePassword.svg';
-
 // styled
 import {
   Button,
@@ -10,7 +10,6 @@ import {
   Label,
   RequiredField,
 } from 'components/Forms/Account/styled';
-import PropsTypes from 'prop-types';
 import { InputField } from '../styled';
 
 const InputComponent = ({

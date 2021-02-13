@@ -4,13 +4,13 @@ import PropsTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // custom fields
-import Button from 'components/CustomFields/Button';
-import DataPicker from 'components/CustomFields/Inputs/Date';
-import RenderField from 'components/CustomFields/RenderField';
-import RadioButton from 'components/CustomFields/Inputs/Radio';
-import InputComponent from 'components/CustomFields/Inputs';
-import PlaceAutocomplete from 'components/CustomFields/PlaceAutocomplete';
-// utils
+import Button from 'components/Button';
+import DataPicker from 'components/FormFields/Inputs/Date';
+import RenderField from 'components/FormFields';
+import RadioButton from 'components/FormFields/Inputs/Radio';
+import InputComponent from 'components/FormFields/Inputs';
+import PlaceAutocomplete from 'components/FormFields/PlaceAutocomplete';
+// helpers
 import { GENDER } from 'utils/optionsValue';
 import { validate, asyncValidate } from 'utils/profileValidate';
 // styled

@@ -1,6 +1,6 @@
 import React from 'react';
 // styled
-import { FlexCol, FlexTable } from './styled';
+import { FlexCol, FlexTable } from '../../styled';
 
 const TableHeader = () => (
   <FlexTable color="#4e86e4" height="50px" className="header">

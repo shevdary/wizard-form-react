@@ -1,11 +1,12 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // assets
 import addNumberIcon from 'assets/icon/addButton.svg';
 import removeNumberIcon from 'assets/icon/removeButton.svg';
 // styled
 import { ButtonForPhone } from './styled';
 
-const Button = ({ count, onClick, name, label }) => (
+const Button = ({ count = 1, onClick, name, label }) => (
   <ButtonForPhone type="button" onClick={onClick} count={count}>
     {name === 'add' ? (
       <img src={addNumberIcon} alt="add" />

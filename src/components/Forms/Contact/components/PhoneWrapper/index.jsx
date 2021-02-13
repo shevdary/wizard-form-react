@@ -1,12 +1,11 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 // redux
 import { Field } from 'redux-form';
 // components
 import { ButtonWrapper, FieldWrapper } from 'components/Forms/Contact/styled';
-
-import PropsTypes from 'prop-types';
-import Button from '../Buttons';
 import Phone from 'components/FormFields/Inputs/Phone';
+import Button from '../Buttons';
 
 const PhoneFields = ({ fields, maxCountFiled }) => (
   <div className="phoneFields">

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropsTypes from 'prop-types';
-
 // redux
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/user/actions';

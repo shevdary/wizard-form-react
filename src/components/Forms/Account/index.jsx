@@ -6,10 +6,10 @@ import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'redux/user/selector';
 // components
 import Avatar from 'components/Avatar';
-import Button from 'components/CustomFields/Button';
-import InputComponent from 'components/CustomFields/Inputs';
-import RenderField from 'components/CustomFields/RenderField';
-// utils
+import Button from 'components/Button';
+import InputComponent from 'components/FormFields/Inputs';
+import RenderField from 'components/FormFields';
+// helpers
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
@@ -84,8 +84,9 @@ AccountForm.propTypes = {
 export default connect((state) => ({ initialValues: state.user }))(
   reduxForm({
     form: 'accountForm',
-    validate,
     enableReinitialize: true,
+    keepDirtyOnReinitialize: true,
+    validate,
     asyncValidate,
   })(AccountForm)
 );

@@ -18,7 +18,7 @@ import {
   Col,
   UserContentWrapper,
 } from './styled';
-
+// helpers
 import {
   arrayOfValues,
   arrayOfValuesByComma,
@@ -108,7 +108,9 @@ const UserProfile = ({ user }) => {
             {user.hobbies && (
               <Field label="Hobbies" value={arrayOfValues(user.hobbies)} />
             )}
-            {user.info && <Field label="Descriptions" value={user.info} />}
+            {user.info && (
+              <Field label="Additional information" value={user.info} />
+            )}
           </Col>
         </EditContainer>
       </EditContainerWrapper>

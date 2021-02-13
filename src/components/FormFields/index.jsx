@@ -3,36 +3,43 @@ import PropsTypes from 'prop-types';
 // components
 import {
   InputForm,
+  Input,
   Label,
   RequiredField,
   SpanError,
 } from 'components/Forms/Account/styled';
 
-import { Textarea } from '../../styled';
-
-const TextArea = ({ input, isRequired, meta: { touched, error } }) => (
+const RenderField = ({
+  input,
+  type = 'text',
+  isRequired,
+  name,
+  meta: { touched, error },
+}) => (
   <InputForm>
-    <Label htmlFor="textarea">
+    <Label htmlFor={name}>
       {isRequired && <RequiredField>*</RequiredField>}
     </Label>
     <div>
-      <Textarea
+      <Input
         {...input}
-        component="textarea"
-        isError={touched && error}
+        border={touched && error}
         value={input.value}
+        type={type}
       />
       {touched && error && <SpanError>{error}</SpanError>}
     </div>
   </InputForm>
 );
 
-TextArea.propTypes = {
+RenderField.propTypes = {
   input: PropsTypes.object.isRequired,
+  isRequired: PropsTypes.bool,
+  name: PropsTypes.string,
   meta: PropsTypes.shape({
     touched: PropsTypes.bool,
     error: PropsTypes.string,
   }).isRequired,
 };
 
-export default TextArea;
+export default RenderField;

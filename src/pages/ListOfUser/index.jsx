@@ -7,8 +7,8 @@ import * as List from 'redux/users';
 import { deleteUserFromDB } from 'redux/db';
 // components
 import UserTable from 'components/UsersTable';
-import EmptyUserList from 'components/UsersTable/EmptyTable';
-import TableHeader from 'components/UsersTable/TableHeader';
+import EmptyUserList from 'components/UsersTable/components/EmptyTable';
+import TableHeader from 'components/UsersTable/components/TableHeader';
 import Loader from 'components/Loader';
 // styled
 import { Body, SectionTable, Title } from './styled';
@@ -37,7 +37,7 @@ const ListOfUser = () => {
         <SectionTable>
           <TableHeader />
           {userList &&
-            (!!userList[0] ? (
+            (userList.length ? (
               <UserTable
                 className="children"
                 userList={userList}

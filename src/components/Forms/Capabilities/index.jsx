@@ -1,14 +1,13 @@
-/*eslint-disable*/
 import React from 'react';
 // redux
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // components
-import Button from 'components/CustomFields/Button';
-import Checkbox from 'components/CustomFields/Inputs/Checkbox';
-import TextArea from 'components/CustomFields/Inputs/Text';
-import SelectedFields from 'components/CustomFields/Selected';
-// utils
+import Button from 'components/Button';
+import Checkbox from 'components/FormFields/Inputs/Checkbox';
+import TextArea from 'components/FormFields/Inputs/Text';
+import SelectedFields from 'components/FormFields/Selected';
+// helpers
 import { validate } from 'utils/capabilitiesValidate';
 import { HOBBIES, SKILLS } from 'utils/optionsValue';
 // styled
@@ -47,7 +46,7 @@ const Capabilities = ({ handleSubmit, onSubmit, goBack }) => (
         <InputForm>
           <Label htmlFor="hobbies">My hobbies</Label>
           <div className="checked">
-            <Field options={HOBBIES} name="hobbies" component={Checkbox} />
+            <Field name="hobbies" component={Checkbox} options={HOBBIES} />
           </div>
         </InputForm>
       </FormFields>

@@ -5,13 +5,13 @@ import deleteIcon from 'assets/icon/delete.svg';
 import editIcon from 'assets/icon/edit.svg';
 import confirmDel from 'assets/icon/confirmDelete.svg';
 import avatar from 'assets/icon/avatar.svg';
-// utils
+// helpers
 import { lastUserUpdate } from 'utils/updateTime';
 import moment from 'moment';
 // styled
 import { ButtonTransparent } from 'components/Popup/styled';
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import { ConfirmButton, FlexCol, FlexTable, Section } from './styled';
+import { ConfirmButton, FlexCol, FlexTable, Section } from '../../styled';
 
 const TableRow = ({ user, handleDelete, handleEdit, count }) => {
   const [itemSlide, setItemSlide] = useState(false);
