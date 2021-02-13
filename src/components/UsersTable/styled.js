@@ -54,9 +54,7 @@ export const Section = styled.section`
       transition: 0.5s;
       left: 100%;
     }
-    .slide td {
-      opacity: 40%;
-    }
+
     &:nth-of-type(2n) {
       background: white;
     }
@@ -83,6 +81,13 @@ export const FlexCol = styled.div`
     margin-right: 30px;
     button {
       margin: 0 10px;
+    }
+  }
+  .flex-right {
+    margin-left: 10px;
+    font-size: small;
+    p {
+      font-size: large;
     }
   }
 `;

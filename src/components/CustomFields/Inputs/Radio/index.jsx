@@ -22,7 +22,11 @@ const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
     </Label>
     <InlineBlock>
       {options.map((option) => (
-        <RadioLabel ckecked={input.value === option.value} key={option.value}>
+        <RadioLabel
+          ckecked={input.value === option.value}
+          key={option.value}
+          right="75px"
+        >
           <Field
             {...input}
             type="radio"

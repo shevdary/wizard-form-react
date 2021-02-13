@@ -1,23 +1,22 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-
 // redux
-
 import { connect } from 'react-redux';
-import { Field, reduxForm, FieldArray } from 'redux-form';
+import { FieldArray, Field, reduxForm } from 'redux-form';
 // components
-import Button from 'components/CustomFields/Button';
-import PhoneFields from 'components/PhoneFields';
-import RenderField from 'components/CustomFields/RenderField';
-import InputComponent from 'components/CustomFields/Inputs';
-import SelectedFields from 'components/CustomFields/Selected';
-import RenderNumber from 'components/CustomFields/Inputs/Number';
-// utils
+import Button from 'components/Button';
+
+import RenderField from 'components/FormFields';
+import InputComponent from 'components/FormFields/Inputs';
+import SelectedFields from 'components/FormFields/Selected';
+import Phone from 'components/FormFields/Inputs/Phone';
+// helpers
 import { LANGUAGE } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
 import { FormFields, Form, FormChild } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import PhoneFields from './components/PhoneWrapper';
 
 const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
   <Form
@@ -52,7 +51,7 @@ const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
         />
       </FormFields>
       <FormFields>
-        <InputComponent label="Fax" name="fax" component={RenderNumber} />
+        <InputComponent label="Fax" name="fax" component={Phone} />
         <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
       </FormFields>
     </FormChild>

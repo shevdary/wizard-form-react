@@ -44,7 +44,7 @@ export const InputForm = styled.div`
 
 export const Input = styled.input`
   height: 40px;
-  width: 100%;
+  width: calc(100% - 12px);
   border: ${(props) => (props.border ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
   padding-left: 10px;

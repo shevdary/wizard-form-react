@@ -161,7 +161,8 @@ export const DatePickerWrapper = styled.div`
     background: #9bb0cb;
   }
 
-  .react-datepicker__current-month {
+  .react-datepicker__input-container input {
+    padding-left: 10px;
   }
 `;
 
@@ -177,10 +178,10 @@ export const CalendarImg = styled.img`
 `;
 
 export const Textarea = styled.textarea`
-  width: 300px;
-  max-width: 300px;
+  width: 280px;
+  max-width: 280px;
   min-height: 100px;
-  padding: 0 10px;
+  padding: 5px 10px;
   resize: none;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
@@ -200,7 +201,7 @@ export const RadioLabel = styled.label`
   position: relative;
   align-items: center;
   margin-top: 10px;
-  margin-right: ${(props) => (props.type === 'checkbox' ? '0' : '75px')};
+  margin-right: ${(props) => props.right};
   font-weight: ${(props) => (props.ckecked ? 'bold' : 'normal')};
   color: ${(props) => (props.ckecked ? '#242121' : '')};
   cursor: pointer;
@@ -221,6 +222,7 @@ export const Ckeckmark = styled.div`
   margin-right: 5px;
   border-radius: ${(props) => (props.checkbox ? '0' : '50%')};
   background: #ffffff;
+  align-self: self-start;
   border: 1px solid #c1cfe0;
   box-sizing: border-box;
 `;

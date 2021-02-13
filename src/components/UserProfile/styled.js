@@ -69,8 +69,19 @@ export const Row = styled.div`
   grid-template-columns: 100px 300px;
   grid-column-gap: 75px;
   overflow-wrap: break-word;
+
   p:nth-of-type(2n) {
     font-weight: 400;
+  }
+  a,
+  a:visited,
+  a:active {
+    color: inherit;
+    font-weight: 500;
+  }
+
+  a:hover {
+    color: #2f68c8;
   }
 `;
 
