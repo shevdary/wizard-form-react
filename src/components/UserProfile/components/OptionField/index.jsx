@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row } from '../../styled';
 import PropsTypes from 'prop-types';
-import ColTypeInfo from '../ColTypeInfo';
+import ColTypeInfo from '../Tab';
 
 const OptionField = ({ label, value }) => {
   return (

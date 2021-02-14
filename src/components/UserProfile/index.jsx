@@ -1,16 +1,15 @@
 import React from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import PropsTypes from 'prop-types';
 // redux
 import { useDispatch } from 'react-redux';
 import { setPassedTabs } from 'redux/tabs';
 // assets
 import avatar from 'assets/icon/avatar.svg';
-// Components
+// components
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import Field from './Field';
-import LinkField from './Field/LinkField';
-import ColTypeInfo from './Field/ColTypeInfo';
+import Field from './components';
+import ColTypeInfo from './components/Tab';
 // styled
 import {
   EditContainer,
@@ -20,17 +19,16 @@ import {
 } from './styled';
 // helpers
 import {
+  arrayOfObjects,
   arrayOfValues,
-  arrayOfValuesByComma,
   dateChangeFormat,
   replacePassword,
-} from './utils';
+} from './helpers';
 
 const UserProfile = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const id = useRouteMatch().url.match(/([^\/]*)\/*$/)[1];
+  const { id } = useParams();
 
   const redirectToTab = (tab) => {
     dispatch(setPassedTabs(['account', 'profile', 'contact', 'capabilities']));
@@ -77,14 +75,16 @@ const UserProfile = ({ user }) => {
             <Field label="Company" value={user.company} />
             {user.fax && <Field label="Fax" value={user.fax} />}
             {user.facebook && (
-              <LinkField
+              <Field
+                type="link"
                 label="Facebook Link"
                 value={user.facebook}
                 textLink="facebook.com/"
               />
             )}
             {user.github && (
-              <LinkField
+              <Field
+                type="link"
                 label="Github Link"
                 value={user.github}
                 textLink="github.com/"
@@ -103,8 +103,12 @@ const UserProfile = ({ user }) => {
           />
           <Col>
             {user.skills && (
-              <Field label="Skills" value={arrayOfValuesByComma(user.skills)} />
+              <Field
+                label="Skills"
+                value={arrayOfObjects(user.skills).join(', ')}
+              />
             )}
+            {console.log(user.hobbies, 'hob')}
             {user.hobbies && (
               <Field label="Hobbies" value={arrayOfValues(user.hobbies)} />
             )}

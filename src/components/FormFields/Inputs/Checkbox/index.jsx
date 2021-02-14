@@ -1,52 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // styled
 import { Label } from 'components/Forms/Account/styled';
 import { Ckeckmark, RadioLabel } from 'components/FormFields/styled';
-import PropsTypes from 'prop-types';
 
-const Checkbox = ({ options, input }) => {
-  const onChange = (e, option) => {
-    const newValue = [...input.value];
-    if (e.target.checked) {
-      newValue.push(option);
+const Checkbox = ({ input, options }) => {
+  const { name, onChange } = input;
+
+  const handleChange = (event, label) => {
+    const arr = [...input.value];
+    if (event.target.checked) {
+      arr.push(label);
     } else {
-      newValue.splice(
-        newValue.filter((item) => item.value === option.value),
-        1
-      );
+      arr.splice(arr.indexOf(label), 1);
     }
-
-    return input.onChange(newValue);
+    return onChange(arr);
   };
 
-  return options.map((option, index) => (
+  return options.map(({ label, value }, index) => (
     <Label className="checkbox" key={index}>
-      <RadioLabel type="checkbox">
+      <RadioLabel key={`checkbox-${index}`}>
         <input
           type="checkbox"
-          name={`${input.value}[${index}]`}
-          value={input.value.value}
-          checked={
-            input.value.value &&
-            input.value.filter((item) => item.value === option.value)
-          }
-          onChange={(e) => onChange(e, option)}
+          name={`${name}[${value}]`}
+          value={label}
+          checked={input.value.includes(label)}
+          onChange={(e) => handleChange(e, label)}
         />
         <Ckeckmark checkbox />
-        {option.label}
+        {label}
       </RadioLabel>
     </Label>
   ));
 };
 
 Checkbox.propTypes = {
-  options: PropsTypes.arrayOf(
-    PropsTypes.shape({
-      value: PropsTypes.string.isRequired,
-      label: PropsTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
     })
   ).isRequired,
-  input: PropsTypes.object.isRequired,
 };
 
 export default Checkbox;
