@@ -1,3 +1,4 @@
+/*eslint-disable*/
 export const validate = (values) => {
   const errors = {};
   if (!values) {
@@ -9,20 +10,25 @@ export const validate = (values) => {
     if (values.phones) {
       const phonesArrayErrors = [];
       values.phones.forEach((item, itemIndex, array) => {
-        if (
-          Object.keys(item).length !== 0 &&
-          item.replace(/[\s\-\+\(\)\_]/g, '').length < 12
-        ) {
-          phonesArrayErrors[itemIndex] = 'Phone isn`t correct';
+        if (item) {
+          if (
+            Object.keys(item).length !== 0 &&
+            item.replace(/[\s\-\+\(\)\_]/g, '').length < 12
+          ) {
+            phonesArrayErrors[itemIndex] = 'Phone isn`t correct';
+          }
+          array.filter((value, index) => {
+            if (array.indexOf(value) !== index) {
+              phonesArrayErrors[index] = 'Phone numbers must not match';
+            }
+
+            if (!array[index] && index > 0) {
+              phonesArrayErrors[index] = 'Fields is empty';
+            }
+          });
+        } else {
+          phonesArrayErrors[itemIndex] = 'Fields is empty';
         }
-        array.filter((value, index) => {
-          if (array.indexOf(value) !== index) {
-            phonesArrayErrors[index] = 'Phone numbers must not match';
-          }
-          if (!array[index] && index > 0) {
-            phonesArrayErrors[index] = 'Fields is empty';
-          }
-        });
       });
       if (phonesArrayErrors.length) {
         errors.phones = phonesArrayErrors;
