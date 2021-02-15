@@ -3,7 +3,7 @@ import PropsTypes from 'prop-types';
 // utils
 import en from 'date-fns/locale/en-US';
 import calendar from 'assets/icon/calendar.svg';
-import moment from 'moment';
+import moment, { now } from 'moment';
 // styled
 import { registerLocale } from 'react-datepicker';
 import { SpanError } from 'components/Forms/Account/styled';
@@ -22,7 +22,7 @@ const DataPicker = ({ input, meta: { touched, error } }) => (
       <DatePickerStyled
         isError={touched && error}
         dateFormat="dd/MM/yyyy"
-        selected={moment(input.value).toDate()}
+        selected={moment(input.value || now()).toDate()}
         onChange={input.onChange}
         disabledKeyboardNavigation
         placeholderText="DD/MM/YYYY"

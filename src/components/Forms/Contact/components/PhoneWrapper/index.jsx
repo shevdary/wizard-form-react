@@ -7,7 +7,7 @@ import { ButtonWrapper, FieldWrapper } from 'components/Forms/Contact/styled';
 import Phone from 'components/FormFields/Inputs/Phone';
 import Button from '../Buttons';
 
-const PhoneFields = ({ fields, maxCountFiled }) => (
+const PhoneFields = ({ fields, maxCountFiled = 3 }) => (
   <div className="phoneFields">
     {fields.map((hobby, index) => (
       <FieldWrapper key={index}>

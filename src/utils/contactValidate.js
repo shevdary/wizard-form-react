@@ -1,4 +1,3 @@
-/*eslint-disable*/
 export const validate = (values) => {
   const errors = {};
   if (!values) {
@@ -27,7 +26,8 @@ export const validate = (values) => {
             }
           });
         } else {
-          phonesArrayErrors[itemIndex] = 'Fields is empty';
+          if (array.length > 1)
+            phonesArrayErrors[itemIndex] = 'Fields is empty';
         }
       });
       if (phonesArrayErrors.length) {

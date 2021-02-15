@@ -74,7 +74,12 @@ const CreateUser = () => {
     if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
       setIsShowPopup(true);
     }
-    if (Object.keys(user).length === 0) {
+    if (
+      Object.keys(user).length === 0 &&
+      (pathname.includes('profile') ||
+        pathname.includes('contact') ||
+        pathname.includes('capabilities'))
+    ) {
       history.push('/create-user/account');
     }
   }, [user, history, pathname]);
