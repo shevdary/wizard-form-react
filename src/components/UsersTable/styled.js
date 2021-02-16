@@ -68,6 +68,7 @@ export const FlexCol = styled.div`
   width: calc(970px / 4);
   place-self: center;
   min-width: ${(props) => props.minWidth};
+  font-size: 15px;
   &.with-avatar p {
     padding: 0 0 0 70px;
   }
@@ -86,9 +87,6 @@ export const FlexCol = styled.div`
   .flex-right {
     margin-left: 10px;
     font-size: small;
-    p {
-      font-size: large;
-    }
   }
 `;
 

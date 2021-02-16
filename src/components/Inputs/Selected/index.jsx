@@ -31,7 +31,7 @@ const SelectedFields = (props) => {
           {...input}
           {...props}
           styles={ReactSelect}
-          borderError={touched && error ? 'true' : null}
+          border={touched && error ? 'true' : null}
           value={input.value}
           onBlur={() => input.onBlur(input.value)}
         />

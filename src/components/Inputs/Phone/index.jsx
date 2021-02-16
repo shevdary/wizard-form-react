@@ -9,7 +9,7 @@ const Phone = ({ input, label, meta: { touched, error } }) => (
     <Label>{label}</Label>
     <InputMaskStyled
       {...input}
-      borderError={touched && error ? 'true' : null}
+      border={touched && error ? 'true' : null}
       mask="+38 (099) 999-99-99"
       placeholder="+38 (099) 999-99-99"
     />

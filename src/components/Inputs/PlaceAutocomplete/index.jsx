@@ -14,7 +14,7 @@ const PlaceAutocomplete = ({ input, label, meta: { error, touched } }) => (
         {...input}
         name="address"
         type="text"
-        borderError={touched && error}
+        border={touched && error ? 'true' : null}
         selectProps={{
           value: input.value,
           onChange: input.onChange,
