@@ -12,7 +12,7 @@ import Loader from 'components/Loader';
 import EmptyUserList from 'components/UsersTable/components/EmptyUserList';
 import Pagination from 'components/Pagination';
 // styled
-import { Body, SectionTable, Title } from './styled';
+import { Main, SectionTable, Title } from './styled';
 
 const ListOfUser = () => {
   const users = useSelector(List.usersSelector);
@@ -37,7 +37,7 @@ const ListOfUser = () => {
   }, [currentPage, itemsOnPage, dispatch]);
 
   return (
-    <Body>
+    <Main>
       <Loader>
         <Title>List of user</Title>
         <SectionTable>
@@ -64,7 +64,7 @@ const ListOfUser = () => {
           currentPage={currentPage}
         />
       </div>
-    </Body>
+    </Main>
   );
 };
 

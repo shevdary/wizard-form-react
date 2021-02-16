@@ -30,7 +30,7 @@ export const Title = styled.h1`
   color: #475666;
 `;
 
-export const Body = styled.body`
+export const Main = styled.main`
   width: 970px;
   margin: auto;
 `;
