@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 // components
 import Button from 'components/Button';
-
 import RenderField from 'components/Forms/FieldWrapper';
 import InputComponent from 'components/Inputs/InputWrapper';
 import SelectedFields from 'components/Inputs/Selected';
@@ -52,7 +51,7 @@ const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
       </FormFields>
       <FormFields>
         <InputComponent label="Fax" name="fax" component={Phone} />
-        <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
+        <Field name="phones" maxCountFiled={3} component={PhoneFields} />
       </FormFields>
     </FormChild>
     <Button type="submit" label="Forward" name="forward" />

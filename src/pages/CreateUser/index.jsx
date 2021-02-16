@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -9,36 +8,24 @@ import {
   loadUserFromLocalStorage,
   updateUser,
 } from 'store/user/actions';
-import { setCurrentTab, tabsSelector } from 'store/tabs';
+import { setCurrentTab } from 'store/tabs';
 import { addValueToDB } from 'store/db';
 // components
 import Tabs from 'components/Tabs';
 import Popup from 'components/Popup';
 // utils
-import {
-  getTabFromLocalStorage,
-  getUserFromLocalStorage,
-} from 'utils/localStorage';
+import { getUserFromLocalStorage } from 'utils/localStorage';
 // navigation
 import RouteTab from 'navigation/Tab';
 import { TabSwitch } from 'components/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
 
-const TABS_NAME = [
-  { value: 'account' },
-  { value: 'profile' },
-  { value: 'contact' },
-  { value: 'capabilities' },
-];
-
 const CreateUser = () => {
   const user = useSelector(userSelector);
-  const passedTabs = useSelector(tabsSelector);
   const [isShowPopup, setIsShowPopup] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { pathname } = history.location;
 
   const handleClose = () => {
     setIsShowPopup(false);
@@ -71,15 +58,7 @@ const CreateUser = () => {
     if (!user.username && getUserFromLocalStorage()) {
       setIsShowPopup(true);
     }
-    if (
-      !user.username &&
-      (pathname.includes('profile') ||
-        pathname.includes('contact') ||
-        pathname.includes('capabilities'))
-    ) {
-      history.push('/create-user/account');
-    }
-  }, [user, history, pathname]);
+  }, [user]);
 
   return (
     <div className="main-account">
