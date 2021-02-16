@@ -51,10 +51,6 @@ export const EditContainer = styled.div`
   font-size: 14px;
   line-height: 16px;
   grid-template-columns: repeat(2, 120px);
-  div:nth-child(-n + 2) {
-    color: #475666;
-    font-weight: 600;
-  }
 `;
 
 export const Column = styled.div`

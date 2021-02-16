@@ -37,9 +37,11 @@ export const GoogleAutocomplete = styled.div`
 export const InputMaskStyled = styled(InputMask)`
   height: 40px;
   width: 100%;
-  border: ${(props) =>
-    props.borderError ? '1px solid red' : '1px solid #c1cfe0'};
+  border: 1px solid #c1cfe0;
   font-size: 14px;
+  &.field-error {
+    border: 1px solid red;
+  }
 `;
 
 export const FieldWrapper = styled.div`
