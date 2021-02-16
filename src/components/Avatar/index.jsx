@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-// redux
+import PropsTypes from 'prop-types';
+// store
 import { useDispatch } from 'react-redux';
-import { update } from 'redux/user/actions';
+import { updateUser } from 'store/user/actions';
 // styled
 import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';
 
-const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
+const Avatar = ({ input: { value, ...inputProps } }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
@@ -17,7 +18,7 @@ const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
     reader.readAsDataURL(image);
     if (image && image.size / 1024 < 1000) {
       reader.onload = () => {
-        dispatch(update({ avatar: reader.result }));
+        dispatch(updateUser({ avatar: reader.result }));
       };
       setError(null);
     }
@@ -31,7 +32,7 @@ const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
     <AvatarLabel htmlFor="addAvatar">
       <HiddenField
         {...inputProps}
-        type={type}
+        type="file"
         onChange={onFileChange}
         accept="image/*"
         id="addAvatar"
@@ -42,4 +43,11 @@ const Avatar = ({ input: { value: omitValue, ...inputProps }, type }) => {
     </AvatarLabel>
   );
 };
+
+Avatar.propTypes = {
+  input: PropsTypes.shape({
+    value: PropsTypes.string,
+  }).isRequired,
+};
+
 export default Avatar;

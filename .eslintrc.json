@@ -52,6 +52,8 @@
     "no-nested-ternary": "off",
     "consistent-return": "off",
     "no-useless-escape": "off",
-    "react/forbid-prop-types": "off"
-    }
+    "react/forbid-prop-types": "off",
+    "react/require-default-props": "off",
+    "no-lonely-if": "off"
+  }
 }

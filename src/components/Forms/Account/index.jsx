@@ -1,17 +1,15 @@
 import React from 'react';
-// redux
-import { useDispatch, useSelector, connect } from 'react-redux';
+import PropsTypes from 'prop-types';
+// store
+import { useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { userSelector } from 'redux/user/selector';
-import { update } from 'redux/user/actions';
-import { setPassedTab } from 'redux/tabs/actions';
+import { userSelector } from 'store/user/selector';
 // components
 import Avatar from 'components/Avatar';
-import Button from 'components/CustomFields/Button';
-import InputComponent from 'components/CustomFields/Inputs';
-import RenderField from 'components/CustomFields/RenderField';
-import { useHistory } from 'react-router-dom';
-// utils
+import Button from 'components/Button';
+import InputComponent from 'components/Inputs/InputWrapper';
+import RenderField from 'components/Forms/FieldWrapper';
+// helpers
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
@@ -24,72 +22,70 @@ import {
   FormChild,
 } from './styled';
 
-const AccountForm = ({ handleSubmit }) => {
+const AccountForm = ({ handleSubmit, onSubmit }) => {
   const { avatar } = useSelector(userSelector);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('account'));
-    history.push('/create-user/profile');
-  };
-
   return (
-    <Form className="account" onSubmit={handleSubmit(onSubmit)}>
-      <FormChild>
-        <FormFields className="left-side">
-          <UserAvatarImage
-            className="avatar"
-            size="170px"
-            border="true"
-            crop={false}
-          >
-            <img src={avatar || avatarIcon} alt="avatar" />
-          </UserAvatarImage>
-          <AvatarLabel htmlFor="addAvatar">
-            <Field
-              id="addAvatar"
-              component={Avatar}
-              name="avatar"
-              type="file"
+    <section>
+      <Form
+        className="account"
+        onSubmit={handleSubmit((values) => onSubmit(values, 'profile'))}
+      >
+        <FormChild>
+          <FormFields className="left-side">
+            <UserAvatarImage
+              className="avatar"
+              size="170px"
+              border="true"
+              crop={false}
+            >
+              <img src={avatar || avatarIcon} alt="avatar" />
+            </UserAvatarImage>
+            <AvatarLabel htmlFor="addAvatar">
+              <Field id="addAvatar" component={Avatar} name="avatar" />
+            </AvatarLabel>
+          </FormFields>
+          <FormFields big>
+            <InputComponent
+              label="User name"
+              name="username"
+              isRequired
+              component={RenderField}
             />
-          </AvatarLabel>
-        </FormFields>
-        <FormFields big>
-          <InputComponent
-            label="User name"
-            name="username"
-            isRequired
-            component={RenderField}
-          />
-          <InputComponent
-            label="Password"
-            name="password"
-            type="password"
-            isVisible
-            isRequired
-            component={RenderField}
-          />
-          <InputComponent
-            label="Repeat password"
-            name="repeatPassword"
-            type="password"
-            isVisible
-            isRequired
-            component={RenderField}
-          />
-        </FormFields>
-      </FormChild>
-      <Button type="submit" label="Forward" name="forward" />
-    </Form>
+            <InputComponent
+              label="Password"
+              name="password"
+              type="password"
+              isVisible
+              isRequired
+              component={RenderField}
+            />
+            <InputComponent
+              label="Repeat password"
+              name="repeatPassword"
+              type="password"
+              isVisible
+              isRequired
+              component={RenderField}
+            />
+          </FormFields>
+        </FormChild>
+        <Button type="submit" label="Forward" name="forward" />
+      </Form>
+    </section>
   );
+};
+
+AccountForm.propTypes = {
+  handleSubmit: PropsTypes.func.isRequired,
+  onSubmit: PropsTypes.func.isRequired,
 };
 
 export default connect((state) => ({ initialValues: state.user }))(
   reduxForm({
     form: 'accountForm',
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true,
     validate,
     asyncValidate,
   })(AccountForm)

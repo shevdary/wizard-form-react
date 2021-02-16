@@ -1,74 +1,73 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-// redux
-import { Field, reduxForm, FieldArray } from 'redux-form';
-import { connect, useDispatch } from 'react-redux';
-import { update } from 'redux/user/actions';
-import { setPassedTab } from 'redux/tabs/actions';
+import PropsTypes from 'prop-types';
+// store
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 // components
-import Button from 'components/CustomFields/Button';
-import PhoneFields from 'components/PhoneFields';
-import RenderField from 'components/CustomFields/RenderField';
-import InputComponent from 'components/CustomFields/Inputs';
-import SelectedFields from 'components/CustomFields/Option';
-import RenderNumber from 'components/CustomFields/Inputs/Number';
-// utils
+import Button from 'components/Button';
+import RenderField from 'components/Forms/FieldWrapper';
+import InputComponent from 'components/Inputs/InputWrapper';
+import SelectedFields from 'components/Inputs/Selected';
+import Phone from 'components/Inputs/Phone';
+// helpers
 import { LANGUAGE } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';
 // styled
 import { FormFields, Form, FormChild } from 'components/Forms/Account/styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import PhoneFields from './components/PhoneWrapper';
 
-const ContactForm = ({ handleSubmit }) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
+  <Form
+    className="contact"
+    onSubmit={handleSubmit((values) => onSubmit(values, 'capabilities'))}
+  >
+    <FormChild>
+      <FormFields>
+        <InputComponent
+          label="Company"
+          isRequired
+          name="company"
+          component={RenderField}
+        />
+        <InputComponent
+          label="Github link"
+          name="github"
+          component={RenderField}
+        />
+        <InputComponent
+          label="Facebook link"
+          name="facebook"
+          component={RenderField}
+        />
+        <Field
+          label="Main language"
+          name="language"
+          type="options"
+          isRequired
+          options={LANGUAGE}
+          component={SelectedFields}
+        />
+      </FormFields>
+      <FormFields>
+        <InputComponent label="Fax" name="fax" component={Phone} />
+        <Field name="phones" maxCountFiled={3} component={PhoneFields} />
+      </FormFields>
+    </FormChild>
+    <Button type="submit" label="Forward" name="forward" />
+    <Button
+      type="button"
+      label="Back"
+      onClick={() => goBack('profile')}
+      name="back"
+    />
+  </Form>
+);
 
-  const onSubmit = (values) => {
-    dispatch(update(values));
-    dispatch(setPassedTab('contact'));
-    history.push('/create-user/capabilities');
-  };
-
-  const handleClick = () => history.push('/create-user/profile');
-
-  return (
-    <Form className="contact" onSubmit={handleSubmit(onSubmit)}>
-      <FormChild>
-        <FormFields>
-          <InputComponent
-            label="Company"
-            isRequired
-            name="company"
-            component={RenderField}
-          />
-          <InputComponent
-            label="Github link"
-            name="github"
-            component={RenderField}
-          />
-          <InputComponent
-            label="Facebook link"
-            name="facebook"
-            component={RenderField}
-          />
-          <Field
-            label="Main language"
-            name="language"
-            type="options"
-            isRequired
-            options={LANGUAGE}
-            component={SelectedFields}
-          />
-        </FormFields>
-        <FormFields>
-          <InputComponent label="Fax" name="fax" component={RenderNumber} />
-          <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
-        </FormFields>
-      </FormChild>
-      <Button type="submit" label="Forward" name="forward" />
-      <Button type="button" label="Back" onClick={handleClick} name="back" />
-    </Form>
-  );
+ContactForm.propTypes = {
+  handleSubmit: PropsTypes.func.isRequired,
+  onSubmit: PropsTypes.func.isRequired,
+  goBack: PropsTypes.func,
 };
 
 export default connect((state) => ({
@@ -77,6 +76,7 @@ export default connect((state) => ({
   reduxForm({
     form: 'contactForm',
     onBlur: ['phones'],
+    enableReinitialize: true,
     validate,
   })(ContactForm)
 );

@@ -2,18 +2,10 @@ import styled from 'styled-components';
 import Select from 'react-select';
 import InputMask from 'react-input-mask';
 
-export const ButtonForPhone = styled.button`
-  display: ${(props) => props.count < 2 && 'none'};
-  background: transparent;
-  border: none;
-  color: #657c9a;
-  font-size: 14px;
-`;
-
 export const ButtonWrapper = styled.div`
   position: absolute;
-  top: 30px;
-  left: 105%;
+  top: 35%;
+  left: 104%;
 `;
 
 export const Selects = styled(Select)`

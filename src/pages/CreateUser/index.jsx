@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// redux
-import { userSelector } from 'redux/user/selector';
-import { loadUserFromLocalStorage } from 'redux/user/actions';
+// store
+import { userSelector } from 'store/user/selector';
+import {
+  clearUserFromLocalStorage,
+  loadUserFromLocalStorage,
+  updateUser,
+} from 'store/user/actions';
+import { setCurrentTab } from 'store/tabs';
+import { addValueToDB } from 'store/db';
 // components
-import Tabs from 'pages/Tabs';
+import Tabs from 'components/Tabs';
 import Popup from 'components/Popup';
 // utils
-import {
-  getTabFromLocalStorage,
-  getUserFromLocalStorage,
-  removeAllFromLocalStorage,
-} from 'utils/localStorage';
-import { TABS_NAME } from 'utils/optionsValue';
+import { getUserFromLocalStorage } from 'utils/localStorage';
 // navigation
-import RouteTab from 'pages/navigation/Tab';
-import { TabSwitch } from 'pages/Tabs/styled';
+import RouteTab from 'navigation/Tab';
+import { TabSwitch } from 'components/Tabs/styled';
 // styled
 import { Main, TextCenter } from './styled';
 
@@ -26,23 +27,38 @@ const CreateUser = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
-      setIsShowPopup(true);
-    }
-  }, [user]);
-
   const handleClose = () => {
     setIsShowPopup(false);
-    removeAllFromLocalStorage();
+    history.push('/create-user/account');
+    dispatch(clearUserFromLocalStorage());
   };
 
   const handleContinue = () => {
-    const redirectTabIndex = TABS_NAME.indexOf(getTabFromLocalStorage());
-    dispatch(loadUserFromLocalStorage());
-    history.push(`/create-user/${TABS_NAME[redirectTabIndex + 1]}`);
-    handleClose();
+    dispatch(loadUserFromLocalStorage(history));
+    setIsShowPopup(false);
   };
+
+  const onSubmit = (values, nextTab) => {
+    dispatch(updateUser(values));
+    dispatch(setCurrentTab(nextTab));
+    history.push(`/create-user/${nextTab}`);
+  };
+
+  const addUserToDB = (values) => {
+    dispatch(updateUser(values));
+    dispatch(addValueToDB());
+    history.push('/user-list');
+  };
+
+  const goBack = (previousTab) => {
+    history.push(`/create-user/${previousTab}`);
+  };
+
+  useEffect(() => {
+    if (!user.username && getUserFromLocalStorage()) {
+      setIsShowPopup(true);
+    }
+  }, [user]);
 
   return (
     <div className="main-account">
@@ -56,7 +72,11 @@ const CreateUser = () => {
         />
         <Tabs />
         <TabSwitch className="tab-switch">
-          <RouteTab />
+          <RouteTab
+            onSubmit={onSubmit}
+            goBack={goBack}
+            addValuesToDB={addUserToDB}
+          />
         </TabSwitch>
       </Main>
     </div>
