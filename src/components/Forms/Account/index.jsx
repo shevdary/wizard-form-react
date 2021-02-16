@@ -7,8 +7,8 @@ import { userSelector } from 'store/user/selector';
 // components
 import Avatar from 'components/Avatar';
 import Button from 'components/Button';
-import InputComponent from 'components/FormFields/Inputs';
-import RenderField from 'components/FormFields';
+import InputComponent from 'components/Inputs/InputWrapper';
+import RenderField from 'components/Forms/FieldWrapper';
 // helpers
 import { asyncValidate, validate } from 'utils/accountValidate';
 // assets

@@ -4,9 +4,9 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // components
 import Button from 'components/Button';
-import Checkbox from 'components/FormFields/Inputs/Checkbox';
-import TextArea from 'components/FormFields/Inputs/Text';
-import SelectedFields from 'components/FormFields/Selected';
+import Checkbox from 'components/Inputs/Checkbox';
+import TextArea from 'components/Inputs/Text';
+import SelectedFields from 'components/Inputs/Selected';
 // helpers
 import { validate } from 'utils/capabilitiesValidate';
 import { HOBBIES, SKILLS } from 'utils/optionsValue';

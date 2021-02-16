@@ -8,7 +8,7 @@ import {
   SpanError,
 } from 'components/Forms/Account/styled';
 import { Selects } from 'components/Forms/Contact/styled';
-import { ReactSelect } from '../styled';
+import { ReactSelect } from 'components/Forms/FieldWrapper/styled';
 
 const SelectedFields = (props) => {
   const {

@@ -8,22 +8,17 @@ import { setPassedTabs } from 'store/tabs';
 import avatar from 'assets/icon/avatar.svg';
 // components
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import Field from './components';
+import Field from './components/FieldWrapper';
 import ColTypeInfo from './components/Tab';
 // styled
 import {
   EditContainer,
   EditContainerWrapper,
-  Col,
+  Column,
   UserContentWrapper,
 } from './styled';
 // helpers
-import {
-  arrayOfObjects,
-  arrayOfValues,
-  dateChangeFormat,
-  replacePassword,
-} from './helpers';
+import { arrayOfValues, dateChangeFormat, encodePassword } from './helpers';
 
 const UserProfile = ({ user }) => {
   const history = useHistory();
@@ -34,6 +29,8 @@ const UserProfile = ({ user }) => {
     dispatch(setPassedTabs(['account', 'profile', 'contact', 'capabilities']));
     history.push(`/edit-user/${id}/${tab}`);
   };
+
+  const hobbies = user.hobbies && user.hobbies.map((item) => <p>{item}</p>);
 
   return (
     <UserContentWrapper>
@@ -46,17 +43,17 @@ const UserProfile = ({ user }) => {
             label=" Account"
             onClick={() => redirectToTab('account')}
           />
-          <Col>
+          <Column>
             <Field label="User name" value={user.username} />
-            <Field label="Password" value={replacePassword(user.password)} />
-          </Col>
+            <Field label="Password" value={encodePassword(user.password)} />
+          </Column>
         </EditContainer>
         <EditContainer className="personal">
           <ColTypeInfo
             label="Personal"
             onClick={() => redirectToTab('profile')}
           />
-          <Col>
+          <Column>
             <Field label="First name" value={user.firstName} />
             <Field label="Last name" value={user.lastName} />
             <Field label="Birth date" value={dateChangeFormat(user.birthday)} />
@@ -64,14 +61,14 @@ const UserProfile = ({ user }) => {
             {user.address && (
               <Field label="Address" value={user.address.label} />
             )}
-          </Col>
+          </Column>
         </EditContainer>
         <EditContainer className="contacts">
           <ColTypeInfo
             label="Contacts"
             onClick={() => redirectToTab('contact')}
           />
-          <Col>
+          <Column>
             <Field label="Company" value={user.company} />
             {user.fax && <Field label="Fax" value={user.fax} />}
             {user.facebook && (
@@ -92,30 +89,27 @@ const UserProfile = ({ user }) => {
             )}
             {user.phones[0] &&
               user.phones.map((item, index) => (
-                <Field label={`Phone #${index + 1} `} value={item} />
+                <Field label={`Phone #${index + 1} `} value={item} key={item} />
               ))}
-          </Col>
+          </Column>
         </EditContainer>
         <EditContainer className="capabilities">
           <ColTypeInfo
             label="Capabilities"
             onClick={() => redirectToTab('capabilities')}
           />
-          <Col>
+          <Column>
             {user.skills && (
               <Field
                 label="Skills"
-                value={arrayOfObjects(user.skills).join(', ')}
+                value={arrayOfValues(user.skills).join(', ')}
               />
             )}
-            {console.log(user.hobbies, 'hob')}
-            {user.hobbies && (
-              <Field label="Hobbies" value={arrayOfValues(user.hobbies)} />
-            )}
+            {user.hobbies && <Field label="Hobbies" value={hobbies} />}
             {user.info && (
               <Field label="Additional information" value={user.info} />
             )}
-          </Col>
+          </Column>
         </EditContainer>
       </EditContainerWrapper>
     </UserContentWrapper>

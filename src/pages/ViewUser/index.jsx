@@ -6,7 +6,7 @@ import { getUserById, removeUserValue, userSelector } from 'store/user';
 // components
 import Loader from 'components/Loader';
 import UserProfile from 'components/UserProfile';
-import BackButton from 'components/Button/BackButton';
+import BackButton from 'components/BackButton';
 // styled
 import { TitleWrapper, Body, Title } from 'components/UserProfile/styled';
 

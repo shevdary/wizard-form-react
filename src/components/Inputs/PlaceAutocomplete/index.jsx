@@ -4,7 +4,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 // styled
 import { GoogleAutocomplete } from 'components/Forms/Contact/styled';
 import { InputForm, Label, SpanError } from 'components/Forms/Account/styled';
-import { ReactSelect } from '../styled';
+import { ReactSelect } from 'components/Forms/FieldWrapper/styled';
 
 const PlaceAutocomplete = ({ input, label, meta: { error, touched } }) => (
   <InputForm>

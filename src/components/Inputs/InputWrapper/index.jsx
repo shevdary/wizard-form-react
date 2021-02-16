@@ -10,7 +10,7 @@ import {
   Label,
   RequiredField,
 } from 'components/Forms/Account/styled';
-import { InputField } from '../styled';
+import { InputField } from 'components/Forms/FieldWrapper/styled';
 
 const InputComponent = ({
   label,

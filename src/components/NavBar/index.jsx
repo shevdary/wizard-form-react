@@ -6,7 +6,7 @@ import { removeUserValue } from 'store/user/actions';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';
-import userList from 'assets/icon/userList.svg';
+import users from 'assets/icon/userList.svg';
 // styled
 import { HeaderUl, Logo, ContentCenter, Header, HeaderLi } from './styled';
 
@@ -45,7 +45,7 @@ export const NavBar = () => {
             }
             onClick={redirectToUsers}
           >
-            <img src={userList} alt="user list" />
+            <img src={users} alt="user list" />
             List of user
           </HeaderLi>
         </HeaderUl>

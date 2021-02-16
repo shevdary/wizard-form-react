@@ -1,13 +1,13 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { Field } from 'redux-form';
 // components
 import { ButtonWrapper, FieldWrapper } from 'components/Forms/Contact/styled';
-import Phone from 'components/FormFields/Inputs/Phone';
-import Button from '../Buttons';
+import Phone from 'components/Inputs/Phone';
+import Button from '../Button';
 
-const PhoneFields = ({ fields, maxCountFiled = 3 }) => (
+const PhoneWrapper = ({ fields, maxCountFiled = 3 }) => (
   <div className="phoneFields">
     {fields.map((hobby, index) => (
       <FieldWrapper key={index}>
@@ -37,8 +37,8 @@ const PhoneFields = ({ fields, maxCountFiled = 3 }) => (
   </div>
 );
 
-PhoneFields.propTypes = {
+PhoneWrapper.propTypes = {
   fields: PropsTypes.object.isRequired,
   maxCountFiled: PropsTypes.number,
 };
-export default PhoneFields;
+export default PhoneWrapper;

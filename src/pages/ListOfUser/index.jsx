@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -7,14 +6,14 @@ import * as List from 'store/users';
 import { deleteUserFromDB } from 'store/db';
 // components
 import UserTable from 'components/UsersTable';
-import EmptyUserList from 'components/UsersTable/components/EmptyTable';
+import EmptyUserList from 'components/UsersTable/components/EmptyUserList';
 import TableHeader from 'components/UsersTable/components/TableHeader';
 import Loader from 'components/Loader';
 // styled
 import { Body, SectionTable, Title } from './styled';
 
 const ListOfUser = () => {
-  const userList = useSelector(List.userListSelector);
+  const users = useSelector(List.usersSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -36,11 +35,11 @@ const ListOfUser = () => {
         <Title>List of user</Title>
         <SectionTable>
           <TableHeader />
-          {userList &&
-            (userList.length ? (
+          {users &&
+            (users.length ? (
               <UserTable
                 className="children"
-                userList={userList}
+                users={users}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />

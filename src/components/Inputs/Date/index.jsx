@@ -11,7 +11,7 @@ import {
   CalendarImg,
   DatePickerStyled,
   DatePickerWrapper,
-} from 'components/FormFields/styled';
+} from 'components/Forms/FieldWrapper/styled';
 
 registerLocale('en', { ...en, options: { ...en.options, weekStartsOn: 1 } });
 

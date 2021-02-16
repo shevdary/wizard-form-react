@@ -1,15 +1,15 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // custom fields
 import Button from 'components/Button';
-import DataPicker from 'components/FormFields/Inputs/Date';
-import RenderField from 'components/FormFields';
-import RadioButton from 'components/FormFields/Inputs/Radio';
-import InputComponent from 'components/FormFields/Inputs';
-import PlaceAutocomplete from 'components/FormFields/PlaceAutocomplete';
+import DataPicker from 'components/Inputs/Date';
+import RenderField from 'components/Forms/FieldWrapper';
+import RadioButton from 'components/Inputs/Radio';
+import InputComponent from 'components/Inputs/InputWrapper';
+import PlaceAutocomplete from 'components/Inputs/PlaceAutocomplete';
 // helpers
 import { GENDER } from 'utils/optionsValue';
 import { validate, asyncValidate } from 'utils/profileValidate';

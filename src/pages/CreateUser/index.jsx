@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 // store
 import { userSelector } from 'store/user/selector';
 import {
-  clearUser,
+  clearUserFromLocalStorage,
   loadUserFromLocalStorage,
   updateUser,
-} from 'redux/user/actions';
-import { setCurrentTab } from 'redux/tabs';
-import { addValueToDB } from 'redux/db';
+} from 'store/user/actions';
+import { setCurrentTab, tabsSelector } from 'store/tabs';
+import { addValueToDB } from 'store/db';
 // components
 import Tabs from 'components/Tabs';
 import Popup from 'components/Popup';
@@ -34,6 +34,7 @@ const TABS_NAME = [
 
 const CreateUser = () => {
   const user = useSelector(userSelector);
+  const passedTabs = useSelector(tabsSelector);
   const [isShowPopup, setIsShowPopup] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -42,15 +43,11 @@ const CreateUser = () => {
   const handleClose = () => {
     setIsShowPopup(false);
     history.push('/create-user/account');
-    dispatch(clearUser());
+    dispatch(clearUserFromLocalStorage());
   };
 
   const handleContinue = () => {
-    const redirectTabIndex =
-      TABS_NAME.findIndex((tab) => tab.value === getTabFromLocalStorage()) + 1;
-    dispatch(loadUserFromLocalStorage());
-    history.push(`/create-user/${TABS_NAME[redirectTabIndex].value}`);
-    dispatch(clearUser());
+    dispatch(loadUserFromLocalStorage(history));
     setIsShowPopup(false);
   };
 
@@ -71,11 +68,11 @@ const CreateUser = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(user).length === 0 && getUserFromLocalStorage()) {
+    if (!user.username && getUserFromLocalStorage()) {
       setIsShowPopup(true);
     }
     if (
-      Object.keys(user).length === 0 &&
+      !user.username &&
       (pathname.includes('profile') ||
         pathname.includes('contact') ||
         pathname.includes('capabilities'))

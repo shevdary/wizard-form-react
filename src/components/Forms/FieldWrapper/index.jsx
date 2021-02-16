@@ -9,7 +9,7 @@ import {
   SpanError,
 } from 'components/Forms/Account/styled';
 
-const RenderField = ({
+const FieldWrapper = ({
   input,
   type = 'text',
   isRequired,
@@ -32,7 +32,7 @@ const RenderField = ({
   </InputForm>
 );
 
-RenderField.propTypes = {
+FieldWrapper.propTypes = {
   input: PropsTypes.object.isRequired,
   isRequired: PropsTypes.bool,
   name: PropsTypes.string,
@@ -42,4 +42,4 @@ RenderField.propTypes = {
   }).isRequired,
 };
 
-export default RenderField;
+export default FieldWrapper;

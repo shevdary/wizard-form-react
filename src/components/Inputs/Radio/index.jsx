@@ -12,7 +12,7 @@ import {
   Ckeckmark,
   RadioLabel,
   InlineBlock,
-} from 'components/FormFields/styled';
+} from 'components/Forms/FieldWrapper/styled';
 
 const RadioButton = ({ input, label, options, meta: { touched, error } }) => (
   <InputForm>

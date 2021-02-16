@@ -57,34 +57,32 @@ export const EditContainer = styled.div`
   }
 `;
 
-export const Col = styled.div`
+export const Column = styled.div`
   p {
     margin-bottom: 16px;
-    width: 260px;
   }
 `;
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: 100px 300px;
+  grid-template-columns: 115px 300px;
   grid-column-gap: 75px;
   overflow-wrap: break-word;
 
   p:nth-of-type(2n) {
     font-weight: 400;
   }
-  a,
-  a:visited,
-  a:active {
-    color: inherit;
-    font-weight: 500;
-  }
+`;
 
-  a:hover {
+export const Link = styled.a`
+  width: fit-content;
+  color: inherit;
+  font-weight: 400;
+
+  :hover {
     color: #2f68c8;
   }
 `;
-
 export const EditContainerWrapper = styled.div`
   margin-top: 65px;
 `;

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Row } from '../../styled';
+import React from 'react';
+import { Row } from 'components/UserProfile/styled';
 import PropsTypes from 'prop-types';
-import ColTypeInfo from '../Tab';
 
 const OptionField = ({ label, value }) => {
   return (
@@ -17,7 +16,7 @@ const OptionField = ({ label, value }) => {
   );
 };
 
-ColTypeInfo.propTypes = {
+OptionField.propTypes = {
   label: PropsTypes.string.isRequired,
   value: PropsTypes.array.isRequired,
 };

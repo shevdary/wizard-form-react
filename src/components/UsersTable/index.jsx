@@ -3,8 +3,8 @@ import PropsTypes from 'prop-types';
 // styled
 import TableRow from './components/TableRow';
 
-const UserTable = ({ userList, handleDelete, handleEdit }) =>
-  userList.map((user, index) => (
+const UsersTable = ({ users, handleDelete, handleEdit }) =>
+  users.map((user, index) => (
     <TableRow
       user={user}
       count={index}
@@ -14,10 +14,10 @@ const UserTable = ({ userList, handleDelete, handleEdit }) =>
     />
   ));
 
-UserTable.propTypes = {
-  userList: PropsTypes.array.isRequired,
+UsersTable.propTypes = {
+  users: PropsTypes.array.isRequired,
   handleDelete: PropsTypes.func.isRequired,
   handleEdit: PropsTypes.func.isRequired,
 };
 
-export default UserTable;
+export default UsersTable;

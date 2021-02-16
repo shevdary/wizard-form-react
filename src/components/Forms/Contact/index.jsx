@@ -6,10 +6,10 @@ import { Field, reduxForm } from 'redux-form';
 // components
 import Button from 'components/Button';
 
-import RenderField from 'components/FormFields';
-import InputComponent from 'components/FormFields/Inputs';
-import SelectedFields from 'components/FormFields/Selected';
-import Phone from 'components/FormFields/Inputs/Phone';
+import RenderField from 'components/Forms/FieldWrapper';
+import InputComponent from 'components/Inputs/InputWrapper';
+import SelectedFields from 'components/Inputs/Selected';
+import Phone from 'components/Inputs/Phone';
 // helpers
 import { LANGUAGE } from 'utils/optionsValue';
 import { validate } from 'utils/contactValidate';

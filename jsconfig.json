@@ -4,7 +4,7 @@
     "paths": {
       "utils": ["./src/utils"],
       "assets": ["./src/assets"],
-      "redux": ["./src/redux"],
+      "store": ["./src/store"],
       "components": ["./src/components"],
       "indexedDB": ["./src/indexedDB"],
       "pages": ["./src/pages"]

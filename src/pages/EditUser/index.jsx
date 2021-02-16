@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+// store
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 // store
@@ -7,11 +8,9 @@ import { getUserById, removeUserValue } from 'store/user/actions';
 import { updateUserToDB } from 'store/db';
 // components
 import Tabs from 'components/Tabs';
-import BackButton from 'components/Button/BackButton';
+import BackButton from 'components/BackButton';
 // pages
-
 import RouteTab from 'navigation/Tab';
-// assets
 // styled
 import { TitleWrapper } from 'components/UserProfile/styled';
 import { Main, Title } from './styled';

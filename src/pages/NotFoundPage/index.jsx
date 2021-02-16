@@ -1,5 +1,4 @@
 import React from 'react';
-
 // styled
 import { ErrorTitle, ErrorWrapper } from './styled';
 
