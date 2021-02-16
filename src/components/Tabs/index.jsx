@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, useRouteMatch } from 'react-router-dom';
-// redux
+// store
 import { useSelector } from 'react-redux';
-import { tabsSelector } from 'redux/tabs/selector';
+import { tabsSelector } from 'store/tabs/selector';
 // component
 
 // styled

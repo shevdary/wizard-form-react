@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
-// redux
-import { userSelector } from 'redux/user/selector';
-import { getUserById, removeUserValue } from 'redux/user/actions';
-import { updateUserToDB } from 'redux/db';
+// store
+import { userSelector } from 'store/user/selector';
+import { getUserById, removeUserValue } from 'store/user/actions';
+import { updateUserToDB } from 'store/db';
 // components
 import Tabs from 'components/Tabs';
 import BackButton from 'components/Button/BackButton';

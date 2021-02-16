@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { useDispatch } from 'react-redux';
-import { setPassedTabs } from 'redux/tabs';
+import { setPassedTabs } from 'store/tabs';
 // assets
 import avatar from 'assets/icon/avatar.svg';
 // components

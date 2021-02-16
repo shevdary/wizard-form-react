@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-// redux
+// store
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById, removeUserValue, userSelector } from 'redux/user';
-
+import { getUserById, removeUserValue, userSelector } from 'store/user';
 // components
 import Loader from 'components/Loader';
 import UserProfile from 'components/UserProfile';

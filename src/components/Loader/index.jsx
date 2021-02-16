@@ -1,8 +1,8 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { useSelector } from 'react-redux';
-import { loaderSelector } from 'redux/loader/selectors';
+import { loaderSelector } from 'store/loader/selectors';
 // styled
 import { LoaderChild, LoaderWrapper } from './styled';
 

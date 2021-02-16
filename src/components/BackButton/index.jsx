@@ -1,7 +1,8 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// components
+// assets
 import previous from 'assets/icon/previous.svg';
+// components
 import { PreviousPage } from 'components/UserProfile/styled';
 
 const BackButton = ({ onClick, text, ...props }) => (

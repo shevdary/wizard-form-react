@@ -1,11 +1,11 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { getUserByID } from 'indexedDB/database';
 // loader
-import { startLoad, stopLoad } from 'redux/loader';
+import { startLoad, stopLoad } from 'store/loader';
 // db
-import { ADD_TO_DB } from 'redux/db/actions';
+import { ADD_TO_DB } from 'store/db/actions';
 // user
-import * as User from 'redux/user/index';
+import * as User from 'store/user/index';
 // utils
 import {
   clearLocalStorage,

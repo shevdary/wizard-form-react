@@ -1,18 +1,18 @@
-import { SET_USERLIST, DELETE_USER_FROM_LIST } from './actions';
+import { SET_USERS, DELETE_USER_FROM_LIST } from './actions';
 
 const initialState = {
-  userList: null,
+  users: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_USERLIST:
+    case SET_USERS:
       return {
-        userList: action.payload,
+        users: action.payload,
       };
     case DELETE_USER_FROM_LIST:
       return {
-        userList: state.userList.filter((item) => item.id !== action.payload),
+        users: state.users.filter((item) => item.id !== action.payload),
       };
 
     default:

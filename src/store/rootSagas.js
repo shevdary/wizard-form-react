@@ -1,9 +1,9 @@
 import { all, fork } from 'redux-saga/effects';
 // sagas
-import { sagaWatcherUser } from 'redux/user/saga';
-import { sagaWatcherTab } from 'redux/tabs/saga';
-import { sagaWatcherDB } from 'redux/db/saga';
-import { sagaWatcherUserList } from 'redux/users/saga';
+import { sagaWatcherUser } from 'store/user/saga';
+import { sagaWatcherTab } from 'store/tabs/saga';
+import { sagaWatcherDB } from 'store/db/saga';
+import { sagaWatcherUserList } from 'store/users/saga';
 
 export function* sagaWatcher() {
   yield all([

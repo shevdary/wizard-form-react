@@ -1,5 +1,5 @@
 import React from 'react';
-// redux
+// store
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // components

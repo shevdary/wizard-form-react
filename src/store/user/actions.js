@@ -18,8 +18,9 @@ export const removeUserValue = () => ({
   type: REMOVE_USER,
 });
 
-export const loadUserFromLocalStorage = () => ({
+export const loadUserFromLocalStorage = (push) => ({
   type: GET_USER,
+  ...push,
 });
 
 export const getUserFailed = () => ({
@@ -30,6 +31,6 @@ export const getUserById = (id) => ({
   type: GET_USER_BY_ID,
   payload: id,
 });
-export const clearUser = () => ({
+export const clearUserFromLocalStorage = () => ({
   type: CLEAR_VALUES,
 });

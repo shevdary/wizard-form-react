@@ -1,10 +1,10 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
 // db
 import { getUserListFromDB } from 'indexedDB/database';
-// redux
-import { startLoad, stopLoad } from 'redux/loader';
-import { DELETE_FROM_DB } from 'redux/db/actions';
-import { deleteUserFromList, GET_USERLIST, setUserList } from './actions';
+// store
+import { startLoad, stopLoad } from 'store/loader';
+import { DELETE_FROM_DB } from 'store/db/actions';
+import { deleteUserFromList, GET_USERS, setUserList } from './actions';
 
 export function* ensureAddUserToList() {
   yield put(startLoad());
@@ -27,6 +27,6 @@ export function* ensureDeleteUserFromList(action) {
 }
 
 export function* sagaWatcherUserList() {
-  yield takeEvery(GET_USERLIST, ensureAddUserToList);
+  yield takeEvery(GET_USERS, ensureAddUserToList);
   yield takeEvery(DELETE_FROM_DB, ensureDeleteUserFromList);
 }

@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// redux
-import * as List from 'redux/users';
-import { deleteUserFromDB } from 'redux/db';
+// store
+import * as List from 'store/users';
+import { deleteUserFromDB } from 'store/db';
 // components
 import UserTable from 'components/UsersTable';
 import EmptyUserList from 'components/UsersTable/components/EmptyTable';

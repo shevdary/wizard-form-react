@@ -1,9 +1,9 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import { createBrowserHistory } from 'history';
-// redux
-import * as User from 'redux/user/actions';
-import * as Tab from 'redux/tabs/index';
-import { ADD_TO_DB } from 'redux/db/actions';
+// store
+import * as User from 'store/user/actions';
+import * as Tab from 'store/tabs/index';
+import { ADD_TO_DB } from 'store/db/actions';
 // utils
 import {
   clearLocalStorage,
@@ -26,26 +26,33 @@ export function* ensureSetTabToStorage(action) {
     yield put(Tab.setTabFailed());
   }
 }
-export function* getTabFromStorage() {
+export function* getTabFromStorage(action) {
   try {
     const valuesFromLocalStore = getUserFromLocalStorage();
 
-    if (
-      valuesFromLocalStore &&
-      Object.keys(valuesFromLocalStore).includes('username' && 'password')
-    ) {
-      yield put(Tab.setPassedTabs(['account', 'profile']));
-
-      if (Object.keys(valuesFromLocalStore).includes('firstName'))
+    if (valuesFromLocalStore) {
+      if (
+        Object.keys(valuesFromLocalStore).includes('username' && 'password')
+      ) {
+        yield put(Tab.setPassedTabs(['account', 'profile']));
+        yield action.push('/create-user/profile');
+      }
+      if (Object.keys(valuesFromLocalStore).includes('firstName')) {
         yield put(Tab.setPassedTabs(['account', 'profile', 'contact']));
+        yield action.push('/create-user/contact');
+      }
 
-      if (Object.keys(valuesFromLocalStore).includes('company'))
+      if (Object.keys(valuesFromLocalStore).includes('company')) {
         yield put(
           Tab.setPassedTabs(['account', 'profile', 'contact', 'capabilities'])
         );
+        yield action.push('/create-user/capabilities');
+      }
     }
   } catch (e) {
     yield put(Tab.setTabFailed());
+  } finally {
+    yield put(User.clearUserFromLocalStorage());
   }
 }
 export function* ensureRemoveFromStore() {

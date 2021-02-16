@@ -1,13 +1,13 @@
-export const GET_USERLIST = 'USERLIST/GET_USERLIST';
-export const SET_USERLIST = 'USERLIST/SET_USERLIST';
-export const DELETE_USER_FROM_LIST = 'USERLIST/DELETE_USER';
+export const GET_USERS = 'USERS/GET_USERS';
+export const SET_USERS = 'USERS/SET_USERS';
+export const DELETE_USER_FROM_LIST = 'USERS/DELETE_USER';
 // actions
 export const getUserListFromDB = () => ({
-  type: GET_USERLIST,
+  type: GET_USERS,
 });
 
 export const setUserList = (users) => ({
-  type: SET_USERLIST,
+  type: SET_USERS,
   payload: users,
 });
 

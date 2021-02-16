@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { useDispatch } from 'react-redux';
-import { updateUser } from 'redux/user/actions';
+import { updateUser } from 'store/user/actions';
 // styled
 import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';

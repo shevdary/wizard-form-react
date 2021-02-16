@@ -1,9 +1,9 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { userSelector } from 'redux/user/selector';
+import { userSelector } from 'store/user/selector';
 // components
 import Avatar from 'components/Avatar';
 import Button from 'components/Button';

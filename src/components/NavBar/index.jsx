@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-// redux
+// store
 import { useDispatch } from 'react-redux';
-import { removeUserValue } from 'redux/user/actions';
+import { removeUserValue } from 'store/user/actions';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';

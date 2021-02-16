@@ -1,6 +1,6 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-// redux
+// store
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 // components
