@@ -2,7 +2,7 @@ import React from 'react';
 import PropsTypes from 'prop-types';
 // store
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 // components
 import Button from 'components/Button';
 import RenderField from 'components/Forms/FieldWrapper';
@@ -51,7 +51,7 @@ const ContactForm = ({ handleSubmit, onSubmit, goBack }) => (
       </FormFields>
       <FormFields>
         <InputComponent label="Fax" name="fax" component={Phone} />
-        <Field name="phones" maxCountFiled={3} component={PhoneFields} />
+        <FieldArray name="phones" maxCountFiled={3} component={PhoneFields} />
       </FormFields>
     </FormChild>
     <Button type="submit" label="Forward" name="forward" />

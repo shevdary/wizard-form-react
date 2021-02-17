@@ -11,6 +11,7 @@ import TableHeader from 'components/UsersTable/components/TableHeader';
 import Loader from 'components/Loader';
 // styled
 import { Body, SectionTable, Title } from './styled';
+import GenerateUsers from '../../components/GenerateUsers';
 
 const ListOfUser = () => {
   const users = useSelector(List.usersSelector);
@@ -46,6 +47,7 @@ const ListOfUser = () => {
             ) : (
               <EmptyUserList />
             ))}
+          <GenerateUsers itemCount={50} />
         </SectionTable>
       </Loader>
     </Body>

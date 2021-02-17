@@ -5,6 +5,8 @@ export const lastUserUpdate = (oldUpdate, newUpdate) => {
   const diffInMinutes = moment(newUpdate).diff(moment(oldUpdate), 'minutes');
   const diffInHours = moment(newUpdate).diff(moment(oldUpdate), 'hours');
   const diffInDays = moment(newUpdate).diff(moment(oldUpdate), 'days');
+  const diffInMonth = moment(newUpdate).diff(moment(oldUpdate), 'month');
+  const diffInYears = moment(newUpdate).diff(moment(oldUpdate), 'weeks');
 
   if (diffInSeconds <= 0) {
     return `just now`;
@@ -28,5 +30,11 @@ export const lastUserUpdate = (oldUpdate, newUpdate) => {
 
   if (diffInHours >= 24 && diffInDays < 30) {
     return `${diffInDays} days ago`;
+  }
+  if (diffInDays > 30 && diffInMonth) {
+    return `${diffInMonth} weeks ago`;
+  }
+  if (diffInMonth > 12 && diffInYears) {
+    return `${diffInYears} weeks ago`;
   }
 };
