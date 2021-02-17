@@ -17,7 +17,6 @@ import Pagination from 'components/Pagination';
 const ListOfUser = () => {
   const users = useSelector(List.usersSelector);
   const [currentUsers, setCurrentUsers] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -30,11 +29,9 @@ const ListOfUser = () => {
     history.push(`/user/${i}`);
   };
 
-  const onPageChanges = (data) => {
+  const onChangedPage = (data) => {
     const { itemOnPage, currentPage } = data;
     const offset = (currentPage - 1) * itemOnPage;
-
-    setCurrentPage(currentPage);
     setCurrentUsers(users.slice(offset, offset + itemOnPage));
   };
 
@@ -65,12 +62,10 @@ const ListOfUser = () => {
       <div className="d-flex flex-row py-4 align-items-center">
         {users && (
           <Pagination
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            totalRecords={users.length}
+            totalItems={users.length}
             itemOnPage={5}
-            pagesRange={3}
-            onPageChanged={onPageChanges}
+            pagesNeighborhood={2}
+            onChangedPage={onChangedPage}
           />
         )}
       </div>

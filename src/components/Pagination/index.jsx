@@ -6,35 +6,42 @@ import NextPageItem from './components/NextPageItem';
 import { range } from './components/helpers/range';
 
 const Pagination = ({
-  totalRecords = null,
+  totalItems,
   itemOnPage,
-  pagesRange = 3,
-  currentPage,
-  onPageChanged,
+  pagesNeighborhood,
+  onChangedPage,
 }) => {
-  const [pageByRange, setPageByRange] = useState([]);
-  const totalPages = Math.ceil(totalRecords / itemOnPage);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageByRange, setPageByRange] = useState(range(1, pagesNeighborhood));
+  const totalPages = Math.ceil(totalItems / itemOnPage);
 
   const RangePage = () => {
-    if (totalPages > 3) {
-      if (pagesRange && currentPage > 1) {
-        setPageByRange(range(currentPage - 1, currentPage + 1));
-      }
+    if (currentPage === 1) {
+      setPageByRange(range(currentPage, currentPage + pagesNeighborhood));
+    }
+
+    if (currentPage > 1 && currentPage < totalPages) {
+      setPageByRange(
+        range(currentPage - pagesNeighborhood, currentPage + pagesNeighborhood)
+      );
+    }
+    if (currentPage === totalPages) {
+      setPageByRange(range(currentPage - pagesNeighborhood, currentPage));
+    } else {
     }
   };
 
+  const setPage = (page) => {};
+
   const gotoPage = (page) => {
-    const pages = Math.max(0, Math.min(page, totalPages));
-    onPageChanged({
+    const pages = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(page);
+    onChangedPage({
       currentPage: pages,
       totalPages,
       itemOnPage,
-      totalRecords,
+      totalItems,
     });
-  };
-
-  const fetchPageNumbers = () => {
-    return range(1, totalPages);
   };
 
   useEffect(() => {
@@ -43,19 +50,17 @@ const Pagination = ({
     RangePage();
   }, [range, totalPages, currentPage]);
 
-  const pages = fetchPageNumbers();
+  const pages = range(1, totalPages);
   return (
     <Fragment>
       <nav aria-label="Countries Pagination">
         <PageWrapper className="pagination">
           {currentPage !== 1 && (
-            <>
-              <NextPageItem
-                type="previous"
-                gotoPage={() => gotoPage(currentPage - 1)}
-                goToStart={() => gotoPage(1)}
-              />
-            </>
+            <NextPageItem
+              type="previous"
+              gotoPage={() => gotoPage(currentPage - 1)}
+              goToStart={() => gotoPage(1)}
+            />
           )}
           <PageItem
             pages={pages}

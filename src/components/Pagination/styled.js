@@ -8,7 +8,7 @@ export const PageWrapper = styled.ul`
 export const PageList = styled.li`
   width: 20px;
   height: 20px;
-  margin: 3px;
+  margin: 1px;
   position: relative;
   text-align: center;
   border-radius: 3px;
