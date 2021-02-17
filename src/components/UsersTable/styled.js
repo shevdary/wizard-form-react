@@ -149,7 +149,7 @@ export const TextShadow = styled.h1`
 
 export const CreateUserButton = styled.button`
   height: 40px;
-  margin-top: 65px;
+  margin: ${(props) => (props.margin ? props.margin : '65 0 0 0')};
   padding: 15px;
   border: none;
   color: #ffffff;

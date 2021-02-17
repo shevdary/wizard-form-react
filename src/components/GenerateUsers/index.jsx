@@ -1,11 +1,14 @@
-/*eslint-disable*/
-import React, { useState } from 'react';
-import Faker from 'Faker';
-import { ButtonWrapper } from './styled';
-import { LANGUAGE, SKILLS } from 'utils/optionsValue';
+import React from 'react';
+import PropTypes from 'prop-types';
+// redux
 import { useDispatch } from 'react-redux';
-import { updateUser } from 'store/user';
-import { addValueToDB } from 'store/db';
+import { addUsersToDB } from 'store/users';
+// utils
+import Faker from 'Faker';
+import { HOBBIES, LANGUAGE, SKILLS } from 'utils/optionsValue';
+// styled
+import { CreateUserButton } from 'components/UsersTable/styled';
+import { ButtonWrapper } from './styled';
 
 const GenerateUsers = ({ itemCount = 50 }) => {
   const dispatch = useDispatch();
@@ -20,82 +23,67 @@ const GenerateUsers = ({ itemCount = 50 }) => {
     return arrayOfPhones;
   };
 
-  const generateArrayOfHobbies = () => {
-    const arrayOfHobbies = [];
-    for (let i = 0; i < Faker.random.number(6); i++) {
-      !arrayOfHobbies.includes(
-        Faker.random.array_element([
-          'sport, fitness, aerobica and staff like that',
-          'I just want to play games, I’m not living in this life',
-          'I’m a female... I’m doing nothing. Every day.',
-          'Guitar, guitar and guitar again. I’m fall in love with it.',
-          'WTF is “hobbies”???',
-          'Art',
-        ])
-      ) &&
-        arrayOfHobbies.push(
-          Faker.random.array_element([
-            'sport, fitness, aerobica and staff like that',
-            'I just want to play games, I’m not living in this life',
-            'I’m a female... I’m doing nothing. Every day.',
-            'Guitar, guitar and guitar again. I’m fall in love with it.',
-            'WTF is “hobbies”???',
-            'Art',
-          ])
-        );
+  const generateArrayOfValues = (options, minNumber) => {
+    const arrayOfValues = [];
+
+    for (let i = 0; i < minNumber; i++) {
+      const fakerValues = Faker.random.array_element(options);
+      arrayOfValues.push(fakerValues);
     }
-    return arrayOfHobbies;
+
+    return [...new Set(arrayOfValues.map((item) => item))];
   };
 
-  const generateArrayOfSkills = () => {
-    const arrayOfSkills = [];
-    for (let i = 0; 3 < i < Faker.random.number(SKILLS.length); i++) {
-      !arrayOfSkills.includes(Faker.random.array_element(SKILLS)) &&
-        arrayOfSkills.push(Faker.random.array_element(SKILLS));
-    }
-    return arrayOfSkills;
+  const updateUserTimeGenerate = () => {
+    const created = new Date(Faker.Date.past(10));
+    return {
+      createdAt: created,
+      updatedAt: new Date(created.getTime() + Faker.random.number(15454)),
+    };
   };
 
   const handleGenerate = () => {
-    generateArrayOfPhones();
     const arrayOfUsers = [];
-    for (let i = 0; i < 50; i++) {
-      arrayOfUsers.push();
-    }
+    const arrayOfHobbies = HOBBIES.map(({ label }) => label);
 
-    dispatch(
-      updateUser({
+    for (let i = 0; i < itemCount; i++) {
+      arrayOfUsers.push({
         avatar: Faker.Image.people(100, 100),
         username: Faker.Internet.userName(),
         password: Faker.Internet.userName(),
         lastName: Faker.Name.lastName(),
         firstName: Faker.Name.firstName(),
         company: Faker.Company.companyName(),
-        birthday: new Date(Faker.Date.between('1950-01-01', '2002-01-01')),
-        phones: generateArrayOfPhones(),
-        language: Faker.random.array_element(LANGUAGE),
+        info: Faker.Lorem.paragraph(),
         email: Faker.Internet.email(),
+        language: Faker.random.array_element(LANGUAGE),
+        gender: Faker.random.array_element(['male', 'female']),
         fax: `+38${Faker.PhoneNumber.phoneNumberFormat(1).replace(/\d/, 0)}`,
-        hobbies: generateArrayOfHobbies(),
-        address: Faker.Address.streetAddress(true),
         facebook: `https://facebook.com/${Faker.Name.lastName()}`,
         github: `https://github.com/${Faker.Name.lastName()}`,
-        info: Faker.Lorem.paragraph(),
-        createAt: new Date(Faker.Date.past(5)),
-        updateAt: new Date(Faker.Date.past(5)),
-        skills: generateArrayOfSkills(),
-        gender: Faker.random.array_element(['male', 'female']),
-      })
-    );
-    dispatch(addValueToDB());
+        birthday: new Date(Faker.Date.between('1950-01-01', '2002-01-01')),
+        hobbies: generateArrayOfValues(arrayOfHobbies, 3),
+        phones: generateArrayOfPhones(),
+        createdAt: updateUserTimeGenerate().createdAt,
+        updatedAt: updateUserTimeGenerate().updatedAt,
+        skills: generateArrayOfValues(SKILLS, 3),
+      });
+
+      dispatch(addUsersToDB(arrayOfUsers));
+    }
   };
+
   return (
     <ButtonWrapper>
-      <button type="button" onClick={handleGenerate}>
-        Generate
-      </button>
+      <CreateUserButton type="button" onClick={handleGenerate} margin="20px">
+        Generate Users
+      </CreateUserButton>
     </ButtonWrapper>
   );
+};
+
+GenerateUsers.propTypes = {
+  itemCount: PropTypes.number.isRequired,
 };
 
 export default GenerateUsers;

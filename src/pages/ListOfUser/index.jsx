@@ -9,9 +9,9 @@ import UserTable from 'components/UsersTable';
 import EmptyUserList from 'components/UsersTable/components/EmptyUserList';
 import TableHeader from 'components/UsersTable/components/TableHeader';
 import Loader from 'components/Loader';
+import GenerateUsers from 'components/GenerateUsers';
 // styled
-import { Body, SectionTable, Title } from './styled';
-import GenerateUsers from '../../components/GenerateUsers';
+import { Main, SectionTable, Title } from './styled';
 
 const ListOfUser = () => {
   const users = useSelector(List.usersSelector);
@@ -31,7 +31,7 @@ const ListOfUser = () => {
   }, [dispatch]);
 
   return (
-    <Body>
+    <Main>
       <Loader>
         <Title>List of user</Title>
         <SectionTable>
@@ -50,7 +50,7 @@ const ListOfUser = () => {
           <GenerateUsers itemCount={50} />
         </SectionTable>
       </Loader>
-    </Body>
+    </Main>
   );
 };
 

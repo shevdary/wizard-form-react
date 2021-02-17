@@ -13,6 +13,7 @@ db.version(DB_NEW_VERSION).stores({
 export const setNewUserToDB = (values) => {
   db.user.add(values);
 };
+db.open();
 
 export const deleteUserFromDB = (id) => db.user.delete(id);
 export const getCurrentVersionDB = () => db.verno;
@@ -49,3 +50,4 @@ export const getUserListFromDB = () =>
       })
     )
   );
+export const clearValuesFromDB = () => db.user.clear();

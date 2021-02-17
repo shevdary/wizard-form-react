@@ -8,7 +8,7 @@ import Loader from 'components/Loader';
 import UserProfile from 'components/UserProfile';
 import BackButton from 'components/BackButton';
 // styled
-import { TitleWrapper, Body, Title } from 'components/UserProfile/styled';
+import { TitleWrapper, Title, Main } from 'components/UserProfile/styled';
 
 import UserNotFound from '../UserNotFound';
 
@@ -28,7 +28,7 @@ const UserView = () => {
   }, [id, dispatch]);
 
   return (
-    <Body>
+    <Main>
       <TitleWrapper>
         <BackButton onClick={returnToUserList} text="Users List" />
         <Title>User Name</Title>
@@ -36,7 +36,7 @@ const UserView = () => {
       <Loader>
         {user.id ? <UserProfile user={user} /> : <UserNotFound />}
       </Loader>
-    </Body>
+    </Main>
   );
 };
 
