@@ -1,83 +1,62 @@
-/*eslint-disable*/
-import React, { Fragment, useEffect, useState } from 'react';
-import { PageWrapper } from './styled';
+import React from 'react';
+// components
 import PageItem from './components/PageItem';
 import NextPageItem from './components/NextPageItem';
 import { range } from './components/helpers/range';
+// styled
+import { PageWrapper } from './styled';
 
 const Pagination = ({
   totalItems,
   itemOnPage,
-  pagesNeighborhood,
-  onChangedPage,
+  pageRange,
+  currentPage,
+  handleChangePage,
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageByRange, setPageByRange] = useState(range(1, pagesNeighborhood));
   const totalPages = Math.ceil(totalItems / itemOnPage);
-
-  const RangePage = () => {
-    if (currentPage === 1) {
-      setPageByRange(range(currentPage, currentPage + pagesNeighborhood));
-    }
-
-    if (currentPage > 1 && currentPage < totalPages) {
-      setPageByRange(
-        range(currentPage - pagesNeighborhood, currentPage + pagesNeighborhood)
-      );
-    }
-    if (currentPage === totalPages) {
-      setPageByRange(range(currentPage - pagesNeighborhood, currentPage));
-    } else {
-    }
-  };
-
-  const setPage = (page) => {};
-
-  const gotoPage = (page) => {
-    const pages = Math.max(1, Math.min(page, totalPages));
-    setCurrentPage(page);
-    onChangedPage({
-      currentPage: pages,
-      totalPages,
-      itemOnPage,
-      totalItems,
-    });
-  };
-
-  useEffect(() => {
-    range(1, totalPages);
-    gotoPage(currentPage);
-    RangePage();
-  }, [range, totalPages, currentPage]);
-
   const pages = range(1, totalPages);
+
+  const rangeOfPages = (page) => {
+    if (page < 3) {
+      return range(1, pageRange);
+    }
+    if (page >= 3 && page < totalPages - 1) {
+      return range(currentPage - 2, currentPage + 2);
+    }
+    if (page === totalPages - 1) {
+      return range(totalPages - pageRange + 1, totalPages + 1);
+    }
+    if (page === totalPages) {
+      return range(totalPages - pageRange + 1, totalPages);
+    }
+  };
+
+  if (totalItems <= itemOnPage) return null;
   return (
-    <Fragment>
-      <nav aria-label="Countries Pagination">
-        <PageWrapper className="pagination">
-          {currentPage !== 1 && (
-            <NextPageItem
-              type="previous"
-              gotoPage={() => gotoPage(currentPage - 1)}
-              goToStart={() => gotoPage(1)}
-            />
-          )}
-          <PageItem
-            pages={pages}
-            pageRange={pageByRange}
-            currentPage={currentPage}
-            gotoPage={gotoPage}
+    <nav aria-label="Countries Pagination">
+      <PageWrapper className="pagination">
+        {currentPage !== 1 && (
+          <NextPageItem
+            type="previous"
+            gotoPage={() => handleChangePage(currentPage - 1)}
+            goToStart={() => handleChangePage(1)}
           />
-          {currentPage !== totalPages && (
-            <NextPageItem
-              type="next"
-              gotoPage={() => gotoPage(currentPage + 1)}
-              goToEnd={() => gotoPage(totalPages)}
-            />
-          )}
-        </PageWrapper>
-      </nav>
-    </Fragment>
+        )}
+        <PageItem
+          pages={pages}
+          rangePage={rangeOfPages}
+          currentPage={currentPage}
+          gotoPage={handleChangePage}
+        />
+        {currentPage !== totalPages && (
+          <NextPageItem
+            type="next"
+            gotoPage={() => handleChangePage(currentPage + 1)}
+            goToEnd={() => handleChangePage(totalPages)}
+          />
+        )}
+      </PageWrapper>
+    </nav>
   );
 };
 export default Pagination;

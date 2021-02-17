@@ -1,10 +1,11 @@
 import React from 'react';
+// styled
 import { PageLink, PageList } from 'components/Pagination/styled';
 
-const PageItem = ({ currentPage, gotoPage, pages, pageRange }) =>
-  pages.map((page, index) => (
-    <>
-      {pageRange.includes(page) && (
+const PageItem = ({ currentPage, gotoPage, pages, rangePage }) =>
+  pages.map(
+    (page, index) =>
+      rangePage(currentPage).includes(page) && (
         <PageList key={index} className={currentPage === page ? 'active' : ''}>
           <PageLink
             href="#"
@@ -14,8 +15,7 @@ const PageItem = ({ currentPage, gotoPage, pages, pageRange }) =>
             {page}
           </PageLink>
         </PageList>
-      )}
-    </>
-  ));
+      )
+  );
 
 export default PageItem;
