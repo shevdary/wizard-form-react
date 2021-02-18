@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // store
 import { useSelector } from 'react-redux';
 import { loaderSelector } from 'store/loader/selectors';
@@ -27,6 +27,9 @@ const Loader = ({ children }) => {
 };
 
 Loader.propTypes = {
-  children: PropsTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 export default Loader;

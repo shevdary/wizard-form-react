@@ -5,9 +5,7 @@ import { Field } from 'redux-form';
 export const ReactSelect = {
   control: (styles, state) => ({
     ...styles,
-    border: state.selectProps.borderError
-      ? ' 1px solid red'
-      : ' 1px solid #c1cfe0',
+    border: state.selectProps.border ? ' 1px solid red' : ' 1px solid #c1cfe0',
     borderRadius: 0,
     height: 'fit-content',
   }),
@@ -16,10 +14,8 @@ export const ReactSelect = {
     display: 'none',
   }),
   indicatorsContainer: () => ({
-    'div:first-child': {
-      position: 'absolute',
-      left: '100%',
-    },
+    display: 'inline-flex',
+    flexDirection: 'row-reverse',
   }),
   menu: (provided) => ({
     ...provided,

@@ -30,7 +30,7 @@ export const Title = styled.h1`
   color: #475666;
 `;
 
-export const Body = styled.body`
+export const Main = styled.main`
   width: 970px;
   margin: auto;
 `;
@@ -51,10 +51,6 @@ export const EditContainer = styled.div`
   font-size: 14px;
   line-height: 16px;
   grid-template-columns: repeat(2, 120px);
-  div:nth-child(-n + 2) {
-    color: #475666;
-    font-weight: 600;
-  }
 `;
 
 export const Column = styled.div`

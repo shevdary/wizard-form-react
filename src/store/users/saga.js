@@ -4,13 +4,24 @@ import { getUserListFromDB } from 'indexedDB/database';
 // store
 import { startLoad, stopLoad } from 'store/loader';
 import { DELETE_FROM_DB } from 'store/db/actions';
-import { deleteUserFromList, GET_USERS, setUserList } from './actions';
+import {
+  deleteUserFromList,
+  GET_USERS,
+  setUserList,
+  setUsersCount,
+} from './actions';
 
-export function* ensureAddUserToList() {
+export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
   yield put(startLoad());
   try {
-    const values = yield call(getUserListFromDB);
-    yield put(setUserList(values));
+    const users = yield call(getUserListFromDB);
+    const itemsOnPage = users.slice(
+      currentPage * itemOnPage - itemOnPage,
+      currentPage * itemOnPage
+    );
+
+    yield put(setUsersCount(users.length));
+    yield put(setUserList(itemsOnPage));
   } catch (e) {
     console.log(e);
   } finally {
