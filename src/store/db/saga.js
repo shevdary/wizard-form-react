@@ -1,4 +1,4 @@
-import { put, select, takeEvery, call } from 'redux-saga/effects';
+import { put, select, takeEvery } from 'redux-saga/effects';
 // user
 import * as User from 'store/user/selector';
 // db
@@ -41,7 +41,7 @@ export function* ensureDeleteUserFromDB(action) {
 
 export function* ensureRemoveOldVersion() {
   try {
-    yield call(clearOldVersionDB);
+    clearOldVersionDB();
   } catch (e) {
     console.log(e);
     yield put(DB.setValueFailed());
@@ -52,5 +52,5 @@ export function* sagaWatcherDB() {
   yield takeEvery(DB.ADD_TO_DB, ensureAddValuesToDB);
   yield takeEvery(DB.UPDATE_USER_DB, ensureUpdateValuesToDB);
   yield takeEvery(DB.DELETE_FROM_DB, ensureDeleteUserFromDB);
-  yield takeEvery(DB.REMOVE_OLD_VERSION, ensureRemoveOldVersion);
+  yield takeEvery(DB.DELETE_OLD_VERSION, ensureRemoveOldVersion);
 }
