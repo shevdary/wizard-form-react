@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import { call, takeEvery, put } from 'redux-saga/effects';
 // db
 import { getUserListFromDB } from 'indexedDB/database';

@@ -1,11 +1,11 @@
-import { put, select, takeEvery } from 'redux-saga/effects';
+import { put, select, takeEvery, call } from 'redux-saga/effects';
 // user
 import * as User from 'store/user/selector';
 // db
 import * as DB from 'store/db/actions';
 import {
+  clearValuesFromDB,
   deleteUserFromDB,
-  clearOldVersionDB,
   setNewUserToDB,
   updateUserInDB,
 } from 'indexedDB/database';
@@ -41,9 +41,8 @@ export function* ensureDeleteUserFromDB(action) {
 
 export function* ensureRemoveOldVersion() {
   try {
-    clearOldVersionDB();
+    yield call(clearValuesFromDB);
   } catch (e) {
-    console.log(e);
     yield put(DB.setValueFailed());
   }
 }
