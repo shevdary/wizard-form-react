@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-export const DB_NEW_VERSION = 1;
+export const DB_NEW_VERSION = 3;
 const db = new Dexie('user');
 
 db.version(1).stores({
@@ -17,8 +17,6 @@ export const setNewUserToDB = (values) => {
 
 export const deleteUserFromDB = (id) => db.user.delete(id);
 export const getCurrentVersionDB = () => db.verno;
-export const clearOldVersionDB = () => {};
-
 export const getUserByID = (id) => db.user.get(Number(id));
 export const updateUserInDB = (id, data) => db.user.update(Number(id), data);
 export const getUserListFromDB = () =>
@@ -49,3 +47,5 @@ export const getUserListFromDB = () =>
       })
     )
   );
+export const clearValuesFromDB = () => db.user.clear();
+export const addArrayOfValuesToDB = (array) => db.user.bulkAdd(array);

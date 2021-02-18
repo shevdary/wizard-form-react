@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -34,7 +33,7 @@ const ListOfUser = () => {
 
   useEffect(() => {
     dispatch(List.getUserListFromDB(currentPage, itemsOnPage));
-  }, [currentPage, itemsOnPage, dispatch]);
+  }, [currentPage, dispatch]);
 
   return (
     <Main>
@@ -58,7 +57,7 @@ const ListOfUser = () => {
       <div className="d-flex flex-row py-4 align-items-center">
         <Pagination
           totalItems={dataCount}
-          itemOnPage={5}
+          itemOnPage={itemsOnPage}
           pageRange={5}
           handleChangePage={setCurrentPage}
           currentPage={currentPage}

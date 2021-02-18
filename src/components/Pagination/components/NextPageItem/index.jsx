@@ -1,39 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+// assets
 import img from 'assets/icon/previous.svg';
 import startPage from 'assets/icon/startPage.svg';
+// styled
+import { Img, Page, PageList } from 'components/Pagination/styled';
 
-import { Img, PageLink, PageList } from '../../styled';
-
-const NextPageItem = ({ gotoPage, goToStart, goToEnd, type }) => (
+const SwitchPage = ({ handleChangePage, handleExtremePage, pageType }) => (
   <>
-    {type === 'previous' ? (
-      <>
-        <PageList>
-          <PageLink href="#" aria-label="Previous" onClick={goToStart}>
-            <Img src={startPage} alt="" type={type} />
-          </PageLink>
-        </PageList>
-        <PageList>
-          <PageLink href="#" aria-label="Previous" onClick={gotoPage}>
-            <Img src={img} alt="" type={type} />
-          </PageLink>
-        </PageList>
-      </>
-    ) : (
-      <>
-        <PageList>
-          <PageLink href="#" aria-label="Previous" onClick={gotoPage}>
-            <Img src={img} alt="" type={type} />
-          </PageLink>
-        </PageList>
-        <PageList>
-          <PageLink href="#" aria-label="Previous" onClick={goToEnd}>
-            <Img src={startPage} alt="" type={type} />
-          </PageLink>
-        </PageList>
-      </>
-    )}
+    <PageList pageType={pageType}>
+      <Page onClick={handleChangePage} type="button">
+        <Img src={img} alt={pageType} />
+      </Page>
+    </PageList>
+    <PageList pageType={pageType} className="firstSwitch" type="button">
+      <Page onClick={handleExtremePage}>
+        <Img src={startPage} alt={pageType} />
+      </Page>
+    </PageList>
   </>
 );
 
-export default NextPageItem;
+SwitchPage.propTypes = {
+  handleChangePage: PropTypes.func.isRequired,
+  handleExtremePage: PropTypes.func.isRequired,
+  pageType: PropTypes.oneOf(['previous', 'next']),
+};
+
+export default SwitchPage;
