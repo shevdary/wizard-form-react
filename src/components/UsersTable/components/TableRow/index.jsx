@@ -7,7 +7,7 @@ import confirmDel from 'assets/icon/confirmDelete.svg';
 import avatar from 'assets/icon/avatar.svg';
 // helpers
 import { lastUserUpdate } from 'utils/updateTime';
-
+import moment from 'moment';
 // styled
 import { ButtonTransparent } from 'components/Popup/styled';
 import { UserAvatarImage } from 'components/Forms/Account/styled';
@@ -37,7 +37,7 @@ const TableRow = ({ user, handleDelete, handleEdit, count }) => {
         <FlexCol className="childDisplay">
           <p>
             {user.updatedAt
-              ? lastUserUpdate(user.updatedAt, user.createAt)
+              ? lastUserUpdate(user.updatedAt, moment.now())
               : 'non changes'}
           </p>
           <div className="flex-button">

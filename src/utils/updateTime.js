@@ -8,7 +8,6 @@ export const lastUserUpdate = (oldUpdate, newUpdate) => {
   const diffInMonth = moment(newUpdate).diff(moment(oldUpdate), 'month');
   const diffInYears = moment(newUpdate).diff(moment(oldUpdate), 'weeks');
 
-  console.log(diffInYears, diffInMonth);
   if (diffInSeconds <= 0) {
     return `just now`;
   }

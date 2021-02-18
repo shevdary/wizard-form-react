@@ -10,7 +10,7 @@ import {
   updateUserInDB,
   clearValuesFromDB,
 } from 'indexedDB/database';
-import { ADD_USERS } from '../users';
+import { GENERATE_USERS } from '../users';
 
 export function* ensureAddValuesToDB() {
   try {
@@ -57,10 +57,11 @@ export function* ensureClearDB() {
     console.log(e);
   }
 }
+
 export function* sagaWatcherDB() {
   yield takeEvery(DB.ADD_TO_DB, ensureAddValuesToDB);
   yield takeEvery(DB.UPDATE_USER_DB, ensureUpdateValuesToDB);
   yield takeEvery(DB.DELETE_FROM_DB, ensureDeleteUserFromDB);
   yield takeEvery(DB.REMOVE_OLD_VERSION, ensureRemoveOldVersion);
-  yield takeEvery(ADD_USERS, ensureClearDB);
+  yield takeEvery(GENERATE_USERS, ensureClearDB);
 }

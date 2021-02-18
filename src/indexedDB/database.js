@@ -51,3 +51,4 @@ export const getUserListFromDB = () =>
     )
   );
 export const clearValuesFromDB = () => db.user.clear();
+export const addArrayOfValuesToDB = (array) => db.user.bulkAdd(array);

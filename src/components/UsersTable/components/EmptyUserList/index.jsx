@@ -7,14 +7,14 @@ import {
   EmptyListContainer,
   TextShadow,
 } from 'components/UsersTable/styled';
+import GenerateUsers from '../../../GenerateUsers';
 
-const EmptyUserList = () => {
+const EmptyUserList = ({ handleGenerateUsers }) => {
   const history = useHistory();
 
   const onClick = () => {
     history.push('/create-user/account');
   };
-
   return (
     <EmptyListContainer>
       <EmptyListArticle>
@@ -22,6 +22,7 @@ const EmptyUserList = () => {
         <CreateUserButton type="forward" onClick={onClick}>
           Create new user
         </CreateUserButton>
+        <GenerateUsers itemCount={50} handleGenerate={handleGenerateUsers} />
       </EmptyListArticle>
     </EmptyListContainer>
   );
