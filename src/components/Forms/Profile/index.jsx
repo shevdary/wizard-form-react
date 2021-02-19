@@ -4,7 +4,7 @@ import PropsTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // custom fields
-import Button from 'components/Button';
+import Button from 'components/Buttons/Button';
 import DataPicker from 'components/Inputs/Date';
 import RenderField from 'components/Forms/FieldWrapper';
 import RadioButton from 'components/Inputs/Radio';
