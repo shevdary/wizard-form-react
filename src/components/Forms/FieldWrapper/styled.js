@@ -44,9 +44,6 @@ export const ReactSelect = {
     borderRadius: '0',
     background: '#E7F0FF',
     fontcolor: '#9BB0CB',
-    'div:nth-child(2n):hover': {
-      borderRadius: '0',
-    },
   }),
   valueContainer: (provided) => ({
     ...provided,
