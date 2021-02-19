@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link, Row } from 'components/UserProfile/styled';
 
 const Field = ({ label, value, textLink }) => (
@@ -10,9 +10,9 @@ const Field = ({ label, value, textLink }) => (
 );
 
 Field.propTypes = {
-  label: PropsTypes.string.isRequired,
-  value: PropsTypes.oneOfType([PropsTypes.array, PropsTypes.string]).isRequired,
-  textLink: PropsTypes.string,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
+  textLink: PropTypes.string,
 };
 
 export default Field;

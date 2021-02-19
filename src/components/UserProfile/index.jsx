@@ -134,7 +134,7 @@ UserProfile.propTypes = {
     phones: PropTypes.array,
     avatar: PropTypes.string,
     hobbies: PropTypes.array,
-    address: PropTypes.string,
+    address: PropTypes.object,
     skills: PropTypes.array,
   }).isRequired,
 };

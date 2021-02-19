@@ -45,9 +45,12 @@ export const InputForm = styled.div`
 export const Input = styled.input`
   height: 40px;
   width: calc(100% - 12px);
-  border: ${(props) => (props.border ? '1px solid red' : '1px solid #c1cfe0')};
   font-size: 14px;
+  border: 1px solid #c1cfe0;
   padding-left: 10px;
+  &.field-error {
+    border: 1px solid red;
+  }
 `;
 
 export const Button = styled.button`

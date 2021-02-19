@@ -23,7 +23,7 @@ const FieldWrapper = ({
     <div>
       <Input
         {...input}
-        border={touched && error}
+        className={touched && error && 'field-error'}
         value={input.value}
         type={type}
       />

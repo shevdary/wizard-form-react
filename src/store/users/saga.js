@@ -8,17 +8,24 @@ import {
   deleteUserFromList,
   GENERATE_USERS,
   GET_USERS,
+  setUsersCount,
   setUserList,
 } from 'store/users/actions';
 
 import { arrayOfUsers } from 'utils/generate';
 import { ensureClearAllUsers } from '../db/saga';
 
-export function* ensureAddUserToList() {
+export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
   yield put(startLoad());
   try {
-    const values = yield call(getUserListFromDB);
-    yield put(setUserList(values));
+    const users = yield call(getUserListFromDB);
+    const itemsOnPage = users.slice(
+      currentPage * itemOnPage - itemOnPage,
+      currentPage * itemOnPage
+    );
+
+    yield put(setUsersCount(users.length));
+    yield put(setUserList(itemsOnPage));
   } catch (e) {
     console.log(e);
   } finally {
