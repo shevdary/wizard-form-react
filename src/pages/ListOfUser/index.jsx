@@ -26,9 +26,8 @@ const ListOfUser = () => {
     history.push(`/user/${i}`);
   };
 
-  const handleGenerateUsers = (itemsCount) => {
-    dispatch(generateUsers(itemsCount));
-    dispatch(List.getUserListFromDB());
+  const handleGenerateUsers = () => {
+    dispatch(generateUsers(50));
   };
 
   useEffect(() => {

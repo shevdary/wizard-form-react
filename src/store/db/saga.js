@@ -4,13 +4,12 @@ import * as User from 'store/user/selector';
 // db
 import * as DB from 'store/db/actions';
 import {
+  clearValuesFromDB,
   deleteUserFromDB,
-  clearOldVersionDB,
   setNewUserToDB,
   updateUserInDB,
-  clearValuesFromDB,
 } from 'indexedDB/database';
-import { GENERATE_USERS } from '../users';
+import { clearUsersFromStore } from '../users';
 
 export function* ensureAddValuesToDB() {
   try {
@@ -32,7 +31,14 @@ export function* ensureUpdateValuesToDB(action) {
     yield put(DB.setValueFailed());
   }
 }
-
+export function* ensureClearAllUsers() {
+  try {
+    yield put(clearUsersFromStore());
+    yield call(clearValuesFromDB);
+  } catch (e) {
+    yield put(DB.setValueFailed());
+  }
+}
 export function* ensureDeleteUserFromDB(action) {
   try {
     yield put(deleteUserFromDB(action.payload));
@@ -41,27 +47,8 @@ export function* ensureDeleteUserFromDB(action) {
   }
 }
 
-export function* ensureRemoveOldVersion() {
-  try {
-    yield call(clearOldVersionDB);
-  } catch (e) {
-    console.log(e);
-    yield put(DB.setValueFailed());
-  }
-}
-
-export function* ensureClearDB() {
-  try {
-    yield call(clearValuesFromDB);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
 export function* sagaWatcherDB() {
   yield takeEvery(DB.ADD_TO_DB, ensureAddValuesToDB);
   yield takeEvery(DB.UPDATE_USER_DB, ensureUpdateValuesToDB);
   yield takeEvery(DB.DELETE_FROM_DB, ensureDeleteUserFromDB);
-  yield takeEvery(DB.REMOVE_OLD_VERSION, ensureRemoveOldVersion);
-  yield takeEvery(GENERATE_USERS, ensureClearDB);
 }
