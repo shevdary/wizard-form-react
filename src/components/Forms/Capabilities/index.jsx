@@ -3,7 +3,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 // components
-import Button from 'components/Button';
+import Button from 'components/Buttons/Button';
 import Checkbox from 'components/Inputs/Checkbox';
 import TextArea from 'components/Inputs/Text';
 import SelectedFields from 'components/Inputs/Selected';

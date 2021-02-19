@@ -4,14 +4,14 @@ import { Link, Row } from 'components/UserProfile/styled';
 
 const Field = ({ label, value, textLink }) => (
   <Row>
-    <p>{`${label} : `}</p>
-    {textLink ? <Link href={value}>{textLink}</Link> : <p>{value}</p>}
+    <span>{`${label} : `}</span>
+    {textLink ? <Link href={value}>{textLink}</Link> : <span>{value}</span>}
   </Row>
 );
 
 Field.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
   textLink: PropTypes.string,
 };
 

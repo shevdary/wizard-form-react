@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+// components
+import GenerateUsers from 'components/Buttons/GenerateButton';
 // styled
 import {
   CreateUserButton,
@@ -8,13 +10,12 @@ import {
   TextShadow,
 } from 'components/UsersTable/styled';
 
-const EmptyUserList = () => {
+const EmptyUserList = ({ handleGenerateUsers }) => {
   const history = useHistory();
 
   const onClick = () => {
     history.push('/create-user/account');
   };
-
   return (
     <EmptyListContainer>
       <EmptyListArticle>
@@ -22,6 +23,10 @@ const EmptyUserList = () => {
         <CreateUserButton type="forward" onClick={onClick}>
           Create new user
         </CreateUserButton>
+        <GenerateUsers
+          itemCount={50}
+          handleGenerateUsers={handleGenerateUsers}
+        />
       </EmptyListArticle>
     </EmptyListContainer>
   );

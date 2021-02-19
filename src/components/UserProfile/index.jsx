@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // store
@@ -32,7 +32,7 @@ const UserProfile = ({ user }) => {
 
   const hobbies =
     user.hobbies &&
-    user.hobbies.map((item, index) => <Fragment key={index}>{item}</Fragment>);
+    user.hobbies.map((item, index) => <p key={index}>{item}</p>);
 
   return (
     <UserContentWrapper>
@@ -127,7 +127,7 @@ UserProfile.propTypes = {
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     facebook: PropTypes.string,
-    birthday: PropTypes.instanceOf(Date),
+    birthday: PropTypes.instanceOf(Date).isRequired,
     fax: PropTypes.string,
     github: PropTypes.string,
     info: PropTypes.string,

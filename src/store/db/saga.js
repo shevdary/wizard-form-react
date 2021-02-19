@@ -9,6 +9,7 @@ import {
   setNewUserToDB,
   updateUserInDB,
 } from 'indexedDB/database';
+import { clearUsersFromStore } from '../users';
 
 export function* ensureAddValuesToDB() {
   try {
@@ -30,18 +31,17 @@ export function* ensureUpdateValuesToDB(action) {
     yield put(DB.setValueFailed());
   }
 }
-
-export function* ensureDeleteUserFromDB(action) {
+export function* ensureClearAllUsers() {
   try {
-    yield put(deleteUserFromDB(action.payload));
+    yield put(clearUsersFromStore());
+    yield call(clearValuesFromDB);
   } catch (e) {
     yield put(DB.setValueFailed());
   }
 }
-
-export function* ensureRemoveOldVersion() {
+export function* ensureDeleteUserFromDB(action) {
   try {
-    yield call(clearValuesFromDB);
+    yield put(deleteUserFromDB(action.payload));
   } catch (e) {
     yield put(DB.setValueFailed());
   }
@@ -51,5 +51,4 @@ export function* sagaWatcherDB() {
   yield takeEvery(DB.ADD_TO_DB, ensureAddValuesToDB);
   yield takeEvery(DB.UPDATE_USER_DB, ensureUpdateValuesToDB);
   yield takeEvery(DB.DELETE_FROM_DB, ensureDeleteUserFromDB);
-  yield takeEvery(DB.DELETE_OLD_VERSION, ensureRemoveOldVersion);
 }

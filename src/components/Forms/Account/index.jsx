@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import { userSelector } from 'store/user/selector';
 // components
 import Avatar from 'components/Avatar';
-import Button from 'components/Button';
+import Button from 'components/Buttons/Button';
 import InputComponent from 'components/Inputs/InputWrapper';
 import RenderField from 'components/Forms/FieldWrapper';
 // helpers

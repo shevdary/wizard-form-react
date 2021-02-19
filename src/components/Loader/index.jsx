@@ -27,9 +27,6 @@ const Loader = ({ children }) => {
 };
 
 Loader.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node.isRequired,
 };
 export default Loader;
