@@ -58,7 +58,7 @@ export const EditContainer = styled.div`
 `;
 
 export const Column = styled.div`
-  p {
+  span {
     margin-bottom: 16px;
   }
 `;
@@ -69,7 +69,7 @@ export const Row = styled.div`
   grid-column-gap: 75px;
   overflow-wrap: break-word;
 
-  p:nth-of-type(2n) {
+  span:nth-of-type(2n) {
     font-weight: 400;
   }
 `;

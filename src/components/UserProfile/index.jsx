@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // store
 import { useDispatch } from 'react-redux';
 import { setPassedTabs } from 'store/tabs';
@@ -30,7 +30,9 @@ const UserProfile = ({ user }) => {
     history.push(`/edit-user/${id}/${tab}`);
   };
 
-  const hobbies = user.hobbies && user.hobbies.map((item) => <p>{item}</p>);
+  const hobbies =
+    user.hobbies &&
+    user.hobbies.map((item, index) => <p key={index}>{item}</p>);
 
   return (
     <UserContentWrapper>
@@ -117,24 +119,24 @@ const UserProfile = ({ user }) => {
 };
 
 UserProfile.propTypes = {
-  user: {
-    id: PropsTypes.number.isRequired,
-    username: PropsTypes.string.isRequired,
-    password: PropsTypes.string.isRequired,
-    firstName: PropsTypes.string.isRequired,
-    lastName: PropsTypes.string.isRequired,
-    email: PropsTypes.string.isRequired,
-    facebook: PropsTypes.string,
-    birthday: PropsTypes.string.isRequired,
-    fax: PropsTypes.string,
-    github: PropsTypes.string,
-    info: PropsTypes.string,
-    phones: PropsTypes.array,
-    avatar: PropsTypes.string,
-    hobbies: PropsTypes.array,
-    address: PropsTypes.string,
-    skills: PropsTypes.array,
-  }.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    facebook: PropTypes.string,
+    birthday: PropTypes.instanceOf(Date).isRequired,
+    fax: PropTypes.string,
+    github: PropTypes.string,
+    info: PropTypes.string,
+    phones: PropTypes.array,
+    avatar: PropTypes.string,
+    hobbies: PropTypes.array,
+    address: PropTypes.string,
+    skills: PropTypes.array,
+  }).isRequired,
 };
 
 export default UserProfile;
