@@ -1,8 +1,8 @@
-export const range = (from, to, step = 1) => {
-  let i = from;
+export const range = (fromIndex, toIndex, step = 1) => {
+  let i = fromIndex;
   const rangeArray = [];
 
-  while (i <= to) {
+  while (i <= toIndex) {
     rangeArray.push(i);
     i += step;
   }

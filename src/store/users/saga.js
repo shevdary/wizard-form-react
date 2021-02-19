@@ -11,16 +11,16 @@ import {
   setUsersCount,
 } from './actions';
 
-export function* ensureAddUserToList({ payload: { startIndex, endIndex } }) {
+export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
   yield put(startLoad());
   try {
-    const items = yield call(getUserListFromDB);
-    const itemsOnPage = items.slice(
-      startIndex * endIndex - endIndex,
-      startIndex * endIndex
+    const users = yield call(getUserListFromDB);
+    const itemsOnPage = users.slice(
+      currentPage * itemOnPage - itemOnPage,
+      currentPage * itemOnPage
     );
 
-    yield put(setUsersCount(items.length));
+    yield put(setUsersCount(users.length));
     yield put(setUserList(itemsOnPage));
   } catch (e) {
     console.log(e);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // store
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'store/user/actions';
@@ -45,8 +45,8 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
 };
 
 Avatar.propTypes = {
-  input: PropsTypes.shape({
-    value: PropsTypes.string,
+  input: PropTypes.shape({
+    value: PropTypes.string,
   }).isRequired,
 };
 
