@@ -4,7 +4,7 @@ import PropsTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 // components
-import Button from 'components/Button';
+import Button from 'components/Buttons/Button';
 import RenderField from 'components/Forms/FieldWrapper';
 import InputComponent from 'components/Inputs/InputWrapper';
 import SelectedFields from 'components/Inputs/Selected';

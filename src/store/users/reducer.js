@@ -1,4 +1,4 @@
-import { SET_USERS, DELETE_USER_FROM_LIST, USERS_COUNT } from './actions';
+import { SET_USERS, DELETE_USER_FROM_LIST, USERS_COUNT,CLEAR_ALL_USERS } from './actions';
 
 const initialState = {
   data: null,
@@ -19,6 +19,9 @@ const reducer = (state = initialState, action) => {
       };
     case USERS_COUNT:
       return { ...state, dataCount: action.payload };
+    case CLEAR_ALL_USERS:
+      return state;
+
     default:
       return state;
   }

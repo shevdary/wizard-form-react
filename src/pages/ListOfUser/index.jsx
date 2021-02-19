@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 // store
 import * as List from 'store/users';
 import { deleteUserFromDB } from 'store/db';
+import { generateUsers } from 'store/users';
 // components
 import UserTable from 'components/UsersTable';
 import TableHeader from 'components/UsersTable/components/TableHeader';
@@ -31,6 +32,10 @@ const ListOfUser = () => {
     history.push(`/user/${i}`);
   };
 
+  const handleGenerateUsers = () => {
+    dispatch(generateUsers(50));
+  };
+
   useEffect(() => {
     dispatch(List.getUserListFromDB(currentPage, itemsOnPage));
   }, [currentPage, dispatch]);
@@ -50,7 +55,7 @@ const ListOfUser = () => {
                 handleDelete={handleDelete}
               />
             ) : (
-              <EmptyUserList />
+              <EmptyUserList handleGenerateUsers={handleGenerateUsers} />
             ))}
         </SectionTable>
       </Loader>
