@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// store
-import { useDispatch } from 'react-redux';
-import { updateUser } from 'store/user/actions';
+// components
+import CropImage from 'components/CropImage';
+
 // styled
 import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';
 
 const Avatar = ({ input: { value, ...inputProps } }) => {
-  const dispatch = useDispatch();
+  const [avatarSrc, setAvatarSrc] = useState(null);
   const [error, setError] = useState(null);
+  const [isCropImage, setIsCropImage] = useState(false);
 
   const onFileChange = (event) => {
     const image = event.target.files[0];
@@ -18,8 +19,9 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
     reader.readAsDataURL(image);
     if (image && image.size / 1024 < 1000) {
       reader.onload = () => {
-        dispatch(updateUser({ avatar: reader.result }));
+        setAvatarSrc(reader.result);
       };
+      setIsCropImage(true);
       setError(null);
     }
 
@@ -29,18 +31,25 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
   };
 
   return (
-    <AvatarLabel htmlFor="addAvatar">
-      <HiddenField
-        {...inputProps}
-        type="file"
-        onChange={onFileChange}
-        accept="image/*"
-        id="addAvatar"
-        multiple
+    <>
+      <AvatarLabel htmlFor="addAvatar">
+        <HiddenField
+          {...inputProps}
+          type="file"
+          onChange={onFileChange}
+          accept="image/*"
+          id="addAvatar"
+          multiple
+        />
+        <SpanError>{error}</SpanError>
+        <i>+ addAvatar</i>
+      </AvatarLabel>
+      <CropImage
+        isCropImage={isCropImage}
+        setIsCropImage={setIsCropImage}
+        src={avatarSrc}
       />
-      <SpanError>{error}</SpanError>
-      <i>+ addAvatar</i>
-    </AvatarLabel>
+    </>
   );
 };
 

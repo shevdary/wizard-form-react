@@ -69,14 +69,12 @@ export const Button = styled.button`
 
 export const AvatarLabel = styled.label`
   color: #9bb0cb;
-  margin: 5px;
+  width: 100px;
+  margin: 5px 5px 5px 50px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   display: grid;
-  & i {
-    margin-left: 40px;
-  }
 `;
 
 export const RequiredField = styled.p`
