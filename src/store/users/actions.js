@@ -5,7 +5,7 @@ export const USERS_COUNT = 'USERS/USERS_COUNT';
 
 export const CLEAR_ALL_USERS = 'USERS/CLEAR_ALL_USERS';
 export const GENERATE_USERS = 'USERS/GENERATE_USERS';
-
+export const FIND_USERNAME = 'USERS/FIND_USERNAME';
 // actions
 export const getUsersFromDB = (currentPage, itemOnPage) => ({
   type: GET_USERS,
@@ -34,4 +34,9 @@ export const clearUsersFromStore = () => ({
 export const generateUsers = (itemsCount) => ({
   type: GENERATE_USERS,
   payload: itemsCount,
+});
+
+export const findUsersByUsername = (username) => ({
+  type: FIND_USERNAME,
+  payload: username,
 });

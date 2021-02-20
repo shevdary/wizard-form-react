@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import Dexie from 'dexie';
 
 export const DB_NEW_VERSION = 3;
@@ -49,3 +50,5 @@ export const getUserListFromDB = () =>
   );
 export const clearValuesFromDB = () => db.user.clear();
 export const addArrayOfUsersToDB = (array) => db.user.bulkAdd(array);
+export const getUserByUsername = (firstName) =>
+  db.user.filter((user) => user.firstName === firstName).toArray((res) => res);

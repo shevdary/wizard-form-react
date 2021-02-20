@@ -9,6 +9,7 @@ import logo from 'assets/icon/logotype.svg';
 import users from 'assets/icon/userList.svg';
 // styled
 import { HeaderUl, Logo, ContentCenter, Header, HeaderLi } from './styled';
+import { findUsersByUsername } from '../../store/users';
 
 export const NavBar = () => {
   const location = useLocation().pathname;
@@ -25,6 +26,10 @@ export const NavBar = () => {
     history.push('/create-user/account');
   };
 
+  const onChange = (e) => {
+    dispatch(findUsersByUsername(e.target.value));
+  };
+
   return (
     <Header className="nav-panel">
       <ContentCenter>
@@ -32,6 +37,7 @@ export const NavBar = () => {
           <img src={logo} alt="logo" />
         </Logo>
         <HeaderUl>
+          <input type="text" onChange={onChange} name="username" />
           <HeaderLi
             active={location.includes('/create-user')}
             onClick={redirectToCreateUser}

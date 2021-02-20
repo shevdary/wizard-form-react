@@ -1,6 +1,11 @@
-import { call, takeEvery, put } from 'redux-saga/effects';
+/*eslint-disable*/
+import { call, takeEvery, put, throttle } from 'redux-saga/effects';
 // db
-import { addArrayOfUsersToDB, getUserListFromDB } from 'indexedDB/database';
+import {
+  addArrayOfUsersToDB,
+  getUserByUsername,
+  getUserListFromDB,
+} from 'indexedDB/database';
 // store
 import { startLoad, stopLoad } from 'store/loader';
 import { DELETE_FROM_DB } from 'store/db/actions';
@@ -11,6 +16,7 @@ import {
   GET_USERS,
   setUsersCount,
   setUserList,
+  FIND_USERNAME,
   getUsersFromDB,
 } from 'store/users/actions';
 // utils
@@ -54,8 +60,18 @@ export function* ensureAddUsersToDB(action) {
   }
 }
 
+export function* ensureFindUsernameInDB(action) {
+  try {
+    const user = yield getUserByUsername(action.payload);
+    yield put(setUserList(user));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export function* sagaWatcherUserList() {
   yield takeEvery(GET_USERS, ensureAddUserToList);
   yield takeEvery(DELETE_FROM_DB, ensureDeleteUserFromList);
   yield takeEvery(GENERATE_USERS, ensureAddUsersToDB);
+  yield throttle(1000, FIND_USERNAME, ensureFindUsernameInDB);
 }
