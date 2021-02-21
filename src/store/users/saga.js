@@ -10,6 +10,7 @@ import {
   GET_USERS,
   setUsersCount,
   setUserList,
+  getUsersFromDB,
 } from 'store/users/actions';
 
 import { arrayOfUsers } from 'utils/generate';
@@ -42,12 +43,10 @@ export function* ensureDeleteUserFromList(action) {
 }
 export function* ensureAddUsersToDB(action) {
   yield put(startLoad());
-
   try {
     yield ensureClearAllUsers();
     yield addArrayOfUsersToDB(arrayOfUsers(action.payload));
-    const data = yield call(getUserListFromDB);
-    yield put(setUserList(data));
+    yield put(getUsersFromDB(1, 5));
   } catch (e) {
     console.log(e);
   } finally {

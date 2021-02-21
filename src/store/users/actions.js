@@ -6,7 +6,7 @@ export const ADD_USERS = 'USERS/ADD_USERS';
 export const CLEAR_ALL_USERS = 'USERS/CLEAR_ALL_USERS';
 export const GENERATE_USERS = 'USERS/GENERATE_USERS';
 // actions
-export const getUserListFromDB = (currentPage, itemOnPage) => ({
+export const getUsersFromDB = (currentPage, itemOnPage) => ({
   type: GET_USERS,
   payload: { currentPage, itemOnPage },
 });
