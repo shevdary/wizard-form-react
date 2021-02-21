@@ -37,7 +37,7 @@ const ListOfUser = () => {
   };
 
   useEffect(() => {
-    dispatch(List.getUserListFromDB(currentPage, itemsOnPage));
+    dispatch(List.getUsersFromDB(currentPage, itemsOnPage));
   }, [currentPage, dispatch]);
 
   return (

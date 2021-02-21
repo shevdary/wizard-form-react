@@ -18,15 +18,17 @@ export const validate = (values) => {
   if (!values.gender) errors.gender = 'field is required';
 
   if (!values.birthday) errors.birthday = 'field is required';
+
   if (values.birthday) {
     const eighteenYearsAgo = moment().subtract(18, 'years');
+    const hundredYearsAgo = moment().subtract(100, 'years');
     const birthday = moment(values.birthday);
 
-    if (!birthday.isValid()) {
-      errors.birthday = 'invalid date';
-    } else if (!eighteenYearsAgo.isAfter(birthday)) {
-      errors.birthday = `You have to be at least 18 years old.`;
-    }
+    if (!birthday.isValid()) errors.birthday = 'invalid date';
+    if (!eighteenYearsAgo.isAfter(birthday))
+      errors.birthday = `you have to be at least 18 years old.`;
+    if (!hundredYearsAgo.isBefore(birthday))
+      errors.birthday = `entered correct birthday.`;
   }
 
   return errors;
@@ -39,7 +41,7 @@ export const asyncValidate = (values) =>
         if (!!item.id && item.id !== values.id) {
           if (item.email === values.email) {
             throw {
-              email: 'Email is already exist',
+              email: 'email is already exist',
             };
           }
         }
