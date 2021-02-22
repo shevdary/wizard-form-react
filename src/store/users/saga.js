@@ -4,6 +4,7 @@ import { addArrayOfUsersToDB, getUserListFromDB } from 'indexedDB/database';
 // store
 import { startLoad, stopLoad } from 'store/loader';
 import { DELETE_FROM_DB } from 'store/db/actions';
+import { ensureClearAllUsers } from 'store/db/saga';
 import {
   deleteUserFromList,
   GENERATE_USERS,
@@ -12,9 +13,8 @@ import {
   setUserList,
   getUsersFromDB,
 } from 'store/users/actions';
-
+// utils
 import { arrayOfUsers } from 'utils/generate';
-import { ensureClearAllUsers } from '../db/saga';
 
 export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
   yield put(startLoad());

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 // store
 import { userSelector } from 'store/user/selector';
-import { getUserById, removeUserValue } from 'store/user/actions';
+import { getUserById, removeUser } from 'store/user/actions';
 import { updateUserToDB } from 'store/db';
 // components
 import Tabs from 'components/Tabs';
@@ -23,7 +23,7 @@ const EditUser = () => {
   const { id } = useParams();
 
   const returnToUserProfile = () => {
-    dispatch(removeUserValue());
+    dispatch(removeUser());
     history.push(`/user/${user.id}`);
   };
 

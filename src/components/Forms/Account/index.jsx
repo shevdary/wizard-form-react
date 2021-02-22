@@ -14,13 +14,8 @@ import { asyncValidate, validate } from 'utils/accountValidate';
 // assets
 import avatarIcon from 'assets/icon/avatar.svg';
 // styled
-import {
-  Form,
-  UserAvatarImage,
-  AvatarLabel,
-  FormFields,
-  FormChild,
-} from './styled';
+
+import { Form, UserAvatarImage, FormFields, FormChild } from './styled';
 
 const AccountForm = ({ handleSubmit, onSubmit }) => {
   const { avatar } = useSelector(userSelector);
@@ -41,9 +36,8 @@ const AccountForm = ({ handleSubmit, onSubmit }) => {
             >
               <img src={avatar || avatarIcon} alt="avatar" />
             </UserAvatarImage>
-            <AvatarLabel htmlFor="addAvatar">
-              <Field id="addAvatar" component={Avatar} name="avatar" />
-            </AvatarLabel>
+
+            <Field id="addAvatar" component={Avatar} name="avatar" />
           </FormFields>
           <FormFields big>
             <InputComponent

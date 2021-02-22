@@ -14,7 +14,7 @@ export const updateUser = (data) => ({
 export const loadFromStorage = () => ({
   type: LOAD_SAVED_USER,
 });
-export const removeUserValue = () => ({
+export const removeUser = () => ({
   type: REMOVE_USER,
 });
 

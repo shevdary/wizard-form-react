@@ -38,7 +38,7 @@ const CreateUser = () => {
     setIsShowPopup(false);
   };
 
-  const onSubmit = (values, nextTab) => {
+  const handleSubmit = (values, nextTab) => {
     dispatch(updateUser(values));
     dispatch(setCurrentTab(nextTab));
     history.push(`/create-user/${nextTab}`);
@@ -55,7 +55,7 @@ const CreateUser = () => {
   };
 
   useEffect(() => {
-    if (!user.username && getUserFromLocalStorage()) {
+    if (!user.username && !user.avatar && getUserFromLocalStorage()) {
       setIsShowPopup(true);
     }
   }, [user]);
@@ -73,7 +73,7 @@ const CreateUser = () => {
         <Tabs />
         <TabSwitch className="tab-switch">
           <RouteTab
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             goBack={goBack}
             addValuesToDB={addUserToDB}
           />

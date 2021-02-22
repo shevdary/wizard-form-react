@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // store
 import { useDispatch } from 'react-redux';
-import { removeUserValue } from 'store/user/actions';
+import { removeUser } from 'store/user';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';
@@ -16,12 +16,12 @@ export const NavBar = () => {
   const dispatch = useDispatch();
 
   const redirectToUsers = () => {
-    dispatch(removeUserValue());
+    dispatch(removeUser());
     history.push('/user-list');
   };
 
   const redirectToCreateUser = () => {
-    dispatch(removeUserValue());
+    dispatch(removeUser());
     history.push('/create-user/account');
   };
 
