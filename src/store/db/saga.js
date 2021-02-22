@@ -4,7 +4,7 @@ import * as User from 'store/user/selector';
 // db
 import * as DB from 'store/db/actions';
 import {
-  clearValuesFromDB,
+  clearUsersFromDB,
   deleteUserFromDB,
   setNewUserToDB,
   updateUserInDB,
@@ -34,7 +34,7 @@ export function* ensureUpdateValuesToDB(action) {
 export function* ensureClearAllUsers() {
   try {
     yield put(clearUsersFromStore());
-    yield call(clearValuesFromDB);
+    yield call(clearUsersFromDB);
   } catch (e) {
     yield put(DB.setValueFailed());
   }

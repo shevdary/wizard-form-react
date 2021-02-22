@@ -2,6 +2,10 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // store
 import { useDispatch } from 'react-redux';
+import { removeUserValue } from 'store/user/actions';
+import { findUsersByName } from 'store/users';
+// components
+import FindField from 'components/Inputs/FindField';
 import { removeUser } from 'store/user';
 // image
 import addUser from 'assets/icon/user.svg';
@@ -25,6 +29,10 @@ export const NavBar = () => {
     history.push('/create-user/account');
   };
 
+  const onChange = (e) => {
+    dispatch(findUsersByName(e.target.value));
+  };
+
   return (
     <Header className="nav-panel">
       <ContentCenter>
@@ -32,6 +40,7 @@ export const NavBar = () => {
           <img src={logo} alt="logo" />
         </Logo>
         <HeaderUl>
+          <FindField onChange={onChange} location={location} />
           <HeaderLi
             active={location.includes('/create-user')}
             onClick={redirectToCreateUser}

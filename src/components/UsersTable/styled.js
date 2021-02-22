@@ -9,7 +9,6 @@ export const FlexTable = styled.article`
   width: 970px;
   display: flex;
   flex-flow: row;
-
   height: ${(props) => props.height};
   justify-content: space-between;
 

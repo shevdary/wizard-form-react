@@ -17,6 +17,7 @@ export const ContentCenter = styled.div`
 export const HeaderUl = styled.ul`
   position: absolute;
   display: flex;
+  height: 25px;
   right: 0;
   align-self: center;
 `;
