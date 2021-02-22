@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // store
 import * as List from 'store/users';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserFromDB } from 'store/db';
 import { generateUsers } from 'store/users';
 // components
@@ -14,18 +14,18 @@ import Pagination from 'components/Pagination';
 // styled
 import { Main, SectionTable, Title } from './styled';
 
-const ITEM_ON_PAGE = 5;
-
 const ListOfUser = () => {
   const data = useSelector(List.usersSelector);
   const { dataCount } = useSelector(List.usersMetaSelector);
   const [currentPage, setCurrentPage] = useState(1);
+  const [userPerPage, setUserPerPage] = useState(5);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleDelete = (key) => {
-    dispatch(deleteUserFromDB(key));
+    dispatch(deleteUserFromDB(key, currentPage));
+    data.length === 1 && setCurrentPage(currentPage - 1);
   };
 
   const handleEdit = (i) => {
@@ -37,8 +37,10 @@ const ListOfUser = () => {
   };
 
   useEffect(() => {
-    dispatch(List.getUserListFromDB(currentPage, ITEM_ON_PAGE));
-  }, [currentPage, dispatch]);
+    if (data?.length < userPerPage) setUserPerPage(5);
+
+    dispatch(List.getUserListFromDB(currentPage, userPerPage));
+  }, [currentPage, dispatch, userPerPage, data?.length]);
 
   return (
     <Main>
@@ -63,9 +65,8 @@ const ListOfUser = () => {
       </Loader>
       <div className="d-flex flex-row py-4 align-items-center">
         <Pagination
-          data={data}
           totalItems={dataCount}
-          itemOnPage={ITEM_ON_PAGE}
+          itemPerPage={userPerPage}
           pageRange={5}
           handleChangePage={setCurrentPage}
           currentPage={currentPage}

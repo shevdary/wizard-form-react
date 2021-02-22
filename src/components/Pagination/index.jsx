@@ -10,15 +10,15 @@ import { rangeOfPages } from './components/helpers/rangeOfPage';
 
 const Pagination = ({
   totalItems,
-  itemOnPage,
+  itemPerPage,
   pageRange,
   currentPage,
   handleChangePage,
 }) => {
-  const totalPages = Math.ceil(totalItems / itemOnPage);
+  const totalPages = Math.ceil(totalItems / itemPerPage);
   const pages = range(1, totalPages);
 
-  if (totalItems <= itemOnPage) return null;
+  if (totalItems <= itemPerPage) return null;
 
   return (
     <nav aria-label="Countries Pagination">

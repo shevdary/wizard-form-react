@@ -13,7 +13,7 @@ db.version(DB_NEW_VERSION).upgrade((transaction) =>
 );
 
 export const setNewUserToDB = (values) => db.user.add(values);
-export const deleteUserFromDB = (id) => db.user.delete(id);
+export const deleteUserFromDB = async (id) => db.user.delete(id);
 export const getUserByID = (id) => db.user.get(Number(id));
 export const updateUserInDB = (id, data) => db.user.update(Number(id), data);
 export const getUsersFromDB = () =>

@@ -6,8 +6,8 @@ export const PageWrapper = styled.ul`
 `;
 
 export const PageList = styled.li`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin: 1px;
   position: relative;
   text-align: center;
