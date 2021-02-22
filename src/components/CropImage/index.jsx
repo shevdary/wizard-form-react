@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import PropType from 'prop-types';
 // store
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'store/user';
@@ -17,7 +18,7 @@ import {
 import 'react-image-crop/dist/ReactCrop.css';
 import Modal from '../Modal';
 
-const CropImage = ({ src, setIsCropImage, isCropImage }) => {
+const CropImage = ({ src, isShowModal, setIsShowModal }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
 
@@ -35,9 +36,7 @@ const CropImage = ({ src, setIsCropImage, isCropImage }) => {
     setCropImage(crops);
   };
 
-  const onImageLoaded = useCallback((img) => {
-    imgRef.current = img;
-  }, []);
+  const onImageLoaded = (img) => (imgRef.current = img);
 
   const onLoadToStore = (e, cropAvatar) => {
     if (!cropAvatar || !previewCanvasRef.current) return;
@@ -45,20 +44,25 @@ const CropImage = ({ src, setIsCropImage, isCropImage }) => {
     const avatar = previewCanvasRef.current.toDataURL('image/jpeg');
 
     dispatch(updateUser({ avatar }));
-    setIsCropImage(!isCropImage);
+    setIsShowModal(false);
+  };
+
+  const onClick = (e) => {
+    if (e.target.className.includes('crop-wrapper')) {
+      setIsShowModal(false);
+    }
   };
 
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) return;
-
     drawImage(imgRef, previewCanvasRef, completedCrop);
   }, [imgRef, previewCanvasRef, completedCrop]);
 
   return (
     <>
-      {isCropImage && (
-        <CropImageWrapper className="Crop-image">
-          <Modal shown={isCropImage} close={setIsCropImage}>
+      {isShowModal && (
+        <CropImageWrapper onClick={onClick} className="crop-wrapper">
+          <Modal shown={isShowModal} close={setIsShowModal}>
             <Article name="section">
               <ReactCrop
                 src={src}
@@ -93,6 +97,12 @@ const CropImage = ({ src, setIsCropImage, isCropImage }) => {
       )}
     </>
   );
+};
+
+CropImage.propTypes = {
+  src: PropType.string,
+  isShowModal: PropType.bool.isRequired,
+  setIsShowModal: PropType.func.isRequired,
 };
 
 export default CropImage;

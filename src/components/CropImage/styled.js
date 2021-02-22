@@ -17,6 +17,7 @@ export const Section = styled.section`
   background: white;
   top: 30%;
   right: 35%;
+  z-index: 2;
   height: 250px;
   height: fit-content;
 

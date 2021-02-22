@@ -11,7 +11,12 @@ import moment from 'moment';
 // styled
 import { ButtonTransparent } from 'components/Popup/styled';
 import { UserAvatarImage } from 'components/Forms/Account/styled';
-import { ConfirmButton, FlexCol, FlexTable, Section } from '../../styled';
+import {
+  ConfirmButton,
+  FlexCol,
+  FlexTable,
+  Section,
+} from 'components/UsersTable/styled';
 
 const TableRow = ({ user, handleDelete, handleEdit, count }) => {
   const [itemSlide, setItemSlide] = useState(false);
