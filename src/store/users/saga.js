@@ -1,5 +1,4 @@
-/*eslint-disable*/
-import { call, takeEvery, put, throttle } from 'redux-saga/effects';
+import { takeEvery, put, throttle, call } from 'redux-saga/effects';
 // db
 import {
   addArrayOfUsersToDB,
@@ -7,10 +6,10 @@ import {
   getUsersFromDB,
 } from 'indexedDB/database';
 // store
+import * as Users from 'store/users';
 import { startLoad, stopLoad } from 'store/loader';
 import { DELETE_FROM_DB } from 'store/db/actions';
 import { ensureClearAllUsers } from 'store/db/saga';
-import * as Users from './index';
 // utils
 import { arrayOfUsers } from 'utils/generate';
 import { usersSlice } from 'utils/sliceUsers';
@@ -22,8 +21,8 @@ export function* ensureAddUserToStore({
   try {
     const users = yield call(getUsersFromDB);
 
-    const usersCount = optionValue ? optionValue.length : users.length;
-    const itemsOnPage = optionValue
+    const usersCount = optionValue?.[0] ? optionValue.length : users.length;
+    const itemsOnPage = optionValue?.[0]
       ? usersSlice(currentPage, itemOnPage, optionValue)
       : usersSlice(currentPage, itemOnPage, users);
 
@@ -56,11 +55,14 @@ export function* ensureGenerateUsers(action) {
 }
 
 export function* ensureFilterUsers({ payload }) {
+  yield put(startLoad());
   try {
     const users = yield call(filterUsersByName, payload);
     yield put(Users.getUserListFromDB(1, 5, users));
   } catch (e) {
     console.log(e);
+  } finally {
+    yield put(stopLoad());
   }
 }
 

@@ -5,9 +5,9 @@ export const CLEAR_ALL_USERS = 'USERS/CLEAR_ALL_USERS';
 export const GENERATE_USERS = 'USERS/GENERATE_USERS';
 export const FIND_NAME = 'USERS/FIND_USERNAME';
 // actions
-export const getUsersFromDB = (currentPage, itemOnPage) => ({
+export const getUserListFromDB = (currentPage, itemOnPage, optionValue) => ({
   type: GET_USERS,
-  payload: { currentPage, itemOnPage, users },
+  payload: { currentPage, itemOnPage, optionValue },
 });
 
 export const setUserList = (data, dataCount) => ({
