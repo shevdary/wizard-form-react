@@ -14,15 +14,15 @@ import Pagination from 'components/Pagination';
 // styled
 import { Main, SectionTable, Title } from './styled';
 
+const ITEM_ON_PAGE = 5;
+
 const ListOfUser = () => {
-  const users = useSelector(List.usersSelector);
+  const data = useSelector(List.usersSelector);
   const { dataCount } = useSelector(List.usersMetaSelector);
   const [currentPage, setCurrentPage] = useState(1);
 
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const itemsOnPage = 5;
 
   const handleDelete = (key) => {
     dispatch(deleteUserFromDB(key));
@@ -37,20 +37,22 @@ const ListOfUser = () => {
   };
 
   useEffect(() => {
-    dispatch(List.getUsersFromDB(currentPage, itemsOnPage));
+    dispatch(List.getUserListFromDB(currentPage, ITEM_ON_PAGE));
   }, [currentPage, dispatch]);
 
   return (
     <Main>
       <Loader>
-        <Title>List of user</Title>
+        <div>
+          <Title>List of user</Title>
+        </div>
         <SectionTable>
           <TableHeader />
-          {users &&
-            (users.length ? (
+          {data &&
+            (data.length ? (
               <UserTable
                 className="children"
-                users={users}
+                users={data}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />
@@ -61,8 +63,9 @@ const ListOfUser = () => {
       </Loader>
       <div className="d-flex flex-row py-4 align-items-center">
         <Pagination
+          data={data}
           totalItems={dataCount}
-          itemOnPage={itemsOnPage}
+          itemOnPage={ITEM_ON_PAGE}
           pageRange={5}
           handleChangePage={setCurrentPage}
           currentPage={currentPage}

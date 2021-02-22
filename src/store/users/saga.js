@@ -3,36 +3,31 @@ import { call, takeEvery, put, throttle } from 'redux-saga/effects';
 // db
 import {
   addArrayOfUsersToDB,
-  getUserByUsername,
-  getUserListFromDB,
+  filterUsersByName,
+  getUsersFromDB,
 } from 'indexedDB/database';
 // store
 import { startLoad, stopLoad } from 'store/loader';
 import { DELETE_FROM_DB } from 'store/db/actions';
 import { ensureClearAllUsers } from 'store/db/saga';
-import {
-  deleteUserFromList,
-  GENERATE_USERS,
-  GET_USERS,
-  setUsersCount,
-  setUserList,
-  FIND_USERNAME,
-  getUsersFromDB,
-} from 'store/users/actions';
+import * as Users from './index';
 // utils
 import { arrayOfUsers } from 'utils/generate';
+import { usersSlice } from 'utils/sliceUsers';
 
-export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
+export function* ensureAddUserToStore({
+  payload: { currentPage, itemOnPage, optionValue },
+}) {
   yield put(startLoad());
   try {
-    const users = yield call(getUserListFromDB);
-    const itemsOnPage = users.slice(
-      currentPage * itemOnPage - itemOnPage,
-      currentPage * itemOnPage
-    );
+    const users = yield call(getUsersFromDB);
 
-    yield put(setUsersCount(users.length));
-    yield put(setUserList(itemsOnPage));
+    const usersCount = optionValue ? optionValue.length : users.length;
+    const itemsOnPage = optionValue
+      ? usersSlice(currentPage, itemOnPage, optionValue)
+      : usersSlice(currentPage, itemOnPage, users);
+
+    yield put(Users.setUserList(itemsOnPage, usersCount));
   } catch (e) {
     console.log(e);
   } finally {
@@ -40,19 +35,19 @@ export function* ensureAddUserToList({ payload: { currentPage, itemOnPage } }) {
   }
 }
 
-export function* ensureDeleteUserFromList(action) {
+export function* ensureDeleteUserFromStore(action) {
   try {
-    yield put(deleteUserFromList(action.payload));
+    yield put(Users.deleteUser(action.payload));
   } catch (e) {
     console.log(e);
   }
 }
-export function* ensureAddUsersToDB(action) {
+export function* ensureGenerateUsers(action) {
   yield put(startLoad());
   try {
     yield ensureClearAllUsers();
     yield addArrayOfUsersToDB(arrayOfUsers(action.payload));
-    yield put(getUsersFromDB(1, 5));
+    yield put(Users.getUserListFromDB(1, 5));
   } catch (e) {
     console.log(e);
   } finally {
@@ -60,18 +55,18 @@ export function* ensureAddUsersToDB(action) {
   }
 }
 
-export function* ensureFindUsernameInDB(action) {
+export function* ensureFilterUsers({ payload }) {
   try {
-    const user = yield getUserByUsername(action.payload);
-    yield put(setUserList(user));
+    const users = yield call(filterUsersByName, payload);
+    yield put(Users.getUserListFromDB(1, 5, users));
   } catch (e) {
     console.log(e);
   }
 }
 
 export function* sagaWatcherUserList() {
-  yield takeEvery(GET_USERS, ensureAddUserToList);
-  yield takeEvery(DELETE_FROM_DB, ensureDeleteUserFromList);
-  yield takeEvery(GENERATE_USERS, ensureAddUsersToDB);
-  yield throttle(1000, FIND_USERNAME, ensureFindUsernameInDB);
+  yield takeEvery(Users.GET_USERS, ensureAddUserToStore);
+  yield takeEvery(DELETE_FROM_DB, ensureDeleteUserFromStore);
+  yield takeEvery(Users.GENERATE_USERS, ensureGenerateUsers);
+  yield throttle(1000, Users.FIND_NAME, ensureFilterUsers);
 }

@@ -1,30 +1,23 @@
 export const GET_USERS = 'USERS/GET_USERS';
 export const SET_USERS = 'USERS/SET_USERS';
-export const DELETE_USER_FROM_LIST = 'USERS/DELETE_USER';
-export const USERS_COUNT = 'USERS/USERS_COUNT';
-
+export const DELETE_USER = 'USERS/DELETE_USER';
 export const CLEAR_ALL_USERS = 'USERS/CLEAR_ALL_USERS';
 export const GENERATE_USERS = 'USERS/GENERATE_USERS';
-export const FIND_USERNAME = 'USERS/FIND_USERNAME';
+export const FIND_NAME = 'USERS/FIND_USERNAME';
 // actions
 export const getUsersFromDB = (currentPage, itemOnPage) => ({
   type: GET_USERS,
-  payload: { currentPage, itemOnPage },
+  payload: { currentPage, itemOnPage, users },
 });
 
-export const setUserList = (users) => ({
+export const setUserList = (data, dataCount) => ({
   type: SET_USERS,
-  payload: users,
+  payload: { data, dataCount },
 });
 
-export const deleteUserFromList = (id) => ({
-  type: DELETE_USER_FROM_LIST,
+export const deleteUser = (id) => ({
+  type: DELETE_USER,
   payload: id,
-});
-
-export const setUsersCount = (count) => ({
-  type: USERS_COUNT,
-  payload: count,
 });
 
 export const clearUsersFromStore = () => ({
@@ -36,7 +29,7 @@ export const generateUsers = (itemsCount) => ({
   payload: itemsCount,
 });
 
-export const findUsersByUsername = (username) => ({
-  type: FIND_USERNAME,
+export const findUsersByName = (username) => ({
+  type: FIND_NAME,
   payload: username,
 });

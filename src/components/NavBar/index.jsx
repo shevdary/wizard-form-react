@@ -2,6 +2,10 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // store
 import { useDispatch } from 'react-redux';
+import { removeUserValue } from 'store/user/actions';
+import { findUsersByName } from 'store/users';
+// components
+import FindField from 'components/Inputs/FindField';
 import { removeUser } from 'store/user';
 // image
 import addUser from 'assets/icon/user.svg';
@@ -9,7 +13,6 @@ import logo from 'assets/icon/logotype.svg';
 import users from 'assets/icon/userList.svg';
 // styled
 import { HeaderUl, Logo, ContentCenter, Header, HeaderLi } from './styled';
-import { findUsersByUsername } from '../../store/users';
 
 export const NavBar = () => {
   const location = useLocation().pathname;
@@ -27,7 +30,7 @@ export const NavBar = () => {
   };
 
   const onChange = (e) => {
-    dispatch(findUsersByUsername(e.target.value));
+    dispatch(findUsersByName(e.target.value));
   };
 
   return (
@@ -37,7 +40,7 @@ export const NavBar = () => {
           <img src={logo} alt="logo" />
         </Logo>
         <HeaderUl>
-          <input type="text" onChange={onChange} name="username" />
+          <FindField onChange={onChange} location={location} />
           <HeaderLi
             active={location.includes('/create-user')}
             onClick={redirectToCreateUser}

@@ -1,4 +1,4 @@
-import { getUserListFromDB } from 'indexedDB/database';
+import { getUsersFromDB } from 'indexedDB/database';
 import moment from 'moment';
 
 export const validate = (values) => {
@@ -35,7 +35,7 @@ export const validate = (values) => {
 };
 
 export const asyncValidate = (values) =>
-  getUserListFromDB().then((res) => {
+  getUsersFromDB().then((res) => {
     if (values.email) {
       res.map((item) => {
         if (!!item.id && item.id !== values.id) {

@@ -12,15 +12,11 @@ db.version(DB_NEW_VERSION).upgrade((transaction) =>
   transaction.idbtrans.db.deleteObjectStore('user')
 );
 
-export const setNewUserToDB = (values) => {
-  db.user.add(values);
-};
-
+export const setNewUserToDB = (values) => db.user.add(values);
 export const deleteUserFromDB = (id) => db.user.delete(id);
-export const getCurrentVersionDB = () => db.verno;
 export const getUserByID = (id) => db.user.get(Number(id));
 export const updateUserInDB = (id, data) => db.user.update(Number(id), data);
-export const getUserListFromDB = () =>
+export const getUsersFromDB = () =>
   db.user.toArray((items) =>
     items.map(
       ({
@@ -48,7 +44,13 @@ export const getUserListFromDB = () =>
       })
     )
   );
-export const clearValuesFromDB = () => db.user.clear();
+export const clearUsersFromDB = () => db.user.clear();
 export const addArrayOfUsersToDB = (array) => db.user.bulkAdd(array);
-export const getUserByUsername = (firstName) =>
-  db.user.filter((user) => user.firstName === firstName).toArray((res) => res);
+export const filterUsersByName = (firstName) =>
+  db.user
+    .filter((user) => {
+      if (user.firstName.toLowerCase() === firstName.toLowerCase()) {
+        return user;
+      }
+    })
+    .toArray((res) => res);
