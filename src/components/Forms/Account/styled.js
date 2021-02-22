@@ -101,3 +101,15 @@ export const SpanError = styled.span`
 export const FormFields = styled.div`
   width: ${(props) => (props.big ? '400px' : '300px')};
 `;
+
+export const ChangeSelectAvatar = styled.button`
+  background: transparent;
+  place-items: center;
+  border: none;
+  color: #9bb0cb;
+  margin: 0 15px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: grid;
+`;

@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 // components
 import CropImage from 'components/CropImage';
 // styled
-import { AvatarLabel, SpanError } from 'components/Forms/Account/styled';
+import {
+  AvatarLabel,
+  ChangeSelectAvatar,
+  SpanError,
+} from 'components/Forms/Account/styled';
 import { HiddenField } from './styled';
 
 const Avatar = ({ input: { value, ...inputProps } }) => {
@@ -11,22 +15,25 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
   const [error, setError] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const onFileChange = (event) => {
+  const handleFileChange = (event) => {
     const image = event.target.files[0];
     const reader = new FileReader();
 
-    reader.readAsDataURL(image);
     if (image && image.size / 1024 < 1000) {
+      reader.readAsDataURL(image);
       reader.onload = () => {
         setAvatarSrc(reader.result);
       };
-      setIsShowModal(true);
+      setIsShowModal(!isShowModal);
       setError(null);
     }
 
     if (image && image.size / 1024 > 1000) {
       setError('Image must be less than 1Mb');
     }
+  };
+  const onChange = () => {
+    setIsShowModal(true);
   };
 
   return (
@@ -35,13 +42,18 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
         <HiddenField
           {...inputProps}
           type="file"
-          onChange={onFileChange}
+          onChange={handleFileChange}
           accept="image/*"
           id="addAvatar"
           multiple
         />
         <SpanError>{error}</SpanError>
-        <i>+ addAvatar</i>
+        <i>+ add Avatar</i>
+        {avatarSrc && (
+          <ChangeSelectAvatar type="button" onClick={onChange}>
+            change
+          </ChangeSelectAvatar>
+        )}
       </AvatarLabel>
       <CropImage
         isShowModal={isShowModal}
