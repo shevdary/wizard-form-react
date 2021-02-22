@@ -37,7 +37,7 @@ export function* ensureGetFromLocalStorage() {
 export function* ensureAddUserToDb() {
   try {
     clearLocalStorage();
-    yield put(User.removeUserValue());
+    yield put(User.removeUser());
   } catch (e) {
     yield put(User.getUserFailed());
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // store
 import { useDispatch } from 'react-redux';
-import { removeUser } from 'store/user/actions';
+import { removeUser } from 'store/user';
 // image
 import addUser from 'assets/icon/user.svg';
 import logo from 'assets/icon/logotype.svg';

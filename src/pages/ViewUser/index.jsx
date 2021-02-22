@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 // store
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserById, removeUserValue, userSelector } from 'store/user';
+import { getUserById, removeUser, userSelector } from 'store/user';
 // components
 import Loader from 'components/Loader';
 import UserProfile from 'components/UserProfile';
@@ -19,7 +19,7 @@ const UserView = () => {
   const dispatch = useDispatch();
 
   const returnToUserList = () => {
-    dispatch(removeUserValue());
+    dispatch(removeUser());
     history.push('/user-list');
   };
 
