@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // assets
 import previous from 'assets/icon/previous.svg';
 // components
@@ -13,8 +13,8 @@ const BackButton = ({ onClick, text, ...props }) => (
 );
 
 BackButton.propTypes = {
-  text: PropsTypes.string.isRequired,
-  onClick: PropsTypes.func,
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default BackButton;

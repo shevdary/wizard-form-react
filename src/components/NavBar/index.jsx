@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // store
 import { useDispatch } from 'react-redux';
-import { removeUserValue } from 'store/user/actions';
 import { findUsersByName } from 'store/users';
 // components
 import FindField from 'components/Inputs/FindField';

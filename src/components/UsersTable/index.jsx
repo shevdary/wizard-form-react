@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // styled
 import TableRow from './components/TableRow';
 
@@ -15,9 +15,9 @@ const UsersTable = ({ users, handleDelete, handleEdit }) =>
   ));
 
 UsersTable.propTypes = {
-  users: PropsTypes.array.isRequired,
-  handleDelete: PropsTypes.func.isRequired,
-  handleEdit: PropsTypes.func.isRequired,
+  users: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
 };
 
 export default UsersTable;

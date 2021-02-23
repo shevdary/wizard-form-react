@@ -3,8 +3,6 @@ import { useLocation, useRouteMatch } from 'react-router-dom';
 // store
 import { useSelector } from 'react-redux';
 import { tabsSelector } from 'store/tabs/selector';
-// component
-
 // styled
 import { TabsItem, TabsList, TabWrapper } from './styled';
 
