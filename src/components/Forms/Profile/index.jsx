@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // store
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
@@ -71,9 +71,9 @@ const Profile = ({ handleSubmit, onSubmit, goBack }) => (
 );
 
 Profile.propTypes = {
-  handleSubmit: PropsTypes.func.isRequired,
-  onSubmit: PropsTypes.func.isRequired,
-  goBack: PropsTypes.func,
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  goBack: PropTypes.func,
 };
 
 export default connect((state) => ({

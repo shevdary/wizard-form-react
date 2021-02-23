@@ -1,7 +1,7 @@
 import { takeEvery, put, throttle, call } from 'redux-saga/effects';
 // db
 import {
-  addArrayOfUsersToDB,
+  addUsersToDB,
   filterUsersByName,
   getUsersFromDB,
 } from 'indexedDB/database';
@@ -34,9 +34,10 @@ export function* ensureAddUserToStore({
   }
 }
 
-export function* ensureDeleteUserFromStore(action) {
+export function* ensureDeleteUserFromStore({ payload: { id, currentPage } }) {
   try {
-    yield put(Users.deleteUser(action.payload));
+    yield put(Users.deleteUser(id));
+    yield put(Users.getUserListFromDB(currentPage, 5));
   } catch (e) {
     console.log(e);
   }
@@ -45,7 +46,7 @@ export function* ensureGenerateUsers(action) {
   yield put(startLoad());
   try {
     yield ensureClearAllUsers();
-    yield addArrayOfUsersToDB(arrayOfUsers(action.payload));
+    yield addUsersToDB(arrayOfUsers(action.payload));
     yield put(Users.getUserListFromDB(1, 5));
   } catch (e) {
     console.log(e);

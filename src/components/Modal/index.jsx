@@ -3,7 +3,7 @@ import PropType from 'prop-types';
 // assets
 import closeIcon from 'assets/icon/delete.svg';
 // styled
-import { CloseButton, Section } from '../CropImage/styled';
+import { CloseButton, Section } from 'components/ImageCrop/styled';
 
 const Modal = ({ children, shown, close }) => (
   <>

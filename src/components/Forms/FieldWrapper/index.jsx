@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // components
 import {
   InputForm,
@@ -33,12 +33,12 @@ const FieldWrapper = ({
 );
 
 FieldWrapper.propTypes = {
-  input: PropsTypes.object.isRequired,
-  isRequired: PropsTypes.bool,
-  name: PropsTypes.string,
-  meta: PropsTypes.shape({
-    touched: PropsTypes.bool,
-    error: PropsTypes.string,
+  input: PropTypes.object.isRequired,
+  isRequired: PropTypes.bool,
+  name: PropTypes.string,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
+    error: PropTypes.string,
   }).isRequired,
 };
 

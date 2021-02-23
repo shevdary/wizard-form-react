@@ -3,6 +3,8 @@ import PropType from 'prop-types';
 // store
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'store/user';
+// components
+import Modal from 'components/Modal';
 // utils
 import ReactCrop from 'react-image-crop';
 import { drawImage } from './helpers/drawImage';
@@ -16,9 +18,8 @@ import {
   ReactCropPreview,
 } from './styled';
 import 'react-image-crop/dist/ReactCrop.css';
-import Modal from '../Modal';
 
-const CropImage = ({ src, isShowModal, setIsShowModal }) => {
+const ImageCrop = ({ src, isShowModal, setIsShowModal }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
 
@@ -99,10 +100,10 @@ const CropImage = ({ src, isShowModal, setIsShowModal }) => {
   );
 };
 
-CropImage.propTypes = {
+ImageCrop.propTypes = {
   src: PropType.string,
   isShowModal: PropType.bool.isRequired,
   setIsShowModal: PropType.func.isRequired,
 };
 
-export default CropImage;
+export default ImageCrop;

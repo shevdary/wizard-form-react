@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // components
-import CropImage from 'components/CropImage';
+import ImageCrop from 'components/ImageCrop';
 // styled
 import {
   AvatarLabel,
@@ -12,7 +12,7 @@ import { HiddenField } from './styled';
 
 const Avatar = ({ input: { value, ...inputProps } }) => {
   const [avatarSrc, setAvatarSrc] = useState(null);
-  const [error, setError] = useState(null);
+  const [errorSize, setErrorSize] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
 
   const handleFileChange = (event) => {
@@ -21,20 +21,19 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
 
     if (image && image.size / 1024 < 1000) {
       reader.readAsDataURL(image);
+
       reader.onload = () => {
         setAvatarSrc(reader.result);
       };
       setIsShowModal(!isShowModal);
-      setError(null);
+      setErrorSize(null);
     }
 
     if (image && image.size / 1024 > 1000) {
-      setError('Image must be less than 1Mb');
+      setErrorSize('Image must be less than 1Mb');
     }
   };
-  const onChange = () => {
-    setIsShowModal(true);
-  };
+  const handleSelectedImage = () => setIsShowModal(true);
 
   return (
     <>
@@ -47,15 +46,15 @@ const Avatar = ({ input: { value, ...inputProps } }) => {
           id="addAvatar"
           multiple
         />
-        <SpanError>{error}</SpanError>
+        <SpanError>{errorSize}</SpanError>
         <i>+ add Avatar</i>
         {avatarSrc && (
-          <ChangeSelectAvatar type="button" onClick={onChange}>
+          <ChangeSelectAvatar type="button" onClick={handleSelectedImage}>
             change
           </ChangeSelectAvatar>
         )}
       </AvatarLabel>
-      <CropImage
+      <ImageCrop
         isShowModal={isShowModal}
         setIsShowModal={setIsShowModal}
         src={avatarSrc}

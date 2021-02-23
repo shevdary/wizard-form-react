@@ -20,7 +20,7 @@ export const deleteUser = (id) => ({
   payload: id,
 });
 
-export const clearUsersFromStore = () => ({
+export const clearUsers = () => ({
   type: CLEAR_ALL_USERS,
 });
 

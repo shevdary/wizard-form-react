@@ -14,11 +14,11 @@ import Pagination from 'components/Pagination';
 // styled
 import { Main, SectionTable, Title } from './styled';
 
+const USERS_REP_PAGE = 5;
+
 const ListOfUser = () => {
-  const data = useSelector(List.usersSelector);
-  const { dataCount } = useSelector(List.usersMetaSelector);
+  const { dataCount, data } = useSelector(List.usersSelector);
   const [currentPage, setCurrentPage] = useState(1);
-  const [userPerPage, setUserPerPage] = useState(5);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -37,10 +37,8 @@ const ListOfUser = () => {
   };
 
   useEffect(() => {
-    if (data?.length < userPerPage) setUserPerPage(5);
-
-    dispatch(List.getUserListFromDB(currentPage, userPerPage));
-  }, [currentPage, dispatch, userPerPage, data?.length]);
+    dispatch(List.getUserListFromDB(currentPage, USERS_REP_PAGE));
+  }, [currentPage, dispatch]);
 
   return (
     <Main>
@@ -66,7 +64,7 @@ const ListOfUser = () => {
       <div className="d-flex flex-row py-4 align-items-center">
         <Pagination
           totalItems={dataCount}
-          itemPerPage={userPerPage}
+          itemPerPage={USERS_REP_PAGE}
           pageRange={5}
           handleChangePage={setCurrentPage}
           currentPage={currentPage}

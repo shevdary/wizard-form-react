@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // styled
 import { CustomButton } from './styled';
 
@@ -10,10 +10,10 @@ const Button = ({ onClick, type, label, name }) => (
 );
 
 Button.propTypes = {
-  type: PropsTypes.oneOf(['submit', 'button', 'reset']).isRequired,
-  label: PropsTypes.string.isRequired,
-  name: PropsTypes.string.isRequired,
-  onClick: PropsTypes.func,
+  type: PropTypes.oneOf(['submit', 'button', 'reset']).isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Button;

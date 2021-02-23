@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import Dexie from 'dexie';
 
 export const DB_NEW_VERSION = 3;
@@ -13,7 +12,7 @@ db.version(DB_NEW_VERSION).upgrade((transaction) =>
 );
 
 export const setNewUserToDB = (values) => db.user.add(values);
-export const deleteUserFromDB = async (id) => db.user.delete(id);
+export const deleteUserFromDB = (id) => db.user.delete(id);
 export const getUserByID = (id) => db.user.get(Number(id));
 export const updateUserInDB = (id, data) => db.user.update(Number(id), data);
 export const getUsersFromDB = () =>
@@ -45,7 +44,7 @@ export const getUsersFromDB = () =>
     )
   );
 export const clearUsersFromDB = () => db.user.clear();
-export const addArrayOfUsersToDB = (array) => db.user.bulkAdd(array);
+export const addUsersToDB = (array) => db.user.bulkAdd(array);
 export const filterUsersByName = (firstName) =>
   db.user
     .filter((user) => {

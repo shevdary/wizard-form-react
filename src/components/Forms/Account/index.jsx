@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // store
 import { useSelector, connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
@@ -71,8 +71,8 @@ const AccountForm = ({ handleSubmit, onSubmit }) => {
 };
 
 AccountForm.propTypes = {
-  handleSubmit: PropsTypes.func.isRequired,
-  onSubmit: PropsTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default connect((state) => ({ initialValues: state.user }))(

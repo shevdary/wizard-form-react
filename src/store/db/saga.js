@@ -9,7 +9,7 @@ import {
   setNewUserToDB,
   updateUserInDB,
 } from 'indexedDB/database';
-import { clearUsersFromStore } from '../users';
+import { clearUsers } from '../users';
 
 export function* ensureAddValuesToDB() {
   try {
@@ -33,7 +33,7 @@ export function* ensureUpdateValuesToDB(action) {
 }
 export function* ensureClearAllUsers() {
   try {
-    yield put(clearUsersFromStore());
+    yield put(clearUsers());
     yield call(clearUsersFromDB);
   } catch (e) {
     yield put(DB.setValueFailed());
@@ -41,7 +41,7 @@ export function* ensureClearAllUsers() {
 }
 export function* ensureDeleteUserFromDB(action) {
   try {
-    yield put(deleteUserFromDB(action.payload));
+    yield put(deleteUserFromDB(action.payload.id));
   } catch (e) {
     yield put(DB.setValueFailed());
   }
