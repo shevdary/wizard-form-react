@@ -1,11 +1,4 @@
-export const range = (fromIndex, toIndex, step = 1) => {
+export const range = (fromIndex, toIndex) => {
   let i = fromIndex;
-  const rangeArray = [];
-
-  while (i <= toIndex) {
-    rangeArray.push(i);
-    i += step;
-  }
-
-  return rangeArray;
+  return new Array(toIndex - fromIndex + 1).fill(null).map(() => i++);
 };
