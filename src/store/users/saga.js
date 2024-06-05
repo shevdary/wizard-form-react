@@ -28,7 +28,7 @@ export function* ensureAddUserToStore({
 
     yield put(Users.setUserList(itemsOnPage, usersCount));
   } catch (e) {
-    console.log(e);
+    console.error(e);
   } finally {
     yield put(stopLoad());
   }
@@ -38,7 +38,7 @@ export function* ensureDeleteUserFromStore(action) {
   try {
     yield put(Users.deleteUser(action.payload));
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 export function* ensureGenerateUsers(action) {
@@ -48,7 +48,7 @@ export function* ensureGenerateUsers(action) {
     yield addArrayOfUsersToDB(arrayOfUsers(action.payload));
     yield put(Users.getUserListFromDB(1, 5));
   } catch (e) {
-    console.log(e);
+    console.error(e);
   } finally {
     yield put(stopLoad());
   }

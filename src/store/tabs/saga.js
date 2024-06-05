@@ -78,7 +78,7 @@ export function* ensureSetActiveTabs() {
       Tab.setPassedTabs(['account', 'profile', 'contact', 'capabilities'])
     );
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 export function* sagaWatcherTab() {
